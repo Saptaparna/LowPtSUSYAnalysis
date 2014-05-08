@@ -111,11 +111,28 @@ public :
    int            run;
    int 		  lumi;
    int            event;            
-   float          ph_pt_leading;
-   float          ph_energy_leading;
-   float          ph_eta_leading;
-   float          ph_phi_leading;
+   std::vector<float> ph_pt;
+   std::vector<float> ph_eta;
+   std::vector<float> ph_phi;
+   std::vector<float> ph_energy; 
    int            nPhotons;
+   std::vector<float> el_pt;
+   std::vector<float> el_eta;
+   std::vector<float> el_phi;
+   std::vector<float> el_energy;
+   int            nElectrons;
+   std::vector<float> mu_pt;
+   std::vector<float> mu_eta;
+   std::vector<float> mu_phi;
+   std::vector<float> mu_energy;
+   int            nMuons;
+   std::vector<float> jet_pt;
+   std::vector<float> jet_eta;
+   std::vector<float> jet_phi;
+   std::vector<float> jet_energy;
+   int            nJets;
+   float          MET;
+
 
    FlatTreeCreator(TTree * /*tree*/ =0) : fChain(0) { }
    virtual ~FlatTreeCreator() { }
