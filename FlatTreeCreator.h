@@ -132,7 +132,9 @@ public :
    std::vector<float> jet_energy;
    int            nJets;
    float          MET;
-
+   bool           fired_HLTPho;
+   bool           fired_HLTPhoId; 
+   bool           fired_HLTPhoIdMet;           
 
    FlatTreeCreator(TTree * /*tree*/ =0) : fChain(0) { }
    virtual ~FlatTreeCreator() { }

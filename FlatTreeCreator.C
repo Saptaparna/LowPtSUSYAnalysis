@@ -41,32 +41,10 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("jet_eta", &jet_eta);
    outtree->Branch("jet_energy", &jet_energy);
    outtree->Branch("nJets", &nJets, "nJets/I");
-
-   run = 0;
-   lumi = 0;
-   event = 0;
-
-   ph_pt.clear();
-   ph_phi.clear();
-   ph_eta.clear();
-   ph_energy.clear();
-   nPhotons = -1;
-   el_pt.clear();
-   el_phi.clear();
-   el_eta.clear();
-   el_energy.clear();
-   nElectrons = -1;
-   mu_pt.clear();
-   mu_phi.clear();
-   mu_eta.clear();
-   mu_energy.clear(); 
-   nMuons = -1;
-   jet_pt.clear();
-   jet_phi.clear();
-   jet_eta.clear();
-   jet_energy.clear(); 
-   nJets = -1;
-   MET = 0;
+   outtree->Branch("MET", &MET, "MET/F");
+   outtree->Branch("fired_HLTPho", &fired_HLTPho, "fired_HLTPho/O");
+   outtree->Branch("fired_HLTPhoId", &fired_HLTPhoId, "fired_HLTPhoId/O");
+   outtree->Branch("fired_HLTPhoIdMet", &fired_HLTPhoIdMet, "fired_HLTPhoIdMet/O");
 }
 
 void FlatTreeCreator::SlaveBegin(TTree *)
@@ -77,7 +55,35 @@ void FlatTreeCreator::SlaveBegin(TTree *)
 Bool_t FlatTreeCreator::Process(Long64_t entry)
 {
   GetEntry(entry);
-  if(entry % 1000 == 0) cout << "Processing event number: " << entry << endl;
+  run = 0;
+  lumi = 0;
+  event = 0;
+  ph_pt.clear();
+  ph_phi.clear();
+  ph_eta.clear();
+  ph_energy.clear();
+  nPhotons = -1;
+  el_pt.clear();
+  el_phi.clear();
+  el_eta.clear();
+  el_energy.clear();
+  nElectrons = -1;
+  mu_pt.clear();
+  mu_phi.clear();
+  mu_eta.clear();
+  mu_energy.clear();
+  nMuons = -1;
+  jet_pt.clear();
+  jet_phi.clear();
+  jet_eta.clear();
+  jet_energy.clear();
+  nJets = -1;
+  MET = 0;
+  fired_HLTPho = false;
+  fired_HLTPhoId = false;
+  fired_HLTPhoIdMet = false; 
+
+ if(entry % 1000 == 0) cout << "Processing event number: " << entry << endl;
   
   run = runNumber;
   lumi = lumiSection;
@@ -150,6 +156,17 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
 
 
  MET = corrMET->Mod();
+
+ //Trigger Status
+ for (int i = 0; i <  triggerObjects->GetSize(); ++i) {
+   TCTriggerObject* thisTrigObj = (TCTriggerObject*) triggerObjects->At(i);
+   if(thisTrigObj->GetHLTName().find("HLT_Photon30_v")!=std::string::npos) fired_HLTPho = true;
+   if(thisTrigObj->GetHLTName().find("HLT_Photon30_R9Id90_CaloId_HE10_Iso40_EBOnly_v")!=std::string::npos) fired_HLTPhoId = true;
+   if(thisTrigObj->GetHLTName().find("HLT_Photon30_R9Id90_CaloId_HE10_Iso40_EBOnly_Met25_HBHENoiseCleaned_v")!=std::string::npos) fired_HLTPhoIdMet = true;
+  }
+
+
+
 
  outtree->Fill();
  return kTRUE;
