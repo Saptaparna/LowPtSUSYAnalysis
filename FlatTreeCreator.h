@@ -120,11 +120,15 @@ public :
    std::vector<float> el_eta;
    std::vector<float> el_phi;
    std::vector<float> el_energy;
+   std::vector<int>   el_charge;
+   std::vector<bool>  el_isTight;  
    int            nElectrons;
    std::vector<float> mu_pt;
    std::vector<float> mu_eta;
    std::vector<float> mu_phi;
    std::vector<float> mu_energy;
+   std::vector<int>   mu_charge;
+   std::vector<bool>  mu_isTight;
    int            nMuons;
    std::vector<float> jet_pt;
    std::vector<float> jet_eta;
@@ -142,6 +146,7 @@ public :
    std::vector<float> ph_chIso;
    std::vector<float> ph_nuIso;
    std::vector<float> ph_phIso;
+   std::vector<float> ph_isTight;
    TH1F           *h1_numOfEvents;
    TFile          *inFile;
    TTree          *inTree;

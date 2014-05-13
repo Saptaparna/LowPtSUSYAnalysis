@@ -57,11 +57,15 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("el_phi", &el_phi);
    outtree->Branch("el_eta", &el_eta);
    outtree->Branch("el_energy", &el_energy);
+   outtree->Branch("el_charge", &el_charge);
+   outtree->Branch("el_isTight", &el_isTight);
    outtree->Branch("nElectrons", &nElectrons, "nElectrons/I");
    outtree->Branch("mu_pt", &mu_pt);
    outtree->Branch("mu_phi", &mu_phi);
    outtree->Branch("mu_eta", &mu_eta);
    outtree->Branch("mu_energy", &mu_energy);
+   outtree->Branch("mu_charge", &mu_charge);
+   outtree->Branch("mu_isTight", &mu_isTight);
    outtree->Branch("nMuons", &nMuons, "nMuons/I");
    outtree->Branch("jet_pt", &jet_pt);
    outtree->Branch("jet_phi", &jet_phi);
@@ -78,6 +82,7 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("ph_chIso", &ph_chIso);
    outtree->Branch("ph_nuIso", &ph_nuIso);
    outtree->Branch("ph_phIso", &ph_phIso);
+   outtree->Branch("ph_isTight", &ph_isTight);
    //MC PU-related variables
    outtree->Branch("nPUVertices", &nPUVertices, "nPUVertices/F");
    outtree->Branch("nPUVerticesTrue", &nPUVerticesTrue, "nPUVerticesTrue/F");
@@ -106,11 +111,15 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   el_phi.clear();
   el_eta.clear();
   el_energy.clear();
+  el_charge.clear();
+  el_isTight.clear();
   nElectrons = -1;
   mu_pt.clear();
   mu_phi.clear();
   mu_eta.clear();
   mu_energy.clear();
+  mu_charge.clear();
+  mu_isTight.clear();
   nMuons = -1;
   jet_pt.clear();
   jet_phi.clear();
@@ -127,6 +136,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   ph_chIso.clear();
   ph_nuIso.clear();
   ph_phIso.clear();
+  ph_isTight.clear();
   PUWeightData = -1.0;
   PUWeightDataSys = -1.0;
 
@@ -176,6 +186,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
     ph_chIso.push_back(chIsoTemp);
     ph_nuIso.push_back(nuIsoTemp);
     ph_phIso.push_back(phIsoTemp);
+    ph_isTight.push_back(isTightPhoton(photon));
   }  
 
   nPhotons = vPhotons.size();
@@ -189,7 +200,9 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
    el_eta.push_back(electron->Eta());
    el_phi.push_back(electron->Phi());
    el_energy.push_back(electron->Energy());
+   el_charge.push_back(electron->Charge());
    el_iso.push_back(ElectronIso(electron));
+   el_isTight.push_back(isTightElectron(electron));
  }
 
  nElectrons = vElectrons.size();
@@ -203,7 +216,9 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
    mu_eta.push_back(muon->Eta());
    mu_phi.push_back(muon->Phi()); 
    mu_energy.push_back(muon->Energy());
+   mu_charge.push_back(muon->Charge());
    mu_iso.push_back(MuonIso(muon));
+   mu_isTight.push_back(isTightMuon(muon));
  }
 
  nMuons = vMuons.size();
