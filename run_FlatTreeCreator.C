@@ -38,7 +38,11 @@ void run_FlatTreeCreator(){
     }
   cout << count << " file/files have been added" <<endl;
   sourceFiles.close();
-
+  TStopwatch timer;
+  timer.Start();   
   fChain->Process("FlatTreeCreator.C+");
-
+  cout << "\n\nDone!" << endl;
+  cout << "CPU Time : " << timer.CpuTime() <<endl;
+  cout << "RealTime : " << timer.RealTime() <<endl;                             
+  cout <<"\n";
 }
