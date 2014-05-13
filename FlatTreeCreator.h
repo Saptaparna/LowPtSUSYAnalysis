@@ -135,7 +135,22 @@ public :
    bool           fired_HLTPho;
    bool           fired_HLTPhoId; 
    bool           fired_HLTPhoIdMet;           
-
+   int            nVertices;
+   TVector3       *pvPosition;
+   std::vector<float> el_iso;
+   std::vector<float> mu_iso;
+   std::vector<float> ph_chIso;
+   std::vector<float> ph_nuIso;
+   std::vector<float> ph_phIso;
+   TH1F           *h1_numOfEvents;
+   TFile          *inFile;
+   TTree          *inTree;
+   float          unskimmedEvents;
+   float          unskimmedEventsTotal;
+   int            fileCount;
+   float          EAEle[7];
+   float          PUWeightData;
+   float          PUWeightDataSys; 
    FlatTreeCreator(TTree * /*tree*/ =0) : fChain(0) { }
    virtual ~FlatTreeCreator() { }
    virtual Int_t   Version() const { return 2; }
@@ -151,7 +166,17 @@ public :
    virtual TList  *GetOutputList() const { return fOutput; }
    virtual void    SlaveTerminate();
    virtual void    Terminate();
-
+   bool isTightElectron(TCElectron *electron);
+   bool isMediumElectron(TCElectron *electron);
+   bool isLooseElectron(TCElectron *electron);
+   bool isTightMuon(TCMuon *muon);
+   bool isLooseMuon(TCMuon *muon); 
+   bool isTightPhoton(TCPhoton *photon);
+   bool isMediumPhoton(TCPhoton *photon);
+   bool isLoosePhoton(TCPhoton *photon);
+   float ElectronIso(TCElectron *electron);
+   float MuonIso(TCMuon *muon);
+   int PhotonIso(TCPhoton *photon, double &chIso, double &nuIso, double &phIso);
    ClassDef(FlatTreeCreator,0);
 };
 
@@ -183,6 +208,7 @@ void FlatTreeCreator::Init(TTree *tree)
    // Set branch addresses and branch pointers
    if (!tree) return;
    fChain = tree;
+   inTree = tree;
    fChain->SetMakeClass(1);
 
    fChain->SetBranchAddress("patJets", &patJets, &b_patJets);
@@ -216,12 +242,12 @@ void FlatTreeCreator::Init(TTree *tree)
 
 Bool_t FlatTreeCreator::Notify()
 {
-   // The Notify() function is called when a new file is opened. This
-   // can be either for a new TTree in a TChain or when when a new TTree
-   // is started when using PROOF. It is normally not necessary to make changes
-   // to the generated code, but the routine can be extended by the
-   // user if needed. The return value is currently not used.
-
+   fileCount+= 1;
+   inFile = inTree->GetCurrentFile();
+   h1_numOfEvents = (TH1F*) inFile->Get("ntupleProducer/numOfEvents");
+   unskimmedEvents = h1_numOfEvents->GetBinContent(1);
+   cout<<"THIS IS FILE NUMBER: "<<fileCount<<" and it has "<<unskimmedEvents << " events " <<endl;
+   unskimmedEventsTotal += unskimmedEvents;
    return kTRUE;
 }
 

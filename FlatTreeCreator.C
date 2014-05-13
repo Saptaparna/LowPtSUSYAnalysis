@@ -9,13 +9,40 @@ Author: Saptaparna Bhattcharya
 #include "FlatTreeCreator.h"
 #include <TH2.h>
 #include <TStyle.h>
+#include "PhysicsTools/Utilities/interface/LumiReweightingStandAlone.h"
 using namespace std;
+
+reweight::LumiReWeighting LumiWeightsD_;
+reweight::LumiReWeighting LumiWeightsD_sys_;
+bool isMC= false;
+
 
 void FlatTreeCreator::Begin(TTree *tree)
 {
 
    TString option = GetOption();
-   
+
+   //PileUp Reweighting:
+
+   Float_t DataDist_2012D[60] = {1768.77, 3651.68, 7356.92, 14793.3, 51246.8, 489173, 2.63921e+06, 6.82361e+06, 1.88317e+07, 5.19794e+07, 1.08899e+08, 1.88257e+08, 2.57316e+08, 3.01258e+08, 3.27492e+08, 3.44354e+08, 3.59374e+08, 3.74823e+08, 3.90058e+08, 4.0217e+08, 4.08643e+08, 4.11422e+08, 4.11151e+08, 4.05573e+08, 3.92856e+08, 3.72226e+08, 3.44284e+08, 3.10504e+08, 2.7226e+08, 2.30759e+08, 1.8777e+08, 1.45857e+08, 1.07763e+08, 7.56393e+07, 5.0551e+07, 3.23928e+07, 2.0178e+07, 1.25011e+07, 7.95461e+06, 5.38133e+06, 3.95572e+06, 3.15182e+06, 2.66553e+06, 2.33493e+06, 2.08e+06, 1.86352e+06, 1.669e+06, 1.48952e+06, 1.32229e+06, 1.16642e+06, 1.02175e+06, 888282, 766092, 655189, 555473, 466702, 388487, 320302, 261506, 211367};
+
+   Float_t DataDist_2012D_sys[60] = {1632.3, 3240.95, 6296.46, 12068, 30517.4, 227305, 1.49497e+06, 4.52239e+06, 1.0476e+07, 2.96274e+07, 6.82538e+07, 1.28218e+08, 2.00114e+08, 2.55292e+08, 2.90327e+08, 3.11739e+08, 3.26279e+08, 3.39668e+08, 3.53444e+08, 3.67108e+08, 3.78444e+08, 3.85013e+08, 3.88036e+08, 3.88742e+08, 3.85622e+08, 3.76942e+08, 3.61739e+08, 3.39978e+08, 3.12601e+08, 2.80828e+08, 2.45645e+08, 2.08081e+08, 1.69728e+08, 1.32723e+08, 9.92184e+07, 7.08564e+07, 4.84379e+07, 3.18819e+07, 2.04316e+07, 1.29836e+07, 8.39661e+06, 5.69316e+06, 4.14131e+06, 3.24848e+06, 2.71199e+06, 2.35979e+06, 2.10068e+06, 1.88918e+06, 1.70364e+06, 1.53423e+06, 1.37666e+06, 1.22917e+06, 1.0912e+06, 962650, 843537, 733913, 633795, 543116, 461705, 389280};
+  
+   Float_t MCDist_Summer2012_S10[60] = {2.560E-06,5.239E-06,1.420E-05,5.005E-05,1.001E-04,2.705E-04,1.999E-03,6.097E-03,1.046E-02,1.383E-02,1.685E-02,2.055E-02,2.572E-02,3.262E-02,4.121E-02,4.977E-02,5.539E-02,5.725E-02,5.607E-02,5.312E-02,5.008E-02,4.763E-02,4.558E-02,4.363E-02,4.159E-02,3.933E-02,3.681E-02,3.406E-02,3.116E-02,2.818E-02,2.519E-02,2.226E-02,1.946E-02,1.682E-02,1.437E-02,1.215E-02,1.016E-02,8.400E-03,6.873E-03,5.564E-03,4.457E-03,3.533E-03,2.772E-03,2.154E-03,1.656E-03,1.261E-03,9.513E-04,7.107E-04,5.259E-04,3.856E-04,2.801E-04,2.017E-04,1.439E-04,1.017E-04,7.126E-05,4.948E-05,3.405E-05,2.322E-05,1.570E-05,5.005E-06};
+
+   std::vector<float> DataDistD;
+   std::vector<float> DataDistD_sys;
+   std::vector<float> MCDist;
+  
+   for( int i=0; i<60; ++i) {
+     DataDistD.push_back(DataDist_2012D[i]);
+     DataDistD_sys.push_back(DataDist_2012D_sys[i]);
+     MCDist.push_back(MCDist_Summer2012_S10[i]);
+   }
+
+   LumiWeightsD_ = reweight::LumiReWeighting(MCDist, DataDistD);
+   LumiWeightsD_sys_ = reweight::LumiReWeighting(MCDist, DataDistD_sys);
+ 
    outputFile = new TFile("LowPtSUSY_Tree.root","RECREATE");
    outtree=new TTree("LowPtSUSY_Tree", "LowPtSUSY_Tree"); 
    outtree->Branch("run", &run, "run/I");
@@ -45,6 +72,18 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("fired_HLTPho", &fired_HLTPho, "fired_HLTPho/O");
    outtree->Branch("fired_HLTPhoId", &fired_HLTPhoId, "fired_HLTPhoId/O");
    outtree->Branch("fired_HLTPhoIdMet", &fired_HLTPhoIdMet, "fired_HLTPhoIdMet/O");
+   outtree->Branch("nVertices", &nVertices, "nVertices/I");
+   outtree->Branch("el_iso", &el_iso);
+   outtree->Branch("mu_iso", &mu_iso);
+   outtree->Branch("ph_chIso", &ph_chIso);
+   outtree->Branch("ph_nuIso", &ph_nuIso);
+   outtree->Branch("ph_phIso", &ph_phIso);
+   //MC PU-related variables
+   outtree->Branch("nPUVertices", &nPUVertices, "nPUVertices/F");
+   outtree->Branch("nPUVerticesTrue", &nPUVerticesTrue, "nPUVerticesTrue/F");
+   outtree->Branch("PUWeightData", &PUWeightData, "PUWeightData/F");
+   outtree->Branch("PUWeightDataSys", &PUWeightDataSys, "PUWeightDataSys/F");
+
 }
 
 void FlatTreeCreator::SlaveBegin(TTree *)
@@ -82,82 +121,23 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   fired_HLTPho = false;
   fired_HLTPhoId = false;
   fired_HLTPhoIdMet = false; 
+  nVertices = -1;
+  el_iso.clear();
+  mu_iso.clear();
+  ph_chIso.clear();
+  ph_nuIso.clear();
+  ph_phIso.clear();
+  PUWeightData = -1.0;
+  PUWeightDataSys = -1.0;
 
  if(entry % 1000 == 0) cout << "Processing event number: " << entry << endl;
+
   
-  run = runNumber;
-  lumi = lumiSection;
-  event = eventNumber;
-  
-  vector<TCPhoton> vPhotons;
+ run = runNumber;
+ lumi = lumiSection;
+ event = eventNumber;
 
-  for (Int_t i = 0; i < recoPhotons->GetSize(); ++i) {
-    TCPhoton* photon = (TCPhoton*) recoPhotons->At(i);
-    vPhotons.push_back(*photon);
-  }  
-
-  nPhotons = vPhotons.size();
-
-  for (int i=0; i < nPhotons; i++){
-    ph_pt.push_back(vPhotons[i].Pt());
-    ph_eta.push_back(vPhotons[i].Eta());
-    ph_phi.push_back(vPhotons[i].Phi());
-    ph_energy.push_back(vPhotons[i].Energy());
-  }
-  
- vector<TCElectron> vElectrons;
-
- for (Int_t i = 0; i < recoElectrons->GetSize(); ++i) {
-   TCElectron* electron = (TCElectron*) recoElectrons->At(i);
-   vElectrons.push_back(*electron);
-  }
-
- nElectrons = vElectrons.size();
-
- for (int i=0; i < nElectrons; i++){
-   el_pt.push_back(vElectrons[i].Pt());
-   el_eta.push_back(vElectrons[i].Eta());
-   el_phi.push_back(vElectrons[i].Phi());
-   el_energy.push_back(vElectrons[i].Energy());
-  }
-
- vector<TCMuon> vMuons;
-
- for (Int_t i = 0; i < recoMuons->GetSize(); ++i) {
-   TCMuon* muon = (TCMuon*) recoMuons->At(i);
-   vMuons.push_back(*muon);
-  }
-
- nMuons = vMuons.size();
-
- for (int i=0; i < nMuons; i++){
-   mu_pt.push_back(vMuons[i].Pt());
-   mu_eta.push_back(vMuons[i].Eta());
-   mu_phi.push_back(vMuons[i].Phi());
-   mu_energy.push_back(vMuons[i].Energy());
-  }
- 
-
- vector<TCJet> vJets;
-
- for (Int_t i = 0; i < patJets->GetSize(); ++i) {
-   TCJet* jet = (TCJet*) patJets->At(i);
-   vJets.push_back(*jet);
-  }
-
- nJets = vJets.size();
-
- for (int i=0; i < nJets; i++){
-   jet_pt.push_back(vJets[i].Pt());
-   jet_eta.push_back(vJets[i].Eta());
-   jet_phi.push_back(vJets[i].Phi());
-   jet_energy.push_back(vJets[i].Energy());
-  }
-
-
- MET = corrMET->Mod();
-
- //Trigger Status
+ //Trigger Information
  for (int i = 0; i <  triggerObjects->GetSize(); ++i) {
    TCTriggerObject* thisTrigObj = (TCTriggerObject*) triggerObjects->At(i);
    if(thisTrigObj->GetHLTName().find("HLT_Photon30_v")!=std::string::npos) fired_HLTPho = true;
@@ -165,12 +145,370 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
    if(thisTrigObj->GetHLTName().find("HLT_Photon30_R9Id90_CaloId_HE10_Iso40_EBOnly_Met25_HBHENoiseCleaned_v")!=std::string::npos) fired_HLTPhoIdMet = true;
   }
 
+  vector<TVector3> goodVertices;
+  for (int i = 0; i < primaryVtx->GetSize(); ++i) {
+    TCPrimaryVtx* pVtx = (TCPrimaryVtx*) primaryVtx->At(i);
+    if ((not pVtx->IsFake()) && pVtx->NDof() > 4. && fabs(pVtx->z()) <= 24. && fabs(pVtx->Perp()) <= 2.) {
+      goodVertices.push_back(*pVtx);
+    }
+  }
 
+  //Reject events that do not have a good vertex 
+  if (goodVertices.size() < 1) return kTRUE;
 
+  nVertices = goodVertices.size();
+  pvPosition = new TVector3();
+  *pvPosition = goodVertices[0]; 
+ 
+  vector<TCPhoton> vPhotons;
 
+  for (Int_t i = 0; i < recoPhotons->GetSize(); ++i) {
+    TCPhoton* photon = (TCPhoton*) recoPhotons->At(i);
+    if (!(fabs(photon->SCEta())<1.4442)) continue;
+    if (!(photon->R9()>0.9)) continue;
+    vPhotons.push_back(*photon);
+    ph_pt.push_back(photon->Pt());
+    ph_eta.push_back(photon->Eta());
+    ph_phi.push_back(photon->Phi());
+    ph_energy.push_back(photon->Energy());
+    double chIsoTemp, nuIsoTemp, phIsoTemp;
+    PhotonIso(photon, chIsoTemp, nuIsoTemp, phIsoTemp); 
+    ph_chIso.push_back(chIsoTemp);
+    ph_nuIso.push_back(nuIsoTemp);
+    ph_phIso.push_back(phIsoTemp);
+  }  
+
+  nPhotons = vPhotons.size();
+
+ vector<TCElectron> vElectrons;
+
+ for (Int_t i = 0; i < recoElectrons->GetSize(); ++i) {
+   TCElectron* electron = (TCElectron*) recoElectrons->At(i);
+   vElectrons.push_back(*electron);
+   el_pt.push_back(electron->Pt());
+   el_eta.push_back(electron->Eta());
+   el_phi.push_back(electron->Phi());
+   el_energy.push_back(electron->Energy());
+   el_iso.push_back(ElectronIso(electron));
+ }
+
+ nElectrons = vElectrons.size();
+
+ vector<TCMuon> vMuons;
+
+ for (Int_t i = 0; i < recoMuons->GetSize(); ++i) {
+   TCMuon* muon = (TCMuon*) recoMuons->At(i);
+   vMuons.push_back(*muon);
+   mu_pt.push_back(muon->Pt());
+   mu_eta.push_back(muon->Eta());
+   mu_phi.push_back(muon->Phi()); 
+   mu_energy.push_back(muon->Energy());
+   mu_iso.push_back(MuonIso(muon));
+ }
+
+ nMuons = vMuons.size();
+
+ vector<TCJet> vJets;
+
+ for (Int_t i = 0; i < patJets->GetSize(); ++i) {
+   TCJet* jet = (TCJet*) patJets->At(i);
+   vJets.push_back(*jet);
+   jet_pt.push_back(jet->Pt());
+   jet_eta.push_back(jet->Eta());
+   jet_phi.push_back(jet->Phi());
+   jet_energy.push_back(jet->Energy());
+  }
+
+ nJets = vJets.size();
+ 
+ MET = corrMET->Mod();
+
+ if(isMC){
+   for (int i = 0; i <  genParticles->GetSize(); i++) {
+     TCGenParticle* genParticle = (TCGenParticle*) genParticles->At(i);
+     //Loop to access gen particles. Nothing is done yet. For future MC use.
+   } 
+  
+ PUWeightData = LumiWeightsD_.weight(nPUVerticesTrue);
+ PUWeightDataSys = LumiWeightsD_sys_.weight(nPUVerticesTrue);
+
+ } 
  outtree->Fill();
  return kTRUE;
 }
+
+float FlatTreeCreator::ElectronIso(TCElectron *electron){
+  
+ float EA = 0;
+ EAEle[0] = 0.208;
+ EAEle[1] = 0.209;
+ EAEle[2] = 0.115;
+ EAEle[3] = 0.143;
+ EAEle[4] = 0.183;
+ EAEle[5] = 0.194;
+ EAEle[6] = 0.261;
+ if (fabs(electron->Eta())  <  1.0) EA = EAEle[0];
+ else if(fabs(electron->Eta()) < 1.479) EA = EAEle[1]; 
+ else if(fabs(electron->Eta()) < 2.0) EA = EAEle[2];   
+ else if(fabs(electron->Eta()) < 2.2) EA = EAEle[3];
+ else if(fabs(electron->Eta()) < 2.3) EA = EAEle[4]; 
+ else if(fabs(electron->Eta()) < 2.4) EA = EAEle[5];
+ else if(fabs(electron->Eta()) > 2.4) EA = EAEle[6];
+
+ float combIso = (electron->IsoMap("pfChIso_R04")
+    + max(0.,(double)electron->IsoMap("pfNeuIso_R04") + electron->IsoMap("pfPhoIso_R04") - rhoFactor*EA));
+ return (combIso/(electron->Pt()));
+}
+
+
+bool FlatTreeCreator::isLooseElectron(TCElectron *electron){
+
+  if(electron->SCEta() > 2.5) return false;
+  if(fabs(electron->SCEta()) > 1.4442 and fabs(electron->SCEta()) < 1.566) return false;
+  if(fabs(electron->Eta()) < 1.4442){
+    if(fabs(electron->SCDeltaEta())    > 7.0e-03) return false;   
+    if(fabs(electron->SCDeltaPhi())    > 1.5e-01) return false;
+    if(electron->SigmaIEtaIEta()       > 1.0e-02) return false;
+    if(electron->HadOverEm()           > 1.2e-01) return false;
+    if(fabs(electron->Dxy(pvPosition)) > 0.02)    return false; 
+    if(fabs(electron->Dz(pvPosition))  > 0.2)     return false; 
+    if(electron->IdMap("fabsEPDiff")   > 0.05)    return false;
+    if(electron->ConversionMissHits()  > 1)       return false;
+    if(electron->PassConversionVeto() != 1)       return false;
+  }
+
+  if(fabs(electron->Eta()) > 1.566){
+    if(fabs(electron->SCDeltaEta())    > 9.0e-03) return false;
+    if(fabs(electron->SCDeltaPhi())    > 1.0e-01) return false;
+    if(electron->SigmaIEtaIEta()       > 3.0e-02) return false;
+    if(electron->HadOverEm()           > 1.0e-01) return false;
+    if(fabs(electron->Dxy(pvPosition)) > 0.02)    return false;
+    if(fabs(electron->Dz(pvPosition))  > 0.2)     return false;
+    if(electron->IdMap("fabsEPDiff")   > 0.05)    return false;
+    if(electron->ConversionMissHits()  > 1)       return false;
+    if(electron->PassConversionVeto() != 1)       return false;
+  }
+
+  return true;
+
+}
+
+bool FlatTreeCreator::isMediumElectron(TCElectron *electron){
+
+  if(electron->SCEta() > 2.5) return false;
+  if(fabs(electron->SCEta()) > 1.4442 and fabs(electron->SCEta()) < 1.566) return false;
+  if(fabs(electron->Eta()) < 1.4442){
+    if(fabs(electron->SCDeltaEta())    > 4.0e-03) return false;
+    if(fabs(electron->SCDeltaPhi())    > 0.6e-01) return false;
+    if(electron->SigmaIEtaIEta()       > 1.0e-02) return false;
+    if(electron->HadOverEm()           > 1.2e-01) return false;
+    if(fabs(electron->Dxy(pvPosition)) > 0.02)    return false;
+    if(fabs(electron->Dz(pvPosition))  > 0.1)     return false;
+    if(electron->IdMap("fabsEPDiff")   > 0.05)    return false;
+    if(electron->ConversionMissHits()  > 1)       return false;
+    if(electron->PassConversionVeto() != 1)       return false;
+  }
+
+  if(fabs(electron->Eta()) > 1.566){
+    if(fabs(electron->SCDeltaEta())    > 7.0e-03) return false;
+    if(fabs(electron->SCDeltaPhi())    > 0.3e-01) return false;
+    if(electron->SigmaIEtaIEta()       > 3.0e-02) return false;
+    if(electron->HadOverEm()           > 1.0e-01) return false;
+    if(fabs(electron->Dxy(pvPosition)) > 0.02)    return false;
+    if(fabs(electron->Dz(pvPosition))  > 0.1)     return false;
+    if(electron->IdMap("fabsEPDiff")   > 0.05)    return false;
+    if(electron->ConversionMissHits()  > 1)       return false;
+    if(electron->PassConversionVeto() != 1)       return false;
+  }
+  return true;
+
+}
+
+bool FlatTreeCreator::isTightElectron(TCElectron *electron){
+
+  if(electron->SCEta() > 2.5) return false;
+  if(fabs(electron->SCEta()) > 1.4442 and fabs(electron->SCEta()) < 1.566) return false;
+  if(fabs(electron->Eta()) < 1.4442){
+    if(fabs(electron->SCDeltaEta())    > 4.0e-03) return false;
+    if(fabs(electron->SCDeltaPhi())    > 0.3e-01) return false;
+    if(electron->SigmaIEtaIEta()       > 1.0e-02) return false;
+    if(electron->HadOverEm()           > 1.2e-01) return false;
+    if(fabs(electron->Dxy(pvPosition)) > 0.02)    return false;
+    if(fabs(electron->Dz(pvPosition))  > 0.1)     return false;
+    if(electron->IdMap("fabsEPDiff")   > 0.05)    return false;
+    if(electron->ConversionMissHits()  > 0)       return false;
+    if(electron->PassConversionVeto() != 1)       return false;
+  }
+
+  if(fabs(electron->Eta()) > 1.566){
+    if(fabs(electron->SCDeltaEta())    > 5.0e-03) return false;
+    if(fabs(electron->SCDeltaPhi())    > 0.2e-01) return false;
+    if(electron->SigmaIEtaIEta()       > 3.0e-02) return false;
+    if(electron->HadOverEm()           > 1.0e-01) return false;
+    if(fabs(electron->Dxy(pvPosition)) > 0.02)    return false;
+    if(fabs(electron->Dz(pvPosition))  > 0.1)     return false;
+    if(electron->IdMap("fabsEPDiff")   > 0.05)    return false;
+    if(electron->ConversionMissHits()  > 0)       return false;
+    if(electron->PassConversionVeto() != 1)       return false;
+  }
+  return true;
+
+}
+
+
+float FlatTreeCreator::MuonIso(TCMuon *muon){
+  
+  float combIso = (muon->IsoMap("pfChargedHadronPt_R04")
+    + max(0.,(double)muon->IsoMap("pfNeutralHadronEt_R04") + muon->IsoMap("pfPhotonEt_R04") - 0.5*muon->IsoMap("pfPUPt_R04")));
+
+  return (combIso/(muon->Pt())); 
+
+} 
+
+
+
+bool FlatTreeCreator::isTightMuon(TCMuon *muon){
+
+  if(fabs(muon->Eta()) > 2.4)                     return false;
+  if(fabs(muon->Eta()) < 2.4){
+    if(muon->IsPF() != 1)                         return false;
+    if(muon->IsGLB()!= 1)                         return false;
+    if(muon->NormalizedChi2() >= 10)              return false;
+    if(muon->NumberOfValidMuonHits() <= 0)        return false;
+    if(muon->NumberOfMatchedStations() <= 1)      return false;
+    if(muon->NumberOfValidPixelHits() <= 0)       return false; 
+    if(muon->TrackLayersWithMeasurement() <= 5)   return false;
+    if(muon->Dxy(pvPosition) > 0.2)               return false;
+    if(fabs(muon->Dz(pvPosition)) > 0.5)          return false;  
+  }
+  return true;
+
+}
+
+bool FlatTreeCreator::isLooseMuon(TCMuon *muon){
+
+  if(fabs(muon->Eta()) > 2.4)                     return false;
+  if(fabs(muon->Eta()) < 2.4){
+    if(muon->IsPF() != 1)                         return false;
+    if(muon->IsGLB()!= 1)                         return false;
+    if(muon->NormalizedChi2() >= 50)              return false;
+    if(muon->NumberOfValidMuonHits() <= 0)        return false;
+    if(muon->NumberOfMatchedStations() <= 1)      return false;
+    if(muon->NumberOfValidPixelHits() <= 0)       return false;
+    if(muon->TrackLayersWithMeasurement() <= 5)   return false;
+    if(muon->Dxy(pvPosition) > 2.0)               return false;
+  }
+  return true;
+
+}
+
+bool FlatTreeCreator::isTightPhoton(TCPhoton *photon){
+
+  if(fabs(photon->SCEta()) > 2.5)                 return false;
+  if(fabs(photon->SCEta()) > 1.4442 and fabs(photon->SCEta()) < 1.566) return false;    
+  if(fabs(photon->SCEta()) < 1.4442){
+    if(photon->HadOverEm() > 0.05)                return false;
+    if(photon->SigmaIEtaIEta() >  0.011)          return false;
+  }
+
+  if(fabs(photon->SCEta()) > 1.566){
+    if(photon->HadOverEm() > 0.05)                return false;
+    if(photon->SigmaIEtaIEta() >  0.031)          return false;
+  }
+
+  return true;
+}
+
+
+int FlatTreeCreator::PhotonIso(TCPhoton *photon, double &chIso, double &nuIso, double &phIso){
+  float chEA,nhEA,phEA,chIsoCor,nhIsoCor,phIsoCor;
+  float EAPho[7][3] = {
+    {0.012,  0.030,   0.148}, //         eta < 1.0  
+    {0.010,  0.057,   0.130}, // 1.0   < eta < 1.479   
+    {0.014,  0.039,   0.112}, // 1.479 < eta < 2.0  
+    {0.012,  0.015,   0.216}, // 2.0   < eta < 2.2 
+    {0.016,  0.024,   0.262}, // 2.2   < eta < 2.3  
+    {0.020,  0.039,   0.260}, // 2.3   < eta < 2.4 
+    {0.012,  0.072,   0.266}  // 2.4   < eta       
+  };
+
+  
+  if (fabs(photon->SCEta()) < 1.0){
+    chEA = EAPho[0][0];
+    nhEA = EAPho[0][1];
+    phEA = EAPho[0][2];
+  }else if (fabs(photon->SCEta()) < 1.479){
+    chEA = EAPho[1][0];
+    nhEA = EAPho[1][1];
+    phEA = EAPho[1][2];
+  }else if (fabs(photon->SCEta()) < 2.0){
+    chEA = EAPho[2][0];
+    nhEA = EAPho[2][1];
+    phEA = EAPho[2][2];
+  }else if (fabs(photon->SCEta()) < 2.2){
+    chEA = EAPho[3][0];
+    nhEA = EAPho[3][1];
+    phEA = EAPho[3][2];
+  }else if (fabs(photon->SCEta()) < 2.3){
+    chEA = EAPho[4][0];
+    nhEA = EAPho[4][1];
+    phEA = EAPho[4][2];
+  }else if (fabs(photon->SCEta()) < 2.4){
+    chEA = EAPho[5][0];
+    nhEA = EAPho[5][1];
+    phEA = EAPho[5][2];
+  }else{
+    chEA = EAPho[6][0];
+    nhEA = EAPho[6][1];
+    phEA = EAPho[6][2];
+  }
+
+  chIsoCor = photon->IsoMap("chIso03")-rhoFactor*chEA;
+  nhIsoCor = photon->IsoMap("nhIso03")-rhoFactor*nhEA;
+  phIsoCor = photon->IsoMap("phIso03")-rhoFactor*phEA;
+
+  chIso = chIsoCor;
+  nuIso = nhIsoCor;
+  phIso = phIsoCor;
+
+  return 0;
+}
+
+
+bool FlatTreeCreator::isMediumPhoton(TCPhoton *photon){
+
+  if(fabs(photon->SCEta()) > 2.5)                 return false;
+  if(fabs(photon->SCEta()) > 1.4442 and fabs(photon->SCEta()) < 1.566) return false;
+  if(fabs(photon->SCEta()) < 1.4442){
+    if(photon->HadOverEm() > 0.05)                return false;
+    if(photon->SigmaIEtaIEta() >  0.011)          return false;
+  }
+
+  if(fabs(photon->SCEta()) > 1.566){
+    if(photon->HadOverEm() > 0.05)                return false;
+    if(photon->SigmaIEtaIEta() >  0.033)          return false;
+  }
+
+  return true;
+}
+
+bool FlatTreeCreator::isLoosePhoton(TCPhoton *photon){
+
+  if(fabs(photon->SCEta()) > 2.5)                 return false;
+  if(fabs(photon->SCEta()) > 1.4442 and fabs(photon->SCEta()) < 1.566) return false;
+  if(fabs(photon->SCEta()) < 1.4442){
+    if(photon->HadOverEm() > 0.05)                return false;
+    if(photon->SigmaIEtaIEta() >  0.012)          return false;
+  }
+
+  if(fabs(photon->SCEta()) > 1.566){
+    if(photon->HadOverEm() > 0.05)                return false;
+    if(photon->SigmaIEtaIEta() >  0.034)          return false;
+  }
+
+  return true;
+}
+
 
 void FlatTreeCreator::SlaveTerminate()
 {
