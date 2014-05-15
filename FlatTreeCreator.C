@@ -15,7 +15,7 @@ using namespace std;
 reweight::LumiReWeighting LumiWeightsD_;
 reweight::LumiReWeighting LumiWeightsD_sys_;
 bool isMC= false;
-
+string  suffix = "SUFFIX";
 
 void FlatTreeCreator::Begin(TTree *tree)
 {
@@ -43,7 +43,7 @@ void FlatTreeCreator::Begin(TTree *tree)
    LumiWeightsD_ = reweight::LumiReWeighting(MCDist, DataDistD);
    LumiWeightsD_sys_ = reweight::LumiReWeighting(MCDist, DataDistD_sys);
  
-   outputFile = new TFile("LowPtSUSY_Tree.root","RECREATE");
+   outputFile = new TFile("LowPtSUSY_Tree_SUFFIX.root","RECREATE");
    outtree=new TTree("LowPtSUSY_Tree", "LowPtSUSY_Tree"); 
    outtree->Branch("run", &run, "run/I");
    outtree->Branch("lumi", &lumi, "lumi/I");
@@ -83,6 +83,9 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("ph_nuIso", &ph_nuIso);
    outtree->Branch("ph_phIso", &ph_phIso);
    outtree->Branch("ph_isTight", &ph_isTight);
+   outtree->Branch("ph_phIsoTight", &ph_phIsoTight);
+   outtree->Branch("ph_phIsoMedium", &ph_phIsoMedium);
+   outtree->Branch("ph_phIsoLoose", &ph_phIsoLoose);
    //MC PU-related variables
    outtree->Branch("nPUVertices", &nPUVertices, "nPUVertices/F");
    outtree->Branch("nPUVerticesTrue", &nPUVerticesTrue, "nPUVerticesTrue/F");
@@ -137,6 +140,9 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   ph_nuIso.clear();
   ph_phIso.clear();
   ph_isTight.clear();
+  ph_phIsoTight.clear();
+  ph_phIsoMedium.clear();
+  ph_phIsoLoose.clear();
   PUWeightData = -1.0;
   PUWeightDataSys = -1.0;
 
@@ -182,10 +188,14 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
     ph_phi.push_back(photon->Phi());
     ph_energy.push_back(photon->Energy());
     double chIsoTemp, nuIsoTemp, phIsoTemp;
-    PhotonIso(photon, chIsoTemp, nuIsoTemp, phIsoTemp); 
+    bool isoPassLTemp, isoPassMTemp, isoPassTTemp;
+    PhotonIso(photon, chIsoTemp, nuIsoTemp, phIsoTemp, isoPassLTemp, isoPassMTemp, isoPassTTemp);
     ph_chIso.push_back(chIsoTemp);
     ph_nuIso.push_back(nuIsoTemp);
     ph_phIso.push_back(phIsoTemp);
+    ph_phIsoTight.push_back(isoPassTTemp);
+    ph_phIsoMedium.push_back(isoPassMTemp);
+    ph_phIsoLoose.push_back(isoPassLTemp);
     ph_isTight.push_back(isTightPhoton(photon));
   }  
 
@@ -435,7 +445,7 @@ bool FlatTreeCreator::isTightPhoton(TCPhoton *photon){
 }
 
 
-int FlatTreeCreator::PhotonIso(TCPhoton *photon, double &chIso, double &nuIso, double &phIso){
+int FlatTreeCreator::PhotonIso(TCPhoton *photon, double &chIso, double &nuIso, double &phIso, bool &isoPassL, bool &isoPassM, bool &isoPassT){
   float chEA,nhEA,phEA,chIsoCor,nhIsoCor,phIsoCor;
   float EAPho[7][3] = {
     {0.012,  0.030,   0.148}, //         eta < 1.0  
@@ -486,6 +496,42 @@ int FlatTreeCreator::PhotonIso(TCPhoton *photon, double &chIso, double &nuIso, d
   nuIso = nhIsoCor;
   phIso = phIsoCor;
 
+  bool isoPassLoose = false;
+  bool isoPassMedium = false;
+  bool isoPassTight = false;
+
+  if ((fabs(photon->SCEta()) < 1.4442
+       and max((double)chIsoCor,0.)          < 2.6
+       and max((double)nhIsoCor,0.)          < 3.5 + 0.04*photon->Pt()
+       and max((double)phIsoCor,0.)          < 1.3 + 0.005*photon->Pt()
+	 ) || (fabs(photon->SCEta()) > 1.566
+       and max((double)chIsoCor,0.)          < 2.3
+       and max((double)nhIsoCor,0.)          < 2.9 + 0.04*photon->Pt()
+	 )) isoPassLoose = true;
+  
+  if ((fabs(photon->SCEta()) < 1.4442
+       and max((double)chIsoCor,0.)          < 1.5
+       and max((double)nhIsoCor,0.)          < 1.0 + 0.04*photon->Pt()
+       and max((double)phIsoCor,0.)          < 0.7 + 0.005*photon->Pt()
+         ) || (fabs(photon->SCEta()) > 1.566
+       and max((double)chIsoCor,0.)          < 1.2
+       and max((double)nhIsoCor,0.)          < 1.5 + 0.04*photon->Pt()
+       and max((double)nhIsoCor,0.)          < 1.0 + 0.005*photon->Pt()
+         )) isoPassMedium = true;
+
+  if ((fabs(photon->SCEta()) < 1.4442
+       and max((double)chIsoCor,0.)          < 0.7
+       and max((double)nhIsoCor,0.)          < 0.4 + 0.04*photon->Pt()
+       and max((double)phIsoCor,0.)          < 0.5 + 0.005*photon->Pt()
+         ) || (fabs(photon->SCEta()) > 1.566
+       and max((double)chIsoCor,0.)          < 0.5
+       and max((double)nhIsoCor,0.)          < 1.5 + 0.04*photon->Pt()
+       and max((double)nhIsoCor,0.)          < 1.0 + 0.005*photon->Pt()
+         )) isoPassTight = true;
+
+  isoPassL = isoPassLoose;
+  isoPassM = isoPassMedium;
+  isoPassT = isoPassTight; 
   return 0;
 }
 

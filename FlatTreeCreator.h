@@ -146,10 +146,12 @@ public :
    std::vector<float> ph_chIso;
    std::vector<float> ph_nuIso;
    std::vector<float> ph_phIso;
-   std::vector<float> ph_isTight;
+   std::vector<bool> ph_isTight;
+   std::vector<bool> ph_phIsoTight;
+   std::vector<bool> ph_phIsoMedium;
+   std::vector<bool> ph_phIsoLoose;
    TH1F           *h1_numOfEvents;
    TFile          *inFile;
-   TTree          *inTree;
    float          unskimmedEvents;
    float          unskimmedEventsTotal;
    int            fileCount;
@@ -181,7 +183,7 @@ public :
    bool isLoosePhoton(TCPhoton *photon);
    float ElectronIso(TCElectron *electron);
    float MuonIso(TCMuon *muon);
-   int PhotonIso(TCPhoton *photon, double &chIso, double &nuIso, double &phIso);
+   int PhotonIso(TCPhoton *photon, double &chIso, double &nuIso, double &phIso, bool &isoPassL, bool &isoPassM, bool &isoPassT);
    ClassDef(FlatTreeCreator,0);
 };
 
@@ -213,7 +215,6 @@ void FlatTreeCreator::Init(TTree *tree)
    // Set branch addresses and branch pointers
    if (!tree) return;
    fChain = tree;
-   inTree = tree;
    fChain->SetMakeClass(1);
 
    fChain->SetBranchAddress("patJets", &patJets, &b_patJets);
@@ -248,7 +249,7 @@ void FlatTreeCreator::Init(TTree *tree)
 Bool_t FlatTreeCreator::Notify()
 {
    fileCount+= 1;
-   inFile = inTree->GetCurrentFile();
+   inFile = fChain->GetCurrentFile();
    h1_numOfEvents = (TH1F*) inFile->Get("ntupleProducer/numOfEvents");
    unskimmedEvents = h1_numOfEvents->GetBinContent(1);
    cout<<"THIS IS FILE NUMBER: "<<fileCount<<" and it has "<<unskimmedEvents << " events " <<endl;
