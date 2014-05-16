@@ -140,6 +140,14 @@ public :
    bool           fired_HLTPhoId; 
    bool           fired_HLTPhoIdMet;           
    int            nVertices;
+   std::vector<float>   trigObj1Px;
+   std::vector<float>   trigObj1Py;
+   std::vector<float>   trigObj1Pz;
+   std::vector<float>   trigObj1E;
+   std::vector<float>   trigObj2Px;
+   std::vector<float>   trigObj2Py;
+   std::vector<float>   trigObj2Pz;
+   std::vector<float>   trigObj2E;
    TVector3       *pvPosition;
    std::vector<float> el_iso;
    std::vector<float> mu_iso;

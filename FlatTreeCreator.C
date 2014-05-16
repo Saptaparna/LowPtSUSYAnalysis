@@ -86,6 +86,16 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("ph_phIsoTight", &ph_phIsoTight);
    outtree->Branch("ph_phIsoMedium", &ph_phIsoMedium);
    outtree->Branch("ph_phIsoLoose", &ph_phIsoLoose);
+   //Trigger Objects saved
+   outtree->Branch("trigObj1Px", &trigObj1Px);
+   outtree->Branch("trigObj1Py", &trigObj1Py);
+   outtree->Branch("trigObj1Pz", &trigObj1Pz);
+   outtree->Branch("trigObj1E",  &trigObj1E);
+   outtree->Branch("trigObj2Px", &trigObj2Px);
+   outtree->Branch("trigObj2Py", &trigObj2Py);
+   outtree->Branch("trigObj2Pz", &trigObj2Pz);
+   outtree->Branch("trigObj2E",  &trigObj2E);
+
    //MC PU-related variables
    outtree->Branch("nPUVertices", &nPUVertices, "nPUVertices/F");
    outtree->Branch("nPUVerticesTrue", &nPUVerticesTrue, "nPUVerticesTrue/F");
@@ -145,6 +155,17 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   ph_phIsoLoose.clear();
   PUWeightData = -1.0;
   PUWeightDataSys = -1.0;
+  //Trigger object 1 refers to objects passed by the hltPhoton30R9Id90CaloIdHE10Iso40EBOnlyTrackIsoLastFilter
+  trigObj1Px.clear();
+  trigObj1Py.clear();
+  trigObj1Pz.clear();
+  trigObj1E.clear();
+  //Trigger object 1 refers to objects passed by the hltPhoton30HEFilter
+  trigObj2Px.clear();
+  trigObj2Py.clear();
+  trigObj2Pz.clear();
+  trigObj2E.clear();
+
 
  if(entry % 1000 == 0) cout << "Processing event number: " << entry << endl;
 
@@ -156,10 +177,25 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
  //Trigger Information
  for (int i = 0; i <  triggerObjects->GetSize(); ++i) {
    TCTriggerObject* thisTrigObj = (TCTriggerObject*) triggerObjects->At(i);
+   if( thisTrigObj->GetModuleName() == "hltPhoton30R9Id90CaloIdHE10Iso40EBOnlyTrackIsoLastFilter"){
+     trigObj1Px.push_back(thisTrigObj->Px());
+     trigObj1Py.push_back(thisTrigObj->Py());
+     trigObj1Pz.push_back(thisTrigObj->Pz());
+     trigObj1E.push_back(thisTrigObj->E());
+     }
+
+   if(thisTrigObj->GetModuleName() == "hltPhoton30HEFilter"){
+     trigObj2Px.push_back(thisTrigObj->Px());
+     trigObj2Py.push_back(thisTrigObj->Py());
+     trigObj2Pz.push_back(thisTrigObj->Pz());
+     trigObj2E.push_back(thisTrigObj->E());
+    } 
+
    if(thisTrigObj->GetHLTName().find("HLT_Photon30_v")!=std::string::npos) fired_HLTPho = true;
    if(thisTrigObj->GetHLTName().find("HLT_Photon30_R9Id90_CaloId_HE10_Iso40_EBOnly_v")!=std::string::npos) fired_HLTPhoId = true;
    if(thisTrigObj->GetHLTName().find("HLT_Photon30_R9Id90_CaloId_HE10_Iso40_EBOnly_Met25_HBHENoiseCleaned_v")!=std::string::npos) fired_HLTPhoIdMet = true;
   }
+
 
   vector<TVector3> goodVertices;
   for (int i = 0; i < primaryVtx->GetSize(); ++i) {
