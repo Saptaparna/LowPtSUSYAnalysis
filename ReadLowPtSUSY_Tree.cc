@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <algorithm>
+#include <TGraphAsymmErrors.h>
 
 TLorentzVector fillTLorentzVector(double pT, double eta, double phi, double E)
 {
@@ -114,7 +115,7 @@ int ReadLowPtSUSY_Tree(std::string infile, std::string outfile){
   vector<float>   *ph_chIso;
   vector<float>   *ph_nuIso;
   vector<float>   *ph_phIso;
-  vector<float>   *ph_isTight;
+  vector<bool>    *ph_isTight;
   vector<bool>    *ph_phIsoTight;
   vector<bool>    *ph_phIsoMedium;
   vector<bool>    *ph_phIsoLoose;
@@ -164,9 +165,6 @@ int ReadLowPtSUSY_Tree(std::string infile, std::string outfile){
   tree->SetBranchAddress("ph_nuIso", &(ph_nuIso));
   tree->SetBranchAddress("ph_phIso", &(ph_phIso));
   tree->SetBranchAddress("ph_isTight", &(ph_isTight));
-  tree->SetBranchAddress("ph_chIso", &(ph_chIso));
-  tree->SetBranchAddress("ph_nuIso", &(ph_nuIso));
-  tree->SetBranchAddress("ph_phIso", &(ph_phIso));
   tree->SetBranchAddress("nPhotons", &(nPhotons));
   tree->SetBranchAddress("el_pt", &(el_pt));
   tree->SetBranchAddress("el_eta", &(el_eta));
@@ -255,7 +253,9 @@ int ReadLowPtSUSY_Tree(std::string infile, std::string outfile){
   for (int i=0; i<nEvents; ++i)
     {
      tree->GetEvent(i);
-     if(fired_HLTPho!=1 and fired_HLTPhoId!=1 and fired_HLTPhoIdMet!=1) continue;
+     //if(fired_HLTPho!=1 and fired_HLTPhoId!=1 and fired_HLTPhoIdMet!=1) continue;
+
+     if(fired_HLTPhoIdMet==1){// continue;
 
      h_MET->Fill(MET); 
      
@@ -358,6 +358,8 @@ int ReadLowPtSUSY_Tree(std::string infile, std::string outfile){
         h_el_isolation_trailing->Fill(electrons.at(1).isolation); //there will be a sharp cut at 0.10
         h_InvariantMass_El->Fill((el1_p4+el2_p4).M());
         h_Difference_El->Fill(el1_p4.Pt() - el2_p4.Pt());
+        if(ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1) h_InvariantMass_ElPh->Fill((el1_p4+el2_p4+ph1_p4).M()); 
+        if(ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1) h_Mee_MeeGamma->Fill((el1_p4+el2_p4).M(), (el1_p4+el2_p4+ph1_p4).M());
         }
      }
 
@@ -393,11 +395,16 @@ int ReadLowPtSUSY_Tree(std::string infile, std::string outfile){
         h_mu_eta_trailing->Fill(mu2_p4.Eta());
         h_mu_pt_trailing->Fill(mu2_p4.Pt());
         h_mu_energy_trailing->Fill(mu2_p4.E());
-        if(muons.at(1).isolation>0.0)h_mu_isolation_trailing->Fill(muons.at(1).isolation); 
+        h_mu_isolation_trailing->Fill(muons.at(1).isolation); 
         h_InvariantMass_Mu->Fill((mu1_p4+mu2_p4).M());
         h_Difference_Mu->Fill(mu1_p4.Pt() - mu2_p4.Pt());
+        if(ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1) h_InvariantMass_MuPh->Fill((mu1_p4+mu2_p4+ph1_p4).M());
+        if(ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1) h_Mmumu_MmumuGamma->Fill((mu1_p4+mu2_p4).M(), (mu1_p4+mu2_p4+ph1_p4).M());
         }
      }
+
+
+   }//trigger requirement
   }//event loop closed
   std::string histfilename=(outfile+".root").c_str();
   TFile *tFile=new TFile(histfilename.c_str(), "RECREATE");
@@ -439,11 +446,124 @@ int ReadLowPtSUSY_Tree(std::string infile, std::string outfile){
 
   h_InvariantMass_Mu->Write();
   h_InvariantMass_El->Write();
+  h_InvariantMass_ElPh->Write();
+  h_InvariantMass_MuPh->Write();
+  h_Mmumu_MmumuGamma->Write();
+  h_Mee_MeeGamma->Write();
 
   h_Difference_El->Write();
   h_Difference_Mu->Write();
 
   tFile->Close(); 
+  std::cout<<"Wrote output file "<<histfilename<<std::endl;
+
+  return 0;
+
+}
+
+
+int TriggerEfficiency(std::string infile, std::string outfile){
+
+  std::string inputfilename=(infile+".root").c_str();
+  TChain *tree=new TChain("LowPtSUSY_Tree");
+  tree->Add(inputfilename.c_str());
+  std::cout<<"Opened input file "<<inputfilename<<std::endl;
+
+  Bool_t          fired_HLTPho;
+  Bool_t          fired_HLTPhoId;
+  Bool_t          fired_HLTPhoIdMet;
+  vector<float>   *ph_pt;
+  vector<float>   *ph_phi;
+  vector<float>   *ph_eta;
+  vector<float>   *ph_energy;
+  vector<bool>    *ph_phIsoTight;
+  vector<bool>    *ph_phIsoMedium;
+  vector<bool>    *ph_phIsoLoose;
+  vector<float>   *ph_chIso;
+  vector<float>   *ph_nuIso;
+  vector<float>   *ph_phIso;
+  vector<bool>    *ph_isTight;
+  Float_t         MET;
+
+  tree->SetBranchAddress("fired_HLTPho", &(fired_HLTPho));
+  tree->SetBranchAddress("fired_HLTPhoId", &(fired_HLTPhoId));
+  tree->SetBranchAddress("fired_HLTPhoIdMet", &(fired_HLTPhoIdMet));
+  tree->SetBranchAddress("ph_pt", &(ph_pt));
+  tree->SetBranchAddress("ph_phi", &(ph_phi));
+  tree->SetBranchAddress("ph_eta", &(ph_eta));
+  tree->SetBranchAddress("ph_energy", &(ph_energy));
+  tree->SetBranchAddress("ph_chIso", &(ph_chIso));
+  tree->SetBranchAddress("ph_nuIso", &(ph_nuIso));
+  tree->SetBranchAddress("ph_phIso", &(ph_phIso));
+  tree->SetBranchAddress("ph_isTight", &(ph_isTight));
+  tree->SetBranchAddress("ph_phIsoTight", &(ph_phIsoTight));
+  tree->SetBranchAddress("ph_phIsoMedium", &(ph_phIsoMedium));
+  tree->SetBranchAddress("ph_phIsoLoose", &(ph_phIsoLoose));
+  tree->SetBranchAddress("MET", &(MET));
+
+  ph_pt = 0;
+  ph_phi = 0;
+  ph_eta = 0;
+  ph_energy = 0;
+  ph_chIso = 0;
+  ph_nuIso = 0;
+  ph_phIso = 0;
+  ph_isTight = 0;
+  ph_phIsoTight = 0;
+  ph_phIsoMedium = 0;
+  ph_phIsoLoose = 0;
+  
+  TH1F *h_MET_HLTPhoId=new TH1F("h_MET_HLTPhoId", "Missing ET; MET [GeV]; Events/GeV", 600, 0, 600); h_MET_HLTPhoId->Sumw2();
+  TH1F *h_MET_HLTPhoIdMet=new TH1F("h_MET_HLTPhoIdMet", "Missing ET; MET [GeV]; Events/GeV", 600, 0, 600); h_MET_HLTPhoIdMet->Sumw2();
+
+  
+
+  int nEvents=tree->GetEntries();
+  std::cout << "nEvents= " << nEvents << std::endl;
+  for (int i=0; i<nEvents; ++i)
+    {
+     tree->GetEvent(i);
+
+     std::vector<PhotonInfo> photons;
+     for (unsigned int j=0; j<ph_pt->size(); ++j)
+       {
+       PhotonInfo photon;
+       photon.pT=ph_pt->at(j);
+       photon.eta=ph_eta->at(j);
+       photon.phi=ph_phi->at(j);
+       photon.energy=ph_energy->at(j);
+       photon.isTight=ph_isTight->at(j);
+       photon.chIsolation=ph_chIso->at(j);
+       photon.nuIsolation=ph_nuIso->at(j);
+       photon.phIsolation=ph_phIso->at(j);
+       photon.phIsoTight=ph_phIsoTight->at(j);
+       photon.phIsoMedium=ph_phIsoMedium->at(j);
+       photon.phIsoLoose=ph_phIsoLoose->at(j);
+       photons.push_back(photon);
+      }
+      // Now sorting this vector of structs
+      std::sort (photons.begin(), photons.end(), sortPhotonsInDescendingpT);
+
+     TLorentzVector ph1_p4;
+
+     if (photons.size() > 0) ph1_p4=fillTLorentzVector(photons.at(0).pT, photons.at(0).eta, photons.at(0).phi, photons.at(0).energy);
+
+     if (fired_HLTPhoId==1){  
+       h_MET_HLTPhoId->Fill(MET);
+       if(fired_HLTPhoIdMet==1){
+         h_MET_HLTPhoIdMet->Fill(MET);
+          }
+        }
+     }
+
+  TGraphAsymmErrors *Eff_MET = new TGraphAsymmErrors;
+  Eff_MET->BayesDivide(h_MET_HLTPhoIdMet, h_MET_HLTPhoId, "");
+
+  std::string histfilename=(outfile+".root").c_str();
+  TFile *tFile=new TFile(histfilename.c_str(), "RECREATE");
+
+  Eff_MET->Write("Eff_MET");
+  tFile->Close();
   std::cout<<"Wrote output file "<<histfilename<<std::endl;
 
   return 0;
