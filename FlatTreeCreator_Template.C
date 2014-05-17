@@ -14,7 +14,7 @@ using namespace std;
 
 reweight::LumiReWeighting LumiWeightsD_;
 reweight::LumiReWeighting LumiWeightsD_sys_;
-bool isMC= false;
+bool isMC= true;
 string  suffix = "SUFFIX";
 
 void FlatTreeCreator::Begin(TTree *tree)
@@ -175,7 +175,8 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
  event = eventNumber;
 
  //Trigger Information
- for (int i = 0; i <  triggerObjects->GetSize(); ++i) {
+ if(not isMC){
+   for (int i = 0; i <  triggerObjects->GetSize(); ++i) {
    TCTriggerObject* thisTrigObj = (TCTriggerObject*) triggerObjects->At(i);
    if( thisTrigObj->GetModuleName() == "hltPhoton30R9Id90CaloIdHE10Iso40EBOnlyTrackIsoLastFilter"){
      trigObj1Px.push_back(thisTrigObj->Px());
@@ -194,8 +195,8 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
    if(thisTrigObj->GetHLTName().find("HLT_Photon30_v")!=std::string::npos) fired_HLTPho = true;
    if(thisTrigObj->GetHLTName().find("HLT_Photon30_R9Id90_CaloId_HE10_Iso40_EBOnly_v")!=std::string::npos) fired_HLTPhoId = true;
    if(thisTrigObj->GetHLTName().find("HLT_Photon30_R9Id90_CaloId_HE10_Iso40_EBOnly_Met25_HBHENoiseCleaned_v")!=std::string::npos) fired_HLTPhoIdMet = true;
-  }
-
+   }
+ }
 
   vector<TVector3> goodVertices;
   for (int i = 0; i < primaryVtx->GetSize(); ++i) {
