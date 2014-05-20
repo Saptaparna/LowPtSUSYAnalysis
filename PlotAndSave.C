@@ -26,142 +26,142 @@ void PlotAndSave(std::string infile){
   h1->Rebin(10);
   h1->Draw();
   c1->SaveAs((infile+"_InvariantMass_Mu.pdf").c_str());
-  c1->SaveAs((infile+"_InvariantMass_Mu.pdf").c_str());
+  c1->SaveAs((infile+"_InvariantMass_Mu.png").c_str());
 
   TH2F *h2 = (TH2F*)gDirectory->Get("h_InvariantMass_El");
   h2->Rebin(10);
   h2->Draw();
   c1->SaveAs((infile+"_InvariantMass_El.pdf").c_str());
-  c1->SaveAs((infile+"_InvariantMass_El.pdf").c_str());
+  c1->SaveAs((infile+"_InvariantMass_El.png").c_str());
 
   TH2F *h3 = (TH2F*)gDirectory->Get("h_mu_pt_leading");
   h3->Rebin(5);
   h3->GetXaxis()->SetRangeUser(0, 200);
   h3->Draw();
   c1->SaveAs((infile+"_mu_pt_leading.pdf").c_str());
-  c1->SaveAs((infile+"_mu_pt_leading.pdf").c_str());
+  c1->SaveAs((infile+"_mu_pt_leading.png").c_str());
   
   TH2F *h4 = (TH2F*)gDirectory->Get("h_mu_pt_trailing");
   h4->Rebin(5);
   h4->GetXaxis()->SetRangeUser(0, 200);
   h4->Draw();
   c1->SaveAs((infile+"_mu_pt_trailing.pdf").c_str());
-  c1->SaveAs((infile+"_mu_pt_trailing.pdf").c_str());
+  c1->SaveAs((infile+"_mu_pt_trailing.png").c_str());
 
   TH2F *h5 = (TH2F*)gDirectory->Get("h_mu_eta_leading");
   h5->Rebin(10);
   h5->Draw();
   c1->SaveAs((infile+"_mu_eta_leading.pdf").c_str());
-  c1->SaveAs((infile+"_mu_eta_leading.pdf").c_str());
+  c1->SaveAs((infile+"_mu_eta_leading.png").c_str());
   
   TH2F *h6 = (TH2F*)gDirectory->Get("h_mu_eta_trailing");
   h6->Rebin(10);
   h6->Draw();
   c1->SaveAs((infile+"_mu_eta_trailing.pdf").c_str());
-  c1->SaveAs((infile+"_mu_eta_trailing.pdf").c_str());
+  c1->SaveAs((infile+"_mu_eta_trailing.png").c_str());
 
   TH2F *h7 = (TH2F*)gDirectory->Get("h_mu_phi_leading");
   h7->Rebin(10);
   h7->Draw();
   c1->SaveAs((infile+"_mu_phi_leading.pdf").c_str());
-  c1->SaveAs((infile+"_mu_phi_leading.pdf").c_str());
+  c1->SaveAs((infile+"_mu_phi_leading.png").c_str());
   
   TH2F *h8 = (TH2F*)gDirectory->Get("h_mu_phi_trailing");
   h8->Rebin(10);
   h8->Draw();
   c1->SaveAs((infile+"_mu_phi_trailing.pdf").c_str());
-  c1->SaveAs((infile+"_mu_phi_trailing.pdf").c_str());
+  c1->SaveAs((infile+"_mu_phi_trailing.png").c_str());
    
   TH2F *h9 = (TH2F*)gDirectory->Get("h_mu_energy_leading");
   h9->Rebin(5);
   h9->GetXaxis()->SetRangeUser(0, 500);
   h9->Draw();
   c1->SaveAs((infile+"_mu_energy_leading.pdf").c_str());
-  c1->SaveAs((infile+"_mu_energy_leading.pdf").c_str());
+  c1->SaveAs((infile+"_mu_energy_leading.png").c_str());
   
   TH2F *h10 = (TH2F*)gDirectory->Get("h_mu_energy_trailing");
   h10->Rebin(5);
   h10->GetXaxis()->SetRangeUser(0, 500);
   h10->Draw();
   c1->SaveAs((infile+"_mu_energy_trailing.pdf").c_str());
-  c1->SaveAs((infile+"_mu_energy_trailing.pdf").c_str());
+  c1->SaveAs((infile+"_mu_energy_trailing.png").c_str());
 
   TH2F *h11 = (TH2F*)gDirectory->Get("h_el_pt_leading"); 
   h11->Rebin(5);
   h11->GetXaxis()->SetRangeUser(0, 200);
   h11->Draw(); 
   c1->SaveAs((infile+"_el_pt_leading.pdf").c_str()); 
-  c1->SaveAs((infile+"_el_pt_leading.pdf").c_str()); 
+  c1->SaveAs((infile+"_el_pt_leading.png").c_str()); 
    
   TH2F *h12 = (TH2F*)gDirectory->Get("h_el_pt_trailing"); 
   h12->Rebin(5); 
   h12->GetXaxis()->SetRangeUser(0, 200);
   h12->Draw(); 
   c1->SaveAs((infile+"_el_pt_trailing.pdf").c_str()); 
-  c1->SaveAs((infile+"_el_pt_trailing.pdf").c_str()); 
+  c1->SaveAs((infile+"_el_pt_trailing.png").c_str()); 
  
   TH2F *h13 = (TH2F*)gDirectory->Get("h_el_eta_leading"); 
   h13->Rebin(10); 
   h13->Draw(); 
   c1->SaveAs((infile+"_el_eta_leading.pdf").c_str()); 
-  c1->SaveAs((infile+"_el_eta_leading.pdf").c_str()); 
+  c1->SaveAs((infile+"_el_eta_leading.png").c_str()); 
    
   TH2F *h14 = (TH2F*)gDirectory->Get("h_el_eta_trailing"); 
   h14->Rebin(10); 
   h14->Draw(); 
   c1->SaveAs((infile+"_el_eta_trailing.pdf").c_str()); 
-  c1->SaveAs((infile+"_el_eta_trailing.pdf").c_str()); 
+  c1->SaveAs((infile+"_el_eta_trailing.png").c_str()); 
  
   TH2F *h15 = (TH2F*)gDirectory->Get("h_el_phi_leading"); 
   h15->Rebin(10); 
   h15->Draw(); 
   c1->SaveAs((infile+"_el_phi_leading.pdf").c_str()); 
-  c1->SaveAs((infile+"_el_phi_leading.pdf").c_str()); 
+  c1->SaveAs((infile+"_el_phi_leading.png").c_str()); 
    
   TH2F *h16 = (TH2F*)gDirectory->Get("h_el_phi_trailing"); 
   h16->Rebin(10); 
   h16->Draw(); 
   c1->SaveAs((infile+"_el_phi_trailing.pdf").c_str()); 
-  c1->SaveAs((infile+"_el_phi_trailing.pdf").c_str()); 
+  c1->SaveAs((infile+"_el_phi_trailing.png").c_str()); 
     
   TH2F *h17 = (TH2F*)gDirectory->Get("h_el_energy_leading"); 
   h17->Rebin(5); 
   h17->GetXaxis()->SetRangeUser(0, 500);
   h17->Draw(); 
   c1->SaveAs((infile+"_el_energy_leading.pdf").c_str()); 
-  c1->SaveAs((infile+"_el_energy_leading.pdf").c_str()); 
+  c1->SaveAs((infile+"_el_energy_leading.png").c_str()); 
    
   TH2F *h18 = (TH2F*)gDirectory->Get("h_el_energy_trailing");
   h18->Rebin(5); 
   h18->GetXaxis()->SetRangeUser(0, 500);
   h18->Draw();
   c1->SaveAs((infile+"_el_energy_trailing.pdf").c_str()); 
-  c1->SaveAs((infile+"_el_energy_trailing.pdf").c_str());  
+  c1->SaveAs((infile+"_el_energy_trailing.png").c_str());  
  
   TH2F *h19 = (TH2F*)gDirectory->Get("h_photon_pt"); 
   h19->GetXaxis()->SetRangeUser(0, 500);
   h19->Rebin(5);
   h19->Draw();
   c1->SaveAs((infile+"_photon_pt.pdf").c_str()); 
-  c1->SaveAs((infile+"_photon_pt.pdf").c_str()); 
+  c1->SaveAs((infile+"_photon_pt.png").c_str()); 
    
   TH2F *h20 = (TH2F*)gDirectory->Get("h_photon_eta");          
   h20->Rebin(10);
   h20->Draw();
   c1->SaveAs((infile+"_photon_eta.pdf").c_str());         
-  c1->SaveAs((infile+"_photon_eta.pdf").c_str());      
+  c1->SaveAs((infile+"_photon_eta.png").c_str());      
   
   TH2F *h21 = (TH2F*)gDirectory->Get("h_photon_phi");          
   h21->Rebin(10);
   h21->Draw();
   c1->SaveAs((infile+"_photon_phi.pdf").c_str());         
-  c1->SaveAs((infile+"_photon_phi.pdf").c_str());    
+  c1->SaveAs((infile+"_photon_phi.png").c_str());    
 
   TH2F *h22 = (TH2F*)gDirectory->Get("h_photon_energy");          
   h22->Rebin(10);
   h22->Draw();
   c1->SaveAs((infile+"_photon_energy.pdf").c_str());         
-  c1->SaveAs((infile+"_photon_energy.pdf").c_str());    
+  c1->SaveAs((infile+"_photon_energy.png").c_str());    
 
   c1->SetLogy();
 
@@ -169,13 +169,13 @@ void PlotAndSave(std::string infile){
   h23->Rebin(10);
   h23->Draw();
   c1->SaveAs((infile+"_DeltaR_el1_ph1.pdf").c_str());       
-  c1->SaveAs((infile+"_DeltaR_el1_ph1.pdf").c_str());  
+  c1->SaveAs((infile+"_DeltaR_el1_ph1.png").c_str());  
 
   TH2F *h24 = (TH2F*)gDirectory->Get("h_DeltaR_el2_ph1");
   h24->Rebin(10);
   h24->Draw();
   c1->SaveAs((infile+"_DeltaR_el2_ph1.pdf").c_str());
-  c1->SaveAs((infile+"_DeltaR_el2_ph1.pdf").c_str());
+  c1->SaveAs((infile+"_DeltaR_el2_ph1.png").c_str());
 
 
 
