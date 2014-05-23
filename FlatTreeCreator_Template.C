@@ -15,6 +15,7 @@ using namespace std;
 reweight::LumiReWeighting LumiWeightsD_;
 reweight::LumiReWeighting LumiWeightsD_sys_;
 bool isMC= true;
+//bool isMC=false;
 string  suffix = "SUFFIX";
 
 void FlatTreeCreator::Begin(TTree *tree)
@@ -34,7 +35,7 @@ void FlatTreeCreator::Begin(TTree *tree)
    std::vector<float> DataDistD_sys;
    std::vector<float> MCDist;
   
-   for( int i=0; i<60; ++i) {
+   for( int i=0; i<60; i++) {
      DataDistD.push_back(DataDist_2012D[i]);
      DataDistD_sys.push_back(DataDist_2012D_sys[i]);
      MCDist.push_back(MCDist_Summer2012_S10[i]);
@@ -42,7 +43,8 @@ void FlatTreeCreator::Begin(TTree *tree)
 
    LumiWeightsD_ = reweight::LumiReWeighting(MCDist, DataDistD);
    LumiWeightsD_sys_ = reweight::LumiReWeighting(MCDist, DataDistD_sys);
- 
+
+   fileCount = 0; 
    outputFile = new TFile("LowPtSUSY_Tree_SUFFIX.root","RECREATE");
    outtree=new TTree("LowPtSUSY_Tree", "LowPtSUSY_Tree"); 
    outtree->Branch("run", &run, "run/I");
@@ -101,6 +103,18 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("nPUVerticesTrue", &nPUVerticesTrue, "nPUVerticesTrue/F");
    outtree->Branch("PUWeightData", &PUWeightData, "PUWeightData/F");
    outtree->Branch("PUWeightDataSys", &PUWeightDataSys, "PUWeightDataSys/F");
+   //MC GenInfo Related Variables
+   outtree->Branch("el_Matched",  &el_Matched); 
+   outtree->Branch("el_MatchedPt",  &el_MatchedPt);  
+   outtree->Branch("el_MatchedEta",  &el_MatchedEta);  
+   outtree->Branch("el_MatchedPhi",  &el_MatchedPhi);
+   outtree->Branch("el_MatchedEnergy",  &el_MatchedEnergy);
+
+   outtree->Branch("mu_Matched",  &mu_Matched);
+   outtree->Branch("mu_MatchedPt",  &mu_MatchedPt);
+   outtree->Branch("mu_MatchedEta",  &mu_MatchedEta);
+   outtree->Branch("mu_MatchedPhi",  &mu_MatchedPhi);
+   outtree->Branch("mu_MatchedEnergy",  &mu_MatchedEnergy);
 
 }
 
@@ -165,9 +179,20 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   trigObj2Py.clear();
   trigObj2Pz.clear();
   trigObj2E.clear();
+  //MC history and genparticle info
+  el_Matched.clear();
+  el_MatchedPt.clear();
+  el_MatchedEta.clear();
+  el_MatchedPhi.clear();
+  el_MatchedEnergy.clear();
 
+  mu_Matched.clear();
+  mu_MatchedPt.clear();
+  mu_MatchedEta.clear();
+  mu_MatchedPhi.clear();
+  mu_MatchedEnergy.clear();
 
- if(entry % 1000 == 0) cout << "Processing event number: " << entry << endl;
+  if(entry % 1000 == 0) cout << "Processing event number: " << entry << endl;
 
   
  run = runNumber;
@@ -176,7 +201,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
 
  //Trigger Information
  if(not isMC){
-   for (int i = 0; i <  triggerObjects->GetSize(); ++i) {
+   for (int i = 0; i <  triggerObjects->GetSize(); i++) {
    TCTriggerObject* thisTrigObj = (TCTriggerObject*) triggerObjects->At(i);
    if( thisTrigObj->GetModuleName() == "hltPhoton30R9Id90CaloIdHE10Iso40EBOnlyTrackIsoLastFilter"){
      trigObj1Px.push_back(thisTrigObj->Px());
@@ -190,7 +215,9 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
      trigObj2Py.push_back(thisTrigObj->Py());
      trigObj2Pz.push_back(thisTrigObj->Pz());
      trigObj2E.push_back(thisTrigObj->E());
-    } 
+    }
+
+   //cout << "thisTrigObj->GetModuleName() == " << thisTrigObj->GetModuleName() << endl; 
 
    if(thisTrigObj->GetHLTName().find("HLT_Photon30_v")!=std::string::npos) fired_HLTPho = true;
    if(thisTrigObj->GetHLTName().find("HLT_Photon30_R9Id90_CaloId_HE10_Iso40_EBOnly_v")!=std::string::npos) fired_HLTPhoId = true;
@@ -199,7 +226,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
  }
 
   vector<TVector3> goodVertices;
-  for (int i = 0; i < primaryVtx->GetSize(); ++i) {
+  for (int i = 0; i < primaryVtx->GetSize(); i++) {
     TCPrimaryVtx* pVtx = (TCPrimaryVtx*) primaryVtx->At(i);
     if ((not pVtx->IsFake()) && pVtx->NDof() > 4. && fabs(pVtx->z()) <= 24. && fabs(pVtx->Perp()) <= 2.) {
       goodVertices.push_back(*pVtx);
@@ -207,6 +234,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   }
 
   //Reject events that do not have a good vertex 
+
   if (goodVertices.size() < 1) return kTRUE;
 
   nVertices = goodVertices.size();
@@ -215,7 +243,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
  
   vector<TCPhoton> vPhotons;
 
-  for (Int_t i = 0; i < recoPhotons->GetSize(); ++i) {
+  for (Int_t i = 0; i < recoPhotons->GetSize(); i++) {
     TCPhoton* photon = (TCPhoton*) recoPhotons->At(i);
     if (!(fabs(photon->SCEta())<1.4442)) continue;
     if (!(photon->R9()>0.9)) continue;
@@ -240,7 +268,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
 
  vector<TCElectron> vElectrons;
 
- for (Int_t i = 0; i < recoElectrons->GetSize(); ++i) {
+ for (Int_t i = 0; i < recoElectrons->GetSize(); i++) {
    TCElectron* electron = (TCElectron*) recoElectrons->At(i);
    vElectrons.push_back(*electron);
    el_pt.push_back(electron->Pt());
@@ -250,13 +278,44 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
    el_charge.push_back(electron->Charge());
    el_iso.push_back(ElectronIso(electron));
    el_isTight.push_back(isTightElectron(electron));
- }
-
+   if(isMC){
+     double closestDR = 0.3;
+     int closestIndex=-1;
+     for (int g = 0; g <  genParticles->GetSize(); g++) {
+       TCGenParticle* genParticle = (TCGenParticle*) genParticles->At(g);
+       if(abs(genParticle->GetPDGId())==11){
+         double tmpDR = mdeltaR(electron->Eta(), electron->Phi(), genParticle->Eta(), genParticle->Phi());
+         if(tmpDR<closestDR){
+           closestDR = tmpDR;
+           closestIndex = g;
+          }
+       }
+    }//closing the gen particle loop
+    if(closestIndex!=-1){ 
+      TCGenParticle* genParticle = (TCGenParticle*) genParticles->At(closestIndex);
+      if((genParticle->Mother() and abs(genParticle->Mother()->GetPDGId())==15)){ //Checking that the Tau (15) is the first mother.
+         el_Matched.push_back(1);
+         el_MatchedPt.push_back(electron->Pt());     
+         el_MatchedEta.push_back(electron->Eta()); 
+         el_MatchedPhi.push_back(electron->Phi()); 
+         el_MatchedEnergy.push_back(electron->Energy()); 
+        }//mother checked
+      }//gen matching criteria checked
+    else{
+      el_Matched.push_back(0);
+      el_MatchedPt.push_back(-99.0);
+      el_MatchedEta.push_back(-99.0);
+      el_MatchedPhi.push_back(-99.0);
+      el_MatchedEnergy.push_back(-99.0);
+        }//gen matching else statement closed
+    }//isMC if statement ended 
+ }//end reco electron loop
+ 
  nElectrons = vElectrons.size();
 
  vector<TCMuon> vMuons;
 
- for (Int_t i = 0; i < recoMuons->GetSize(); ++i) {
+ for (Int_t i = 0; i < recoMuons->GetSize(); i++) {
    TCMuon* muon = (TCMuon*) recoMuons->At(i);
    vMuons.push_back(*muon);
    mu_pt.push_back(muon->Pt());
@@ -266,13 +325,44 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
    mu_charge.push_back(muon->Charge());
    mu_iso.push_back(MuonIso(muon));
    mu_isTight.push_back(isTightMuon(muon));
- }
+   if(isMC){
+     double closestDR = 0.3;
+     int closestIndex=-1;
+     for (int g = 0; g <  genParticles->GetSize(); g++) {
+       TCGenParticle* genParticle = (TCGenParticle*) genParticles->At(g);
+       if(abs(genParticle->GetPDGId())==13){
+         double tmpDR = mdeltaR(muon->Eta(), muon->Phi(), genParticle->Eta(), genParticle->Phi());
+         if(tmpDR<closestDR){
+           closestDR = tmpDR;
+           closestIndex = g;
+          }
+       }
+    }//closing the gen particle loop
+    if(closestIndex!=-1){
+      TCGenParticle* genParticle = (TCGenParticle*) genParticles->At(closestIndex);
+      if((genParticle->Mother() and abs(genParticle->Mother()->GetPDGId())==15)){ //Checking that the Tau (15) is the first mother.
+         mu_Matched.push_back(1);
+         mu_MatchedPt.push_back(muon->Pt());
+         mu_MatchedEta.push_back(muon->Eta());
+         mu_MatchedPhi.push_back(muon->Phi());
+         mu_MatchedEnergy.push_back(muon->Energy());
+        }//mother checked
+      }//gen matching criteria checked
+    else{
+      mu_Matched.push_back(0);
+      mu_MatchedPt.push_back(-99.0);
+      mu_MatchedEta.push_back(-99.0);
+      mu_MatchedPhi.push_back(-99.0);
+      mu_MatchedEnergy.push_back(-99.0);
+        }//gen matching else statement closed
+    }//isMC if statement ended 
+ }//end reco muon loop
 
  nMuons = vMuons.size();
 
  vector<TCJet> vJets;
 
- for (Int_t i = 0; i < patJets->GetSize(); ++i) {
+ for (Int_t i = 0; i < patJets->GetSize(); i++) {
    TCJet* jet = (TCJet*) patJets->At(i);
    vJets.push_back(*jet);
    jet_pt.push_back(jet->Pt());
@@ -285,16 +375,11 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
  
  MET = corrMET->Mod();
 
- if(isMC){
-   for (int i = 0; i <  genParticles->GetSize(); i++) {
-     TCGenParticle* genParticle = (TCGenParticle*) genParticles->At(i);
-     //Loop to access gen particles. Nothing is done yet. For future MC use.
-   } 
-  
- PUWeightData = LumiWeightsD_.weight(nPUVerticesTrue);
- PUWeightDataSys = LumiWeightsD_sys_.weight(nPUVerticesTrue);
+ if(isMC){ 
+   PUWeightData = LumiWeightsD_.weight(nPUVerticesTrue);
+   PUWeightDataSys = LumiWeightsD_sys_.weight(nPUVerticesTrue);
+ }
 
- } 
  outtree->Fill();
  return kTRUE;
 }
@@ -607,6 +692,21 @@ bool FlatTreeCreator::isLoosePhoton(TCPhoton *photon){
   return true;
 }
 
+double FlatTreeCreator::mdeltaR(double eta1, double phi1, double eta2, double phi2) {
+  double delta_eta = fabs(eta1-eta2);
+  double delta_phi = fabs(phi1-phi2);
+  if(delta_phi > 3.14159265) delta_phi = delta_phi - 2*3.14159265;
+  double pt = 5.0; //some non zero value
+  TVector3 vector1;
+  TVector3 vector2;
+  vector1.SetPtEtaPhi(pt, eta1, phi1);
+  vector2.SetPtEtaPhi(pt, eta2, phi2);
+  double deltaR1 = vector1.DeltaR(vector2);
+  double deltaR2 = std::sqrt((delta_eta)*(delta_eta) + (delta_phi)*(delta_phi));
+  if (fabs(deltaR1-deltaR2) > 0.0001) std::cout<<"Difference spotted "<<deltaR1<<", "<<deltaR2<<std::endl;
+  return std::sqrt((delta_eta)*(delta_eta) + (delta_phi)*(delta_phi));
+
+}
 
 void FlatTreeCreator::SlaveTerminate()
 {
@@ -616,4 +716,6 @@ void FlatTreeCreator::Terminate()
 {
  outtree->Write();
 }
+
+
 
