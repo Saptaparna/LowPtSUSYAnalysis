@@ -166,6 +166,17 @@ public :
    float          EAEle[7];
    float          PUWeightData;
    float          PUWeightDataSys; 
+   //MC info
+   std::vector<int> el_Matched;
+   std::vector<float> el_MatchedPt;
+   std::vector<float> el_MatchedEta;
+   std::vector<float> el_MatchedPhi;
+   std::vector<float> el_MatchedEnergy;
+   std::vector<int> mu_Matched;
+   std::vector<float> mu_MatchedPt;
+   std::vector<float> mu_MatchedEta;
+   std::vector<float> mu_MatchedPhi;
+   std::vector<float> mu_MatchedEnergy;
    FlatTreeCreator(TTree * /*tree*/ =0) : fChain(0) { }
    virtual ~FlatTreeCreator() { }
    virtual Int_t   Version() const { return 2; }
@@ -192,6 +203,8 @@ public :
    float ElectronIso(TCElectron *electron);
    float MuonIso(TCMuon *muon);
    int PhotonIso(TCPhoton *photon, double &chIso, double &nuIso, double &phIso, bool &isoPassL, bool &isoPassM, bool &isoPassT);
+   double mdeltaR(double eta1, double phi1, double eta2, double phi2);
+ 
    ClassDef(FlatTreeCreator,0);
 };
 
