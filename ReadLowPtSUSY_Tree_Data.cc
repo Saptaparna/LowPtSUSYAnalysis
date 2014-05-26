@@ -134,14 +134,15 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
   Float_t         nPUVerticesTrue;
   Float_t         PUWeightData;
   Float_t         PUWeightDataSys;
-  vector<float>   *trigObj1Px;
-  vector<float>   *trigObj1Py;
-  vector<float>   *trigObj1Pz;
-  vector<float>   *trigObj1E;
-  vector<float>   *trigObj2Px;
-  vector<float>   *trigObj2Py;
-  vector<float>   *trigObj2Pz;
-  vector<float>   *trigObj2E;
+  float trigObj1Px;
+  float trigObj1Py;
+  float trigObj1Pz;
+  float trigObj1E;
+  float trigObj2Px;
+  float trigObj2Py;
+  float trigObj2Pz;
+  float trigObj2E;
+
 
   // Set object pointer
   ph_pt = 0;
@@ -272,6 +273,9 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
   TH1F *h_DeltaR_el1_ph1 = new TH1F("h_DeltaR_el1_ph1", "#Delta R between leading electron and leading photon; #Delta R; Events", 3500, 0, 3.5);h_DeltaR_el1_ph1->Sumw2();
   TH1F *h_DeltaR_el2_ph1 = new TH1F("h_DeltaR_el2_ph1", "#Delta R between trailing electron and leading photon; #Delta R; Events", 3500, 0, 3.5);h_DeltaR_el2_ph1->Sumw2();
 
+  TH1F *h_DeltaR_elphZ1 = new TH1F("h_DeltaR_elphZ1", "#Delta R between leading electron and leading photon in the Z-mass regime; #Delta R; Events", 3500, 0, 3.5);h_DeltaR_elphZ1->Sumw2();
+  TH1F *h_DeltaR_elphZ2 = new TH1F("h_DeltaR_elphZ2", "#Delta R between trailing electron and leading photon in the Z-mass regime; #Delta R; Events", 3500, 0, 3.5);h_DeltaR_elphZ2->Sumw2();
+
   TH1F *h_minDeltaR = new TH1F("h_minDeltaR", "#Delta R between HLT objects and the leading photon; #Delta R; Events", 3500, 0, 3.5);h_minDeltaR->Sumw2();
   TH1F *h_minDeltaR_el1 = new TH1F("h_minDeltaR_el1", "#Delta R between HLT objects and the leading electron; #Delta R; Events", 3500, 0, 3.5);h_minDeltaR_el1->Sumw2();
   TH1F *h_minDeltaR_el2 = new TH1F("h_minDeltaR_el2", "#Delta R between HLT objects and the trailing electron; #Delta R; Events", 3500, 0, 3.5);h_minDeltaR_el2->Sumw2();
@@ -290,29 +294,49 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
 
   TH2F *h_Mmumu_MmumuGamma = new TH2F("h_Mmumu_MmumuGamma", "Scatter Plot of  M_{#mu#mu} versus M_{#mu#mu#gamma}; M_{#mu#mu} [GeV]; M_{#mu#mu#gamma} [GeV]", 4000, 0, 2000, 4000, 0, 2000);  h_Mmumu_MmumuGamma->Sumw2();
   TH2F *h_Mee_MeeGamma = new TH2F("h_Mee_MeeGamma", "Scatter Plot of  M_{ee} versus M_{ee#gamma}; M_{ee} [GeV]; M_{ee#gamma} [GeV]", 4000, 0, 2000, 4000, 0, 20000);h_Mee_MeeGamma->Sumw2();
+  TH2F *h_Met_PhPt = new TH2F("h_Met_PhPt", "Scatter Plot of photon pT versus missing ET; Photon pT [GeV]; Missing ET [GeV];", 300, 0, 600, 300, 0, 600); h_Met_PhPt->Sumw2();
+  TH2F *h_Met_PhEta = new TH2F("h_Met_PhEta", "Scatter Plot of photon #eta versus missing ET; Photon #eta; Missing ET [GeV];", 400, -2.0, 2.0, 300, 0, 600);h_Met_PhEta->Sumw2();
   TH1F *h_HT = new TH1F("h_HT", "HT (scalar sum of jet pT); H_T [GeV]; Events/GeV", 5000, 0, 5000.0);h_HT->Sumw2();
 
-  int nEvents=tree->GetEntries();
-  std::cout << "nEvents= " << nEvents << std::endl;
-  for (int i=0; i<nEvents; ++i)
-    {
-     tree->GetEvent(i);
+
+ int nEvents=tree->GetEntries();
+ std::cout << "nEvents= " << nEvents << std::endl;
+ for (int i=0; i<nEvents; ++i)
+   {
+   tree->GetEvent(i);
      //if(fired_HLTPho!=1 and fired_HLTPhoId!=1 and fired_HLTPhoIdMet!=1) continue;
 
-     if(fired_HLTPhoIdMet==1){// continue;
+   if(fired_HLTPhoIdMet==1){// continue;
 
-     std::vector<TriggerInfo> triggers1;
-     for (unsigned int j=0; j<trigObj1Px->size(); ++j) //trigObj1Px is the relevant trigger
-       {
-        TriggerInfo trigger1;
-        trigger1.Px = trigObj1Px->at(j);
-        trigger1.Py = trigObj1Py->at(j);
-        trigger1.Pz = trigObj1Pz->at(j);
-        trigger1.E  = trigObj1E->at(j);
-        triggers1.push_back(trigger1);
-       }
+     TriggerInfo trigger1;    
+     trigger1.Px = trigObj1Px;
+     trigger1.Py = trigObj1Py;
+     trigger1.Pz = trigObj1Pz;
+     trigger1.E  = trigObj1E;
 
      h_MET->Fill(MET); 
+
+     std::vector<JetInfo> jets;
+     for (unsigned int j=0; j<jet_pt->size(); ++j)
+       {
+       JetInfo jet;
+       jet.pT = jet_pt->at(j);
+       jet.eta = jet_eta->at(j);
+       jet.phi = jet_phi->at(j);
+       jet.energy = jet_energy->at(j);
+       jets.push_back(jet);
+       }
+
+     // Now sorting this vector of structs
+     std::sort (jets.begin(), jets.end(), sortJetsInDescendingpT);
+
+     double HT = 0; //jets are sorted. Don't care as far as HT is concerned.
+     for(unsigned int k=0; k<jets.size(); ++k)
+       {
+       HT += jets.at(k).pT;
+       }
+
+     h_HT->Fill(HT);
  
      // Filling the photon's properties into a vector of struct
      std::vector<PhotonInfo> photons;
@@ -337,21 +361,20 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
        
      TLorentzVector ph1_p4;
      //here working with the leading photon.
+     double deltaR1 = -1.0;
      if (photons.size() > 0){
        ph1_p4=fillTLorentzVector(photons.at(0).pT, photons.at(0).eta, photons.at(0).phi, photons.at(0).energy); 
+
        int foundHLTPhoton = 0;
-       double minDeltaR = 9999.0;
-       for(unsigned int k=0; k<triggers1.size(); k++){
-           TLorentzVector trigger1_p4;
-           trigger1_p4.SetPxPyPzE(triggers1.at(k).Px, triggers1.at(k).Py, triggers1.at(k).Pz, triggers1.at(k).E);
-           double deltaR = ph1_p4.DeltaR(trigger1_p4);
-           if(deltaR<minDeltaR){
-             minDeltaR = deltaR;
-          }
-       }//close loop over trigger objects
-       h_minDeltaR->Fill(minDeltaR);
-       if(minDeltaR<0.3){
-         foundHLTPhoton++;
+       TLorentzVector trigger1_p4;
+       trigger1_p4.SetPxPyPzE(trigger1.Px, trigger1.Py, trigger1.Pz, trigger1.E);
+       if(ph1_p4.Pt() > 0.0) 
+         {
+         deltaR1 = ph1_p4.DeltaR(trigger1_p4);
+         if(deltaR1>0.0) h_minDeltaR->Fill(deltaR1);
+         if(deltaR1<0.3){
+           foundHLTPhoton++;
+         }
        }
        else{foundHLTPhoton=0;}
      }//only execute this loop if a photon exists.
@@ -376,43 +399,39 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
      TLorentzVector el1_p4;
      TLorentzVector el2_p4;
 
-     double minDeltaR_el1 = 9999.0;
      int foundHLTelectron1 = 0;
+     double deltaR_el1 = -1.0;
      if (electrons.size() > 0){
        el1_p4=fillTLorentzVector(electrons.at(0).pT, electrons.at(0).eta, electrons.at(0).phi, electrons.at(0).energy);
-       for(unsigned int k=0; k<triggers1.size(); k++){
-         TLorentzVector trigger1_p4;
-         trigger1_p4.SetPxPyPzE(triggers1.at(k).Px, triggers1.at(k).Py, triggers1.at(k).Pz, triggers1.at(k).E);
-         double deltaR_el1 = el1_p4.DeltaR(trigger1_p4);
-         if(deltaR_el1<minDeltaR_el1){
-            minDeltaR_el1 = deltaR_el1;
-         }
-       }//close loop over trigger objects 
-       h_minDeltaR_el1->Fill(minDeltaR_el1);
-       if(minDeltaR_el1<0.3){
-         foundHLTelectron1++;
+       TLorentzVector trigger1_p4;
+       trigger1_p4.SetPxPyPzE(trigger1.Px, trigger1.Py, trigger1.Pz, trigger1.E);
+       if(el1_p4.Pt() > 0.0)
+          {
+          deltaR_el1 = el1_p4.DeltaR(trigger1_p4);
+          if(deltaR_el1>0.0) h_minDeltaR_el1->Fill(deltaR_el1);
+          if(deltaR_el1<0.3){
+            foundHLTelectron1++;
+          }
        }
        else{foundHLTelectron1=0;}
-     }//only execute this loop if an electron exists.
+     }//only execute if an electron exists.
 
-     double minDeltaR_el2 = 9999.0;
      int foundHLTelectron2 = 0;
+     double deltaR_el2 = -1.0;
      if (electrons.size() > 1){
        el2_p4=fillTLorentzVector(electrons.at(1).pT, electrons.at(1).eta, electrons.at(1).phi, electrons.at(1).energy);
-       for(unsigned int k=0; k<triggers1.size(); k++){
-         TLorentzVector trigger1_p4;
-         trigger1_p4.SetPxPyPzE(triggers1.at(k).Px, triggers1.at(k).Py, triggers1.at(k).Pz, triggers1.at(k).E);
-         double deltaR_el2 = el2_p4.DeltaR(trigger1_p4);
-         if(deltaR_el2<minDeltaR_el2){
-           minDeltaR_el2 = deltaR_el2;
+       TLorentzVector trigger1_p4;
+       trigger1_p4.SetPxPyPzE(trigger1.Px, trigger1.Py, trigger1.Pz, trigger1.E);
+       if(el2_p4.Pt() > 0.0)
+         {
+         deltaR_el2 = el2_p4.DeltaR(trigger1_p4);
+         if(deltaR_el2>0.0) h_minDeltaR_el2->Fill(deltaR_el2);
+         if(deltaR_el2<0.3){
+           foundHLTelectron2++;
         }
-      }//close loop over trigger objects 
-      h_minDeltaR_el2->Fill(minDeltaR_el2);
-      if(minDeltaR_el2<0.3){
-         foundHLTelectron2++;
-       }
+      }
       else{foundHLTelectron2=0;}
-     }//only execute this loop if the second electron exists.
+     }//only execute if the second electron exists.
 
      if (ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1){
        h_photon_pt->Fill(ph1_p4.Pt());
@@ -422,32 +441,34 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
        h_ph_chIsolation_leading->Fill(photons.at(0).chIsolation);
        h_ph_nuIsolation_leading->Fill(photons.at(0).nuIsolation);
        h_ph_phIsolation_leading->Fill(photons.at(0).phIsolation);
+       h_Met_PhPt->Fill(photons.at(0).pT, MET);
+       h_Met_PhEta->Fill(photons.at(0).eta, MET);
      }
     
     double leadingDeltaR, trailingDeltaR;
-    leadingDeltaR = 99.0;
-    trailingDeltaR = 99.0;
+    leadingDeltaR = -1.0;
+    trailingDeltaR = -1.0;
 
-    if(el1_p4.Pt()>0.0 and ph1_p4.Pt()>0.0){
+    if(el1_p4.Pt()>0.0 and ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1){
 
       leadingDeltaR = el1_p4.DeltaR(ph1_p4); 
-      h_DeltaR_el1_ph1->Fill(leadingDeltaR);
+      if(leadingDeltaR > 0.0) h_DeltaR_el1_ph1->Fill(leadingDeltaR);
     }   
 
-    if(el2_p4.Pt()>0.0 and ph1_p4.Pt()>0.0){
+    if(el2_p4.Pt()>0.0 and ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1){
 
       trailingDeltaR = el2_p4.DeltaR(ph1_p4); 
-      h_DeltaR_el2_ph1->Fill(trailingDeltaR);
+      if(trailingDeltaR>0.0) h_DeltaR_el2_ph1->Fill(trailingDeltaR);
       
     }
 
-    if(el1_p4.Pt()>0.0 and electrons.at(0).isTight==1 and electrons.at(0).isolation < 0.10 and leadingDeltaR > 0.3 and minDeltaR_el1 > 0.3) {
+    if(el1_p4.Pt()>0.0 and electrons.at(0).isTight==1 and electrons.at(0).isolation < 0.10 and leadingDeltaR > 0.3 and deltaR_el1 > 0.3 ) {  
       h_el_phi_leading->Fill(el1_p4.Phi());
       h_el_eta_leading->Fill(el1_p4.Eta());
       h_el_pt_leading->Fill(el1_p4.Pt());
       h_el_energy_leading->Fill(el1_p4.E());
       h_el_isolation_leading->Fill(electrons.at(0).isolation); //there will be a sharp cut at 0.10
-      if(el2_p4.Pt()>0.0 and electrons.at(1).isTight==1 and electrons.at(1).isolation < 0.10 and trailingDeltaR > 0.3 and minDeltaR_el2 > 0.3 and ((electrons.at(0).charge*electrons.at(1).charge)==-1)) {
+      if(el2_p4.Pt()>0.0 and electrons.at(1).isTight==1 and electrons.at(1).isolation < 0.10 and trailingDeltaR > 0.3 and ((electrons.at(0).charge*electrons.at(1).charge)==-1) and deltaR_el2 > 0.3) {
         h_el_phi_trailing->Fill(el2_p4.Phi());
         h_el_eta_trailing->Fill(el2_p4.Eta());
         h_el_pt_trailing->Fill(el2_p4.Pt());
@@ -455,6 +476,8 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
         h_el_isolation_trailing->Fill(electrons.at(1).isolation); //there will be a sharp cut at 0.10
         h_InvariantMass_El->Fill((el1_p4+el2_p4).M());
         h_Difference_El->Fill(el1_p4.Pt() - el2_p4.Pt());
+        if(((el1_p4+el2_p4).M() > 60 or (el1_p4+el2_p4).M() < 120) and ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1)h_DeltaR_elphZ1->Fill(ph1_p4.DeltaR(el1_p4));
+        if(((el1_p4+el2_p4).M() > 60 or (el1_p4+el2_p4).M() < 120) and ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1 )h_DeltaR_elphZ2->Fill(ph1_p4.DeltaR(el2_p4));
         if(ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1) h_InvariantMass_ElPh->Fill((el1_p4+el2_p4+ph1_p4).M()); 
         if(ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1) h_Mee_MeeGamma->Fill((el1_p4+el2_p4).M(), (el1_p4+el2_p4+ph1_p4).M());
         }
@@ -547,6 +570,9 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
   h_DeltaR_el1_ph1->Write();
   h_DeltaR_el2_ph1->Write(); 
 
+  h_DeltaR_elphZ1->Write();
+  h_DeltaR_elphZ2->Write();
+
   h_InvariantMass_Mu->Write();
   h_InvariantMass_El->Write();
   h_InvariantMass_ElPh->Write();
@@ -559,6 +585,9 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
   h_Difference_Mu->Write();
 
   h_HT->Write();
+  h_Met_PhPt->Write();
+  h_Met_PhEta->Write();
+
   tFile->Close(); 
   std::cout<<"Wrote output file "<<histfilename<<std::endl;
 
@@ -601,6 +630,14 @@ int TriggerEfficiency(std::string infile, std::string outfile){
   vector<float>   *ph_phIso;
   vector<bool>    *ph_isTight;
   Float_t         MET;
+  float trigObj1Px;
+  float trigObj1Py;
+  float trigObj1Pz;
+  float trigObj1E;
+  float trigObj2Px;
+  float trigObj2Py;
+  float trigObj2Pz;
+  float trigObj2E;
 
   tree->SetBranchAddress("nVertices", &(nVertices));
   tree->SetBranchAddress("fired_HLTPho", &(fired_HLTPho));
@@ -629,6 +666,14 @@ int TriggerEfficiency(std::string infile, std::string outfile){
   tree->SetBranchAddress("mu_charge", &(mu_charge));
   tree->SetBranchAddress("mu_isTight", &(mu_isTight));
   tree->SetBranchAddress("mu_iso", &(mu_iso));
+  tree->SetBranchAddress("trigObj1Px", &(trigObj1Px));
+  tree->SetBranchAddress("trigObj1Py", &(trigObj1Py));
+  tree->SetBranchAddress("trigObj1Pz", &(trigObj1Pz));
+  tree->SetBranchAddress("trigObj1E", &(trigObj1E));
+  tree->SetBranchAddress("trigObj2Px", &(trigObj2Px));
+  tree->SetBranchAddress("trigObj2Py", &(trigObj2Py));
+  tree->SetBranchAddress("trigObj2Pz", &(trigObj2Pz));
+  tree->SetBranchAddress("trigObj2E", &(trigObj2E));
 
   mu_pt = 0;
   mu_phi = 0;
@@ -665,12 +710,26 @@ int TriggerEfficiency(std::string infile, std::string outfile){
   TH1F *h_MET_HLTPhoIdMet_LowPU = new TH1F("h_MET_HLTPhoIdMet_LowPU", "Missing ET; MET [GeV]; Events/GeV", 600, 0, 600);h_MET_HLTPhoIdMet_LowPU->Sumw2();
   TH1F *h_MET_HLTPhoId_HighPU = new TH1F("h_MET_HLTPhoId_HighPU", "Missing ET; MET [GeV]; Events/GeV", 600, 0, 600);h_MET_HLTPhoId_HighPU->Sumw2();
   TH1F *h_MET_HLTPhoIdMet_HighPU = new TH1F("h_MET_HLTPhoIdMet_HighPU", "Missing ET; MET [GeV]; Events/GeV", 600, 0, 600);h_MET_HLTPhoIdMet_HighPU->Sumw2();
+  TH1F *h_PHO_HLTPho=new TH1F("h_PHO_HLTPho", "Missing ET; PHO [GeV]; Events/GeV", 600, 0, 600); h_PHO_HLTPho->Sumw2();
+  TH1F *h_PHO_HLTPhoId=new TH1F("h_PHO_HLTPhoId", "Missing ET; PHO [GeV]; Events/GeV", 600, 0, 600); h_PHO_HLTPhoId->Sumw2();
 
   int nEvents=tree->GetEntries();
   std::cout << "nEvents= " << nEvents << std::endl;
   for (int i=0; i<nEvents; ++i)
     {
      tree->GetEvent(i);
+
+     TriggerInfo trigger1;
+     trigger1.Px = trigObj1Px;
+     trigger1.Py = trigObj1Py;
+     trigger1.Pz = trigObj1Pz;
+     trigger1.E  = trigObj1E;
+
+     TriggerInfo trigger2;
+     trigger2.Px = trigObj2Px;
+     trigger2.Py = trigObj2Py;
+     trigger2.Pz = trigObj2Pz;
+     trigger2.E  = trigObj2E;
 
      std::vector<LeptonInfo> muons;
      for (unsigned int j=0; j<mu_pt->size(); ++j)
@@ -727,8 +786,32 @@ int TriggerEfficiency(std::string infile, std::string outfile){
       std::sort (photons.begin(), photons.end(), sortPhotonsInDescendingpT);
 
      TLorentzVector ph1_p4;
-
-     if (photons.size() > 0) ph1_p4=fillTLorentzVector(photons.at(0).pT, photons.at(0).eta, photons.at(0).phi, photons.at(0).energy);
+     int foundHLTPhoton1 = 0;
+     int foundHLTPhoton2 = 0;
+     if (photons.size() > 0){
+       ph1_p4=fillTLorentzVector(photons.at(0).pT, photons.at(0).eta, photons.at(0).phi, photons.at(0).energy);
+       TLorentzVector trigger1_p4;
+       trigger1_p4.SetPxPyPzE(trigger1.Px, trigger1.Py, trigger1.Pz, trigger1.E);
+       double deltaR1 = ph1_p4.DeltaR(trigger1_p4);
+         if(deltaR1 < 0.3 and fired_HLTPhoId){
+            foundHLTPhoton1=1;
+         }
+       TLorentzVector trigger2_p4;
+       trigger2_p4.SetPxPyPzE(trigger2.Px, trigger2.Py, trigger2.Pz, trigger2.E);
+       double deltaR2 = ph1_p4.DeltaR(trigger2_p4);
+         if(deltaR2 < 0.3 and fired_HLTPho){
+            foundHLTPhoton2=1;
+         } 
+    }//only execute this loop if a photon exists.  
+ 
+   if(photons.size() > 0){
+     if(fired_HLTPho==1 and foundHLTPhoton2==1 and photons.at(0).pT>30.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1){  
+       h_PHO_HLTPho->Fill(photons.at(0).pT);
+       if(foundHLTPhoton1==1 and fired_HLTPhoId==1){
+         h_PHO_HLTPhoId->Fill(photons.at(0).pT);
+       }//main trigger if   
+      }//control trigger photon 30 if
+   }
 
      if (fired_HLTPhoId==1){  
        h_MET_HLTPhoId->Fill(MET);
@@ -777,35 +860,23 @@ int TriggerEfficiency(std::string infile, std::string outfile){
 
 
   }//end of event loop
-
-  TGraphAsymmErrors *Eff_MET = new TGraphAsymmErrors;
-  Eff_MET->BayesDivide(h_MET_HLTPhoIdMet, h_MET_HLTPhoId, "");
-
-  TGraphAsymmErrors *Eff_MET_MuonVeto = new TGraphAsymmErrors;
-  Eff_MET_MuonVeto->BayesDivide(h_MET_HLTPhoIdMet_MuonVeto, h_MET_HLTPhoId_MuonVeto, ""); 
-
-  TGraphAsymmErrors *Eff_MET_LowHT = new TGraphAsymmErrors;
-  Eff_MET_LowHT->BayesDivide(h_MET_HLTPhoIdMet_LowHT, h_MET_HLTPhoId_LowHT, "");
-
-  TGraphAsymmErrors *Eff_MET_HighHT = new TGraphAsymmErrors;
-  Eff_MET_HighHT->BayesDivide(h_MET_HLTPhoIdMet_HighHT, h_MET_HLTPhoId_HighHT, "");
-
-  TGraphAsymmErrors *Eff_MET_LowPU = new TGraphAsymmErrors;
-  Eff_MET_LowPU->BayesDivide(h_MET_HLTPhoIdMet_LowPU, h_MET_HLTPhoId_LowPU, "");
-
-  TGraphAsymmErrors *Eff_MET_HighPU = new TGraphAsymmErrors;
-  Eff_MET_HighPU->BayesDivide(h_MET_HLTPhoIdMet_HighPU, h_MET_HLTPhoId_HighPU, ""); 
-
   std::string histfilename=(outfile+".root").c_str();
   TFile *tFile=new TFile(histfilename.c_str(), "RECREATE");
-
-  Eff_MET->Write("Eff_MET");
-  Eff_MET_MuonVeto->Write("Eff_MET_MuonVeto");
-  Eff_MET_LowHT->Write("Eff_MET_LowHT");
-  Eff_MET_HighHT->Write("Eff_MET_HighHT"); 
-  Eff_MET_LowPU->Write("Eff_MET_LowPU");
-  Eff_MET_HighPU->Write("Eff_MET_HighPU");
-
+  
+  h_MET_HLTPhoIdMet->Write();
+  h_MET_HLTPhoId->Write();
+  h_MET_HLTPhoIdMet_MuonVeto->Write();
+  h_MET_HLTPhoId_MuonVeto->Write();
+  h_MET_HLTPhoIdMet_LowHT->Write();
+  h_MET_HLTPhoId_LowHT->Write();
+  h_MET_HLTPhoIdMet_HighHT->Write();
+  h_MET_HLTPhoId_HighHT->Write();
+  h_MET_HLTPhoIdMet_LowPU->Write();
+  h_MET_HLTPhoId_LowPU->Write();
+  h_MET_HLTPhoIdMet_HighPU->Write();
+  h_MET_HLTPhoId_HighPU->Write();
+  h_PHO_HLTPhoId->Write();
+  h_PHO_HLTPho->Write();
   tFile->Close();
   std::cout<<"Wrote output file "<<histfilename<<std::endl;
 
