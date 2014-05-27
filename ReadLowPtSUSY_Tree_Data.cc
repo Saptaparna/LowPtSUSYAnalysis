@@ -266,6 +266,7 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
   TH1F *h_ph_phIsolation_leading=new TH1F("h_ph_phIsolation_leading", "Leading Photon Ph Isolation; Isolation; Events", 20000, -100, 100); h_ph_phIsolation_leading->Sumw2();
 
   TH1F *h_photon_pt =new TH1F("h_photon_pt", "Photon pT; pT [GeV]; Events/GeV", 1000, 0, 1000); h_photon_pt->Sumw2();
+  TH1F *h_phpt_matched = new TH1F("h_phpt_matched", "Photon pT for events: electron lies within #Delta R < 0.3 of HLT objects; pT [GeV]; Events/GeV", 1000, 0, 1000); h_phpt_matched->Sumw2();
   TH1F *h_photon_eta =new TH1F("h_photon_eta", "Photon #eta; #eta ; Events", 600, -3.0, 3.0); h_photon_eta->Sumw2();
   TH1F *h_photon_phi =new TH1F("h_photon_phi", "Photon #phi; #phi ; Events", 800, -4.0, 4.0); h_photon_phi->Sumw2(); 
   TH1F *h_photon_energy =new TH1F("h_photon_energy", "Photon Energy; Energy [GeV]; Events", 1000, 0, 1000); h_photon_energy->Sumw2();
@@ -279,6 +280,7 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
   TH1F *h_minDeltaR = new TH1F("h_minDeltaR", "#Delta R between HLT objects and the leading photon; #Delta R; Events", 3500, 0, 3.5);h_minDeltaR->Sumw2();
   TH1F *h_minDeltaR_el1 = new TH1F("h_minDeltaR_el1", "#Delta R between HLT objects and the leading electron; #Delta R; Events", 3500, 0, 3.5);h_minDeltaR_el1->Sumw2();
   TH1F *h_minDeltaR_el2 = new TH1F("h_minDeltaR_el2", "#Delta R between HLT objects and the trailing electron; #Delta R; Events", 3500, 0, 3.5);h_minDeltaR_el2->Sumw2();
+  TH1F *h_DeltaR_elph_matched = new TH1F("h_DeltaR_elph_matched", "#Delta R between leading electron and leading photon for unmatched electrons, #Delta R; Events", 3500, 0, 3.5);h_DeltaR_elph_matched->Sumw2(); 
 
   TH1F *h_InvariantMass_Mu=new TH1F("h_InvariantMass_Mu", "Di-muon invariant mass; m_{#mu#mu} [GeV]; Events/GeV", 9000, 0, 300); h_InvariantMass_Mu->Sumw2();
   TH1F *h_InvariantMass_El=new TH1F("h_InvariantMass_El", "Di-electron invariant mass; m_{ee} [GeV]; Events/GeV", 9000, 0, 300); h_InvariantMass_El->Sumw2();
@@ -297,7 +299,13 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
   TH2F *h_Met_PhPt = new TH2F("h_Met_PhPt", "Scatter Plot of photon pT versus missing ET; Photon pT [GeV]; Missing ET [GeV];", 300, 0, 600, 300, 0, 600); h_Met_PhPt->Sumw2();
   TH2F *h_Met_PhEta = new TH2F("h_Met_PhEta", "Scatter Plot of photon #eta versus missing ET; Photon #eta; Missing ET [GeV];", 400, -2.0, 2.0, 300, 0, 600);h_Met_PhEta->Sumw2();
   TH1F *h_HT = new TH1F("h_HT", "HT (scalar sum of jet pT); H_T [GeV]; Events/GeV", 5000, 0, 5000.0);h_HT->Sumw2();
-
+  TH2F *h_ph_el1 = new TH2F("h_ph_el1", "Scatter Plot of leading electron pT versus photon pT; Electron pT [GeV]; Photon pT [GeV];", 300, 0, 600, 300, 0, 600); h_ph_el1->Sumw2();
+  TH2F *h_ph_el2 = new TH2F("h_ph_el2", "Scatter Plot of trailing electron pT versus photon pT; Electron pT [GeV]; Photon pT [GeV];", 300, 0, 600, 300, 0, 600); h_ph_el2->Sumw2();
+  TH2F *h_ph_el1_Eta = new TH2F("h_ph_el1_Eta", "Scatter Plot of leading electron #eta versus photon #eta; Electron #eta; Photon #eta;", 800, -4.0, 4.0, 800, -4.0, 4.0); h_ph_el1_Eta->Sumw2();
+  TH2F *h_ph_el2_Eta = new TH2F("h_ph_el2_Eta", "Scatter Plot of trailing electron #eta versus photon #eta; Electron #eta; Photon #eta;", 800, -4.0, 4.0, 800, -4.0, 4.0); h_ph_el2_Eta->Sumw2();
+  TH2F *h_ph_el1_Phi = new TH2F("h_ph_el1_Phi", "Scatter Plot of leading electron #phi versus photon #phi; Electron #phi; Photon #phi", 800, -4.0, 4.0, 800, -4.0, 4.0); h_ph_el1_Phi->Sumw2();
+  TH2F *h_ph_el2_Phi = new TH2F("h_ph_el2_Phi", "Scatter Plot of trailing electron #phi versus photon #phi; Electron #phi; Photon #phi;", 800, -4.0, 4.0, 800, -4.0, 4.0); h_ph_el2_Phi->Sumw2();
+  TH1F *h_el1_pt50 = new TH1F("h_el1_pt50", "Leading electron pT within invariant mass range of 30-50 GeV; pT [GeV]; Events/GeV", 1000, 0, 1000); h_el1_pt50->Sumw2(); 
 
  int nEvents=tree->GetEntries();
  std::cout << "nEvents= " << nEvents << std::endl;
@@ -433,6 +441,12 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
       else{foundHLTelectron2=0;}
      }//only execute if the second electron exists.
 
+     if(deltaR_el2 > 0.0 or deltaR_el2 < 0.3){
+       if(ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1){ 
+       h_phpt_matched->Fill(ph1_p4.Pt());
+       
+        }
+      }
      if (ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1){
        h_photon_pt->Fill(ph1_p4.Pt());
        h_photon_eta->Fill(ph1_p4.Eta()); 
@@ -443,7 +457,7 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
        h_ph_phIsolation_leading->Fill(photons.at(0).phIsolation);
        h_Met_PhPt->Fill(photons.at(0).pT, MET);
        h_Met_PhEta->Fill(photons.at(0).eta, MET);
-     }
+     }  
     
     double leadingDeltaR, trailingDeltaR;
     leadingDeltaR = -1.0;
@@ -468,6 +482,12 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
       h_el_pt_leading->Fill(el1_p4.Pt());
       h_el_energy_leading->Fill(el1_p4.E());
       h_el_isolation_leading->Fill(electrons.at(0).isolation); //there will be a sharp cut at 0.10
+      if(ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1){
+        h_ph_el1->Fill(el1_p4.Pt(), ph1_p4.Pt());
+        h_ph_el1_Eta->Fill(el1_p4.Eta(), ph1_p4.Eta());
+        h_ph_el1_Phi->Fill(el1_p4.Phi(), ph1_p4.Phi());
+        h_DeltaR_elph_matched->Fill(leadingDeltaR); 
+        }
       if(el2_p4.Pt()>0.0 and electrons.at(1).isTight==1 and electrons.at(1).isolation < 0.10 and trailingDeltaR > 0.3 and ((electrons.at(0).charge*electrons.at(1).charge)==-1) and deltaR_el2 > 0.3) {
         h_el_phi_trailing->Fill(el2_p4.Phi());
         h_el_eta_trailing->Fill(el2_p4.Eta());
@@ -477,9 +497,15 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
         h_InvariantMass_El->Fill((el1_p4+el2_p4).M());
         h_Difference_El->Fill(el1_p4.Pt() - el2_p4.Pt());
         if(((el1_p4+el2_p4).M() > 60 or (el1_p4+el2_p4).M() < 120) and ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1)h_DeltaR_elphZ1->Fill(ph1_p4.DeltaR(el1_p4));
+        if(((el1_p4+el2_p4).M() > 30 or (el1_p4+el2_p4).M() < 60) and ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1)h_el1_pt50->Fill(el1_p4.Pt());
         if(((el1_p4+el2_p4).M() > 60 or (el1_p4+el2_p4).M() < 120) and ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1 )h_DeltaR_elphZ2->Fill(ph1_p4.DeltaR(el2_p4));
-        if(ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1) h_InvariantMass_ElPh->Fill((el1_p4+el2_p4+ph1_p4).M()); 
-        if(ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1) h_Mee_MeeGamma->Fill((el1_p4+el2_p4).M(), (el1_p4+el2_p4+ph1_p4).M());
+        if(ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1) {
+          h_InvariantMass_ElPh->Fill((el1_p4+el2_p4+ph1_p4).M());
+          h_Mee_MeeGamma->Fill((el1_p4+el2_p4).M(), (el1_p4+el2_p4+ph1_p4).M());
+          h_ph_el2->Fill(el2_p4.Pt(), ph1_p4.Pt());
+          h_ph_el2_Eta->Fill(el2_p4.Eta(), ph1_p4.Eta());
+          h_ph_el2_Phi->Fill(el2_p4.Phi(), ph1_p4.Phi());
+          }
         }
      }
 
@@ -562,6 +588,7 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
   h_photon_eta->Write();
   h_photon_phi->Write();
   h_photon_energy->Write();
+  h_phpt_matched->Write();
 
   h_ph_chIsolation_leading->Write();
   h_ph_nuIsolation_leading->Write();
@@ -573,6 +600,7 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
   h_DeltaR_elphZ1->Write();
   h_DeltaR_elphZ2->Write();
 
+  h_DeltaR_elph_matched->Write();
   h_InvariantMass_Mu->Write();
   h_InvariantMass_El->Write();
   h_InvariantMass_ElPh->Write();
@@ -587,7 +615,13 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
   h_HT->Write();
   h_Met_PhPt->Write();
   h_Met_PhEta->Write();
-
+  h_ph_el1->Write();
+  h_ph_el2->Write();
+  h_ph_el1_Eta->Write();
+  h_ph_el1_Phi->Write();
+  h_ph_el2_Eta->Write();
+  h_ph_el2_Phi->Write();
+  h_el1_pt50->Write();
   tFile->Close(); 
   std::cout<<"Wrote output file "<<histfilename<<std::endl;
 
