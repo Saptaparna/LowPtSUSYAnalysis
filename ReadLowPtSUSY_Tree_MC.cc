@@ -130,6 +130,9 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
   vector<float>   *jet_energy;
   Int_t           nJets;
   Float_t         MET;
+  Float_t         MET_Phi;
+  Float_t         MET_Px;
+  Float_t         MET_Py;
   Int_t           nVertices;
   vector<float>   *el_iso;
   vector<float>   *mu_iso;
@@ -230,6 +233,9 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
   tree->SetBranchAddress("jet_energy", &(jet_energy));
   tree->SetBranchAddress("nJets", &(nJets));
   tree->SetBranchAddress("MET", &(MET));
+  tree->SetBranchAddress("MET_Phi", &(MET_Phi));
+  tree->SetBranchAddress("MET_Px", &(MET_Px));
+  tree->SetBranchAddress("MET_Py", &(MET_Py));
   tree->SetBranchAddress("nVertices", &(nVertices));
   tree->SetBranchAddress("nPUVertices", &(nPUVertices));
   tree->SetBranchAddress("nPUVerticesTrue", &(nPUVerticesTrue));
@@ -302,6 +308,12 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
   TH2F *h_Mmumu_MmumuGamma = new TH2F("h_Mmumu_MmumuGamma", "Scatter Plot of  M_{#mu#mu} versus M_{#mu#mu#gamma}; M_{#mu#mu} [GeV]; M_{#mu#mu#gamma} [GeV]", 4000, 0, 2000, 4000, 0, 2000);  h_Mmumu_MmumuGamma->Sumw2();
   TH2F *h_Mee_MeeGamma = new TH2F("h_Mee_MeeGamma", "Scatter Plot of  M_{ee} versus M_{ee#gamma}; M_{ee} [GeV]; M_{ee#gamma} [GeV]", 4000, 0, 2000, 4000, 0, 20000);h_Mee_MeeGamma->Sumw2();
   TH1F *h_HT = new TH1F("h_HT", "HT (scalar sum of jet pT); H_T [GeV]; Events/GeV", 5000, 0, 5000.0);h_HT->Sumw2();
+  TH1F *h_cMt_El = new TH1F("h_cMt_El", "Cluster Transverse Mass; M_{T}(e,#gamma,MET) [GeV]; Events/GeV", 3000, 0, 150);h_cMt_El->Sumw2();
+  TH1F *h_cMt_Mu = new TH1F("h_cMt_Mu", "Cluster Transverse Mass; M_{T}(#mu,#gamma,MET) [GeV]; Events/GeV", 3000, 0, 150);h_cMt_Mu->Sumw2();
+  TH1F *h_Mt_El = new TH1F("h_Mt_El", "Transverse Mass; M_{T}(e, MET) [GeV]; Events/GeV", 3000, 0, 150);h_Mt_El->Sumw2();
+  TH1F *h_Mt_Mu = new TH1F("h_Mt_Mu", "Transverse Mass; M_{T}(#mu, MET) [GeV]; Events/GeV", 3000, 0, 150);h_Mt_Mu->Sumw2();
+  TH2F *h_Mt_cMt_El = new TH2F("h_Mt_cMt_El", "Scatter Plots of M_{T}(e,MET) versus M_{T}(e,#gamma,MET)}; M_{T}(e,MET) [GeV]; M_{T}(e,#gamma,MET) [GeV]", 4000, 0, 2000, 4000, 0, 2000);h_Mt_cMt_El->Sumw2();
+  TH2F *h_Mt_cMt_Mu = new TH2F("h_Mt_cMt_Mu", "Scatter Plots of M_{T}(#mu,MET) versus M_{T}(#mu,#gamma,MET)}; M_{T}(#mu,MET) [GeV]; M_{T}(#mu,#gamma,MET) [GeV]", 4000, 0, 2000, 4000, 0, 2000);h_Mt_cMt_Mu->Sumw2();
 
   int nEvents=tree->GetEntries();
   std::cout << "nEvents= " << nEvents << std::endl;
@@ -359,8 +371,7 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
      if (electrons.size() > 0) el1_p4=fillTLorentzVector(electrons.at(0).pT, electrons.at(0).eta, electrons.at(0).phi, electrons.at(0).energy);
      if (electrons.size() > 1) el2_p4=fillTLorentzVector(electrons.at(1).pT, electrons.at(1).eta, electrons.at(1).phi, electrons.at(1).energy);
 
-     if (ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1){
-       
+     if (ph1_p4.Pt()>30.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1){
        h_photon_pt->Fill(ph1_p4.Pt());
        h_photon_eta->Fill(ph1_p4.Eta()); 
        h_photon_phi->Fill(ph1_p4.Phi());
@@ -375,24 +386,39 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
     trailingDeltaR = 99.0;
 
     if(el1_p4.Pt()>0.0 and ph1_p4.Pt()>0.0){
-
       leadingDeltaR = el1_p4.DeltaR(ph1_p4); 
       h_DeltaR_el1_ph1->Fill(leadingDeltaR);
     }   
 
     if(el2_p4.Pt()>0.0 and ph1_p4.Pt()>0.0){
-
       trailingDeltaR = el2_p4.DeltaR(ph1_p4); 
       h_DeltaR_el2_ph1->Fill(trailingDeltaR);
-      
     }
-
+    double cMt2_El = -99.0;
+    double Mlg_El = -99.0;
+    double pTlg_El = -99.0;
+    double mt2_El = -99.0;
+    double mpT_El = -99.0;
     if(el1_p4.Pt()>0.0 and electrons.at(0).isTight==1 and electrons.at(0).isolation < 0.10 and leadingDeltaR > 0.3) {
       h_el_phi_leading->Fill(el1_p4.Phi());
       h_el_eta_leading->Fill(el1_p4.Eta());
       h_el_pt_leading->Fill(el1_p4.Pt());
       h_el_energy_leading->Fill(el1_p4.E());
       h_el_isolation_leading->Fill(electrons.at(0).isolation); //there will be a sharp cut at 0.10
+      double dphi = fabs(MET_Phi - el1_p4.Phi());
+      if (dphi > TMath::Pi()) dphi = TMath::TwoPi() - dphi;
+      mt2_El = 2*el1_p4.Pt()*MET*(1 - TMath::Cos(dphi));
+      h_Mt_El->Fill(TMath::Sqrt(mt2_El));
+      if(ph1_p4.Pt()>30.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1){
+        //Computing the unclustered mass distribution:
+        Mlg_El = (el1_p4+ph1_p4).M();
+        pTlg_El = fabs((ph1_p4.Pt()+el1_p4.Pt()));
+        double t1 = TMath::Sqrt(Mlg_El*Mlg_El + pTlg_El*pTlg_El);
+        mpT_El = TMath::Sqrt(MET_Px*MET_Px + MET_Py*MET_Py);
+        cMt2_El=((t1 + mpT_El)*(t1 + mpT_El) - fabs((ph1_p4.Pt()+el1_p4.Pt()+mpT_El))*fabs((ph1_p4.Pt()+el1_p4.Pt()+mpT_El))); 
+        h_cMt_El->Fill(TMath::Sqrt(cMt2_El));
+        }
+      h_Mt_cMt_El->Fill(TMath::Sqrt(mt2_El), TMath::Sqrt(cMt2_El));
       if(el2_p4.Pt()>0.0 and electrons.at(1).isTight==1 and electrons.at(1).isolation < 0.10 and trailingDeltaR > 0.3 and ((electrons.at(0).charge*electrons.at(1).charge)==-1)) {
         h_el_phi_trailing->Fill(el2_p4.Phi());
         h_el_eta_trailing->Fill(el2_p4.Eta());
@@ -427,12 +453,31 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
     if (muons.size() > 0) mu1_p4=fillTLorentzVector(muons.at(0).pT, muons.at(0).eta, muons.at(0).phi, muons.at(0).energy);
     if (muons.size() > 1) mu2_p4=fillTLorentzVector(muons.at(1).pT, muons.at(1).eta, muons.at(1).phi, muons.at(1).energy);
 
+    double cMt2_Mu = -99.0;
+    double Mlg_Mu = -99.0;
+    double pTlg_Mu = -99.0;
+    double mt2_Mu = -99.0;
+    double mpT_Mu = -99.0;
     if(mu1_p4.Pt()>0.0 and muons.at(0).isTight==1 and muons.at(0).isolation < 0.12) {
       h_mu_phi_leading->Fill(mu1_p4.Phi());
       h_mu_eta_leading->Fill(mu1_p4.Eta());
       h_mu_pt_leading->Fill(mu1_p4.Pt());
       h_mu_energy_leading->Fill(mu1_p4.E());
       h_mu_isolation_leading->Fill(muons.at(0).isolation);
+      double dphi = fabs(MET_Phi - mu1_p4.Phi());
+      if (dphi > TMath::Pi()) dphi = TMath::TwoPi() - dphi;
+      mt2_Mu = 2*mu1_p4.Pt()*MET*(1 - TMath::Cos(dphi));
+      h_Mt_Mu->Fill(TMath::Sqrt(mt2_Mu));
+      if(ph1_p4.Pt()>30.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1){
+        //Computing the unclustered mass distribution:
+        Mlg_Mu = (mu1_p4+ph1_p4).M();
+        pTlg_Mu = fabs(ph1_p4.Pt()+mu1_p4.Pt());
+        double t1 = TMath::Sqrt(Mlg_Mu*Mlg_Mu + pTlg_Mu*pTlg_Mu);
+        mpT_Mu = TMath::Sqrt(MET_Px*MET_Px + MET_Py*MET_Py);
+        cMt2_Mu=((t1 + mpT_Mu)*(t1 + mpT_Mu) - fabs((ph1_p4.Pt()+mu1_p4.Pt()+mpT_Mu))*fabs((ph1_p4.Pt()+mu1_p4.Pt()+mpT_Mu)));
+        h_cMt_Mu->Fill(TMath::Sqrt(cMt2_Mu));
+      }
+      h_Mt_cMt_Mu->Fill(TMath::Sqrt(mt2_Mu), TMath::Sqrt(cMt2_Mu));
       if(mu2_p4.Pt()>0.0 and muons.at(1).isTight==1 and muons.at(1).isolation < 0.12  and ((muons.at(0).charge*muons.at(1).charge)==-1)) {
         h_mu_phi_trailing->Fill(mu2_p4.Phi());
         h_mu_eta_trailing->Fill(mu2_p4.Eta());
@@ -477,6 +522,12 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
   }//event loop closed
   std::string histfilename=(outfile+".root").c_str();
   TFile *tFile=new TFile(histfilename.c_str(), "RECREATE");
+  h_cMt_El->Write();
+  h_cMt_Mu->Write();
+  h_Mt_El->Write(); 
+  h_Mt_Mu->Write();
+  h_Mt_cMt_El->Write();
+  h_Mt_cMt_Mu->Write();
   h_MET->Write();
   h_mu_pt_leading->Write();
   h_mu_pt_trailing->Write();
