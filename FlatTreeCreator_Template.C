@@ -14,8 +14,8 @@ using namespace std;
 
 reweight::LumiReWeighting LumiWeightsD_;
 reweight::LumiReWeighting LumiWeightsD_sys_;
-bool isMC= true;
-//bool isMC=false;
+//bool isMC= true;
+bool isMC=false;
 string  suffix = "SUFFIX";
 
 void FlatTreeCreator::Begin(TTree *tree)
@@ -74,7 +74,16 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("jet_eta", &jet_eta);
    outtree->Branch("jet_energy", &jet_energy);
    outtree->Branch("nJets", &nJets, "nJets/I");
+   outtree->Branch("jet_mva_loose", &jet_mva_loose);
+   outtree->Branch("jet_mva_tight", &jet_mva_tight);
+   outtree->Branch("jet_mva_medium", &jet_mva_medium);
+   outtree->Branch("jet_cut_loose", &jet_cut_loose);
+   outtree->Branch("jet_cut_tight", &jet_cut_tight);
+   outtree->Branch("jet_cut_medium", &jet_cut_medium);
    outtree->Branch("MET", &MET, "MET/F");
+   outtree->Branch("MET_Phi", &MET_Phi, "MET_Phi/F");
+   outtree->Branch("MET_Px", &MET_Px, "MET_Px/F");
+   outtree->Branch("MET_Py", &MET_Py, "MET_Py/F");
    outtree->Branch("fired_HLTPho", &fired_HLTPho, "fired_HLTPho/O");
    outtree->Branch("fired_HLTPhoId", &fired_HLTPhoId, "fired_HLTPhoId/O");
    outtree->Branch("fired_HLTPhoIdMet", &fired_HLTPhoIdMet, "fired_HLTPhoIdMet/O");
@@ -89,14 +98,14 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("ph_phIsoMedium", &ph_phIsoMedium);
    outtree->Branch("ph_phIsoLoose", &ph_phIsoLoose);
    //Trigger Objects saved
-   outtree->Branch("trigObj1Px", &trigObj1Px);
-   outtree->Branch("trigObj1Py", &trigObj1Py);
-   outtree->Branch("trigObj1Pz", &trigObj1Pz);
-   outtree->Branch("trigObj1E",  &trigObj1E);
-   outtree->Branch("trigObj2Px", &trigObj2Px);
-   outtree->Branch("trigObj2Py", &trigObj2Py);
-   outtree->Branch("trigObj2Pz", &trigObj2Pz);
-   outtree->Branch("trigObj2E",  &trigObj2E);
+   outtree->Branch("trigObj1Px", &trigObj1Px, "trigObj1Px/F");
+   outtree->Branch("trigObj1Py", &trigObj1Py, "trigObj1Py/F");
+   outtree->Branch("trigObj1Pz", &trigObj1Pz, "trigObj1Pz/F");
+   outtree->Branch("trigObj1E",  &trigObj1E, "trigObj1E/F");
+   outtree->Branch("trigObj2Px", &trigObj2Px, "trigObj2Px/F");
+   outtree->Branch("trigObj2Py", &trigObj2Py, "trigObj2Py/F");
+   outtree->Branch("trigObj2Pz", &trigObj2Pz, "trigObj2Pz/F");
+   outtree->Branch("trigObj2E",  &trigObj2E, "trigObj2E/F");
 
    //MC PU-related variables
    outtree->Branch("nPUVertices", &nPUVertices, "nPUVertices/F");
@@ -154,6 +163,9 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   jet_energy.clear();
   nJets = -1;
   MET = 0;
+  MET_Phi = -99.0;
+  MET_Px = -99.0;
+  MET_Py = -99.0;
   fired_HLTPho = false;
   fired_HLTPhoId = false;
   fired_HLTPhoIdMet = false; 
@@ -169,16 +181,24 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   ph_phIsoLoose.clear();
   PUWeightData = -1.0;
   PUWeightDataSys = -1.0;
+
+  jet_mva_loose.clear();
+  jet_mva_tight.clear();
+  jet_mva_medium.clear();
+  jet_cut_loose.clear();
+  jet_cut_tight.clear();
+  jet_cut_medium.clear();
+
   //Trigger object 1 refers to objects passed by the hltPhoton30R9Id90CaloIdHE10Iso40EBOnlyTrackIsoLastFilter
-  trigObj1Px.clear();
-  trigObj1Py.clear();
-  trigObj1Pz.clear();
-  trigObj1E.clear();
+  trigObj1Px= -99.0;
+  trigObj1Py= -99.0;
+  trigObj1Pz= -99.0;
+  trigObj1E= -99.0;
   //Trigger object 1 refers to objects passed by the hltPhoton30HEFilter
-  trigObj2Px.clear();
-  trigObj2Py.clear();
-  trigObj2Pz.clear();
-  trigObj2E.clear();
+  trigObj2Px= -99.0;
+  trigObj2Py= -99.0;
+  trigObj2Pz= -99.0;
+  trigObj2E= -99.0;
   //MC history and genparticle info
   el_Matched.clear();
   el_MatchedPt.clear();
@@ -204,17 +224,17 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
    for (int i = 0; i <  triggerObjects->GetSize(); i++) {
    TCTriggerObject* thisTrigObj = (TCTriggerObject*) triggerObjects->At(i);
    if( thisTrigObj->GetModuleName() == "hltPhoton30R9Id90CaloIdHE10Iso40EBOnlyTrackIsoLastFilter"){
-     trigObj1Px.push_back(thisTrigObj->Px());
-     trigObj1Py.push_back(thisTrigObj->Py());
-     trigObj1Pz.push_back(thisTrigObj->Pz());
-     trigObj1E.push_back(thisTrigObj->E());
+     trigObj1Px = thisTrigObj->Px();
+     trigObj1Py = thisTrigObj->Py();
+     trigObj1Pz = thisTrigObj->Pz();
+     trigObj1E  = thisTrigObj->E();
      }
 
    if(thisTrigObj->GetModuleName() == "hltPhoton30HEFilter"){
-     trigObj2Px.push_back(thisTrigObj->Px());
-     trigObj2Py.push_back(thisTrigObj->Py());
-     trigObj2Pz.push_back(thisTrigObj->Pz());
-     trigObj2E.push_back(thisTrigObj->E());
+     trigObj2Px = thisTrigObj->Px();
+     trigObj2Py = thisTrigObj->Py();
+     trigObj2Pz = thisTrigObj->Pz();
+     trigObj2E  = thisTrigObj->E();
     }
 
    //cout << "thisTrigObj->GetModuleName() == " << thisTrigObj->GetModuleName() << endl; 
@@ -223,6 +243,17 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
    if(thisTrigObj->GetHLTName().find("HLT_Photon30_R9Id90_CaloId_HE10_Iso40_EBOnly_v")!=std::string::npos) fired_HLTPhoId = true;
    if(thisTrigObj->GetHLTName().find("HLT_Photon30_R9Id90_CaloId_HE10_Iso40_EBOnly_Met25_HBHENoiseCleaned_v")!=std::string::npos) fired_HLTPhoIdMet = true;
    }
+   if (NoiseFilters_isScraping) return kTRUE;
+   if (NoiseFilters_isNoiseHcalHBHE) return kTRUE;
+   if (NoiseFilters_isNoiseHcalLaser) return kTRUE;
+   if (NoiseFilters_isNoiseEcalTP) return kTRUE;
+   if (NoiseFilters_isNoiseEcalBE) return kTRUE;
+   if (NoiseFilters_isCSCTightHalo) return kTRUE;
+   if (NoiseFilters_isNoiseEEBadSc) return kTRUE;
+   if (!NoiseFilters_isNoisetrkPOG1) return kTRUE;
+   if (!NoiseFilters_isNoisetrkPOG2) return kTRUE;
+   if (!NoiseFilters_isNoisetrkPOG3) return kTRUE; 
+
  }
 
   vector<TVector3> goodVertices;
@@ -330,9 +361,26 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
      int closestIndex=-1;
      for (int g = 0; g <  genParticles->GetSize(); g++) {
        TCGenParticle* genParticle = (TCGenParticle*) genParticles->At(g);
-       if(abs(genParticle->GetPDGId())==13){
-         double tmpDR = mdeltaR(muon->Eta(), muon->Phi(), genParticle->Eta(), genParticle->Phi());
-         if(tmpDR<closestDR){
+       if(abs(genParticle->GetPDGId())==13 ){//and genParticle->GetStatus()==3){
+        /* if((genParticle->Mother() and abs(genParticle->Mother()->GetPDGId())==15)){
+            mu_Matched.push_back(1);
+            mu_MatchedPt.push_back(genParticle->Pt());
+            mu_MatchedEta.push_back(genParticle->Eta());
+            mu_MatchedPhi.push_back(genParticle->Phi());
+            mu_MatchedEnergy.push_back(genParticle->Energy());
+           }
+         else{
+           mu_Matched.push_back(0);
+           mu_MatchedPt.push_back(-99.0);
+           mu_MatchedEta.push_back(-99.0);
+           mu_MatchedPhi.push_back(-99.0);
+           mu_MatchedEnergy.push_back(-99.0);
+            }//else mother check
+         }//gen muon check
+      } //directly looking at the genParticles.
+  */
+        double tmpDR = mdeltaR(muon->Eta(), muon->Phi(), genParticle->Eta(), genParticle->Phi());
+        if(tmpDR<closestDR){
            closestDR = tmpDR;
            closestIndex = g;
           }
@@ -340,7 +388,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
     }//closing the gen particle loop
     if(closestIndex!=-1){
       TCGenParticle* genParticle = (TCGenParticle*) genParticles->At(closestIndex);
-      if((genParticle->Mother() and abs(genParticle->Mother()->GetPDGId())==15)){ //Checking that the Tau (15) is the first mother.
+      if((genParticle->Mother() and abs(genParticle->Mother()->GetPDGId())==15)){// and genParticle->Mother()->GetStatus()==3){ //Checking that the Tau (15) is the first mother.
          mu_Matched.push_back(1);
          mu_MatchedPt.push_back(muon->Pt());
          mu_MatchedEta.push_back(muon->Eta());
@@ -369,11 +417,21 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
    jet_eta.push_back(jet->Eta());
    jet_phi.push_back(jet->Phi());
    jet_energy.push_back(jet->Energy());
+   jet_mva_loose.push_back(jet->PuJetIdFlag_mva_loose());
+   jet_mva_medium.push_back(jet->PuJetIdFlag_mva_medium());
+   jet_mva_tight.push_back(jet->PuJetIdFlag_mva_tight());
+   jet_cut_loose.push_back(jet->PuJetIdFlag_cut_loose());
+   jet_cut_medium.push_back(jet->PuJetIdFlag_cut_medium());
+   jet_cut_tight.push_back(jet->PuJetIdFlag_cut_tight());
+
   }
 
  nJets = vJets.size();
  
  MET = corrMET->Mod();
+ MET_Phi = corrMET->Phi();
+ MET_Px  = corrMET->Px();
+ MET_Py  = corrMET->Py();
 
  if(isMC){ 
    PUWeightData = LumiWeightsD_.weight(nPUVerticesTrue);

@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <algorithm>
 #include <TGraphAsymmErrors.h>
+#include <TVector2.h>
 
 TLorentzVector fillTLorentzVector(double pT, double eta, double phi, double E)
 {
@@ -398,7 +399,6 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
     double Mlg_El = -99.0;
     double pTlg_El = -99.0;
     double mt2_El = -99.0;
-    double mpT_El = -99.0;
     if(el1_p4.Pt()>0.0 and electrons.at(0).isTight==1 and electrons.at(0).isolation < 0.10 and leadingDeltaR > 0.3) {
       h_el_phi_leading->Fill(el1_p4.Phi());
       h_el_eta_leading->Fill(el1_p4.Eta());
@@ -410,13 +410,18 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
       mt2_El = 2*el1_p4.Pt()*MET*(1 - TMath::Cos(dphi));
       h_Mt_El->Fill(TMath::Sqrt(mt2_El));
       if(ph1_p4.Pt()>30.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1){
-        //Computing the unclustered mass distribution:
+        //Computing the clustered mass distribution:
+        TVector2 el_transverse;
+        TVector2 met_transverse;
+        TVector2 ph_transverse;
+        el_transverse.SetMagPhi(el1_p4.Pt(), el1_p4.Phi());
+        ph_transverse.SetMagPhi(ph1_p4.Pt(), ph1_p4.Phi());
+        met_transverse.SetMagPhi(MET, MET_Phi);
         Mlg_El = (el1_p4+ph1_p4).M();
-        pTlg_El = fabs((ph1_p4.Pt()+el1_p4.Pt()));
-        double t1 = TMath::Sqrt(Mlg_El*Mlg_El + pTlg_El*pTlg_El);
-        mpT_El = TMath::Sqrt(MET_Px*MET_Px + MET_Py*MET_Py);
-        cMt2_El=((t1 + mpT_El)*(t1 + mpT_El) - fabs((ph1_p4.Pt()+el1_p4.Pt()+mpT_El))*fabs((ph1_p4.Pt()+el1_p4.Pt()+mpT_El))); 
-        h_cMt_El->Fill(TMath::Sqrt(cMt2_El));
+        pTlg_El = (ph_transverse + el_transverse).Mod2();
+        double t1 = TMath::Sqrt(Mlg_El*Mlg_El + pTlg_El);
+        cMt2_El=((t1 + MET)*(t1 + MET) - (ph_transverse+el_transverse+met_transverse).Mod2());
+        h_cMt_El->Fill(TMath::Sqrt(cMt2_El)); 
         }
       h_Mt_cMt_El->Fill(TMath::Sqrt(mt2_El), TMath::Sqrt(cMt2_El));
       if(el2_p4.Pt()>0.0 and electrons.at(1).isTight==1 and electrons.at(1).isolation < 0.10 and trailingDeltaR > 0.3 and ((electrons.at(0).charge*electrons.at(1).charge)==-1)) {
@@ -457,7 +462,6 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
     double Mlg_Mu = -99.0;
     double pTlg_Mu = -99.0;
     double mt2_Mu = -99.0;
-    double mpT_Mu = -99.0;
     if(mu1_p4.Pt()>0.0 and muons.at(0).isTight==1 and muons.at(0).isolation < 0.12) {
       h_mu_phi_leading->Fill(mu1_p4.Phi());
       h_mu_eta_leading->Fill(mu1_p4.Eta());
@@ -469,12 +473,17 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
       mt2_Mu = 2*mu1_p4.Pt()*MET*(1 - TMath::Cos(dphi));
       h_Mt_Mu->Fill(TMath::Sqrt(mt2_Mu));
       if(ph1_p4.Pt()>30.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1){
-        //Computing the unclustered mass distribution:
+        //Computing the clustered mass distribution:
+        TVector2 mu_transverse;
+        TVector2 met_transverse;
+        TVector2 ph_transverse;
+        mu_transverse.SetMagPhi(mu1_p4.Pt(), mu1_p4.Phi());
+        ph_transverse.SetMagPhi(ph1_p4.Pt(), ph1_p4.Phi());
+        met_transverse.SetMagPhi(MET, MET_Phi);
         Mlg_Mu = (mu1_p4+ph1_p4).M();
-        pTlg_Mu = fabs(ph1_p4.Pt()+mu1_p4.Pt());
-        double t1 = TMath::Sqrt(Mlg_Mu*Mlg_Mu + pTlg_Mu*pTlg_Mu);
-        mpT_Mu = TMath::Sqrt(MET_Px*MET_Px + MET_Py*MET_Py);
-        cMt2_Mu=((t1 + mpT_Mu)*(t1 + mpT_Mu) - fabs((ph1_p4.Pt()+mu1_p4.Pt()+mpT_Mu))*fabs((ph1_p4.Pt()+mu1_p4.Pt()+mpT_Mu)));
+        pTlg_Mu = (ph_transverse + mu_transverse).Mod2();
+        double t1 = TMath::Sqrt(Mlg_Mu*Mlg_Mu + pTlg_Mu);
+        cMt2_Mu=((t1 + MET)*(t1 + MET) - (ph_transverse + mu_transverse + met_transverse).Mod2());
         h_cMt_Mu->Fill(TMath::Sqrt(cMt2_Mu));
       }
       h_Mt_cMt_Mu->Fill(TMath::Sqrt(mt2_Mu), TMath::Sqrt(cMt2_Mu));
