@@ -90,6 +90,11 @@ bool sortJetsInDescendingpT(JetInfo jet1, JetInfo jet2)
   return (jet1.pT > jet2.pT);
 }
 
+bool sortJetVectorsInDescendingpT(TLorentzVector jet1, TLorentzVector jet2)
+{
+  return (jet1.Pt() > jet2.Pt());
+}
+
 bool sortPhotonsInDescendingpT(PhotonInfo pho1, PhotonInfo pho2)
 {
   return (pho1.pT > pho2.pT);
@@ -277,6 +282,7 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
   //Booking histograms:
   
   TH1F *h_jet_pt_leading=new TH1F("h_jet_pt_leading", "Leading jet pT; pT [GeV]; Events/GeV", 10000, 0, 1000); h_jet_pt_leading->Sumw2();
+  TH1F *h_jet_pt =  new TH1F("h_jet_pt", "Leading jet pT; pT [GeV]; Events/GeV", 10000, 0, 1000); h_jet_pt->Sumw2();
   TH1F *h_jet_pt_trailing=new TH1F("h_jet_pt_trailing", "Trailing jet pT; pT [GeV]; Events/GeV", 10000, 0, 1000); h_jet_pt_trailing->Sumw2();
   TH1F *h_jet_pt_3rd=new TH1F("h_jet_pt_3rd", "3rd jet pT; pT [GeV]; Events/GeV", 10000, 0, 1000); h_jet_pt_3rd->Sumw2();
   TH1F *h_jet_pt_4th=new TH1F("h_jet_pt_4th", "4th jet pT; pT [GeV]; Events/GeV", 10000, 0, 1000); h_jet_pt_4th->Sumw2();
@@ -381,7 +387,7 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
 
  int nEvents=tree->GetEntries();
  std::cout << "nEvents= " << nEvents << std::endl;
- for (int i=0; i<nEvents; ++i)
+ for (int i=0; i<300; ++i)
    {
    tree->GetEvent(i);
      //if(fired_HLTPho!=1 and fired_HLTPhoId!=1 and fired_HLTPhoIdMet!=1) continue;
@@ -653,6 +659,7 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
      h_InvariantMass_ElMu->Fill((mu1_p4+el1_p4).M());
      }//El-Mu invariant mass
 
+
    std::vector<JetInfo> jets;
    for (unsigned int j=0; j<jet_pt->size(); ++j)
      {
@@ -670,6 +677,7 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
      jets.push_back(jet);
      }
 
+   
    // Now sorting this vector of structs
    std::sort (jets.begin(), jets.end(), sortJetsInDescendingpT);
 
@@ -678,54 +686,59 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
    Jet_vector.clear();
    for(unsigned int k=0; k<jets.size(); ++k)
      {
+  
      TLorentzVector Jet;
-     if(jets.at(k).PU_mva_loose==1 and jets.at(k).pT>10.0 and fabs(jets.at(k).eta)<2.4){
-       Jet.SetPtEtaPhiE(jets.at(k).pT, jets.at(k).eta, jets.at(k).phi, jets.at(k).energy);
-     }
-     bool isGoodJet=true;
-     for(unsigned int j=0; j<electrons.size(); ++j)
+     if(fabs(jets.at(k).eta)<2.4 and jets.at(k).pT>10.0 and jets.at(k).PU_mva_loose==1)
        {
-       TLorentzVector Electron;
-       if(electrons.at(j).isTight==1 and electrons.at(j).isolation < 0.10) Electron.SetPtEtaPhiE(electrons.at(j).pT, electrons.at(j).eta, electrons.at(j).phi, electrons.at(j).energy);
-       if(Electron.Pt()>0.0 and Jet.Pt() > 10.0){
-         double DRjet_el = Jet.DeltaR(Electron);     
-         if(DRjet_el<0.5) isGoodJet=false;
+       Jet.SetPtEtaPhiE(jets.at(k).pT, jets.at(k).eta, jets.at(k).phi, jets.at(k).energy);
+     
+       bool isGoodJet=true;
+       for(unsigned int j=0; j<electrons.size(); ++j)
+        {
+        TLorentzVector Electron;
+        if(electrons.at(j).isTight==1 and electrons.at(j).isolation < 0.10){
+          Electron.SetPtEtaPhiE(electrons.at(j).pT, electrons.at(j).eta, electrons.at(j).phi, electrons.at(j).energy);
+          double DRjet_el = Jet.DeltaR(Electron);     
+          if(DRjet_el<0.5) isGoodJet=false;
        }
      }
-     for(unsigned int j=0; j<muons.size(); ++j)
-       {
-       TLorentzVector Muon;
-       if(muons.at(j).isTight==1 and muons.at(j).isolation < 0.12) Muon.SetPtEtaPhiE(muons.at(j).pT, muons.at(j).eta, muons.at(j).phi, muons.at(j).energy);
-       if(Muon.Pt()>0.0 and Jet.Pt() > 10.0){
+       for(unsigned int j=0; j<muons.size(); ++j)
+         {
+         TLorentzVector Muon;
+         if(muons.at(j).isTight==1 and muons.at(j).isolation < 0.12){
+         Muon.SetPtEtaPhiE(muons.at(j).pT, muons.at(j).eta, muons.at(j).phi, muons.at(j).energy);
          double DRjet_mu = Jet.DeltaR(Muon);
          if(DRjet_mu<0.5) isGoodJet=false;
        }
      }  
-     for(unsigned int l=0; l<photons.size(); ++l)
-       {
-       TLorentzVector Photon;
-       if(photons.at(l).pT>30.0 and photons.at(l).isTight==1 and photons.at(l).phIsoTight==1) Photon.SetPtEtaPhiE(photons.at(l).pT, photons.at(l).eta, photons.at(l).phi, photons.at(l).energy);
-       if(Photon.Pt()>30.0 and Jet.Pt() > 10.0){
-         double DRjet_ph = Jet.DeltaR(Photon);
-         if(DRjet_ph<0.5) isGoodJet=false; 
+      for(unsigned int l=0; l<photons.size(); ++l)
+        {
+        TLorentzVector Photon;
+        if(photons.at(l).pT>30.0 and photons.at(l).isTight==1 and photons.at(l).phIsoTight==1){
+          Photon.SetPtEtaPhiE(photons.at(l).pT, photons.at(l).eta, photons.at(l).phi, photons.at(l).energy);
+          double DRjet_ph = Jet.DeltaR(Photon);
+          if(DRjet_ph<0.5) isGoodJet=false; 
        }
      }
     TLorentzVector trigger1_p4;
     trigger1_p4.SetPxPyPzE(trigger1.Px, trigger1.Py, trigger1.Pz, trigger1.E);
-    if(trigger1_p4.Px() > 0.0 and Jet.Pt() > 10.0){
-      double DRjet_tr = Jet.DeltaR(trigger1_p4);
-      if(DRjet_tr<0.5) isGoodJet=false;
-    }
-    if(isGoodJet and Jet.Pt() > 10.0) Jet_vector.push_back(Jet);
-   }
+    double DRjet_tr = Jet.DeltaR(trigger1_p4);
+    if(DRjet_tr<0.5) isGoodJet=false;
+    
+    if(isGoodJet) Jet_vector.push_back(Jet);
+     }//close four vector if
+  }//close jet loop
+
+  // Now sorting this vector of structs
+  std::sort (Jet_vector.begin(), Jet_vector.end(), sortJetVectorsInDescendingpT); 
 
   for(unsigned int m=0; m<Jet_vector.size(); m++)
     {
     HT += Jet_vector.at(m).Pt();
     }
 
-  /*
-  if(HT>20 and HT<30){
+  
+  if(HT>10 and HT<20){
     
     cout << "HT = " << HT << endl;
     if(Jet_vector.size() > 0 and Jet_vector.at(0).Pt() > 10.0) cout << "Jet_vector.at(0).Pt() = " << Jet_vector.at(0).Pt() << endl;
@@ -734,34 +747,34 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
     if(Jet_vector.size() > 3 and Jet_vector.at(3).Pt() > 10.0) cout << "Jet_vector.at(3).Pt() = " << Jet_vector.at(3).Pt() << endl;
     if(Jet_vector.size() > 4 and Jet_vector.at(4).Pt() > 10.0) cout << "Jet_vector.at(4).Pt() = " << Jet_vector.at(4).Pt() << endl;
    }
-*/
-  if(Jet_vector.size()>0 and Jet_vector.at(0).Pt() > 10.0 ) h_jet_pt_leading->Fill(Jet_vector.at(0).Pt());
-  if(Jet_vector.size()>1 and Jet_vector.at(1).Pt() > 10.0 ) h_jet_pt_trailing->Fill(Jet_vector.at(1).Pt());
-  if(Jet_vector.size()>2 and Jet_vector.at(2).Pt() > 10.0 ) h_jet_pt_3rd->Fill(Jet_vector.at(2).Pt());
-  if(Jet_vector.size()>3 and Jet_vector.at(3).Pt() > 10.0 ) h_jet_pt_4th->Fill(Jet_vector.at(3).Pt());
-  if(Jet_vector.size()>4 and Jet_vector.at(4).Pt() > 10.0) h_jet_pt_5th->Fill(Jet_vector.at(4).Pt());
-  if(Jet_vector.size()>5 and Jet_vector.at(5).Pt() > 10.0) h_jet_pt_6th->Fill(Jet_vector.at(5).Pt());
 
-  if(Jet_vector.size()>0 and Jet_vector.at(0).Pt() > 10.0) h_jet_eta_leading->Fill(Jet_vector.at(0).Eta());
-  if(Jet_vector.size()>1 and Jet_vector.at(1).Pt() > 10.0) h_jet_eta_trailing->Fill(Jet_vector.at(1).Eta());
-  if(Jet_vector.size()>2 and Jet_vector.at(2).Pt() > 10.0) h_jet_eta_3rd->Fill(Jet_vector.at(2).Eta());
-  if(Jet_vector.size()>3 and Jet_vector.at(3).Pt() > 10.0) h_jet_eta_4th->Fill(Jet_vector.at(3).Eta());
-  if(Jet_vector.size()>4 and Jet_vector.at(4).Pt() > 10.0) h_jet_eta_5th->Fill(Jet_vector.at(4).Eta());
-  if(Jet_vector.size()>5 and Jet_vector.at(5).Pt() > 10.0) h_jet_eta_6th->Fill(Jet_vector.at(5).Eta());
+  if(Jet_vector.size()>0 ) h_jet_pt_leading->Fill(jets.at(0).pT);
+  if(Jet_vector.size()>1 ) h_jet_pt_trailing->Fill(Jet_vector.at(1).Pt());
+  if(Jet_vector.size()>2 ) h_jet_pt_3rd->Fill(Jet_vector.at(2).Pt());
+  if(Jet_vector.size()>3 ) h_jet_pt_4th->Fill(Jet_vector.at(3).Pt());
+  if(Jet_vector.size()>4 ) h_jet_pt_5th->Fill(Jet_vector.at(4).Pt());
+  if(Jet_vector.size()>5 ) h_jet_pt_6th->Fill(Jet_vector.at(5).Pt());
 
-  if(Jet_vector.size()>0 and Jet_vector.at(0).Pt() > 10.0) h_jet_phi_leading->Fill(Jet_vector.at(0).Phi());
-  if(Jet_vector.size()>1 and Jet_vector.at(1).Pt() > 10.0) h_jet_phi_trailing->Fill(Jet_vector.at(1).Phi());
-  if(Jet_vector.size()>2 and Jet_vector.at(2).Pt() > 10.0) h_jet_phi_3rd->Fill(Jet_vector.at(2).Phi());
-  if(Jet_vector.size()>3 and Jet_vector.at(3).Pt() > 10.0) h_jet_phi_4th->Fill(Jet_vector.at(3).Phi());
-  if(Jet_vector.size()>4 and Jet_vector.at(4).Pt() > 10.0) h_jet_phi_5th->Fill(Jet_vector.at(4).Phi());
-  if(Jet_vector.size()>5 and Jet_vector.at(5).Pt() > 10.0) h_jet_phi_6th->Fill(Jet_vector.at(5).Phi());
+  if(Jet_vector.size()>0 ) h_jet_eta_leading->Fill(Jet_vector.at(0).Eta());
+  if(Jet_vector.size()>1 ) h_jet_eta_trailing->Fill(Jet_vector.at(1).Eta());
+  if(Jet_vector.size()>2 ) h_jet_eta_3rd->Fill(Jet_vector.at(2).Eta());
+  if(Jet_vector.size()>3 ) h_jet_eta_4th->Fill(Jet_vector.at(3).Eta());
+  if(Jet_vector.size()>4 ) h_jet_eta_5th->Fill(Jet_vector.at(4).Eta());
+  if(Jet_vector.size()>5 ) h_jet_eta_6th->Fill(Jet_vector.at(5).Eta());
+
+  if(Jet_vector.size()>0 ) h_jet_phi_leading->Fill(Jet_vector.at(0).Phi());
+  if(Jet_vector.size()>1 ) h_jet_phi_trailing->Fill(Jet_vector.at(1).Phi());
+  if(Jet_vector.size()>2 ) h_jet_phi_3rd->Fill(Jet_vector.at(2).Phi());
+  if(Jet_vector.size()>3 ) h_jet_phi_4th->Fill(Jet_vector.at(3).Phi());
+  if(Jet_vector.size()>4 ) h_jet_phi_5th->Fill(Jet_vector.at(4).Phi());
+  if(Jet_vector.size()>5 ) h_jet_phi_6th->Fill(Jet_vector.at(5).Phi());
   
-  if(Jet_vector.size()>0 and Jet_vector.at(0).Pt() > 10.0) h_jet_energy_leading->Fill(Jet_vector.at(0).E());
-  if(Jet_vector.size()>1 and Jet_vector.at(1).Pt() > 10.0) h_jet_energy_trailing->Fill(Jet_vector.at(1).E());
-  if(Jet_vector.size()>2 and Jet_vector.at(2).Pt() > 10.0) h_jet_energy_3rd->Fill(Jet_vector.at(2).E());
-  if(Jet_vector.size()>3 and Jet_vector.at(3).Pt() > 10.0) h_jet_energy_4th->Fill(Jet_vector.at(3).E());
-  if(Jet_vector.size()>4 and Jet_vector.at(4).Pt() > 10.0) h_jet_energy_5th->Fill(Jet_vector.at(4).E());
-  if(Jet_vector.size()>5 and Jet_vector.at(5).Pt() > 10.0) h_jet_energy_6th->Fill(Jet_vector.at(5).E());
+  if(Jet_vector.size()>0 ) h_jet_energy_leading->Fill(Jet_vector.at(0).E());
+  if(Jet_vector.size()>1 ) h_jet_energy_trailing->Fill(Jet_vector.at(1).E());
+  if(Jet_vector.size()>2 ) h_jet_energy_3rd->Fill(Jet_vector.at(2).E());
+  if(Jet_vector.size()>3 ) h_jet_energy_4th->Fill(Jet_vector.at(3).E());
+  if(Jet_vector.size()>4 ) h_jet_energy_5th->Fill(Jet_vector.at(4).E());
+  if(Jet_vector.size()>5 ) h_jet_energy_6th->Fill(Jet_vector.at(5).E());
 
   h_nJets->Fill(Jet_vector.size());
   h_HT->Fill(HT);   
@@ -773,6 +786,7 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
   TFile *tFile=new TFile(histfilename.c_str(), "RECREATE");
   h_MET->Write();
   h_nJets->Write();
+  h_jet_pt->Write();
   h_jet_pt_leading->Write();
   h_jet_pt_trailing->Write();
   h_jet_pt_3rd->Write();
