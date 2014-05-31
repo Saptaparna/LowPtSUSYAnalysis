@@ -276,16 +276,12 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
 
   //Booking histograms:
   
-  TH1F *h_mu_pt_leading=new TH1F("h_mu_pt_leading", "Leading muon pT; pT [GeV]; Events/GeV", 1000, 0, 1000); h_mu_pt_leading->Sumw2();
-  TH1F *h_mu_pt_trailing=new TH1F("h_mu_pt_trailing", "Trailing muon pT; pT [GeV]; Events/GeV", 1000, 0, 1000); h_mu_pt_trailing->Sumw2();
-  TH1F *h_el_pt_leading=new TH1F("h_el_pt_leading", "Leading electron pT; pT [GeV]; Events/GeV", 1000, 0, 1000); h_el_pt_leading->Sumw2();
-  TH1F *h_el_pt_trailing=new TH1F("h_el_pt_trailing", "Trailing electron pT; pT [GeV]; Events/GeV", 1000, 0, 1000); h_el_pt_trailing->Sumw2();
-  TH1F *h_jet_pt_leading=new TH1F("h_jet_pt_leading", "Leading jet pT; pT [GeV]; Events/GeV", 1000, 0, 1000); h_jet_pt_leading->Sumw2();
-  TH1F *h_jet_pt_trailing=new TH1F("h_jet_pt_trailing", "Trailing jet pT; pT [GeV]; Events/GeV", 1000, 0, 1000); h_jet_pt_trailing->Sumw2();
-  TH1F *h_jet_pt_3rd=new TH1F("h_jet_pt_3rd", "3rd jet pT; pT [GeV]; Events/GeV", 1000, 0, 1000); h_jet_pt_3rd->Sumw2();
-  TH1F *h_jet_pt_4th=new TH1F("h_jet_pt_4th", "4th jet pT; pT [GeV]; Events/GeV", 1000, 0, 1000); h_jet_pt_4th->Sumw2();
-  TH1F *h_jet_pt_5th=new TH1F("h_jet_pt_5th", "5th jet pT; pT [GeV]; Events/GeV", 1000, 0, 1000); h_jet_pt_5th->Sumw2();
-  TH1F *h_jet_pt_6th=new TH1F("h_jet_pt_6th", "6th jet pT; pT [GeV]; Events/GeV", 1000, 0, 1000); h_jet_pt_6th->Sumw2();
+  TH1F *h_jet_pt_leading=new TH1F("h_jet_pt_leading", "Leading jet pT; pT [GeV]; Events/GeV", 10000, 0, 1000); h_jet_pt_leading->Sumw2();
+  TH1F *h_jet_pt_trailing=new TH1F("h_jet_pt_trailing", "Trailing jet pT; pT [GeV]; Events/GeV", 10000, 0, 1000); h_jet_pt_trailing->Sumw2();
+  TH1F *h_jet_pt_3rd=new TH1F("h_jet_pt_3rd", "3rd jet pT; pT [GeV]; Events/GeV", 10000, 0, 1000); h_jet_pt_3rd->Sumw2();
+  TH1F *h_jet_pt_4th=new TH1F("h_jet_pt_4th", "4th jet pT; pT [GeV]; Events/GeV", 10000, 0, 1000); h_jet_pt_4th->Sumw2();
+  TH1F *h_jet_pt_5th=new TH1F("h_jet_pt_5th", "5th jet pT; pT [GeV]; Events/GeV", 10000, 0, 1000); h_jet_pt_5th->Sumw2();
+  TH1F *h_jet_pt_6th=new TH1F("h_jet_pt_6th", "6th jet pT; pT [GeV]; Events/GeV", 10000, 0, 1000); h_jet_pt_6th->Sumw2();
   
   TH1F *h_jet_eta_leading=new TH1F("h_jet_eta_leading", "Leading jet #eta; #eta; Events", 600, -3.0, 3.0); h_jet_eta_leading->Sumw2();
   TH1F *h_jet_eta_trailing=new TH1F("h_jet_eta_trailing", "Trailing jet #eta; #eta; Events", 600, -3.0, 3.0); h_jet_eta_trailing->Sumw2();
@@ -301,13 +297,17 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
   TH1F *h_jet_phi_5th=new TH1F("h_jet_phi_5th", "5th jet #phi; #phi; Events/GeV", 800, -4.0, 4.0); h_jet_phi_5th->Sumw2();
   TH1F *h_jet_phi_6th=new TH1F("h_jet_phi_6th", "6th jet #phi; #phi; Events/GeV", 800, -4.0, 4.0); h_jet_phi_6th->Sumw2();
 
-  TH1F *h_jet_energy_leading=new TH1F("h_jet_energy_leading", "Leading jet Energy; Energy [GeV]; Events/GeV", 1000, 0, 1000); h_jet_energy_leading->Sumw2();
-  TH1F *h_jet_energy_trailing=new TH1F("h_jet_energy_trailing", "Trailing jet Energy; Energy [GeV]; Events/GeV", 1000, 0, 1000); h_jet_energy_trailing->Sumw2();
-  TH1F *h_jet_energy_3rd=new TH1F("h_jet_energy_3rd", "3rd jet Energy; Energy [GeV]; Events/GeV", 1000, 0, 1000); h_jet_energy_3rd->Sumw2();
-  TH1F *h_jet_energy_4th=new TH1F("h_jet_energy_4th", "4th jet Energy; Energy [GeV]; Events/GeV", 1000, 0, 1000); h_jet_energy_4th->Sumw2();
-  TH1F *h_jet_energy_5th=new TH1F("h_jet_energy_5th", "5th jet Energy; Energy [GeV]; Events/GeV", 1000, 0, 1000); h_jet_energy_5th->Sumw2();
-  TH1F *h_jet_energy_6th=new TH1F("h_jet_energy_6th", "6th jet Energy; Energy [GeV]; Events/GeV", 1000, 0, 1000); h_jet_energy_6th->Sumw2();
+  TH1F *h_jet_energy_leading=new TH1F("h_jet_energy_leading", "Leading jet Energy; Energy [GeV]; Events/GeV", 10000, 0, 1000); h_jet_energy_leading->Sumw2();
+  TH1F *h_jet_energy_trailing=new TH1F("h_jet_energy_trailing", "Trailing jet Energy; Energy [GeV]; Events/GeV", 10000, 0, 1000); h_jet_energy_trailing->Sumw2();
+  TH1F *h_jet_energy_3rd=new TH1F("h_jet_energy_3rd", "3rd jet Energy; Energy [GeV]; Events/GeV", 10000, 0, 1000); h_jet_energy_3rd->Sumw2();
+  TH1F *h_jet_energy_4th=new TH1F("h_jet_energy_4th", "4th jet Energy; Energy [GeV]; Events/GeV", 10000, 0, 1000); h_jet_energy_4th->Sumw2();
+  TH1F *h_jet_energy_5th=new TH1F("h_jet_energy_5th", "5th jet Energy; Energy [GeV]; Events/GeV", 10000, 0, 1000); h_jet_energy_5th->Sumw2();
+  TH1F *h_jet_energy_6th=new TH1F("h_jet_energy_6th", "6th jet Energy; Energy [GeV]; Events/GeV", 10000, 0, 1000); h_jet_energy_6th->Sumw2();
 
+  TH1F *h_mu_pt_leading=new TH1F("h_mu_pt_leading", "Leading muon pT; pT [GeV]; Events/GeV", 1000, 0, 1000); h_mu_pt_leading->Sumw2();
+  TH1F *h_mu_pt_trailing=new TH1F("h_mu_pt_trailing", "Trailing muon pT; pT [GeV]; Events/GeV", 1000, 0, 1000); h_mu_pt_trailing->Sumw2();
+  TH1F *h_el_pt_leading=new TH1F("h_el_pt_leading", "Leading electron pT; pT [GeV]; Events/GeV", 1000, 0, 1000); h_el_pt_leading->Sumw2();
+  TH1F *h_el_pt_trailing=new TH1F("h_el_pt_trailing", "Trailing electron pT; pT [GeV]; Events/GeV", 1000, 0, 1000); h_el_pt_trailing->Sumw2();
   TH1F *h_mu_eta_leading=new TH1F("h_mu_eta_leading", "Leading muon #eta ; #eta ; Events", 600, -3.0, 3.0); h_mu_eta_leading->Sumw2();
   TH1F *h_mu_eta_trailing=new TH1F("h_mu_eta_trailing", "Trailing muon #eta; #eta ; Events", 600, -3.0, 3.0); h_mu_eta_trailing->Sumw2();
   TH1F *h_el_eta_leading=new TH1F("h_el_eta_leading", "Leading electron #eta; #eta ; Events", 600, -3.0, 3.0); h_el_eta_leading->Sumw2();
@@ -679,7 +679,7 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
    for(unsigned int k=0; k<jets.size(); ++k)
      {
      TLorentzVector Jet;
-     if(jets.at(k).PU_mva_tight==1 and jets.at(k).pT>10.0 and fabs(jets.at(k).eta)<2.4){
+     if(jets.at(k).PU_mva_loose==1 and jets.at(k).pT>10.0 and fabs(jets.at(k).eta)<2.4){
        Jet.SetPtEtaPhiE(jets.at(k).pT, jets.at(k).eta, jets.at(k).phi, jets.at(k).energy);
      }
      bool isGoodJet=true;
@@ -716,17 +716,29 @@ int ReadLowPtSUSY_Tree_Data(std::string infile, std::string outfile){
       double DRjet_tr = Jet.DeltaR(trigger1_p4);
       if(DRjet_tr<0.5) isGoodJet=false;
     }
-    if(isGoodJet) Jet_vector.push_back(Jet);
+    if(isGoodJet and Jet.Pt() > 10.0) Jet_vector.push_back(Jet);
    }
 
   for(unsigned int m=0; m<Jet_vector.size(); m++)
     {
-    if(Jet_vector.at(m).Pt() > 10.0) HT += Jet_vector.at(m).Pt(); 
+    HT += Jet_vector.at(m).Pt();
     }
-  if(Jet_vector.size()>0 and Jet_vector.at(0).Pt() > 10.0) h_jet_pt_leading->Fill(Jet_vector.at(0).Pt());
-  if(Jet_vector.size()>1 and Jet_vector.at(1).Pt() > 10.0) h_jet_pt_trailing->Fill(Jet_vector.at(1).Pt());
-  if(Jet_vector.size()>2 and Jet_vector.at(2).Pt() > 10.0) h_jet_pt_3rd->Fill(Jet_vector.at(2).Pt());
-  if(Jet_vector.size()>3 and Jet_vector.at(3).Pt() > 10.0) h_jet_pt_4th->Fill(Jet_vector.at(3).Pt());
+
+  /*
+  if(HT>20 and HT<30){
+    
+    cout << "HT = " << HT << endl;
+    if(Jet_vector.size() > 0 and Jet_vector.at(0).Pt() > 10.0) cout << "Jet_vector.at(0).Pt() = " << Jet_vector.at(0).Pt() << endl;
+    if(Jet_vector.size() > 1 and Jet_vector.at(1).Pt() > 10.0) cout << "Jet_vector.at(1).Pt() = " << Jet_vector.at(1).Pt() << endl;
+    if(Jet_vector.size() > 2 and Jet_vector.at(2).Pt() > 10.0) cout << "Jet_vector.at(2).Pt() = " << Jet_vector.at(2).Pt() << endl;
+    if(Jet_vector.size() > 3 and Jet_vector.at(3).Pt() > 10.0) cout << "Jet_vector.at(3).Pt() = " << Jet_vector.at(3).Pt() << endl;
+    if(Jet_vector.size() > 4 and Jet_vector.at(4).Pt() > 10.0) cout << "Jet_vector.at(4).Pt() = " << Jet_vector.at(4).Pt() << endl;
+   }
+*/
+  if(Jet_vector.size()>0 and Jet_vector.at(0).Pt() > 10.0 ) h_jet_pt_leading->Fill(Jet_vector.at(0).Pt());
+  if(Jet_vector.size()>1 and Jet_vector.at(1).Pt() > 10.0 ) h_jet_pt_trailing->Fill(Jet_vector.at(1).Pt());
+  if(Jet_vector.size()>2 and Jet_vector.at(2).Pt() > 10.0 ) h_jet_pt_3rd->Fill(Jet_vector.at(2).Pt());
+  if(Jet_vector.size()>3 and Jet_vector.at(3).Pt() > 10.0 ) h_jet_pt_4th->Fill(Jet_vector.at(3).Pt());
   if(Jet_vector.size()>4 and Jet_vector.at(4).Pt() > 10.0) h_jet_pt_5th->Fill(Jet_vector.at(4).Pt());
   if(Jet_vector.size()>5 and Jet_vector.at(5).Pt() > 10.0) h_jet_pt_6th->Fill(Jet_vector.at(5).Pt());
 
