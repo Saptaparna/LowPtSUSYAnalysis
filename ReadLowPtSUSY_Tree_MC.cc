@@ -55,6 +55,12 @@ typedef struct
   float eta;
   float phi;
   float energy;
+  int   PU_mva_loose;
+  int   PU_mva_tight;
+  int   PU_mva_medium;
+  int   PU_cut_loose;
+  int   PU_cut_tight;
+  int   PU_cut_medium; 
 } JetInfo;
 
 
@@ -84,6 +90,11 @@ bool sortLeptonsInDescendingpT(LeptonInfo lep1, LeptonInfo lep2)
 bool sortJetsInDescendingpT(JetInfo jet1, JetInfo jet2)
 {
   return (jet1.pT > jet2.pT);
+}
+
+bool sortJetVectorsInDescendingpT(TLorentzVector jet1, TLorentzVector jet2)
+{
+  return (jet1.Pt() > jet2.Pt());
 }
 
 bool sortPhotonsInDescendingpT(PhotonInfo pho1, PhotonInfo pho2)
@@ -129,6 +140,12 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
   vector<float>   *jet_phi;
   vector<float>   *jet_eta;
   vector<float>   *jet_energy;
+  vector<int>     *jet_mva_loose;
+  vector<int>     *jet_mva_tight;
+  vector<int>     *jet_mva_medium;
+  vector<int>     *jet_cut_loose;
+  vector<int>     *jet_cut_tight;
+  vector<int>     *jet_cut_medium;
   Int_t           nJets;
   Float_t         MET;
   Float_t         MET_Phi;
@@ -144,6 +161,7 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
   vector<bool>    *ph_phIsoTight;
   vector<bool>    *ph_phIsoMedium;
   vector<bool>    *ph_phIsoLoose;
+  bool            Ztt;
   Float_t         nPUVertices;
   Float_t         nPUVerticesTrue;
   Float_t         PUWeightData;
@@ -180,6 +198,12 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
   jet_phi = 0;
   jet_eta = 0;
   jet_energy = 0;
+  jet_mva_loose = 0;
+  jet_mva_tight = 0;
+  jet_mva_medium = 0;
+  jet_cut_loose = 0;
+  jet_cut_tight = 0;
+  jet_cut_medium = 0;
   el_iso = 0;
   mu_iso = 0;
   ph_chIso = 0;
@@ -232,6 +256,12 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
   tree->SetBranchAddress("jet_phi", &(jet_phi));
   tree->SetBranchAddress("jet_eta", &(jet_eta));
   tree->SetBranchAddress("jet_energy", &(jet_energy));
+  tree->SetBranchAddress("jet_mva_loose", &(jet_mva_loose));
+  tree->SetBranchAddress("jet_mva_tight", &(jet_mva_tight));
+  tree->SetBranchAddress("jet_mva_medium", &(jet_mva_medium));
+  tree->SetBranchAddress("jet_cut_loose", &(jet_cut_loose));
+  tree->SetBranchAddress("jet_cut_tight", &(jet_cut_tight));
+  tree->SetBranchAddress("jet_cut_medium", &(jet_cut_medium));
   tree->SetBranchAddress("nJets", &(nJets));
   tree->SetBranchAddress("MET", &(MET));
   tree->SetBranchAddress("MET_Phi", &(MET_Phi));
@@ -255,6 +285,7 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
   tree->SetBranchAddress("mu_MatchedEta", &(mu_MatchedEta));
   tree->SetBranchAddress("mu_MatchedPhi", &(mu_MatchedPhi));
   tree->SetBranchAddress("mu_MatchedEnergy", &(mu_MatchedEnergy));
+  tree->SetBranchAddress("Ztt", &(Ztt));
 
   //Booking histograms:
   
@@ -298,8 +329,11 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
   TH1F *h_InvariantMass_ElPh=new TH1F("h_InvariantMass_ElPh", "Di-electron and photon invariant mass; m_{ee#gamma} [GeV]; Events/GeV", 9000, 0, 300); h_InvariantMass_ElPh->Sumw2();
 
   TH1F *h_InvariantMass_ElMu=new TH1F("h_InvariantMass_ElMu", "Electron-Muon invariant mass; m_{e#mu} [GeV]; Events/GeV", 9000, 0, 300); h_InvariantMass_ElMu->Sumw2();
+  
+  TH1F *h_InvariantMass_MCElMu=new TH1F("h_InvariantMass_MCElMu", "Electron-Muon invariant mass; m_{e#mu} [GeV]; Events/GeV", 9000, 0, 300); h_InvariantMass_MCElMu->Sumw2();
 
   TH1F *h_InvariantMass_MCMu=new TH1F("h_InvariantMass_MCMu", "Di-muon invariant mass of muons from Tau mothers; m_{#mu#mu} [GeV]; Events/GeV", 9000, 0, 300); h_InvariantMass_MCMu->Sumw2();
+  TH1F *h_InvariantMass_MCEl=new TH1F("h_InvariantMass_MCEl", "Di-muon invariant mass of electrons from Tau mothers; m_{ee} [GeV]; Events/GeV", 9000, 0, 300); h_InvariantMass_MCEl->Sumw2();
 
   TH1F *h_MET=new TH1F("h_MET", "Missing ET; MET [GeV]; Events/GeV", 600, 0, 600); h_MET->Sumw2();    
 
@@ -309,18 +343,49 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
   TH2F *h_Mmumu_MmumuGamma = new TH2F("h_Mmumu_MmumuGamma", "Scatter Plot of  M_{#mu#mu} versus M_{#mu#mu#gamma}; M_{#mu#mu} [GeV]; M_{#mu#mu#gamma} [GeV]", 4000, 0, 2000, 4000, 0, 2000);  h_Mmumu_MmumuGamma->Sumw2();
   TH2F *h_Mee_MeeGamma = new TH2F("h_Mee_MeeGamma", "Scatter Plot of  M_{ee} versus M_{ee#gamma}; M_{ee} [GeV]; M_{ee#gamma} [GeV]", 4000, 0, 2000, 4000, 0, 20000);h_Mee_MeeGamma->Sumw2();
   TH1F *h_HT = new TH1F("h_HT", "HT (scalar sum of jet pT); H_T [GeV]; Events/GeV", 5000, 0, 5000.0);h_HT->Sumw2();
-  TH1F *h_cMt_El = new TH1F("h_cMt_El", "Cluster Transverse Mass; M_{T}(e,#gamma,MET) [GeV]; Events/GeV", 3000, 0, 150);h_cMt_El->Sumw2();
-  TH1F *h_cMt_Mu = new TH1F("h_cMt_Mu", "Cluster Transverse Mass; M_{T}(#mu,#gamma,MET) [GeV]; Events/GeV", 3000, 0, 150);h_cMt_Mu->Sumw2();
+  TH1F *h_cMt_El = new TH1F("h_cMt_El", "Cluster Transverse Mass; M_{T}(e,#gamma,MET) [GeV]; Events/GeV", 5000, 0, 500);h_cMt_El->Sumw2();
+  TH1F *h_cMt_Mu = new TH1F("h_cMt_Mu", "Cluster Transverse Mass; M_{T}(#mu,#gamma,MET) [GeV]; Events/GeV", 5000, 0, 500);h_cMt_Mu->Sumw2();
   TH1F *h_Mt_El = new TH1F("h_Mt_El", "Transverse Mass; M_{T}(e, MET) [GeV]; Events/GeV", 3000, 0, 150);h_Mt_El->Sumw2();
   TH1F *h_Mt_Mu = new TH1F("h_Mt_Mu", "Transverse Mass; M_{T}(#mu, MET) [GeV]; Events/GeV", 3000, 0, 150);h_Mt_Mu->Sumw2();
   TH2F *h_Mt_cMt_El = new TH2F("h_Mt_cMt_El", "Scatter Plots of M_{T}(e,MET) versus M_{T}(e,#gamma,MET)}; M_{T}(e,MET) [GeV]; M_{T}(e,#gamma,MET) [GeV]", 4000, 0, 2000, 4000, 0, 2000);h_Mt_cMt_El->Sumw2();
   TH2F *h_Mt_cMt_Mu = new TH2F("h_Mt_cMt_Mu", "Scatter Plots of M_{T}(#mu,MET) versus M_{T}(#mu,#gamma,MET)}; M_{T}(#mu,MET) [GeV]; M_{T}(#mu,#gamma,MET) [GeV]", 4000, 0, 2000, 4000, 0, 2000);h_Mt_cMt_Mu->Sumw2();
+
+  TH1F *h_jet_pt_leading=new TH1F("h_jet_pt_leading", "Leading jet pT; pT [GeV]; Events/GeV", 10000, 0, 1000); h_jet_pt_leading->Sumw2();
+  TH1F *h_jet_pt_trailing=new TH1F("h_jet_pt_trailing", "Trailing jet pT; pT [GeV]; Events/GeV", 10000, 0, 1000); h_jet_pt_trailing->Sumw2();
+  TH1F *h_jet_pt_3rd=new TH1F("h_jet_pt_3rd", "3rd jet pT; pT [GeV]; Events/GeV", 10000, 0, 1000); h_jet_pt_3rd->Sumw2();
+  TH1F *h_jet_pt_4th=new TH1F("h_jet_pt_4th", "4th jet pT; pT [GeV]; Events/GeV", 10000, 0, 1000); h_jet_pt_4th->Sumw2();
+  TH1F *h_jet_pt_5th=new TH1F("h_jet_pt_5th", "5th jet pT; pT [GeV]; Events/GeV", 10000, 0, 1000); h_jet_pt_5th->Sumw2();
+  TH1F *h_jet_pt_6th=new TH1F("h_jet_pt_6th", "6th jet pT; pT [GeV]; Events/GeV", 10000, 0, 1000); h_jet_pt_6th->Sumw2();
+
+  TH1F *h_jet_eta_leading=new TH1F("h_jet_eta_leading", "Leading jet #eta; #eta; Events", 600, -3.0, 3.0); h_jet_eta_leading->Sumw2();
+  TH1F *h_jet_eta_trailing=new TH1F("h_jet_eta_trailing", "Trailing jet #eta; #eta; Events", 600, -3.0, 3.0); h_jet_eta_trailing->Sumw2();
+  TH1F *h_jet_eta_3rd=new TH1F("h_jet_eta_3rd", "3rd jet #eta; #eta; Events/GeV", 600, -3.0, 3.0); h_jet_eta_3rd->Sumw2();
+  TH1F *h_jet_eta_4th=new TH1F("h_jet_eta_4th", "4th jet #eta; #eta; Events/GeV", 600, -3.0, 3.0); h_jet_eta_4th->Sumw2();
+  TH1F *h_jet_eta_5th=new TH1F("h_jet_eta_5th", "5th jet #eta; #eta; Events/GeV", 600, -3.0, 3.0); h_jet_eta_5th->Sumw2();
+  TH1F *h_jet_eta_6th=new TH1F("h_jet_eta_6th", "6th jet #eta; #eta; Events/GeV", 600, -3.0, 3.0); h_jet_eta_6th->Sumw2();
+
+  TH1F *h_jet_phi_leading=new TH1F("h_jet_phi_leading", "Leading jet #phi; #phi; Events/GeV", 800, -4.0, 4.0); h_jet_phi_leading->Sumw2();
+  TH1F *h_jet_phi_trailing=new TH1F("h_jet_phi_trailing", "Trailing jet #phi; #phi; Events/GeV", 800, -4.0, 4.0); h_jet_phi_trailing->Sumw2();
+  TH1F *h_jet_phi_3rd=new TH1F("h_jet_phi_3rd", "3rd jet #phi; #phi; Events/GeV", 800, -4.0, 4.0); h_jet_phi_3rd->Sumw2();
+  TH1F *h_jet_phi_4th=new TH1F("h_jet_phi_4th", "4th jet #phi; #phi; Events/GeV", 800, -4.0, 4.0); h_jet_phi_4th->Sumw2();
+  TH1F *h_jet_phi_5th=new TH1F("h_jet_phi_5th", "5th jet #phi; #phi; Events/GeV", 800, -4.0, 4.0); h_jet_phi_5th->Sumw2();
+  TH1F *h_jet_phi_6th=new TH1F("h_jet_phi_6th", "6th jet #phi; #phi; Events/GeV", 800, -4.0, 4.0); h_jet_phi_6th->Sumw2();
+
+  TH1F *h_jet_energy_leading=new TH1F("h_jet_energy_leading", "Leading jet Energy; Energy [GeV]; Events/GeV", 10000, 0, 1000); h_jet_energy_leading->Sumw2();
+  TH1F *h_jet_energy_trailing=new TH1F("h_jet_energy_trailing", "Trailing jet Energy; Energy [GeV]; Events/GeV", 10000, 0, 1000); h_jet_energy_trailing->Sumw2();
+  TH1F *h_jet_energy_3rd=new TH1F("h_jet_energy_3rd", "3rd jet Energy; Energy [GeV]; Events/GeV", 10000, 0, 1000); h_jet_energy_3rd->Sumw2();
+  TH1F *h_jet_energy_4th=new TH1F("h_jet_energy_4th", "4th jet Energy; Energy [GeV]; Events/GeV", 10000, 0, 1000); h_jet_energy_4th->Sumw2();
+  TH1F *h_jet_energy_5th=new TH1F("h_jet_energy_5th", "5th jet Energy; Energy [GeV]; Events/GeV", 10000, 0, 1000); h_jet_energy_5th->Sumw2();
+  TH1F *h_jet_energy_6th=new TH1F("h_jet_energy_6th", "6th jet Energy; Energy [GeV]; Events/GeV", 10000, 0, 1000); h_jet_energy_6th->Sumw2();
+  TH1F *h_nJets = new TH1F("h_nJets", "Number of Jets; Number of Jets; Events", 20, -0.5, 19.5);h_nJets->Sumw2();
 
   int nEvents=tree->GetEntries();
   std::cout << "nEvents= " << nEvents << std::endl;
   for (int i=0; i<nEvents ; ++i)
     {
      tree->GetEvent(i);
+
+     if(Ztt==0) continue;
 
      h_MET->Fill(MET); 
  
@@ -399,7 +464,7 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
     double Mlg_El = -99.0;
     double pTlg_El = -99.0;
     double mt2_El = -99.0;
-    if(el1_p4.Pt()>0.0 and electrons.at(0).isTight==1 and electrons.at(0).isolation < 0.10 and leadingDeltaR > 0.3) {
+    if(el1_p4.Pt()>30.0 and electrons.at(0).isTight==1 and electrons.at(0).isolation < 0.10 and leadingDeltaR > 0.3 and electrons.size()==1) {
       h_el_phi_leading->Fill(el1_p4.Phi());
       h_el_eta_leading->Fill(el1_p4.Eta());
       h_el_pt_leading->Fill(el1_p4.Pt());
@@ -424,6 +489,7 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
         h_cMt_El->Fill(TMath::Sqrt(cMt2_El)); 
         }
       h_Mt_cMt_El->Fill(TMath::Sqrt(mt2_El), TMath::Sqrt(cMt2_El));
+      }//closing the first electron "if" statement
       if(el2_p4.Pt()>0.0 and electrons.at(1).isTight==1 and electrons.at(1).isolation < 0.10 and trailingDeltaR > 0.3 and ((electrons.at(0).charge*electrons.at(1).charge)==-1)) {
         h_el_phi_trailing->Fill(el2_p4.Phi());
         h_el_eta_trailing->Fill(el2_p4.Eta());
@@ -435,7 +501,7 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
         if(ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1) h_InvariantMass_ElPh->Fill((el1_p4+el2_p4+ph1_p4).M()); 
         if(ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1) h_Mee_MeeGamma->Fill((el1_p4+el2_p4).M(), (el1_p4+el2_p4+ph1_p4).M());
         }
-     }
+     //}
 
     // Filling the muon's properties into a vector of struct
     std::vector<LeptonInfo> muons;
@@ -484,7 +550,7 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
         pTlg_Mu = (ph_transverse + mu_transverse).Mod2();
         double t1 = TMath::Sqrt(Mlg_Mu*Mlg_Mu + pTlg_Mu);
         cMt2_Mu=((t1 + MET)*(t1 + MET) - (ph_transverse + mu_transverse + met_transverse).Mod2());
-        h_cMt_Mu->Fill(TMath::Sqrt(cMt2_Mu));
+        if(TMath::Sqrt(mt2_Mu)>70.0) h_cMt_Mu->Fill(TMath::Sqrt(cMt2_Mu));
       }
       h_Mt_cMt_Mu->Fill(TMath::Sqrt(mt2_Mu), TMath::Sqrt(cMt2_Mu));
       if(mu2_p4.Pt()>0.0 and muons.at(1).isTight==1 and muons.at(1).isolation < 0.12  and ((muons.at(0).charge*muons.at(1).charge)==-1)) {
@@ -528,9 +594,185 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
         }
      }
 
+   //Matched electrons are electrons matched exclusively to tau leptons
+   std::vector<MatchedLeptonInfo> matchedElectrons;
+   for (unsigned int j=0; j<el_Matched->size(); ++j)
+     {
+     MatchedLeptonInfo matchedElectron;
+     matchedElectron.pT = el_MatchedPt->at(j);
+     matchedElectron.eta = el_MatchedEta->at(j);
+     matchedElectron.phi = el_MatchedPhi->at(j);
+     matchedElectron.energy = el_MatchedEnergy->at(j);
+     matchedElectrons.push_back(matchedElectron);
+     }
+   std::sort (matchedElectrons.begin(), matchedElectrons.end(), sortMatchedLeptonsInDescendingpT);
+
+   TLorentzVector el1_m;
+   TLorentzVector el2_m;
+   if (matchedElectrons.size() > 0) el1_m=fillTLorentzVector(matchedElectrons.at(0).pT, matchedElectrons.at(0).eta, matchedElectrons.at(0).phi, matchedElectrons.at(0).energy);
+   if (matchedElectrons.size() > 1) el2_m=fillTLorentzVector(matchedElectrons.at(1).pT, matchedElectrons.at(1).eta, matchedElectrons.at(1).phi, matchedElectrons.at(1).energy);
+
+   if(el1_m.Pt()>0.0) {
+     if(el2_m.Pt()>0.0){
+       h_InvariantMass_MCEl->Fill((el1_m+el2_m).M());
+        }
+     }
+
+  if(mu1_m.Pt()>0.0) {
+    if(el1_m.Pt()>0.0) {
+      h_InvariantMass_MCElMu->Fill((mu1_m+el1_m).M());
+      }
+    }//Mu-El invaraint mass
+
+  std::vector<JetInfo> jets;
+   for (unsigned int j=0; j<jet_pt->size(); ++j)
+     {
+     JetInfo jet;
+     jet.pT = jet_pt->at(j);
+     jet.eta = jet_eta->at(j);
+     jet.phi = jet_phi->at(j);
+     jet.energy = jet_energy->at(j);
+     jet.PU_mva_loose = jet_mva_loose->at(j);
+     jet.PU_mva_tight = jet_mva_tight->at(j);
+     jet.PU_mva_medium = jet_mva_medium->at(j);
+     jet.PU_cut_loose = jet_cut_loose->at(j);
+     jet.PU_cut_tight = jet_cut_tight->at(j);
+     jet.PU_cut_medium = jet_cut_medium->at(j);
+     jets.push_back(jet);
+     }
+
+
+   // Now sorting this vector of structs
+   std::sort (jets.begin(), jets.end(), sortJetsInDescendingpT);
+
+   double HT = 0.0; //jets are sorted. Don't care as far as HT is concerned.
+   vector<TLorentzVector> Jet_vector;
+   Jet_vector.clear();
+   for(unsigned int k=0; k<jets.size(); ++k)
+     {
+
+     TLorentzVector Jet;
+     if(fabs(jets.at(k).eta)<2.4 and jets.at(k).pT>10.0 and jets.at(k).PU_mva_loose==1)
+       {
+       Jet.SetPtEtaPhiE(jets.at(k).pT, jets.at(k).eta, jets.at(k).phi, jets.at(k).energy);
+
+       bool isGoodJet=true;
+       for(unsigned int j=0; j<electrons.size(); ++j)
+        {
+        TLorentzVector Electron;
+        if(electrons.at(j).isTight==1 and electrons.at(j).isolation < 0.10){
+          Electron.SetPtEtaPhiE(electrons.at(j).pT, electrons.at(j).eta, electrons.at(j).phi, electrons.at(j).energy);
+          double DRjet_el = Jet.DeltaR(Electron);
+          if(DRjet_el<0.5) isGoodJet=false;
+       }
+     }
+
+   for(unsigned int j=0; j<muons.size(); ++j)
+         {
+         TLorentzVector Muon;
+         if(muons.at(j).isTight==1 and muons.at(j).isolation < 0.12){
+         Muon.SetPtEtaPhiE(muons.at(j).pT, muons.at(j).eta, muons.at(j).phi, muons.at(j).energy);
+         double DRjet_mu = Jet.DeltaR(Muon);
+         if(DRjet_mu<0.5) isGoodJet=false;
+       }
+     }
+      for(unsigned int l=0; l<photons.size(); ++l)
+        {
+        TLorentzVector Photon;
+        if(photons.at(l).pT>30.0 and photons.at(l).isTight==1 and photons.at(l).phIsoTight==1){
+          Photon.SetPtEtaPhiE(photons.at(l).pT, photons.at(l).eta, photons.at(l).phi, photons.at(l).energy);
+          double DRjet_ph = Jet.DeltaR(Photon);
+          if(DRjet_ph<0.5) isGoodJet=false;
+       }
+     }
+
+    if(isGoodJet) Jet_vector.push_back(Jet);
+     }//close four vector if
+  }//close jet loop
+
+  // Now sorting this vector of structs
+  std::sort (Jet_vector.begin(), Jet_vector.end(), sortJetVectorsInDescendingpT);
+
+  for(unsigned int m=0; m<Jet_vector.size(); m++)
+    {
+    HT += Jet_vector.at(m).Pt();
+    }
+
+
+/*
+ if(HT>10 and HT<20){
+    cout << "HT = " << HT << endl;
+    if(Jet_vector.size() > 0 and Jet_vector.at(0).Pt() > 10.0) cout << "Jet_vector.at(0).Pt() = " << Jet_vector.at(0).Pt() << endl;
+    if(Jet_vector.size() > 1 and Jet_vector.at(1).Pt() > 10.0) cout << "Jet_vector.at(1).Pt() = " << Jet_vector.at(1).Pt() << endl;
+    if(Jet_vector.size() > 2 and Jet_vector.at(2).Pt() > 10.0) cout << "Jet_vector.at(2).Pt() = " << Jet_vector.at(2).Pt() << endl;
+    if(Jet_vector.size() > 3 and Jet_vector.at(3).Pt() > 10.0) cout << "Jet_vector.at(3).Pt() = " << Jet_vector.at(3).Pt() << endl;
+    if(Jet_vector.size() > 4 and Jet_vector.at(4).Pt() > 10.0) cout << "Jet_vector.at(4).Pt() = " << Jet_vector.at(4).Pt() << endl;
+   }
+*/
+  if(Jet_vector.size()>0 ) h_jet_pt_leading->Fill(Jet_vector.at(0).Pt());
+  if(Jet_vector.size()>1 ) h_jet_pt_trailing->Fill(Jet_vector.at(1).Pt());
+  if(Jet_vector.size()>2 ) h_jet_pt_3rd->Fill(Jet_vector.at(2).Pt());
+  if(Jet_vector.size()>3 ) h_jet_pt_4th->Fill(Jet_vector.at(3).Pt());
+  if(Jet_vector.size()>4 ) h_jet_pt_5th->Fill(Jet_vector.at(4).Pt());
+  if(Jet_vector.size()>5 ) h_jet_pt_6th->Fill(Jet_vector.at(5).Pt());
+
+  if(Jet_vector.size()>0 ) h_jet_eta_leading->Fill(Jet_vector.at(0).Eta());
+  if(Jet_vector.size()>1 ) h_jet_eta_trailing->Fill(Jet_vector.at(1).Eta());
+  if(Jet_vector.size()>2 ) h_jet_eta_3rd->Fill(Jet_vector.at(2).Eta());
+  if(Jet_vector.size()>3 ) h_jet_eta_4th->Fill(Jet_vector.at(3).Eta());
+  if(Jet_vector.size()>4 ) h_jet_eta_5th->Fill(Jet_vector.at(4).Eta());
+  if(Jet_vector.size()>5 ) h_jet_eta_6th->Fill(Jet_vector.at(5).Eta());
+
+  if(Jet_vector.size()>0 ) h_jet_phi_leading->Fill(Jet_vector.at(0).Phi());
+  if(Jet_vector.size()>1 ) h_jet_phi_trailing->Fill(Jet_vector.at(1).Phi());
+  if(Jet_vector.size()>2 ) h_jet_phi_3rd->Fill(Jet_vector.at(2).Phi());
+  if(Jet_vector.size()>3 ) h_jet_phi_4th->Fill(Jet_vector.at(3).Phi());
+  if(Jet_vector.size()>4 ) h_jet_phi_5th->Fill(Jet_vector.at(4).Phi());
+  if(Jet_vector.size()>5 ) h_jet_phi_6th->Fill(Jet_vector.at(5).Phi());
+
+  if(Jet_vector.size()>0 ) h_jet_energy_leading->Fill(Jet_vector.at(0).E());
+  if(Jet_vector.size()>1 ) h_jet_energy_trailing->Fill(Jet_vector.at(1).E());
+  if(Jet_vector.size()>2 ) h_jet_energy_3rd->Fill(Jet_vector.at(2).E());
+  if(Jet_vector.size()>3 ) h_jet_energy_4th->Fill(Jet_vector.at(3).E());
+  if(Jet_vector.size()>4 ) h_jet_energy_5th->Fill(Jet_vector.at(4).E());
+  if(Jet_vector.size()>5 ) h_jet_energy_6th->Fill(Jet_vector.at(5).E());
+
+  h_nJets->Fill(Jet_vector.size());
+  h_HT->Fill(HT);
+
   }//event loop closed
   std::string histfilename=(outfile+".root").c_str();
   TFile *tFile=new TFile(histfilename.c_str(), "RECREATE");
+  h_nJets->Write();
+  h_jet_pt_leading->Write();
+  h_jet_pt_trailing->Write();
+  h_jet_pt_3rd->Write();
+  h_jet_pt_4th->Write();
+  h_jet_pt_5th->Write();
+  h_jet_pt_6th->Write();
+
+  h_jet_eta_leading->Write();
+  h_jet_eta_trailing->Write();
+  h_jet_eta_3rd->Write();
+  h_jet_eta_4th->Write();
+  h_jet_eta_5th->Write();
+  h_jet_eta_6th->Write();
+
+  h_jet_phi_leading->Write();
+  h_jet_phi_trailing->Write();
+  h_jet_phi_3rd->Write();
+  h_jet_phi_4th->Write();
+  h_jet_phi_5th->Write();
+  h_jet_phi_6th->Write();
+
+  h_jet_energy_leading->Write();
+  h_jet_energy_trailing->Write();
+  h_jet_energy_3rd->Write();
+  h_jet_energy_4th->Write();
+  h_jet_energy_5th->Write();
+  h_jet_energy_6th->Write();
+  h_HT->Write();
+
   h_cMt_El->Write();
   h_cMt_Mu->Write();
   h_Mt_El->Write(); 
@@ -578,6 +820,7 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
   h_InvariantMass_ElPh->Write();
   h_InvariantMass_MuPh->Write();
   h_InvariantMass_ElMu->Write();
+  h_InvariantMass_MCElMu->Write();
   h_Mmumu_MmumuGamma->Write();
   h_Mee_MeeGamma->Write();
 
@@ -585,6 +828,7 @@ int ReadLowPtSUSY_Tree_MC(std::string infile, std::string outfile){
   h_Difference_Mu->Write();
  
   h_InvariantMass_MCMu->Write();
+  h_InvariantMass_MCEl->Write();
 
   h_HT->Write();
   tFile->Close(); 
