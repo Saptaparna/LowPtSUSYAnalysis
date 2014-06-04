@@ -14,8 +14,8 @@ using namespace std;
 
 reweight::LumiReWeighting LumiWeightsD_;
 reweight::LumiReWeighting LumiWeightsD_sys_;
-//bool isMC= true;
-bool isMC=false;
+bool isMC= true;
+//bool isMC=false;
 string  suffix = "SUFFIX";
 
 void FlatTreeCreator::Begin(TTree *tree)
@@ -125,6 +125,7 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("mu_MatchedPhi",  &mu_MatchedPhi);
    outtree->Branch("mu_MatchedEnergy",  &mu_MatchedEnergy);
 
+   outtree->Branch("Ztt", &Ztt, "Ztt/O");
 }
 
 void FlatTreeCreator::SlaveBegin(TTree *)
@@ -211,6 +212,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   mu_MatchedEta.clear();
   mu_MatchedPhi.clear();
   mu_MatchedEnergy.clear();
+  Ztt = false;
 
   if(entry % 1000 == 0) cout << "Processing event number: " << entry << endl;
 
@@ -343,6 +345,18 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
  }//end reco electron loop
  
  nElectrons = vElectrons.size();
+
+ if(isMC){
+  for (int g = 0; g <  genParticles->GetSize(); g++) {
+    TCGenParticle* genParticle = (TCGenParticle*) genParticles->At(g);
+    if(abs(genParticle->GetPDGId())==15 and genParticle->GetStatus()==3){
+      if(genParticle->Mother()->GetPDGId()==23){
+       Ztt = true;
+       }
+     }
+   }
+ }
+
 
  vector<TCMuon> vMuons;
 
