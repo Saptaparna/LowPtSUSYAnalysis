@@ -186,6 +186,10 @@ public :
    std::vector<float> mu_MatchedEta;
    std::vector<float> mu_MatchedPhi;
    std::vector<float> mu_MatchedEnergy;
+   bool Ztt;
+   bool Znunu;
+   bool Zmumu;
+   bool Zee;
    FlatTreeCreator(TTree * /*tree*/ =0) : fChain(0) { }
    virtual ~FlatTreeCreator() { }
    virtual Int_t   Version() const { return 2; }

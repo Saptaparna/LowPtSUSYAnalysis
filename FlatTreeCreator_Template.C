@@ -126,6 +126,9 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("mu_MatchedEnergy",  &mu_MatchedEnergy);
 
    outtree->Branch("Ztt", &Ztt, "Ztt/O");
+   outtree->Branch("Znunu", &Znunu, "Znunu/O");
+   outtree->Branch("Zmumu", &Zmumu, "Zmumu/O");
+   outtree->Branch("Zee", &Zee, "Zee/O");
 }
 
 void FlatTreeCreator::SlaveBegin(TTree *)
@@ -213,6 +216,9 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   mu_MatchedPhi.clear();
   mu_MatchedEnergy.clear();
   Ztt = false;
+  Znunu = false;
+  Zmumu = false;
+  Zee = false;
 
   if(entry % 1000 == 0) cout << "Processing event number: " << entry << endl;
 
@@ -352,6 +358,21 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
     if(abs(genParticle->GetPDGId())==15 and genParticle->GetStatus()==3){
       if(genParticle->Mother()->GetPDGId()==23){
        Ztt = true;
+       }
+     }
+     if(abs(genParticle->GetPDGId())==13 and genParticle->GetStatus()==3){
+      if(genParticle->Mother()->GetPDGId()==23){
+       Zmumu = true;
+       }
+     }
+     if(abs(genParticle->GetPDGId())==11 and genParticle->GetStatus()==3){
+      if(genParticle->Mother()->GetPDGId()==23){
+       Zee = true;
+       }
+     }
+     if((abs(genParticle->GetPDGId())==12 or abs(genParticle->GetPDGId())==14 or abs(genParticle->GetPDGId())==16)and genParticle->GetStatus()==3){
+      if(genParticle->Mother()->GetPDGId()==23){
+       Znunu = true;
        }
      }
    }
