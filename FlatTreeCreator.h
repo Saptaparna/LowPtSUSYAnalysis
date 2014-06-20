@@ -190,6 +190,7 @@ public :
    bool Znunu;
    bool Zmumu;
    bool Zee;
+   bool Wt;
    FlatTreeCreator(TTree * /*tree*/ =0) : fChain(0) { }
    virtual ~FlatTreeCreator() { }
    virtual Int_t   Version() const { return 2; }

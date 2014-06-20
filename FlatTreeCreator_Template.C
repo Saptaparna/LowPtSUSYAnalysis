@@ -129,6 +129,7 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("Znunu", &Znunu, "Znunu/O");
    outtree->Branch("Zmumu", &Zmumu, "Zmumu/O");
    outtree->Branch("Zee", &Zee, "Zee/O");
+   outtree->Branch("Wt", &Wt, "Wt/O");
 }
 
 void FlatTreeCreator::SlaveBegin(TTree *)
@@ -219,6 +220,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   Znunu = false;
   Zmumu = false;
   Zee = false;
+  Wt = false;
 
   if(entry % 1000 == 0) cout << "Processing event number: " << entry << endl;
 
@@ -227,6 +229,12 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
  lumi = lumiSection;
  event = eventNumber;
 
+ if(isMC){
+  for (int i = 0; i <  triggerObjects->GetSize(); i++) {
+   TCTriggerObject* thisTrigObj = (TCTriggerObject*) triggerObjects->At(i);
+   //cout << "thisTrigObj->GetHLTName() = " << thisTrigObj->GetHLTName() << endl;  
+     }
+  }
  //Trigger Information
  if(not isMC){
    for (int i = 0; i <  triggerObjects->GetSize(); i++) {
@@ -375,6 +383,11 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
        Znunu = true;
        }
      }
+     if(abs(genParticle->GetPDGId())==15 and genParticle->GetStatus()==3){
+      if(abs(genParticle->Mother()->GetPDGId())==24){ //W boson pdg Id 24
+        Wt = true;
+       }
+     }   
    }
  }
 
