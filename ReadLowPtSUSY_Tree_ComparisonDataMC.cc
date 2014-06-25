@@ -391,18 +391,18 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
   TH1F *h_jet_energy_6th=new TH1F("h_jet_energy_6th", "6th jet Energy; Energy [GeV]; Events/GeV", 10000, 0, 1000); h_jet_energy_6th->Sumw2();
   TH1F *h_nJets = new TH1F("h_nJets", "Number of Jets; Number of Jets; Events", 20, -0.5, 19.5);h_nJets->Sumw2();
 
-  int Wt_events_mumu = 0;
-  int Wt_events_emu = 0;
-  int Ztt_events_mumu = 0;
-  int Ztt_events_emu = 0;
-  int MET_emu = 0;
-  int MET_mumu = 0;
-  int Ztt_events_LowHT_mumu = 0;
-  int Ztt_events_LowHT_emu = 0;
-  int LowHT_mumu = 0;
-  int LowHT_emu = 0;
-  int emu = 0;
-  int mumu = 0;
+  double Wt_events_mumu = 0;
+  double Wt_events_emu = 0;
+  double Ztt_events_mumu = 0;
+  double Ztt_events_emu = 0;
+  double MET_emu = 0;
+  double MET_mumu = 0;
+  double Ztt_events_LowHT_mumu = 0;
+  double Ztt_events_LowHT_emu = 0;
+  double LowHT_mumu = 0;
+  double LowHT_emu = 0;
+  double emu = 0;
+  double mumu = 0;
 
   TFile *triggerCurves=new TFile("Fit.root"); 
   TF1* fit_curve1=(TF1*)triggerCurves->Get("fit_MET"); 
@@ -525,6 +525,8 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
          }
      }//only execute if the second electron exists.
 
+    if(type=="MC") deltaR_el1 = 100.0; 
+    if(type=="MC") deltaR_el2 = 100.0;
 
     double leadingDeltaR, trailingDeltaR;
     leadingDeltaR = -1.0;
@@ -706,36 +708,35 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
       }
     if(mu2_p4.Pt()>0.0 and muons.at(1).isTight==1 and muons.at(1).isolation < 0.12  and ((muons.at(0).charge*muons.at(1).charge)==-1)) {
       mumu_event = 1;
-      mumu++;
-      cout << "eventWeight = " << eventWeight << endl;
+      mumu+=eventWeight;
       h_mu_phi_trailing->Fill(mu2_p4.Phi(), eventWeight);
       h_mu_eta_trailing->Fill(mu2_p4.Eta(), eventWeight);
       h_mu_pt_trailing->Fill(mu2_p4.Pt(), eventWeight);
       h_mu_energy_trailing->Fill(mu2_p4.E(), eventWeight);
       h_InvariantMass_Mu->Fill((mu1_p4+mu2_p4).M(), eventWeight);
       if(ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1) h_InvariantMass_MuPh->Fill((mu1_p4+mu2_p4+ph1_p4).M(), eventWeight);
-      if(type=="MC" and Ztt==true) Ztt_events_mumu++;
-      if(type=="MC" and Wt==true) Wt_events_mumu++;
-      if(type=="Data" and ((mu1_p4+mu2_p4).M() > 10 and (mu1_p4+mu2_p4).M() < 60)) Ztt_events_mumu++;
-      if(MET > 25.0) MET_mumu++;
-      if(type=="MC" and Ztt==true and HT<300) Ztt_events_LowHT_mumu++; 
-      if(type=="Data" and (((mu1_p4+mu2_p4).M() > 10 and (mu1_p4+mu2_p4).M() < 60) and HT<300)) Ztt_events_LowHT_mumu++;
-      if(HT<300) LowHT_mumu++;
+      if(type=="MC" and Ztt==true) Ztt_events_mumu+=eventWeight;
+      if(type=="MC" and Wt==true) Wt_events_mumu+=eventWeight;
+      if(type=="Data" and ((mu1_p4+mu2_p4).M() > 10 and (mu1_p4+mu2_p4).M() < 60)) Ztt_events_mumu+=eventWeight;
+      if(MET > 25.0) MET_mumu+=eventWeight;
+      if(type=="MC" and Ztt==true and HT<300) Ztt_events_LowHT_mumu+=eventWeight; 
+      if(type=="Data" and (((mu1_p4+mu2_p4).M() > 10 and (mu1_p4+mu2_p4).M() < 60) and HT<300)) Ztt_events_LowHT_mumu+=eventWeight;
+      if(HT<300) LowHT_mumu+=eventWeight;
         }
      }
 
    int emu_event = 0;
    if((mu1_p4.Pt()>0.0 and muons.at(0).isTight==1 and muons.at(0).isolation < 0.12) and (el1_p4.Pt()>0.0 and electrons.at(0).isTight==1 and electrons.at(0).isolation < 0.10 and leadingDeltaR > 0.3 and deltaR_el1 > 0.3) and eventWeight > 0.0) {
      emu_event = 1;
-     emu++;
+     emu+=eventWeight;
      h_InvariantMass_ElMu->Fill((mu1_p4+el1_p4).M(), eventWeight);
-     if(type=="MC" and Ztt==true) Ztt_events_emu++;
-     if(type=="MC" and Wt==true) Wt_events_emu++;
-     if(type=="Data" and ((mu1_p4+el1_p4).M() > 10 and (mu1_p4+el1_p4).M() < 60)) Ztt_events_emu++;
-     if(MET > 25.0) MET_emu++;
-     if(type=="MC" and Ztt==true and HT<300) Ztt_events_LowHT_emu++;
-     if(type=="Data" and (((mu1_p4+el1_p4).M() > 10 and (mu1_p4+el1_p4).M() < 60) and HT<300)) Ztt_events_LowHT_emu++;
-     if(HT<300) LowHT_emu++;
+     if(type=="MC" and Ztt==true) Ztt_events_emu+=eventWeight;
+     if(type=="MC" and Wt==true)  Wt_events_emu+=eventWeight;
+     if(type=="Data" and ((mu1_p4+el1_p4).M() > 10 and (mu1_p4+el1_p4).M() < 60)) Ztt_events_emu+=eventWeight;
+     if(MET > 25.0) MET_emu+=eventWeight;
+     if(type=="MC" and Ztt==true and HT<300) Ztt_events_LowHT_emu+=eventWeight;
+     if(type=="Data" and (((mu1_p4+el1_p4).M() > 10 and (mu1_p4+el1_p4).M() < 60) and HT<300)) Ztt_events_LowHT_emu+=eventWeight;
+     if(HT<300) LowHT_emu+=eventWeight;
      
      }//El-Mu invariant mass
 
