@@ -419,8 +419,11 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
        if(fired_HLTPhoIdMet!=1) continue; 
        }
 
-     //if(Znunu==false) continue;
-
+    /*if(type=="MC")
+    { 
+      if(Znunu==false) continue;
+    }
+    */
      // filling the photon's properties into a vector of struct
      std::vector<PhotonInfo> photons;
      for (unsigned int j=0; j<ph_pt->size(); ++j)
@@ -443,34 +446,36 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
      std::sort (photons.begin(), photons.end(), sortPhotonsInDescendingpT);
        
      TLorentzVector ph1_p4;
+     ph1_p4 = fillTLorentzVector(0.0, 0.0, 0.0, 0.0);
+
      //here working with the leading photon.
      if (photons.size() > 0) ph1_p4=fillTLorentzVector(photons.at(0).pT, photons.at(0).eta, photons.at(0).phi, photons.at(0).energy); 
 
      double eventWeight = 0.0;
      if(type=="MC")
-       {
+     {
        double triggerWeight1 = fit_curve1->Eval(MET);
        double triggerWeight2 = 0.0;
        if(ph1_p4.Pt()>30.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1) triggerWeight2 = fit_curve2->Eval(ph1_p4.Pt());
        eventWeight=triggerWeight1*triggerWeight2;
-       }
+     }
      else if(type=="Data")
-       {
-       eventWeight = 1.0;
-       }
+     {
+       if(ph1_p4.Pt()>30.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1) eventWeight = 1.0;
+     }
 
      TriggerInfo trigger1; 
      if(type=="Data")
-       {
+     {
        trigger1.Px = trigObj1Px;
        trigger1.Py = trigObj1Py;
        trigger1.Pz = trigObj1Pz;
        trigger1.E  = trigObj1E;
-       } 
+     } 
      // filling the electron's properties into a vector of struct
      std::vector<LeptonInfo> electrons;
      for (unsigned int j=0; j<el_pt->size(); ++j)
-       {
+     {
         LeptonInfo electron;
         electron.pT=el_pt->at(j);
         electron.eta=el_eta->at(j);
@@ -480,49 +485,54 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
         electron.isTight=el_isTight->at(j);
         electron.isolation=el_iso->at(j);
         electrons.push_back(electron);
-       }
+      }
 
      // Now sorting this vector of structs
      std::sort (electrons.begin(), electrons.end(), sortLeptonsInDescendingpT);
      TLorentzVector el1_p4;
      TLorentzVector el2_p4;
-
+     el1_p4 = fillTLorentzVector(0.0, 0.0, 0.0, 0.0);
+     el2_p4 = fillTLorentzVector(0.0, 0.0, 0.0, 0.0);
      int foundHLTelectron1 = 0;
      double deltaR_el1 = -1.0;
-     if (electrons.size() > 0){
+     if (electrons.size() > 0)
+     {
        el1_p4=fillTLorentzVector(electrons.at(0).pT, electrons.at(0).eta, electrons.at(0).phi, electrons.at(0).energy);
        if(type=="Data")
-         {
+       {
          TLorentzVector trigger1_p4;
          trigger1_p4.SetPxPyPzE(trigger1.Px, trigger1.Py, trigger1.Pz, trigger1.E);
          if(el1_p4.Pt() > 0.0)
-          {
+         {
            deltaR_el1 = el1_p4.DeltaR(trigger1_p4);
-           if(deltaR_el1<0.3){
+           if(deltaR_el1<0.3)
+           {
              foundHLTelectron1++;
-             }
            }
-       else{foundHLTelectron1=0;}
          }
+       else{foundHLTelectron1=0;}
+       }
      }//only execute if an electron exists.
 
      int foundHLTelectron2 = 0;
      double deltaR_el2 = -1.0;
-     if (electrons.size() > 1){
+     if (electrons.size() > 1)
+     {
        el2_p4=fillTLorentzVector(electrons.at(1).pT, electrons.at(1).eta, electrons.at(1).phi, electrons.at(1).energy);
        if(type=="Data")
-         {
+       {
          TLorentzVector trigger1_p4;
          trigger1_p4.SetPxPyPzE(trigger1.Px, trigger1.Py, trigger1.Pz, trigger1.E);
          if(el2_p4.Pt() > 0.0)
-           {
+         {
            deltaR_el2 = el2_p4.DeltaR(trigger1_p4);
-           if(deltaR_el2<0.3){
+           if(deltaR_el2<0.3)
+           {
              foundHLTelectron2++;
-             }
            }
-      else{foundHLTelectron2=0;}
          }
+      else{foundHLTelectron2=0;}
+       }
      }//only execute if the second electron exists.
 
     if(type=="MC") deltaR_el1 = 100.0; 
@@ -532,11 +542,11 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
     leadingDeltaR = -1.0;
     trailingDeltaR = -1.0;
 
-    if(el1_p4.Pt()>0.0 and ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1){
+    if(el1_p4.Pt()>0.0 and ph1_p4.Pt()>30.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1){
       leadingDeltaR = el1_p4.DeltaR(ph1_p4); 
     }   
 
-    if(el2_p4.Pt()>0.0 and ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1){
+    if(el2_p4.Pt()>0.0 and ph1_p4.Pt()>30.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1){
       trailingDeltaR = el2_p4.DeltaR(ph1_p4); 
     }
     double cMt2_El = -99.0;
@@ -580,7 +590,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
     // filling the muon's properties into a vector of struct
     std::vector<LeptonInfo> muons;
     for (unsigned int j=0; j<mu_pt->size(); ++j)
-      {
+    {
        LeptonInfo muon;
        muon.pT=mu_pt->at(j);
        muon.eta=mu_eta->at(j);
@@ -590,17 +600,20 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
        muon.isTight=mu_isTight->at(j);
        muon.isolation=mu_iso->at(j);
        muons.push_back(muon);
-       } 
+    } 
      // Now sorting this vector of structs
     std::sort (muons.begin(), muons.end(), sortLeptonsInDescendingpT);
     TLorentzVector mu1_p4;
     TLorentzVector mu2_p4;
+    mu1_p4 = fillTLorentzVector(0.0, 0.0, 0.0, 0.0);
+    mu2_p4 = fillTLorentzVector(0.0, 0.0, 0.0, 0.0);
+
     if (muons.size() > 0) mu1_p4=fillTLorentzVector(muons.at(0).pT, muons.at(0).eta, muons.at(0).phi, muons.at(0).energy);
     if (muons.size() > 1) mu2_p4=fillTLorentzVector(muons.at(1).pT, muons.at(1).eta, muons.at(1).phi, muons.at(1).energy);
 
    std::vector<JetInfo> jets;
    for (unsigned int j=0; j<jet_pt->size(); ++j)
-     {
+   {
      JetInfo jet;
      jet.pT = jet_pt->at(j);
      jet.eta = jet_eta->at(j);
@@ -613,7 +626,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
      jet.PU_cut_tight = jet_cut_tight->at(j);
      jet.PU_cut_medium = jet_cut_medium->at(j);
      jets.push_back(jet);
-     }
+   }
 
    // Now sorting this vector of structs
    std::sort (jets.begin(), jets.end(), sortJetsInDescendingpT);
@@ -730,7 +743,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
      emu_event = 1;
      emu+=eventWeight;
      h_InvariantMass_ElMu->Fill((mu1_p4+el1_p4).M(), eventWeight);
-     if(type=="MC" and Ztt==true) Ztt_events_emu+=eventWeight;
+     if(type=="MC" and Ztt==1) Ztt_events_emu+=eventWeight;
      if(type=="MC" and Wt==true)  Wt_events_emu+=eventWeight;
      if(type=="Data" and ((mu1_p4+el1_p4).M() > 10 and (mu1_p4+el1_p4).M() < 60)) Ztt_events_emu+=eventWeight;
      if(MET > 25.0) MET_emu+=eventWeight;
@@ -841,7 +854,6 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
   cout << "Ztt_events_LowHT_emu = " << Ztt_events_LowHT_emu << endl;
   cout << "LowHT_mumu = " << LowHT_mumu << endl;
   cout << "LowHT_emu = " << LowHT_emu << endl;
-
   std::string histfilename=(outfile+".root").c_str();
   TFile *tFile=new TFile(histfilename.c_str(), "RECREATE");
   h_nJets->Write();
