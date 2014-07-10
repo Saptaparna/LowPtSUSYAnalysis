@@ -191,6 +191,8 @@ public :
    bool Zmumu;
    bool Zee;
    bool Wt;
+   bool isPhoton;
+   bool isISRPhoton;
    FlatTreeCreator(TTree * /*tree*/ =0) : fChain(0) { }
    virtual ~FlatTreeCreator() { }
    virtual Int_t   Version() const { return 2; }
@@ -218,6 +220,7 @@ public :
    float MuonIso(TCMuon *muon);
    int PhotonIso(TCPhoton *photon, double &chIso, double &nuIso, double &phIso, bool &isoPassL, bool &isoPassM, bool &isoPassT);
    double mdeltaR(double eta1, double phi1, double eta2, double phi2);
+   void fillMotherInfo(TCGenParticle* mother, int i, vector <int> & momid);
  
    ClassDef(FlatTreeCreator,0);
 };
