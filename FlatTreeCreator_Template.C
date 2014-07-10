@@ -130,6 +130,8 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("Zmumu", &Zmumu, "Zmumu/O");
    outtree->Branch("Zee", &Zee, "Zee/O");
    outtree->Branch("Wt", &Wt, "Wt/O");
+   outtree->Branch("isPhoton", &isPhoton, "isPhoton/O");
+   outtree->Branch("isISRPhoton", &isISRPhoton, "isISRPhoton/O");
 }
 
 void FlatTreeCreator::SlaveBegin(TTree *)
@@ -221,6 +223,8 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   Zmumu = false;
   Zee = false;
   Wt = false;
+  isPhoton = false;
+  isISRPhoton = false;
 
   if(entry % 1000 == 0) cout << "Processing event number: " << entry << endl;
 
@@ -360,6 +364,10 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
  
  nElectrons = vElectrons.size();
 
+ int isFromMesonDecay;
+ int isNonIsolatedPhoton;
+ int isFSRPhoton;
+
  if(isMC){
   for (int g = 0; g <  genParticles->GetSize(); g++) {
     TCGenParticle* genParticle = (TCGenParticle*) genParticles->At(g);
@@ -368,28 +376,71 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
        Ztt = true;
        }
      }
-     if(abs(genParticle->GetPDGId())==13 and genParticle->GetStatus()==3){
+    if(abs(genParticle->GetPDGId())==13 and genParticle->GetStatus()==3){
       if(genParticle->Mother()->GetPDGId()==23){
        Zmumu = true;
        }
      }
-     if(abs(genParticle->GetPDGId())==11 and genParticle->GetStatus()==3){
+    if(abs(genParticle->GetPDGId())==11 and genParticle->GetStatus()==3){
       if(genParticle->Mother()->GetPDGId()==23){
        Zee = true;
        }
      }
-     if((abs(genParticle->GetPDGId())==12 or abs(genParticle->GetPDGId())==14 or abs(genParticle->GetPDGId())==16)and genParticle->GetStatus()==3){
+    if((abs(genParticle->GetPDGId())==12 or abs(genParticle->GetPDGId())==14 or abs(genParticle->GetPDGId())==16)and genParticle->GetStatus()==3){
       if(genParticle->Mother()->GetPDGId()==23){
        Znunu = true;
        }
      }
-     if(abs(genParticle->GetPDGId())==15 and genParticle->GetStatus()==3){
+    if(abs(genParticle->GetPDGId())==15 and genParticle->GetStatus()==3){
       if(abs(genParticle->Mother()->GetPDGId())==24){ //W boson pdg Id 24
         Wt = true;
        }
-     }   
-   }
- }
+     }
+    if(genParticle->GetPDGId()==22 and genParticle->GetStatus()==3){
+      isPhoton = true; 
+      if(genParticle->Mother()) cout << "genParticle->Mother()->GetPDGId() = " << genParticle->Mother()->GetPDGId() << endl; 
+     }//photon check 
+    //ISR removal: therefore double counting removal
+    double phEta = -99.0;
+    double phPhi = -99.0;
+    vector<int> motherId;
+    motherId.clear();
+    int isW;
+    int isZ;
+    if(genParticle->GetPDGId()==22 and genParticle->GetStatus()==1 and genParticle->Pt() > 20.0){
+      isFromMesonDecay = 0;
+      isNonIsolatedPhoton = 0;
+      isFSRPhoton = 0;
+      phEta = genParticle->Eta();
+      phPhi = genParticle->Phi();
+      if(genParticle->Mother() and abs(genParticle->Mother()->GetPDGId())>=100){
+        isFromMesonDecay = 1;
+      }//meson mother "if" closed
+      double otherParticles = 0.0;
+      for (int i_other = 0; i_other<genParticles->GetSize(); i_other++){ 
+        TCGenParticle *other = (TCGenParticle*)genParticles->At(i_other);      
+        if (other->GetStatus()==1 and (other->GetPDGId()!=12 and other->GetPDGId()!=14 and other->GetPDGId()!=16) and other->Pt()>2.0 and mdeltaR(phEta, phPhi, other->Eta(), other->Phi())<0.3 and (i_other != g)){ //removing the photon itself.
+          otherParticles+=other->Pt();
+          isNonIsolatedPhoton=1;
+        }
+      }//closing the genParticle loop 
+      if (otherParticles==0){
+        fillMotherInfo(genParticle->Mother(), 0, motherId); 
+      }//filling mother of isolated photon
+      isW=0;
+      isZ=0;
+      for(unsigned int i=0; i<motherId.size(); i++){
+        cout << "motherId.at(" << i << ") = " << motherId.at(i) << endl;
+        if(abs(motherId.at(i)==24)) isW = 1;
+        else if(motherId.at(i)==23) isZ = 1;
+      }
+      cout << "motherId.size() = " << motherId.size() << endl;
+      if(isW==1 or isZ==1) isFSRPhoton=1;  
+      
+      if(isFromMesonDecay==0 and isNonIsolatedPhoton==0 and isFSRPhoton==0) isISRPhoton = true;
+    }//photon check closed
+  }//genParticle loop closed
+}//if MC condition closed
 
 
  vector<TCMuon> vMuons;
@@ -814,6 +865,20 @@ double FlatTreeCreator::mdeltaR(double eta1, double phi1, double eta2, double ph
 
 }
 
+void FlatTreeCreator::fillMotherInfo(TCGenParticle* mother, int i, vector <int> & momid)
+{
+  if(mother) {
+    cout << "mother->GetPDGId() = " << mother->GetPDGId() << endl;
+    cout << "i = " << i << endl;
+    cout << "mother->Mother() = " << mother->Mother() << endl;
+    cout << "mother->GetStatus() = " << mother->GetStatus() << endl;
+    cout << "mother->GetPDGId() = " << mother->GetPDGId() << endl;
+    momid.push_back(mother->GetPDGId());
+    if(i<20)fillMotherInfo(mother->Mother(), i+1, momid);
+  }
+
+}
+
 void FlatTreeCreator::SlaveTerminate()
 {
 }
@@ -822,6 +887,3 @@ void FlatTreeCreator::Terminate()
 {
  outtree->Write();
 }
-
-
-
