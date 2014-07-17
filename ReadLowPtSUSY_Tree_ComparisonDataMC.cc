@@ -16,6 +16,7 @@
 #include <TVector2.h>
 #include <TF1.h>
 
+
 TLorentzVector fillTLorentzVector(double pT, double eta, double phi, double E)
 {
   TLorentzVector object_p4;
@@ -81,6 +82,137 @@ typedef struct
   float phi;
   float energy;
 } MatchedLeptonInfo;
+
+
+double electronSF(double elecPt, double elecEta)
+{
+ if(elecPt > 10.00 and elecPt < 15.00){
+   if(fabs(elecEta) > 0.0 and fabs(elecEta) < 0.8){
+     return 0.838; 
+   }
+   else if(fabs(elecEta) > 0.8 and fabs(elecEta) < 1.44){
+     return 0.861;
+   }
+   else if(fabs(elecEta) > 1.44 and fabs(elecEta) < 1.56){
+     return 1.021;
+   }
+   else if(fabs(elecEta) > 1.56 and fabs(elecEta) < 2.00){
+     return 0.951;
+   }
+   else if(fabs(elecEta) > 2.00 and fabs(elecEta) < 2.50){
+     return 1.055;
+   }
+ }
+
+ else if(elecPt > 15.00 and elecPt < 20.00){
+   if(fabs(elecEta) > 0.0 and fabs(elecEta) < 0.8){
+     return 0.942;
+   }
+   else if(fabs(elecEta) > 0.8 and fabs(elecEta) < 1.44){
+     return 0.925;
+   }
+   else if(fabs(elecEta) > 1.44 and fabs(elecEta) < 1.56){
+     return 0.889;
+   }
+   else if(fabs(elecEta) > 1.56 and fabs(elecEta) < 2.00){
+     return 0.932;
+   }
+   else if(fabs(elecEta) > 2.00 and fabs(elecEta) < 2.50){
+     return 0.984;
+   }
+ }
+
+else if(elecPt > 20.00 and elecPt < 30.00){
+   if(fabs(elecEta) > 0.0 and fabs(elecEta) < 0.8){
+     return 0.980;
+   }
+   else if(fabs(elecEta) > 0.8 and fabs(elecEta) < 1.44){
+     return 0.955;
+   }
+   else if(fabs(elecEta) > 1.44 and fabs(elecEta) < 1.56){
+     return 0.996;
+   }
+   else if(fabs(elecEta) > 1.56 and fabs(elecEta) < 2.00){
+     return 0.970;
+   }
+   else if(fabs(elecEta) > 2.00 and fabs(elecEta) < 2.50){
+     return 1.027;
+   }
+ }  
+
+else if(elecPt > 30.00 and elecPt < 40.00){
+   if(fabs(elecEta) > 0.0 and fabs(elecEta) < 0.8){
+     return 0.982;
+   }
+   else if(fabs(elecEta) > 0.8 and fabs(elecEta) < 1.44){
+     return 0.965;
+   }
+   else if(fabs(elecEta) > 1.44 and fabs(elecEta) < 1.56){
+     return 0.989;
+   }
+   else if(fabs(elecEta) > 1.56 and fabs(elecEta) < 2.00){
+     return 0.968;
+   }
+   else if(fabs(elecEta) > 2.00 and fabs(elecEta) < 2.50){
+     return 1.018;
+   }
+ }
+
+else if(elecPt > 40.00 and elecPt < 50.00){
+   if(fabs(elecEta) > 0.0 and fabs(elecEta) < 0.8){
+     return 0.985;
+   }
+   else if(fabs(elecEta) > 0.8 and fabs(elecEta) < 1.44){
+     return 0.974;
+   }
+   else if(fabs(elecEta) > 1.44 and fabs(elecEta) < 1.56){
+     return 0.961;
+   }
+   else if(fabs(elecEta) > 1.56 and fabs(elecEta) < 2.00){
+     return 0.989;
+   }
+   else if(fabs(elecEta) > 2.00 and fabs(elecEta) < 2.50){
+     return 1.012 ;
+   }
+ }
+
+else if(elecPt > 50.00 and elecPt < 200.00){
+   if(fabs(elecEta) > 0.0 and fabs(elecEta) < 0.8){
+     return 0.984;
+   }
+   else if(fabs(elecEta) > 0.8 and fabs(elecEta) < 1.44){
+     return 0.978;
+   }
+   else if(fabs(elecEta) > 1.44 and fabs(elecEta) < 1.56){
+     return 0.982;
+   }
+   else if(fabs(elecEta) > 1.56 and fabs(elecEta) < 2.00){
+     return 0.991;
+   }
+   else if(fabs(elecEta) > 2.00 and fabs(elecEta) < 2.50){
+     return 1.008;
+   }
+ }
+
+return 1.0;
+}
+
+double muonSF(double muPt, double muEta)
+{
+ if(muPt > 10.00 and muPt < 1000.00){
+   if(fabs(muEta) > 0.0 and fabs(muEta) < 0.90){
+     return 0.9943;
+   }
+   else if(fabs(muEta) > 0.9 and fabs(muEta) < 1.20){
+     return 0.9933;
+   }
+   else if(fabs(muEta) > 1.20 and fabs(muEta) < 2.50){
+     return 1.0020;
+   }
+ }
+
+return 1.0;
+}
 
 
 bool sortLeptonsInDescendingpT(LeptonInfo lep1, LeptonInfo lep2)
@@ -170,6 +302,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
   bool            Zee;
   bool            Zmumu;
   bool            Znunu;
+  bool            isPhoton;
   Float_t         nPUVertices;
   Float_t         nPUVerticesTrue;
   Float_t         PUWeightData;
@@ -322,6 +455,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
     tree->SetBranchAddress("Zee", &(Zee));
     tree->SetBranchAddress("Zmumu", &(Zmumu));
     tree->SetBranchAddress("Znunu", &(Znunu));
+    tree->SetBranchAddress("isPhoton", &(isPhoton));
   }
   //Booking histograms:
   
@@ -355,6 +489,9 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
   TH1F *h_InvariantMass_ElMu=new TH1F("h_InvariantMass_ElMu", "Electron-Muon invariant mass; m_{e#mu} [GeV]; Events/GeV", 9000, 0, 300); h_InvariantMass_ElMu->Sumw2();
 
   TH1F *h_MET=new TH1F("h_MET", "Missing ET; MET [GeV]; Events/GeV", 600, 0, 600); h_MET->Sumw2();    
+  TH1F *h_nVertices=new TH1F("h_nVertices", "Number of vertices; nvertices; Events", 30, -0.5, 29.5); h_nVertices->Sumw2();
+  TH1F *h_nPUVertices=new TH1F("h_nPUVertices", "Number of PU vertices; nvertices; Events", 30, -0.5, 29.5); h_nPUVertices->Sumw2();
+  TH1F *h_nPUVerticesTrue=new TH1F("h_nPUVerticesTrue", "Number of PU vertices; nvertices; Events", 30, -0.5, 29.5); h_nPUVerticesTrue->Sumw2();
 
   TH1F *h_HT = new TH1F("h_HT", "HT (scalar sum of jet pT); H_T [GeV]; Events/GeV", 5000, 0, 5000.0);h_HT->Sumw2();
   TH1F *h_cMt_El = new TH1F("h_cMt_El", "Cluster Transverse Mass; M_{T}(e,#gamma,MET) [GeV]; Events/GeV", 5000, 0, 500);h_cMt_El->Sumw2();
@@ -391,6 +528,10 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
   TH1F *h_jet_energy_6th=new TH1F("h_jet_energy_6th", "6th jet Energy; Energy [GeV]; Events/GeV", 10000, 0, 1000); h_jet_energy_6th->Sumw2();
   TH1F *h_nJets = new TH1F("h_nJets", "Number of Jets; Number of Jets; Events", 20, -0.5, 19.5);h_nJets->Sumw2();
 
+  TH2F *h_Mmumu_MmumuGamma = new TH2F("h_Mmumu_MmumuGamma", "Scatter Plot of  M_{#mu#mu} versus M_{#mu#mu#gamma}; M_{#mu#mu} [GeV]; M_{#mu#mu#gamma} [GeV]", 4000, 0, 2000, 4000, 0, 2000);  h_Mmumu_MmumuGamma->Sumw2();
+
+  TH2F *h_Jet1Pt_PhPt = new TH2F("h_Jet1Pt_PhPt", "Scatter Plot of the leading Jet pT versus Photon pT; pT [GeV]; pT [GeV]", 2000, 0, 1000, 2000, 0, 1000);  h_Jet1Pt_PhPt->Sumw2();
+
   double Wt_events_mumu = 0;
   double Wt_events_emu = 0;
   double Ztt_events_mumu = 0;
@@ -403,6 +544,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
   double LowHT_emu = 0;
   double emu = 0;
   double mumu = 0;
+  double Z_peakGammaEvents = 0;
 
   TFile *triggerCurves=new TFile("Fit.root"); 
   TF1* fit_curve1=(TF1*)triggerCurves->Get("fit_MET"); 
@@ -451,13 +593,15 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
      //here working with the leading photon.
      if (photons.size() > 0) ph1_p4=fillTLorentzVector(photons.at(0).pT, photons.at(0).eta, photons.at(0).phi, photons.at(0).energy); 
 
+     double eventWeight_Trigger = 0.0;
      double eventWeight = 0.0;
      if(type=="MC")
      {
        double triggerWeight1 = fit_curve1->Eval(MET);
        double triggerWeight2 = 0.0;
        if(ph1_p4.Pt()>30.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1) triggerWeight2 = fit_curve2->Eval(ph1_p4.Pt());
-       eventWeight=triggerWeight1*triggerWeight2;
+       eventWeight_Trigger=triggerWeight1*triggerWeight2;
+       eventWeight=triggerWeight1*triggerWeight2*PUWeightData;
      }
      else if(type=="Data")
      {
@@ -554,38 +698,41 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
     double pTlg_El = -99.0;
     double mt2_El = -99.0;
     
-    if(el1_p4.Pt()>0.0 and electrons.at(0).isTight==1 and electrons.at(0).isolation < 0.10 and leadingDeltaR > 0.3 and deltaR_el1 > 0.3 and eventWeight > 0.0) {
-      h_el_phi_leading->Fill(el1_p4.Phi(), eventWeight);
-      h_el_eta_leading->Fill(el1_p4.Eta(), eventWeight);
-      h_el_pt_leading->Fill(el1_p4.Pt(), eventWeight);
-      h_el_energy_leading->Fill(el1_p4.E(), eventWeight);
-      double dphi = fabs(MET_Phi - el1_p4.Phi());
-      if (dphi > TMath::Pi()) dphi = TMath::TwoPi() - dphi;
-      mt2_El = 2*el1_p4.Pt()*MET*(1 - TMath::Cos(dphi));
-      h_Mt_El->Fill(TMath::Sqrt(mt2_El), eventWeight);
-      if(ph1_p4.Pt()>30.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1){
-        //Computing the clustered mass distribution:
-        TVector2 el_transverse;
-        TVector2 met_transverse;
-        TVector2 ph_transverse;
-        el_transverse.SetMagPhi(el1_p4.Pt(), el1_p4.Phi());
-        ph_transverse.SetMagPhi(ph1_p4.Pt(), ph1_p4.Phi());
-        met_transverse.SetMagPhi(MET, MET_Phi);
-        Mlg_El = (el1_p4+ph1_p4).M();
-        pTlg_El = (ph_transverse + el_transverse).Mod2();
-        double t1 = TMath::Sqrt(Mlg_El*Mlg_El + pTlg_El);
-        cMt2_El=((t1 + MET)*(t1 + MET) - (ph_transverse+el_transverse+met_transverse).Mod2());
-        h_cMt_El->Fill(TMath::Sqrt(cMt2_El), eventWeight); 
+    if(el1_p4.Pt()>0.0 and electrons.at(0).isTight==1 and electrons.at(0).isolation < 0.10 and leadingDeltaR > 0.3 and deltaR_el1 > 0.3){
+      if(type=="MC") eventWeight *= electronSF(el1_p4.Pt(), el1_p4.Eta());
+        h_el_phi_leading->Fill(el1_p4.Phi(), eventWeight);
+      	h_el_eta_leading->Fill(el1_p4.Eta(), eventWeight);
+      	h_el_pt_leading->Fill(el1_p4.Pt(), eventWeight);
+        h_el_energy_leading->Fill(el1_p4.E(), eventWeight);
+        double dphi = fabs(MET_Phi - el1_p4.Phi());
+        if (dphi > TMath::Pi()) dphi = TMath::TwoPi() - dphi;
+        mt2_El = 2*el1_p4.Pt()*MET*(1 - TMath::Cos(dphi));
+        h_Mt_El->Fill(TMath::Sqrt(mt2_El), eventWeight);
+        if(ph1_p4.Pt()>30.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1){
+          //Computing the clustered mass distribution:
+          TVector2 el_transverse;
+          TVector2 met_transverse;
+          TVector2 ph_transverse;
+          el_transverse.SetMagPhi(el1_p4.Pt(), el1_p4.Phi());
+          ph_transverse.SetMagPhi(ph1_p4.Pt(), ph1_p4.Phi());
+          met_transverse.SetMagPhi(MET, MET_Phi);
+          Mlg_El = (el1_p4+ph1_p4).M();
+          pTlg_El = (ph_transverse + el_transverse).Mod2();
+          double t1 = TMath::Sqrt(Mlg_El*Mlg_El + pTlg_El);
+          cMt2_El=((t1 + MET)*(t1 + MET) - (ph_transverse+el_transverse+met_transverse).Mod2());
+          h_cMt_El->Fill(TMath::Sqrt(cMt2_El), eventWeight); 
         }
       if(el2_p4.Pt()>0.0 and electrons.at(1).isTight==1 and electrons.at(1).isolation < 0.10 and trailingDeltaR > 0.3 and deltaR_el2 > 0.3 and ((electrons.at(0).charge*electrons.at(1).charge)==-1)) {
-        h_el_phi_trailing->Fill(el2_p4.Phi(), eventWeight);
-        h_el_eta_trailing->Fill(el2_p4.Eta(), eventWeight);
-        h_el_pt_trailing->Fill(el2_p4.Pt(), eventWeight);
-        h_el_energy_trailing->Fill(el2_p4.E(), eventWeight);
-        h_InvariantMass_El->Fill((el1_p4+el2_p4).M(), eventWeight);
-        if(ph1_p4.Pt()>30.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1) h_InvariantMass_ElPh->Fill((el1_p4+el2_p4+ph1_p4).M(), eventWeight); 
-        }
-     } 
+        if(type=="MC") eventWeight *= electronSF(el2_p4.Pt(), el2_p4.Eta());
+          h_el_phi_trailing->Fill(el2_p4.Phi(), eventWeight);
+          h_el_eta_trailing->Fill(el2_p4.Eta(), eventWeight);
+          h_el_pt_trailing->Fill(el2_p4.Pt(), eventWeight);
+          h_el_energy_trailing->Fill(el2_p4.E(), eventWeight);
+          h_InvariantMass_El->Fill((el1_p4+el2_p4).M(), eventWeight);
+          if(ph1_p4.Pt()>30.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1) h_InvariantMass_ElPh->Fill((el1_p4+el2_p4+ph1_p4).M(), eventWeight); 
+    
+      }//trailing electron "if"
+  }//closing ledinding electron "if" statement
 
     // filling the muon's properties into a vector of struct
     std::vector<LeptonInfo> muons;
@@ -697,6 +844,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
   double mt2_Mu = -99.0;
   int mumu_event = 0;
   if(mu1_p4.Pt()>0.0 and muons.at(0).isTight==1 and muons.at(0).isolation < 0.12 and eventWeight > 0.0){
+    if(type=="MC") eventWeight *= muonSF(mu1_p4.Pt(), mu1_p4.Eta());
     h_mu_phi_leading->Fill(mu1_p4.Phi(), eventWeight);
     h_mu_eta_leading->Fill(mu1_p4.Eta(), eventWeight);
     h_mu_pt_leading->Fill(mu1_p4.Pt(), eventWeight);
@@ -720,6 +868,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
       h_cMt_Mu->Fill(TMath::Sqrt(cMt2_Mu), eventWeight);
       }
     if(mu2_p4.Pt()>0.0 and muons.at(1).isTight==1 and muons.at(1).isolation < 0.12  and ((muons.at(0).charge*muons.at(1).charge)==-1)) {
+      if(type=="MC") eventWeight *= muonSF(mu2_p4.Pt(), mu2_p4.Eta());  
       mumu_event = 1;
       mumu+=eventWeight;
       h_mu_phi_trailing->Fill(mu2_p4.Phi(), eventWeight);
@@ -728,6 +877,10 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
       h_mu_energy_trailing->Fill(mu2_p4.E(), eventWeight);
       h_InvariantMass_Mu->Fill((mu1_p4+mu2_p4).M(), eventWeight);
       if(ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1) h_InvariantMass_MuPh->Fill((mu1_p4+mu2_p4+ph1_p4).M(), eventWeight);
+      if(ph1_p4.Pt()>0.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1) {
+        h_Mmumu_MmumuGamma->Fill((mu1_p4+mu2_p4).M(), (mu1_p4+mu2_p4+ph1_p4).M(), eventWeight);
+        if(((mu1_p4+mu2_p4+ph1_p4).M()>76 and (mu1_p4+mu2_p4+ph1_p4).M()<106)) Z_peakGammaEvents+=eventWeight;
+      } 
       if(type=="MC" and Ztt==true) Ztt_events_mumu+=eventWeight;
       if(type=="MC" and Wt==true) Wt_events_mumu+=eventWeight;
       if(type=="Data" and ((mu1_p4+mu2_p4).M() > 10 and (mu1_p4+mu2_p4).M() < 60)) Ztt_events_mumu+=eventWeight;
@@ -740,6 +893,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
 
    int emu_event = 0;
    if((mu1_p4.Pt()>0.0 and muons.at(0).isTight==1 and muons.at(0).isolation < 0.12) and (el1_p4.Pt()>0.0 and electrons.at(0).isTight==1 and electrons.at(0).isolation < 0.10 and leadingDeltaR > 0.3 and deltaR_el1 > 0.3) and eventWeight > 0.0) {
+     if(type=="MC") eventWeight *= electronSF(el1_p4.Pt(), el1_p4.Eta())*muonSF(mu1_p4.Pt(), mu1_p4.Eta());  
      emu_event = 1;
      emu+=eventWeight;
      h_InvariantMass_ElMu->Fill((mu1_p4+el1_p4).M(), eventWeight);
@@ -760,9 +914,13 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
        h_photon_eta->Fill(ph1_p4.Eta(), eventWeight);
        h_photon_phi->Fill(ph1_p4.Phi(), eventWeight);
        h_photon_energy->Fill(ph1_p4.E(), eventWeight);
+       if(Jet_vector.size()>0) h_Jet1Pt_PhPt->Fill(Jet_vector.at(0).Pt(), ph1_p4.Pt(), eventWeight);
      }
 
     if(eventWeight > 0.0) h_MET->Fill(MET, eventWeight);
+    if(eventWeight > 0.0) h_nVertices->Fill(nVertices, eventWeight);
+    if(eventWeight > 0.0) h_nPUVertices->Fill(nPUVertices, eventWeight);
+    if(eventWeight > 0.0) h_nPUVerticesTrue->Fill(nPUVerticesTrue, eventWeight);
 
     if(Jet_vector.size()>0 and eventWeight > 0.0) h_jet_pt_leading->Fill(Jet_vector.at(0).Pt(), eventWeight);
     if(Jet_vector.size()>1 and eventWeight > 0.0) h_jet_pt_trailing->Fill(Jet_vector.at(1).Pt(), eventWeight);
@@ -803,9 +961,13 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
        h_photon_eta->Fill(ph1_p4.Eta(), eventWeight);
        h_photon_phi->Fill(ph1_p4.Phi(), eventWeight);
        h_photon_energy->Fill(ph1_p4.E(), eventWeight);
-     }
+       if(Jet_vector.size()>0) h_Jet1Pt_PhPt->Fill(Jet_vector.at(0).Pt(), ph1_p4.Pt(), eventWeight); 
+    }
 
     if(eventWeight > 0.0) h_MET->Fill(MET, eventWeight);
+    if(eventWeight > 0.0) h_nVertices->Fill(nVertices, eventWeight);
+    if(eventWeight > 0.0) h_nPUVertices->Fill(nPUVertices, eventWeight);
+    if(eventWeight > 0.0) h_nPUVerticesTrue->Fill(nPUVerticesTrue, eventWeight);
 
     if(Jet_vector.size()>0 and eventWeight > 0.0) h_jet_pt_leading->Fill(Jet_vector.at(0).Pt(), eventWeight);
     if(Jet_vector.size()>1 and eventWeight > 0.0) h_jet_pt_trailing->Fill(Jet_vector.at(1).Pt(), eventWeight);
@@ -854,6 +1016,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
   cout << "Ztt_events_LowHT_emu = " << Ztt_events_LowHT_emu << endl;
   cout << "LowHT_mumu = " << LowHT_mumu << endl;
   cout << "LowHT_emu = " << LowHT_emu << endl;
+  cout << "Z_peakGammaEvents = " << Z_peakGammaEvents << endl;
   std::string histfilename=(outfile+".root").c_str();
   TFile *tFile=new TFile(histfilename.c_str(), "RECREATE");
   h_nJets->Write();
@@ -885,6 +1048,9 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
   h_jet_energy_5th->Write();
   h_jet_energy_6th->Write();
   h_HT->Write();
+  h_nVertices->Write();
+  h_nPUVertices->Write();
+  h_nPUVerticesTrue->Write();
 
   h_cMt_El->Write();
   h_cMt_Mu->Write();
@@ -919,6 +1085,8 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC(std::string infile, std::string outfile,
   h_InvariantMass_ElPh->Write();
   h_InvariantMass_MuPh->Write();
   h_InvariantMass_ElMu->Write();
+  h_Mmumu_MmumuGamma->Write();
+  h_Jet1Pt_PhPt->Write();
 
   h_HT->Write();
   tFile->Close(); 
