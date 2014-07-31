@@ -199,8 +199,11 @@ int ReadLowPtSUSY_Tree_TriggerCorrelation(std::string infile, std::string outfil
   jet_eta = 0;
   jet_energy = 0;
 
-  TH2F *h_ControlTrigger = new TH2F("h_ControlTrigger", "Scatter Plot of Photon pT versus MET; Photon pT [GeV]; MET [GeV]", 1000, 0, 1000.0, 1000.0, 0, 1000.0);  h_ControlTrigger->Sumw2(); 
-  TH2F *h_AnalysisTrigger = new TH2F("h_AnalysisTrigger", "Scatter Plot of Photon pT versus MET; Photon pT [GeV]; MET [GeV]", 1000, 0, 1000.0, 1000.0, 0, 1000.0);  h_AnalysisTrigger->Sumw2();
+  TH2F *h_ControlTrigger1 = new TH2F("h_ControlTrigger1", "Scatter Plot of Photon pT versus MET; Photon pT [GeV]; MET [GeV]", 1000, 0, 1000.0, 1000.0, 0, 1000.0);  h_ControlTrigger1->Sumw2(); 
+  TH2F *h_AnalysisTrigger1 = new TH2F("h_AnalysisTrigger1", "Scatter Plot of Photon pT versus MET; Photon pT [GeV]; MET [GeV]", 1000, 0, 1000.0, 1000.0, 0, 1000.0);  h_AnalysisTrigger1->Sumw2();
+  TH2F *h_ControlTrigger2 = new TH2F("h_ControlTrigger2", "Scatter Plot of Photon pT versus MET; Photon pT [GeV]; MET [GeV]", 1000, 0, 1000.0, 1000.0, 0, 1000.0);  h_ControlTrigger2->Sumw2();
+  TH2F *h_AnalysisTrigger2 = new TH2F("h_AnalysisTrigger2", "Scatter Plot of Photon pT versus MET; Photon pT [GeV]; MET [GeV]", 1000, 0, 1000.0, 1000.0, 0, 1000.0);  h_AnalysisTrigger2->Sumw2();
+
   
   int nEvents=tree->GetEntries();
   std::cout << "nEvents= " << nEvents << std::endl;
@@ -269,20 +272,29 @@ int ReadLowPtSUSY_Tree_TriggerCorrelation(std::string infile, std::string outfil
    //fired_HLTPhoIdMet corresponds to HLT_Photon30_R9Id90_CaloId_HE10_Iso40_EBOnly_Met25_HBHENoiseCleaned_v*
 
    if(photons.size() > 0){
-     if(fired_HLTPhoId==1 and fired_HLTPho==1 and foundHLTPhoton2==1 and photons.at(0).pT>30.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1){
-       h_ControlTrigger->Fill(photons.at(0).pT, MET);
-       if(fired_HLTPhoIdMet==1 and foundHLTPhoton1==1 and fired_HLTPhoId==1){
-         h_AnalysisTrigger->Fill(photons.at(0).pT, MET);
-       }//analysis trigger if   
-      }//control trigger if
-   }//checking if the photon exists
+     if(fired_HLTPho==1 and foundHLTPhoton2==1 and photons.at(0).pT>30.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1){
+       h_ControlTrigger1->Fill(photons.at(0).pT, MET);
+       if(foundHLTPhoton1==1 and fired_HLTPhoId==1){
+         h_AnalysisTrigger1->Fill(photons.at(0).pT, MET);
+       }//main trigger if   
+     }//control trigger photon 30 if
+   
+   if (fired_HLTPhoId==1 and photons.at(0).pT>30.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1){
+     h_ControlTrigger2->Fill(photons.at(0).pT, MET);
+     if(fired_HLTPhoIdMet==1){
+        h_AnalysisTrigger2->Fill(photons.at(0).pT, MET);
+       }//main trigger if 
+     }//control trigger photon 30 if
+   }//photon check
 
   }//end of event loop
   std::string histfilename=(outfile+".root").c_str();
   TFile *tFile=new TFile(histfilename.c_str(), "RECREATE");
   
-  h_ControlTrigger->Write();
-  h_AnalysisTrigger->Write();
+  h_ControlTrigger1->Write();
+  h_AnalysisTrigger1->Write();
+  h_ControlTrigger2->Write();
+  h_AnalysisTrigger2->Write();
   tFile->Close();
   std::cout<<"Wrote output file "<<histfilename<<std::endl;
 
