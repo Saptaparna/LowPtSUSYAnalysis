@@ -306,31 +306,28 @@ int ReadLowPtSUSY_Tree_TriggerCorrelation(std::string infile, std::string outfil
    // Now sorting this vector of structs
    std::sort (jets.begin(), jets.end(), sortJetsInDescendingpT);
 
-   double minDR_PhJ;
-   double DRjet_ph;
-   int foundJetNearPhoton=1;
-   for(unsigned int k=0; k<jets.size(); ++k)
+   double minDR_PhJ = 9999;
+   int foundJetNearPhoton=0;
+   if(photons.size() > 0)
    {
-     minDR_PhJ = 9999.0;
-     DRjet_ph = 9999.0;
-     TLorentzVector Jet;
-     if(fabs(jets.at(k).eta)<2.4 and jets.at(k).pT>25.0 and jets.at(k).PU_mva_loose==1)
+     if(photons.at(0).pT>30.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1)
      {
-       Jet.SetPtEtaPhiE(jets.at(k).pT, jets.at(k).eta, jets.at(k).phi, jets.at(k).energy);
-       bool isGoodJet=true;
        TLorentzVector Photon;
-       if(photons.size() > 0){
-         if(photons.at(0).pT>30.0 and photons.at(0).isTight==1 and photons.at(0).phIsoTight==1){
-          Photon.SetPtEtaPhiE(photons.at(0).pT, photons.at(0).eta, photons.at(0).phi, photons.at(0).energy);
-          DRjet_ph = Jet.DeltaR(Photon);
-          if(DRjet_ph<minDR_PhJ) minDR_PhJ = DRjet_ph;
-        }
-      }
-      DRjet_ph = minDR_PhJ;
-      if(DRjet_ph>0.5) foundJetNearPhoton=0;
-    }
-  }
-
+       Photon.SetPtEtaPhiE(photons.at(0).pT, photons.at(0).eta, photons.at(0).phi, photons.at(0).energy);
+       for(unsigned int k=0; k<jets.size(); ++k)
+       {
+         TLorentzVector Jet;
+         if(fabs(jets.at(k).eta)<2.4 and jets.at(k).pT>25.0 and jets.at(k).PU_mva_loose==1)
+         {
+           Jet.SetPtEtaPhiE(jets.at(k).pT, jets.at(k).eta, jets.at(k).phi, jets.at(k).energy);
+           double dRjet_ph=Jet.DeltaR(Photon);
+           if (dRjet_ph<minDR_PhJ) minDR_PhJ=dRjet_ph;
+         }
+       }
+       if (minDR_PhJ<0.5) foundJetNearPhoton=1;
+     }
+   }  
+    
    //To understand this statement better: fired_HLTPho corresponds to HLT_Photon30_v* (Prescaled by 500)
    //fired_HLTPhoId correspond to  HLT_Photon30_R9Id90_CaloId_HE10_Iso40_EBOnly_v* (Prescaled by 20)
    //fired_HLTPhoIdMet corresponds to HLT_Photon30_R9Id90_CaloId_HE10_Iso40_EBOnly_Met25_HBHENoiseCleaned_v*
