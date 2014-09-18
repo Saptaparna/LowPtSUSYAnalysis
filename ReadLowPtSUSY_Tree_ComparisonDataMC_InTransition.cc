@@ -572,7 +572,16 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_InTransition(std::string infile, std::st
   el1_transverse.SetMagPhi(el1_p4.Pt(), el1_p4.Phi());
   el2_transverse.SetMagPhi(el2_p4.Pt(), el2_p4.Phi());
 
-  if(muons.size()==2){  
+  int nMuons = 0;
+  for(unsigned int j=0; j<muons.size(); ++j)
+    {
+    if(muons.at(j).pT and muons.at(j).isTight==1 and muons.at(j).isolation < 0.12){
+       nMuons++;
+      } 
+    }
+
+
+  if(nMuons==2){  
     if(mu1_p4.Pt()>5.0 and muons.at(0).isTight==1 and muons.at(0).isolation < 0.12 and leadingDeltaR_mu > 0.4 and mu2_p4.Pt()>5.0 and muons.at(1).isTight==1 and muons.at(1).isolation < 0.12 and trailingDeltaR_mu > 0.4 and eventWeight > 0.0) {
       if(type=="MC") eventWeight *= muonSF(mu1_p4.Pt(), mu1_p4.Eta())*muonSF(mu2_p4.Pt(), mu2_p4.Eta())*photonSF(ph1_p4.Pt(), ph1_p4.Eta());  
     mumu_event = 1;
