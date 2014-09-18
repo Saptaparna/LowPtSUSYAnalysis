@@ -588,10 +588,10 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_InTransition(std::string infile, std::st
       }
     }
 
-  if(nmuons==2){  
-    if(mu1_p4.Pt()>5.0 and muons.at(0).isTight==1 and muons.at(0).isolation < 0.12 and leadingDeltaR_mu > 0.4 and mu2_p4.Pt()>5.0 and muons.at(1).isTight==1 and muons.at(1).isolation < 0.12 and trailingDeltaR_mu > 0.4 and eventWeight > 0.0) {
+  if(mu1_p4.Pt()>5.0 and muons.at(0).isTight==1 and muons.at(0).isolation < 0.12 and leadingDeltaR_mu > 0.4 and mu2_p4.Pt()>5.0 and muons.at(1).isTight==1 and muons.at(1).isolation < 0.12 and trailingDeltaR_mu > 0.4 and eventWeight > 0.0) {
       if(type=="MC") eventWeight *= muonSF(mu1_p4.Pt(), mu1_p4.Eta())*muonSF(mu2_p4.Pt(), mu2_p4.Eta())*photonSF(ph1_p4.Pt(), ph1_p4.Eta());  
     mumu_event = 1;
+      if(nmuons!=2) continue;
       if(signSelection=="OS" and (muons.at(0).charge*muons.at(1).charge)==-1){
         mumu_OS+=eventWeight;
         h_Mmumu_MmumuGamma->Fill((mu1_p4+mu2_p4).M(), (mu1_p4+mu2_p4+ph1_p4).M(), eventWeight);
@@ -856,13 +856,12 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_InTransition(std::string infile, std::st
        mumuHistNT00.h_photon_energy->Fill(ph1_p4.E(), eventWeight);
      }//SS mode
    }//one loose-not-tight muon and loose-not-tight muon
- }//number of muons set to exactly 2
 
    //ElMu channel
- if(nmuons==1 and nelectrons==1){
    if((mu1_p4.Pt()>5.0 and muons.at(0).isTight==1 and muons.at(0).isolation < 0.12 and leadingDeltaR_mu > 0.4) and (el1_p4.Pt()>10.0 and electrons.at(0).isTight==1 and electrons.at(0).isolation < 0.10 and leadingDeltaR_el > 0.4 and deltaR_el1 > 0.4) and eventWeight > 0.0 and mumu_event == 0 ) {
      if(type=="MC") eventWeight *= electronSF(el1_p4.Pt(), el1_p4.Eta())*muonSF(mu1_p4.Pt(), mu1_p4.Eta())*photonSF(ph1_p4.Pt(), ph1_p4.Eta());
      elmu_event = 1;
+     if (not(nmuons==1 and nelectrons==1)) continue;
      if(signSelection=="OS" and ((muons.at(0).charge)*(electrons.at(0).charge)==-1)){
        if(type=="Data") cout << "Event = " << event << " Run = "<< run << " Lumi = " << lumi << endl;  
        emu_OS+=eventWeight;
@@ -1125,12 +1124,11 @@ else if((mu1_p4.Pt()>5.0 and muons.at(0).isLoose==1 and muons.at(0).isolation < 
        emuHistNT00.h_photon_energy->Fill(ph1_p4.E(), eventWeight);       
      }//SS mode
    }//construction of loose muon, loose electron
- }//numver of electron+muon==2
 
-if(nelectrons==2){
   if(el1_p4.Pt()>10.0 and electrons.at(0).isTight==1 and electrons.at(0).isolation < 0.10 and leadingDeltaR_el > 0.4 and deltaR_el1 > 0.4 and el2_p4.Pt()>10.0 and electrons.at(1).isTight==1 and electrons.at(1).isolation < 0.10 and trailingDeltaR_el > 0.4 and deltaR_el2 > 0.4 and eventWeight > 0.0 and mumu_event==0 and elmu_event==0){
     if(type=="MC") eventWeight *= electronSF(el1_p4.Pt(), el1_p4.Eta())*electronSF(el2_p4.Pt(), el2_p4.Eta())*photonSF(ph1_p4.Pt(), ph1_p4.Eta());
     elel_event = 1;
+    if (nelectrons!=2) continue; 
     if(signSelection=="OS" and (electrons.at(0).charge*electrons.at(1).charge)==-1) {
       eeHist.h_el_pt_leading->Fill(el1_p4.Pt(), eventWeight);
       eeHist.h_el_phi_leading->Fill(el1_p4.Phi(), eventWeight);
@@ -1386,7 +1384,6 @@ else if((el1_p4.Pt()>10.0 and electrons.at(0).isLoose==1 and electrons.at(0).iso
     eeHistNT00.h_photon_energy->Fill(ph1_p4.E(), eventWeight);
     }//SS mode
   }//loose not tight+loose not tight electron
-}//number of electrons set to exactly 2
 
 }//event loop closed
 
