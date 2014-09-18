@@ -572,16 +572,23 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_InTransition(std::string infile, std::st
   el1_transverse.SetMagPhi(el1_p4.Pt(), el1_p4.Phi());
   el2_transverse.SetMagPhi(el2_p4.Pt(), el2_p4.Phi());
 
-  int nMuons = 0;
+  int nmuons = 0;
   for(unsigned int j=0; j<muons.size(); ++j)
     {
     if(muons.at(j).pT > 5.0 and muons.at(j).isTight==1 and muons.at(j).isolation < 0.12){
-       nMuons++;
+       nmuons++;
       } 
     }
 
+  int nelectrons = 0;
+  for(unsigned int j=0; j<electrons.size(); ++j)
+    {
+    if(electrons.at(j).pT > 10.0 and electrons.at(j).isTight==1 and electrons.at(j).isolation < 0.10){
+       nelectrons++;
+      }
+    }
 
-  if(nMuons==2){  
+  if(nmuons==2){  
     if(mu1_p4.Pt()>5.0 and muons.at(0).isTight==1 and muons.at(0).isolation < 0.12 and leadingDeltaR_mu > 0.4 and mu2_p4.Pt()>5.0 and muons.at(1).isTight==1 and muons.at(1).isolation < 0.12 and trailingDeltaR_mu > 0.4 and eventWeight > 0.0) {
       if(type=="MC") eventWeight *= muonSF(mu1_p4.Pt(), mu1_p4.Eta())*muonSF(mu2_p4.Pt(), mu2_p4.Eta())*photonSF(ph1_p4.Pt(), ph1_p4.Eta());  
     mumu_event = 1;
@@ -692,110 +699,110 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_InTransition(std::string infile, std::st
        }//SS mode
    }//first+second tight muon
    else if((mu1_p4.Pt()>5.0 and muons.at(0).isTight==1 and muons.at(0).isolation < 0.12 and leadingDeltaR_mu > 0.4) and (mu2_p4.Pt()>5.0 and muons.at(1).isLoose==1 and muons.at(1).isolation < 0.40 and trailingDeltaR_mu > 0.4 and not (muons.at(1).isTight==1 and muons.at(1).isolation < 0.12)) and eventWeight > 0.0 ) {
-     if(type=="Data" and signSelection=="SS" and (muons.at(0).charge)*(muons.at(1).charge)==1){
-       n_SS_NT01+=eventWeight;
-       mumuHistNT01.h_mu_pt_leading->Fill(mu1_p4.Pt(), eventWeight);
-       mumuHistNT01.h_mu_phi_leading->Fill(mu1_p4.Phi(), eventWeight);
-       mumuHistNT01.h_mu_eta_leading->Fill(mu1_p4.Eta(), eventWeight);
-       mumuHistNT01.h_mu_energy_leading->Fill(mu1_p4.E(), eventWeight);
-       mumuHistNT01.h_mu_pt_trailing->Fill(mu2_p4.Pt(), eventWeight);
-       mumuHistNT01.h_mu_phi_trailing->Fill(mu2_p4.Phi(), eventWeight);
-       mumuHistNT01.h_mu_eta_trailing->Fill(mu2_p4.Eta(), eventWeight);
-       mumuHistNT01.h_mu_energy_trailing->Fill(mu2_p4.E(), eventWeight);
-       mumuHistNT01.h_InvariantMass->Fill((mu1_p4+mu2_p4).M(), eventWeight);
-       mumuHistNT01.h_InvariantMass_Ph->Fill((mu1_p4+mu2_p4+ph1_p4).M(), eventWeight);
-       mumuHistNT01.h_DeltaPhi_met_mu1->Fill(met_transverse.DeltaPhi(mu1_transverse), eventWeight);
-       mumuHistNT01.h_DeltaPhi_met_mu2->Fill(met_transverse.DeltaPhi(mu2_transverse), eventWeight);
-       mumuHistNT01.h_DeltaPhi_ph_mu1->Fill(ph_transverse.DeltaPhi(mu1_transverse), eventWeight);
-       mumuHistNT01.h_DeltaPhi_ph_mu2->Fill(ph_transverse.DeltaPhi(mu2_transverse), eventWeight);
-       mumuHistNT01.h_nVertices->Fill(nVertices, eventWeight);
-       mumuHistNT01.h_MET->Fill(MET, eventWeight);
-       mumuHistNT01.h_caloMET->Fill(caloMET, eventWeight);
-       mumuHistNT01.h_nJets->Fill(Jet_vector.size(), eventWeight);
-       mumuHistNT01.h_HT->Fill(HT, eventWeight); 
-       if(Jet_vector.size()>0) mumuHistNT01.h_jet_pt_leading->Fill(Jet_vector.at(0).Pt(), eventWeight);
-       if(Jet_vector.size()>1) mumuHistNT01.h_jet_pt_trailing->Fill(Jet_vector.at(1).Pt(), eventWeight);
-       if(Jet_vector.size()>2) mumuHistNT01.h_jet_pt_3rd->Fill(Jet_vector.at(2).Pt(), eventWeight);
-       if(Jet_vector.size()>3) mumuHistNT01.h_jet_pt_4th->Fill(Jet_vector.at(3).Pt(), eventWeight);
-       if(Jet_vector.size()>4) mumuHistNT01.h_jet_pt_5th->Fill(Jet_vector.at(4).Pt(), eventWeight);
-       if(Jet_vector.size()>5) mumuHistNT01.h_jet_pt_6th->Fill(Jet_vector.at(5).Pt(), eventWeight);
-       if(Jet_vector.size()>0) mumuHistNT01.h_jet_eta_leading->Fill(Jet_vector.at(0).Eta(), eventWeight);
-       if(Jet_vector.size()>1) mumuHistNT01.h_jet_eta_trailing->Fill(Jet_vector.at(1).Eta(), eventWeight);
-       if(Jet_vector.size()>2) mumuHistNT01.h_jet_eta_3rd->Fill(Jet_vector.at(2).Eta(), eventWeight);
-       if(Jet_vector.size()>3) mumuHistNT01.h_jet_eta_4th->Fill(Jet_vector.at(3).Eta(), eventWeight);
-       if(Jet_vector.size()>4) mumuHistNT01.h_jet_eta_5th->Fill(Jet_vector.at(4).Eta(), eventWeight);
-       if(Jet_vector.size()>5) mumuHistNT01.h_jet_eta_6th->Fill(Jet_vector.at(5).Eta(), eventWeight);
-       if(Jet_vector.size()>0) mumuHistNT01.h_jet_phi_leading->Fill(Jet_vector.at(0).Phi(), eventWeight);
-       if(Jet_vector.size()>1) mumuHistNT01.h_jet_phi_trailing->Fill(Jet_vector.at(1).Phi(), eventWeight);
-       if(Jet_vector.size()>2) mumuHistNT01.h_jet_phi_3rd->Fill(Jet_vector.at(2).Phi(), eventWeight);
-       if(Jet_vector.size()>3) mumuHistNT01.h_jet_phi_4th->Fill(Jet_vector.at(3).Phi(), eventWeight);
-       if(Jet_vector.size()>4) mumuHistNT01.h_jet_phi_5th->Fill(Jet_vector.at(4).Phi(), eventWeight);
-       if(Jet_vector.size()>5) mumuHistNT01.h_jet_phi_6th->Fill(Jet_vector.at(5).Phi(), eventWeight);
-       if(Jet_vector.size()>0) mumuHistNT01.h_jet_energy_leading->Fill(Jet_vector.at(0).E(), eventWeight);
-       if(Jet_vector.size()>1) mumuHistNT01.h_jet_energy_trailing->Fill(Jet_vector.at(1).E(), eventWeight);
-       if(Jet_vector.size()>2) mumuHistNT01.h_jet_energy_3rd->Fill(Jet_vector.at(2).E(), eventWeight);
-       if(Jet_vector.size()>3) mumuHistNT01.h_jet_energy_4th->Fill(Jet_vector.at(3).E(), eventWeight);
-       if(Jet_vector.size()>4) mumuHistNT01.h_jet_energy_5th->Fill(Jet_vector.at(4).E(), eventWeight);
-       if(Jet_vector.size()>5) mumuHistNT01.h_jet_energy_6th->Fill(Jet_vector.at(5).E(), eventWeight);
-       mumuHistNT01.h_photon_pt->Fill(ph1_p4.Pt(), eventWeight);
-       mumuHistNT01.h_photon_eta->Fill(ph1_p4.Eta(), eventWeight);
-       mumuHistNT01.h_photon_phi->Fill(ph1_p4.Phi(), eventWeight);
-       mumuHistNT01.h_photon_energy->Fill(ph1_p4.E(), eventWeight);
-     }//SS mode
-   }//one tight muon and loose-not-tight muon
+      if(type=="Data" and signSelection=="SS" and (muons.at(0).charge)*(muons.at(1).charge)==1){
+        n_SS_NT01+=eventWeight;
+        mumuHistNT01.h_mu_pt_leading->Fill(mu1_p4.Pt(), eventWeight);
+        mumuHistNT01.h_mu_phi_leading->Fill(mu1_p4.Phi(), eventWeight);
+        mumuHistNT01.h_mu_eta_leading->Fill(mu1_p4.Eta(), eventWeight);
+        mumuHistNT01.h_mu_energy_leading->Fill(mu1_p4.E(), eventWeight);
+        mumuHistNT01.h_mu_pt_trailing->Fill(mu2_p4.Pt(), eventWeight);
+        mumuHistNT01.h_mu_phi_trailing->Fill(mu2_p4.Phi(), eventWeight);
+        mumuHistNT01.h_mu_eta_trailing->Fill(mu2_p4.Eta(), eventWeight);
+        mumuHistNT01.h_mu_energy_trailing->Fill(mu2_p4.E(), eventWeight);
+        mumuHistNT01.h_InvariantMass->Fill((mu1_p4+mu2_p4).M(), eventWeight);
+        mumuHistNT01.h_InvariantMass_Ph->Fill((mu1_p4+mu2_p4+ph1_p4).M(), eventWeight);
+        mumuHistNT01.h_DeltaPhi_met_mu1->Fill(met_transverse.DeltaPhi(mu1_transverse), eventWeight);
+        mumuHistNT01.h_DeltaPhi_met_mu2->Fill(met_transverse.DeltaPhi(mu2_transverse), eventWeight);
+        mumuHistNT01.h_DeltaPhi_ph_mu1->Fill(ph_transverse.DeltaPhi(mu1_transverse), eventWeight);
+        mumuHistNT01.h_DeltaPhi_ph_mu2->Fill(ph_transverse.DeltaPhi(mu2_transverse), eventWeight);
+        mumuHistNT01.h_nVertices->Fill(nVertices, eventWeight);
+        mumuHistNT01.h_MET->Fill(MET, eventWeight);
+        mumuHistNT01.h_caloMET->Fill(caloMET, eventWeight);
+        mumuHistNT01.h_nJets->Fill(Jet_vector.size(), eventWeight);
+        mumuHistNT01.h_HT->Fill(HT, eventWeight); 
+        if(Jet_vector.size()>0) mumuHistNT01.h_jet_pt_leading->Fill(Jet_vector.at(0).Pt(), eventWeight);
+        if(Jet_vector.size()>1) mumuHistNT01.h_jet_pt_trailing->Fill(Jet_vector.at(1).Pt(), eventWeight);
+        if(Jet_vector.size()>2) mumuHistNT01.h_jet_pt_3rd->Fill(Jet_vector.at(2).Pt(), eventWeight);
+        if(Jet_vector.size()>3) mumuHistNT01.h_jet_pt_4th->Fill(Jet_vector.at(3).Pt(), eventWeight);
+        if(Jet_vector.size()>4) mumuHistNT01.h_jet_pt_5th->Fill(Jet_vector.at(4).Pt(), eventWeight);
+        if(Jet_vector.size()>5) mumuHistNT01.h_jet_pt_6th->Fill(Jet_vector.at(5).Pt(), eventWeight);
+        if(Jet_vector.size()>0) mumuHistNT01.h_jet_eta_leading->Fill(Jet_vector.at(0).Eta(), eventWeight);
+        if(Jet_vector.size()>1) mumuHistNT01.h_jet_eta_trailing->Fill(Jet_vector.at(1).Eta(), eventWeight);
+        if(Jet_vector.size()>2) mumuHistNT01.h_jet_eta_3rd->Fill(Jet_vector.at(2).Eta(), eventWeight);
+        if(Jet_vector.size()>3) mumuHistNT01.h_jet_eta_4th->Fill(Jet_vector.at(3).Eta(), eventWeight);
+        if(Jet_vector.size()>4) mumuHistNT01.h_jet_eta_5th->Fill(Jet_vector.at(4).Eta(), eventWeight);
+        if(Jet_vector.size()>5) mumuHistNT01.h_jet_eta_6th->Fill(Jet_vector.at(5).Eta(), eventWeight);
+        if(Jet_vector.size()>0) mumuHistNT01.h_jet_phi_leading->Fill(Jet_vector.at(0).Phi(), eventWeight);
+        if(Jet_vector.size()>1) mumuHistNT01.h_jet_phi_trailing->Fill(Jet_vector.at(1).Phi(), eventWeight);
+        if(Jet_vector.size()>2) mumuHistNT01.h_jet_phi_3rd->Fill(Jet_vector.at(2).Phi(), eventWeight);
+        if(Jet_vector.size()>3) mumuHistNT01.h_jet_phi_4th->Fill(Jet_vector.at(3).Phi(), eventWeight);
+        if(Jet_vector.size()>4) mumuHistNT01.h_jet_phi_5th->Fill(Jet_vector.at(4).Phi(), eventWeight);
+        if(Jet_vector.size()>5) mumuHistNT01.h_jet_phi_6th->Fill(Jet_vector.at(5).Phi(), eventWeight);
+        if(Jet_vector.size()>0) mumuHistNT01.h_jet_energy_leading->Fill(Jet_vector.at(0).E(), eventWeight);
+        if(Jet_vector.size()>1) mumuHistNT01.h_jet_energy_trailing->Fill(Jet_vector.at(1).E(), eventWeight);
+        if(Jet_vector.size()>2) mumuHistNT01.h_jet_energy_3rd->Fill(Jet_vector.at(2).E(), eventWeight);
+        if(Jet_vector.size()>3) mumuHistNT01.h_jet_energy_4th->Fill(Jet_vector.at(3).E(), eventWeight);
+        if(Jet_vector.size()>4) mumuHistNT01.h_jet_energy_5th->Fill(Jet_vector.at(4).E(), eventWeight);
+        if(Jet_vector.size()>5) mumuHistNT01.h_jet_energy_6th->Fill(Jet_vector.at(5).E(), eventWeight);
+        mumuHistNT01.h_photon_pt->Fill(ph1_p4.Pt(), eventWeight);
+        mumuHistNT01.h_photon_eta->Fill(ph1_p4.Eta(), eventWeight);
+        mumuHistNT01.h_photon_phi->Fill(ph1_p4.Phi(), eventWeight);
+        mumuHistNT01.h_photon_energy->Fill(ph1_p4.E(), eventWeight);
+      }//SS mode
+    }//one tight muon and loose-not-tight muon
    
   else if((mu1_p4.Pt()>5.0 and muons.at(0).isLoose==1 and muons.at(0).isolation < 0.40 and leadingDeltaR_mu > 0.4) and not (muons.at(0).isTight==1 and muons.at(0).isolation < 0.12) and (mu2_p4.Pt()>5.0 and muons.at(1).isTight==1 and muons.at(1).isolation < 0.12 and trailingDeltaR_mu > 0.4) and eventWeight > 0.0) {
      if(type=="Data" and signSelection=="SS" and ((muons.at(0).charge)*(muons.at(1).charge)==1)){   
-       n_SS_NT10+=eventWeight;
-       mumuHistNT10.h_mu_pt_leading->Fill(mu1_p4.Pt(), eventWeight);
-       mumuHistNT10.h_mu_phi_leading->Fill(mu1_p4.Phi(), eventWeight);
-       mumuHistNT10.h_mu_eta_leading->Fill(mu1_p4.Eta(), eventWeight);
-       mumuHistNT10.h_mu_energy_leading->Fill(mu1_p4.E(), eventWeight);
-       mumuHistNT10.h_mu_pt_trailing->Fill(mu2_p4.Pt(), eventWeight);
-       mumuHistNT10.h_mu_phi_trailing->Fill(mu2_p4.Phi(), eventWeight);
-       mumuHistNT10.h_mu_eta_trailing->Fill(mu2_p4.Eta(), eventWeight);
-       mumuHistNT10.h_mu_energy_trailing->Fill(mu2_p4.E(), eventWeight);
-       mumuHistNT10.h_InvariantMass->Fill((mu1_p4+mu2_p4).M(), eventWeight);
-       mumuHistNT10.h_InvariantMass_Ph->Fill((mu1_p4+mu2_p4+ph1_p4).M(), eventWeight);
-       mumuHistNT10.h_DeltaPhi_met_mu1->Fill(met_transverse.DeltaPhi(mu1_transverse), eventWeight);
-       mumuHistNT10.h_DeltaPhi_met_mu2->Fill(met_transverse.DeltaPhi(mu2_transverse), eventWeight);
-       mumuHistNT10.h_DeltaPhi_ph_mu1->Fill(ph_transverse.DeltaPhi(mu1_transverse), eventWeight);
-       mumuHistNT10.h_DeltaPhi_ph_mu2->Fill(ph_transverse.DeltaPhi(mu2_transverse), eventWeight);
-       mumuHistNT10.h_nVertices->Fill(nVertices, eventWeight);
-       mumuHistNT10.h_MET->Fill(MET, eventWeight);
-       mumuHistNT10.h_caloMET->Fill(caloMET, eventWeight);
-       mumuHistNT10.h_nJets->Fill(Jet_vector.size(), eventWeight);
-       mumuHistNT10.h_HT->Fill(HT, eventWeight);
-       if(Jet_vector.size()>0) mumuHistNT10.h_jet_pt_leading->Fill(Jet_vector.at(0).Pt(), eventWeight);
-       if(Jet_vector.size()>1) mumuHistNT10.h_jet_pt_trailing->Fill(Jet_vector.at(1).Pt(), eventWeight);
-       if(Jet_vector.size()>2) mumuHistNT10.h_jet_pt_3rd->Fill(Jet_vector.at(2).Pt(), eventWeight);
-       if(Jet_vector.size()>3) mumuHistNT10.h_jet_pt_4th->Fill(Jet_vector.at(3).Pt(), eventWeight);
-       if(Jet_vector.size()>4) mumuHistNT10.h_jet_pt_5th->Fill(Jet_vector.at(4).Pt(), eventWeight);
-       if(Jet_vector.size()>5) mumuHistNT10.h_jet_pt_6th->Fill(Jet_vector.at(5).Pt(), eventWeight);
-       if(Jet_vector.size()>0) mumuHistNT10.h_jet_eta_leading->Fill(Jet_vector.at(0).Eta(), eventWeight);
-       if(Jet_vector.size()>1) mumuHistNT10.h_jet_eta_trailing->Fill(Jet_vector.at(1).Eta(), eventWeight);
-       if(Jet_vector.size()>2) mumuHistNT10.h_jet_eta_3rd->Fill(Jet_vector.at(2).Eta(), eventWeight);
-       if(Jet_vector.size()>3) mumuHistNT10.h_jet_eta_4th->Fill(Jet_vector.at(3).Eta(), eventWeight);
-       if(Jet_vector.size()>4) mumuHistNT10.h_jet_eta_5th->Fill(Jet_vector.at(4).Eta(), eventWeight);
-       if(Jet_vector.size()>5) mumuHistNT10.h_jet_eta_6th->Fill(Jet_vector.at(5).Eta(), eventWeight);
-       if(Jet_vector.size()>0) mumuHistNT10.h_jet_phi_leading->Fill(Jet_vector.at(0).Phi(), eventWeight);
-       if(Jet_vector.size()>1) mumuHistNT10.h_jet_phi_trailing->Fill(Jet_vector.at(1).Phi(), eventWeight);
-       if(Jet_vector.size()>2) mumuHistNT10.h_jet_phi_3rd->Fill(Jet_vector.at(2).Phi(), eventWeight);
-       if(Jet_vector.size()>3) mumuHistNT10.h_jet_phi_4th->Fill(Jet_vector.at(3).Phi(), eventWeight);
-       if(Jet_vector.size()>4) mumuHistNT10.h_jet_phi_5th->Fill(Jet_vector.at(4).Phi(), eventWeight);
-       if(Jet_vector.size()>5) mumuHistNT10.h_jet_phi_6th->Fill(Jet_vector.at(5).Phi(), eventWeight);
-       if(Jet_vector.size()>0) mumuHistNT10.h_jet_energy_leading->Fill(Jet_vector.at(0).E(), eventWeight);
-       if(Jet_vector.size()>1) mumuHistNT10.h_jet_energy_trailing->Fill(Jet_vector.at(1).E(), eventWeight);
-       if(Jet_vector.size()>2) mumuHistNT10.h_jet_energy_3rd->Fill(Jet_vector.at(2).E(), eventWeight);
-       if(Jet_vector.size()>3) mumuHistNT10.h_jet_energy_4th->Fill(Jet_vector.at(3).E(), eventWeight);
-       if(Jet_vector.size()>4) mumuHistNT10.h_jet_energy_5th->Fill(Jet_vector.at(4).E(), eventWeight);
-       if(Jet_vector.size()>5) mumuHistNT10.h_jet_energy_6th->Fill(Jet_vector.at(5).E(), eventWeight);
-       mumuHistNT10.h_photon_pt->Fill(ph1_p4.Pt(), eventWeight);
-       mumuHistNT10.h_photon_eta->Fill(ph1_p4.Eta(), eventWeight);
-       mumuHistNT10.h_photon_phi->Fill(ph1_p4.Phi(), eventWeight);
-       mumuHistNT10.h_photon_energy->Fill(ph1_p4.E(), eventWeight);
-     }//SS mode
-   }//one tight muon and loose-not-tight muon
+        n_SS_NT10+=eventWeight;
+        mumuHistNT10.h_mu_pt_leading->Fill(mu1_p4.Pt(), eventWeight);
+        mumuHistNT10.h_mu_phi_leading->Fill(mu1_p4.Phi(), eventWeight);
+        mumuHistNT10.h_mu_eta_leading->Fill(mu1_p4.Eta(), eventWeight);
+        mumuHistNT10.h_mu_energy_leading->Fill(mu1_p4.E(), eventWeight);
+        mumuHistNT10.h_mu_pt_trailing->Fill(mu2_p4.Pt(), eventWeight);
+        mumuHistNT10.h_mu_phi_trailing->Fill(mu2_p4.Phi(), eventWeight);
+        mumuHistNT10.h_mu_eta_trailing->Fill(mu2_p4.Eta(), eventWeight);
+        mumuHistNT10.h_mu_energy_trailing->Fill(mu2_p4.E(), eventWeight);
+        mumuHistNT10.h_InvariantMass->Fill((mu1_p4+mu2_p4).M(), eventWeight);
+        mumuHistNT10.h_InvariantMass_Ph->Fill((mu1_p4+mu2_p4+ph1_p4).M(), eventWeight);
+        mumuHistNT10.h_DeltaPhi_met_mu1->Fill(met_transverse.DeltaPhi(mu1_transverse), eventWeight);
+        mumuHistNT10.h_DeltaPhi_met_mu2->Fill(met_transverse.DeltaPhi(mu2_transverse), eventWeight);
+        mumuHistNT10.h_DeltaPhi_ph_mu1->Fill(ph_transverse.DeltaPhi(mu1_transverse), eventWeight);
+        mumuHistNT10.h_DeltaPhi_ph_mu2->Fill(ph_transverse.DeltaPhi(mu2_transverse), eventWeight);
+        mumuHistNT10.h_nVertices->Fill(nVertices, eventWeight);
+        mumuHistNT10.h_MET->Fill(MET, eventWeight);
+        mumuHistNT10.h_caloMET->Fill(caloMET, eventWeight);
+        mumuHistNT10.h_nJets->Fill(Jet_vector.size(), eventWeight);
+        mumuHistNT10.h_HT->Fill(HT, eventWeight);
+        if(Jet_vector.size()>0) mumuHistNT10.h_jet_pt_leading->Fill(Jet_vector.at(0).Pt(), eventWeight);
+        if(Jet_vector.size()>1) mumuHistNT10.h_jet_pt_trailing->Fill(Jet_vector.at(1).Pt(), eventWeight);
+        if(Jet_vector.size()>2) mumuHistNT10.h_jet_pt_3rd->Fill(Jet_vector.at(2).Pt(), eventWeight);
+        if(Jet_vector.size()>3) mumuHistNT10.h_jet_pt_4th->Fill(Jet_vector.at(3).Pt(), eventWeight);
+        if(Jet_vector.size()>4) mumuHistNT10.h_jet_pt_5th->Fill(Jet_vector.at(4).Pt(), eventWeight);
+        if(Jet_vector.size()>5) mumuHistNT10.h_jet_pt_6th->Fill(Jet_vector.at(5).Pt(), eventWeight);
+        if(Jet_vector.size()>0) mumuHistNT10.h_jet_eta_leading->Fill(Jet_vector.at(0).Eta(), eventWeight);
+        if(Jet_vector.size()>1) mumuHistNT10.h_jet_eta_trailing->Fill(Jet_vector.at(1).Eta(), eventWeight);
+        if(Jet_vector.size()>2) mumuHistNT10.h_jet_eta_3rd->Fill(Jet_vector.at(2).Eta(), eventWeight);
+        if(Jet_vector.size()>3) mumuHistNT10.h_jet_eta_4th->Fill(Jet_vector.at(3).Eta(), eventWeight);
+        if(Jet_vector.size()>4) mumuHistNT10.h_jet_eta_5th->Fill(Jet_vector.at(4).Eta(), eventWeight);
+        if(Jet_vector.size()>5) mumuHistNT10.h_jet_eta_6th->Fill(Jet_vector.at(5).Eta(), eventWeight);
+        if(Jet_vector.size()>0) mumuHistNT10.h_jet_phi_leading->Fill(Jet_vector.at(0).Phi(), eventWeight);
+        if(Jet_vector.size()>1) mumuHistNT10.h_jet_phi_trailing->Fill(Jet_vector.at(1).Phi(), eventWeight);
+        if(Jet_vector.size()>2) mumuHistNT10.h_jet_phi_3rd->Fill(Jet_vector.at(2).Phi(), eventWeight);
+        if(Jet_vector.size()>3) mumuHistNT10.h_jet_phi_4th->Fill(Jet_vector.at(3).Phi(), eventWeight);
+        if(Jet_vector.size()>4) mumuHistNT10.h_jet_phi_5th->Fill(Jet_vector.at(4).Phi(), eventWeight);
+        if(Jet_vector.size()>5) mumuHistNT10.h_jet_phi_6th->Fill(Jet_vector.at(5).Phi(), eventWeight);
+        if(Jet_vector.size()>0) mumuHistNT10.h_jet_energy_leading->Fill(Jet_vector.at(0).E(), eventWeight);
+        if(Jet_vector.size()>1) mumuHistNT10.h_jet_energy_trailing->Fill(Jet_vector.at(1).E(), eventWeight);
+        if(Jet_vector.size()>2) mumuHistNT10.h_jet_energy_3rd->Fill(Jet_vector.at(2).E(), eventWeight);
+        if(Jet_vector.size()>3) mumuHistNT10.h_jet_energy_4th->Fill(Jet_vector.at(3).E(), eventWeight);
+        if(Jet_vector.size()>4) mumuHistNT10.h_jet_energy_5th->Fill(Jet_vector.at(4).E(), eventWeight);
+        if(Jet_vector.size()>5) mumuHistNT10.h_jet_energy_6th->Fill(Jet_vector.at(5).E(), eventWeight);
+        mumuHistNT10.h_photon_pt->Fill(ph1_p4.Pt(), eventWeight);
+        mumuHistNT10.h_photon_eta->Fill(ph1_p4.Eta(), eventWeight);
+        mumuHistNT10.h_photon_phi->Fill(ph1_p4.Phi(), eventWeight);
+        mumuHistNT10.h_photon_energy->Fill(ph1_p4.E(), eventWeight);
+      }//SS mode
+    }//one tight muon and loose-not-tight muon
 
   else if((mu1_p4.Pt()>5.0 and muons.at(0).isLoose==1 and muons.at(0).isolation < 0.40 and leadingDeltaR_mu > 0.4) and not (muons.at(0).isTight==1 and muons.at(0).isolation < 0.12) and (mu2_p4.Pt()>5.0 and muons.at(1).isLoose==1 and muons.at(1).isolation < 0.12 and trailingDeltaR_mu > 0.4) and not (muons.at(1).isTight==1 and muons.at(1).isolation < 0.12) and eventWeight > 0.0) {
      if(type=="Data" and signSelection=="SS" and ((muons.at(0).charge)*(muons.at(1).charge)==1)){
@@ -852,7 +859,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_InTransition(std::string infile, std::st
  }//number of muons set to exactly 2
 
    //ElMu channel
- if(muons.size()==1 and electrons.size()==1){
+ if(nmuons==1 and nelectrons==1){
    if((mu1_p4.Pt()>5.0 and muons.at(0).isTight==1 and muons.at(0).isolation < 0.12 and leadingDeltaR_mu > 0.4) and (el1_p4.Pt()>10.0 and electrons.at(0).isTight==1 and electrons.at(0).isolation < 0.10 and leadingDeltaR_el > 0.4 and deltaR_el1 > 0.4) and eventWeight > 0.0 and mumu_event == 0 ) {
      if(type=="MC") eventWeight *= electronSF(el1_p4.Pt(), el1_p4.Eta())*muonSF(mu1_p4.Pt(), mu1_p4.Eta())*photonSF(ph1_p4.Pt(), ph1_p4.Eta());
      elmu_event = 1;
@@ -1015,7 +1022,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_InTransition(std::string infile, std::st
        emuHistNT01.h_photon_energy->Fill(ph1_p4.E(), eventWeight);
      }//SS mode
    }//construction of tight muon, loose electron
-else if((mu1_p4.Pt()>5.0 and muons.at(0).isLoose==1 and muons.at(0).isolation < 0.40 and leadingDeltaR_mu > 0.4 and not (muons.at(0).isTight==1 and muons.at(0).isolation < 0.12)) and (el1_p4.Pt()>10.0 and electrons.at(0).isTight==1 and electrons.at(0).isolation < 0.10 and leadingDeltaR_el > 0.4 and deltaR_el1 > 0.4) and eventWeight > 0.0) {
+  else if((mu1_p4.Pt()>5.0 and muons.at(0).isLoose==1 and muons.at(0).isolation < 0.40 and leadingDeltaR_mu > 0.4 and not (muons.at(0).isTight==1 and muons.at(0).isolation < 0.12)) and (el1_p4.Pt()>10.0 and electrons.at(0).isTight==1 and electrons.at(0).isolation < 0.10 and leadingDeltaR_el > 0.4 and deltaR_el1 > 0.4) and eventWeight > 0.0) {
      if(type=="Data" and signSelection=="SS" and ((muons.at(0).charge)*(electrons.at(0).charge)==1)){
        emuHistNT10.h_mu_pt_leading->Fill(mu1_p4.Pt(), eventWeight);
        emuHistNT10.h_mu_phi_leading->Fill(mu1_p4.Phi(), eventWeight);
@@ -1120,7 +1127,7 @@ else if((mu1_p4.Pt()>5.0 and muons.at(0).isLoose==1 and muons.at(0).isolation < 
    }//construction of loose muon, loose electron
  }//numver of electron+muon==2
 
-if(electrons.size()==2){
+if(nelectrons==2){
   if(el1_p4.Pt()>10.0 and electrons.at(0).isTight==1 and electrons.at(0).isolation < 0.10 and leadingDeltaR_el > 0.4 and deltaR_el1 > 0.4 and el2_p4.Pt()>10.0 and electrons.at(1).isTight==1 and electrons.at(1).isolation < 0.10 and trailingDeltaR_el > 0.4 and deltaR_el2 > 0.4 and eventWeight > 0.0 and mumu_event==0 and elmu_event==0){
     if(type=="MC") eventWeight *= electronSF(el1_p4.Pt(), el1_p4.Eta())*electronSF(el2_p4.Pt(), el2_p4.Eta())*photonSF(ph1_p4.Pt(), ph1_p4.Eta());
     elel_event = 1;
