@@ -575,7 +575,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_InTransition(std::string infile, std::st
   int nMuons = 0;
   for(unsigned int j=0; j<muons.size(); ++j)
     {
-    if(muons.at(j).pT and muons.at(j).isTight==1 and muons.at(j).isolation < 0.12){
+    if(muons.at(j).pT > 5.0 and muons.at(j).isTight==1 and muons.at(j).isolation < 0.12){
        nMuons++;
       } 
     }
