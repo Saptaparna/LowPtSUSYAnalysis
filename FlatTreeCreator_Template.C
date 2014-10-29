@@ -14,8 +14,9 @@ using namespace std;
 
 reweight::LumiReWeighting LumiWeightsD_;
 reweight::LumiReWeighting LumiWeightsD_sys_;
-bool isMC= true;
-//bool isMC=false;
+bool isMC = true;
+//bool isMC = false;
+string dataset = "METParked";
 string  suffix = "SUFFIX";
 
 void FlatTreeCreator::Begin(TTree *tree)
@@ -54,6 +55,23 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("ph_phi", &ph_phi);
    outtree->Branch("ph_eta", &ph_eta);
    outtree->Branch("ph_energy", &ph_energy);
+   outtree->Branch("ph_HoE", &ph_HoE);
+   outtree->Branch("ph_conversionVeto", &ph_conversionVeto);
+   outtree->Branch("ph_pixelVeto", &ph_pixelVeto);
+   outtree->Branch("ph_SigmaIetaIeta", &ph_SigmaIetaIeta);
+   outtree->Branch("ph_SigmaIetaIphi", &ph_SigmaIetaIphi);
+   outtree->Branch("ph_SigmaIphiIphi", &ph_SigmaIphiIphi);
+   outtree->Branch("ph_preShowerOverRaw", &ph_preShowerOverRaw);
+   outtree->Branch("ph_R9", &ph_R9);
+   outtree->Branch("ph_e1x5", &ph_e1x5);
+   outtree->Branch("ph_e1x3", &ph_e1x3);
+   outtree->Branch("ph_e2x2", &ph_e2x2); 
+   outtree->Branch("ph_e2x5", &ph_e2x5);
+   outtree->Branch("ph_e5x1", &ph_e5x1);
+   outtree->Branch("ph_e5x5", &ph_e5x5);
+   outtree->Branch("ph_e2x5Max", &ph_e2x5Max);
+   outtree->Branch("ph_e2OverE5", &ph_e2OverE5);
+   outtree->Branch("ph_seedCrystalEnergy", &ph_seedCrystalEnergy);
    outtree->Branch("nPhotons", &nPhotons, "nPhotons/I");
    outtree->Branch("el_pt", &el_pt);
    outtree->Branch("el_phi", &el_phi);
@@ -61,6 +79,7 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("el_energy", &el_energy);
    outtree->Branch("el_charge", &el_charge);
    outtree->Branch("el_isTight", &el_isTight);
+   outtree->Branch("el_isLoose", &el_isLoose);
    outtree->Branch("nElectrons", &nElectrons, "nElectrons/I");
    outtree->Branch("mu_pt", &mu_pt);
    outtree->Branch("mu_phi", &mu_phi);
@@ -68,6 +87,7 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("mu_energy", &mu_energy);
    outtree->Branch("mu_charge", &mu_charge);
    outtree->Branch("mu_isTight", &mu_isTight);
+   outtree->Branch("mu_isLoose", &mu_isLoose);
    outtree->Branch("nMuons", &nMuons, "nMuons/I");
    outtree->Branch("jet_pt", &jet_pt);
    outtree->Branch("jet_phi", &jet_phi);
@@ -84,31 +104,53 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("MET_Phi", &MET_Phi, "MET_Phi/F");
    outtree->Branch("MET_Px", &MET_Px, "MET_Px/F");
    outtree->Branch("MET_Py", &MET_Py, "MET_Py/F");
+   outtree->Branch("caloMET", &caloMET, "caloMET/F");
+   outtree->Branch("caloMET_Phi", &caloMET_Phi, "caloMET_Phi/F");
+   outtree->Branch("caloMET_Px", &caloMET_Px, "caloMET_Px/F");
+   outtree->Branch("caloMET_Py", &caloMET_Py, "caloMET_Py/F");
    outtree->Branch("fired_HLTPho", &fired_HLTPho, "fired_HLTPho/O");
    outtree->Branch("fired_HLTPhoId", &fired_HLTPhoId, "fired_HLTPhoId/O");
    outtree->Branch("fired_HLTPhoIdMet", &fired_HLTPhoIdMet, "fired_HLTPhoIdMet/O");
+   outtree->Branch("fired_HLTMET100", &fired_HLTMET100, "fired_HLTMET100/O");
    outtree->Branch("nVertices", &nVertices, "nVertices/I");
    outtree->Branch("el_iso", &el_iso);
    outtree->Branch("mu_iso", &mu_iso);
    outtree->Branch("ph_chIso", &ph_chIso);
    outtree->Branch("ph_nuIso", &ph_nuIso);
    outtree->Branch("ph_phIso", &ph_phIso);
+   outtree->Branch("ph_isSTight", &ph_isSTight);
    outtree->Branch("ph_isTight", &ph_isTight);
+   outtree->Branch("ph_isMedium", &ph_isMedium);
+   outtree->Branch("ph_isLoose", &ph_isLoose);
+   outtree->Branch("ph_phIsoSTight", &ph_phIsoSTight);
    outtree->Branch("ph_phIsoTight", &ph_phIsoTight);
    outtree->Branch("ph_phIsoMedium", &ph_phIsoMedium);
    outtree->Branch("ph_phIsoLoose", &ph_phIsoLoose);
+   outtree->Branch("ph_isTightWS", &ph_isTightWS);
+   outtree->Branch("ph_Matched", &ph_Matched);
+   outtree->Branch("ph_MatchedPt", &ph_MatchedPt);
+   outtree->Branch("ph_MatchedEta", &ph_MatchedEta);
+   outtree->Branch("ph_MatchedPhi", &ph_MatchedPhi);
+   outtree->Branch("ph_MatchedEnergy", &ph_MatchedEnergy);
+   outtree->Branch("ph_MatchedSigmaIetaIeta", &ph_MatchedSigmaIetaIeta);
+   outtree->Branch("ph_MatchedisTightWS", &ph_MatchedisTightWS);
+   outtree->Branch("ph_MatchedIsoTight", &ph_MatchedIsoTight);
+   outtree->Branch("ph_MatchedpixelVeto", &ph_MatchedpixelVeto);
    //Trigger Objects saved
    outtree->Branch("trigObj1Px", &trigObj1Px, "trigObj1Px/F");
    outtree->Branch("trigObj1Py", &trigObj1Py, "trigObj1Py/F");
    outtree->Branch("trigObj1Pz", &trigObj1Pz, "trigObj1Pz/F");
-   outtree->Branch("trigObj1E",  &trigObj1E, "trigObj1E/F");
+   outtree->Branch("trigObj1E",  &trigObj1E,  "trigObj1E/F");
    outtree->Branch("trigObj2Px", &trigObj2Px, "trigObj2Px/F");
    outtree->Branch("trigObj2Py", &trigObj2Py, "trigObj2Py/F");
    outtree->Branch("trigObj2Pz", &trigObj2Pz, "trigObj2Pz/F");
-   outtree->Branch("trigObj2E",  &trigObj2E, "trigObj2E/F");
-
+   outtree->Branch("trigObj2E",  &trigObj2E,  "trigObj2E/F");
+   outtree->Branch("trigObj3Px", &trigObj3Px, "trigObj3Px/F");
+   outtree->Branch("trigObj3Py", &trigObj3Py, "trigObj3Py/F");
+   outtree->Branch("trigObj3Pz", &trigObj3Pz, "trigObj3Pz/F");
+   outtree->Branch("trigObj3E",  &trigObj3E,  "trigObj3E/F");
    //MC PU-related variables
-   outtree->Branch("nPUVertices", &nPUVertices, "nPUVertices/F");
+   outtree->Branch("nPUVertices", &nPUVertices, "nPUVertices/I");
    outtree->Branch("nPUVerticesTrue", &nPUVerticesTrue, "nPUVerticesTrue/F");
    outtree->Branch("PUWeightData", &PUWeightData, "PUWeightData/F");
    outtree->Branch("PUWeightDataSys", &PUWeightDataSys, "PUWeightDataSys/F");
@@ -118,12 +160,14 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("el_MatchedEta",  &el_MatchedEta);  
    outtree->Branch("el_MatchedPhi",  &el_MatchedPhi);
    outtree->Branch("el_MatchedEnergy",  &el_MatchedEnergy);
-
+   outtree->Branch("el_Matched_1Mother", &el_Matched_1Mother);
+   
    outtree->Branch("mu_Matched",  &mu_Matched);
    outtree->Branch("mu_MatchedPt",  &mu_MatchedPt);
    outtree->Branch("mu_MatchedEta",  &mu_MatchedEta);
    outtree->Branch("mu_MatchedPhi",  &mu_MatchedPhi);
    outtree->Branch("mu_MatchedEnergy",  &mu_MatchedEnergy);
+   outtree->Branch("mu_Matched_1Mother", &mu_Matched_1Mother);
 
    outtree->Branch("Ztt", &Ztt, "Ztt/O");
    outtree->Branch("Znunu", &Znunu, "Znunu/O");
@@ -149,12 +193,21 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   ph_phi.clear();
   ph_eta.clear();
   ph_energy.clear();
+  ph_SigmaIetaIeta.clear();
+  ph_SigmaIetaIphi.clear();
+  ph_SigmaIphiIphi.clear();
+  ph_HoE.clear();
+  ph_conversionVeto.clear();
+  ph_pixelVeto.clear();
+  ph_preShowerOverRaw.clear();
+  ph_R9.clear();
   nPhotons = -1;
   el_pt.clear();
   el_phi.clear();
   el_eta.clear();
   el_energy.clear();
   el_charge.clear();
+  el_isLoose.clear();
   el_isTight.clear();
   nElectrons = -1;
   mu_pt.clear();
@@ -162,6 +215,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   mu_eta.clear();
   mu_energy.clear();
   mu_charge.clear();
+  mu_isLoose.clear();
   mu_isTight.clear();
   nMuons = -1;
   jet_pt.clear();
@@ -173,19 +227,48 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   MET_Phi = -99.0;
   MET_Px = -99.0;
   MET_Py = -99.0;
+  caloMET = 0;
+  caloMET_Phi = -99.0;
+  caloMET_Px = -99.0;
+  caloMET_Py = -99.0;
   fired_HLTPho = false;
   fired_HLTPhoId = false;
   fired_HLTPhoIdMet = false; 
+  fired_HLTMET100 = false;
   nVertices = -1;
   el_iso.clear();
   mu_iso.clear();
+  ph_e1x5.clear();
+  ph_e1x3.clear();
+  ph_e2x2.clear();
+  ph_e2x5.clear();
+  ph_e5x1.clear();
+  ph_e5x5.clear();
+  ph_e2x5Max.clear();
+  ph_e2OverE5.clear();
+  ph_seedCrystalEnergy.clear();
+  ph_HoE.clear();
   ph_chIso.clear();
   ph_nuIso.clear();
   ph_phIso.clear();
+  ph_isSTight.clear();
   ph_isTight.clear();
+  ph_isMedium.clear();
+  ph_isLoose.clear();
+  ph_phIsoSTight.clear();
   ph_phIsoTight.clear();
   ph_phIsoMedium.clear();
   ph_phIsoLoose.clear();
+  ph_Matched.clear();
+  ph_MatchedPt.clear();
+  ph_MatchedEta.clear();
+  ph_MatchedPhi.clear();
+  ph_MatchedEnergy.clear();
+  ph_MatchedSigmaIetaIeta.clear();
+  ph_MatchedisTightWS.clear();
+  ph_MatchedIsoTight.clear();
+  ph_MatchedpixelVeto.clear();
+  ph_isTightWS.clear();
   PUWeightData = -1.0;
   PUWeightDataSys = -1.0;
 
@@ -201,23 +284,30 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   trigObj1Py= -99.0;
   trigObj1Pz= -99.0;
   trigObj1E= -99.0;
-  //Trigger object 1 refers to objects passed by the hltPhoton30HEFilter
+  //Trigger object 2 refers to objects passed by the hltPhoton30HEFilter
   trigObj2Px= -99.0;
   trigObj2Py= -99.0;
   trigObj2Pz= -99.0;
   trigObj2E= -99.0;
+  //Trigger object 3 refers to objects passed by the hltMETClean25
+  trigObj3Px= -99.0;
+  trigObj3Py= -99.0;
+  trigObj3Pz= -99.0;
+  trigObj3E= -99.0; 
+  
   //MC history and genparticle info
   el_Matched.clear();
   el_MatchedPt.clear();
   el_MatchedEta.clear();
   el_MatchedPhi.clear();
   el_MatchedEnergy.clear();
-
+  el_Matched_1Mother.clear();
   mu_Matched.clear();
   mu_MatchedPt.clear();
   mu_MatchedEta.clear();
   mu_MatchedPhi.clear();
   mu_MatchedEnergy.clear();
+  mu_Matched_1Mother.clear();
   Ztt = false;
   Znunu = false;
   Zmumu = false;
@@ -226,8 +316,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   isPhoton = false;
   isISRPhoton = false;
 
-  if(entry % 1000 == 0) cout << "Processing event number: " << entry << endl;
-
+ if(entry % 1000 == 0) cout << "Processing event number: " << entry << endl;
   
  run = runNumber;
  lumi = lumiSection;
@@ -236,9 +325,11 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
  if(isMC){
   for (int i = 0; i <  triggerObjects->GetSize(); i++) {
    TCTriggerObject* thisTrigObj = (TCTriggerObject*) triggerObjects->At(i);
-   //cout << "thisTrigObj->GetHLTName() = " << thisTrigObj->GetHLTName() << endl;  
-     }
-  }
+  // cout << "thisTrigObj->GetHLTName() == " << thisTrigObj->GetHLTName() << endl;
+   //cout << "thisTrigObj->GetModuleName() == " << thisTrigObj->GetModuleName() << endl;   
+   }
+ }
+
  //Trigger Information
  if(not isMC){
    for (int i = 0; i <  triggerObjects->GetSize(); i++) {
@@ -255,25 +346,37 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
      trigObj2Py = thisTrigObj->Py();
      trigObj2Pz = thisTrigObj->Pz();
      trigObj2E  = thisTrigObj->E();
-    }
+     }
+
+   if(thisTrigObj->GetModuleName() == "hltMETClean25"){
+     trigObj3Px = thisTrigObj->Px();
+     trigObj3Py = thisTrigObj->Py();
+     trigObj3Pz = thisTrigObj->Pz();
+     trigObj3E  = thisTrigObj->E();
+     }
 
    //cout << "thisTrigObj->GetModuleName() == " << thisTrigObj->GetModuleName() << endl; 
-
+   //cout << "thisTrigObj->GetHLTName() == " << thisTrigObj->GetHLTName() << endl;
+   
    if(thisTrigObj->GetHLTName().find("HLT_Photon30_v")!=std::string::npos) fired_HLTPho = true;
    if(thisTrigObj->GetHLTName().find("HLT_Photon30_R9Id90_CaloId_HE10_Iso40_EBOnly_v")!=std::string::npos) fired_HLTPhoId = true;
    if(thisTrigObj->GetHLTName().find("HLT_Photon30_R9Id90_CaloId_HE10_Iso40_EBOnly_Met25_HBHENoiseCleaned_v")!=std::string::npos) fired_HLTPhoIdMet = true;
+   if(thisTrigObj->GetHLTName().find("HLT_MET100_HBHENoiseCleaned_v")!=std::string::npos) fired_HLTMET100 = true;
    }
-   if (NoiseFilters_isScraping) return kTRUE;
-   if (NoiseFilters_isNoiseHcalHBHE) return kTRUE;
-   if (NoiseFilters_isNoiseHcalLaser) return kTRUE;
-   if (NoiseFilters_isNoiseEcalTP) return kTRUE;
-   if (NoiseFilters_isNoiseEcalBE) return kTRUE;
-   if (NoiseFilters_isCSCTightHalo) return kTRUE;
-   if (NoiseFilters_isNoiseEEBadSc) return kTRUE;
-   if (!NoiseFilters_isNoisetrkPOG1) return kTRUE;
-   if (!NoiseFilters_isNoisetrkPOG2) return kTRUE;
-   if (!NoiseFilters_isNoisetrkPOG3) return kTRUE; 
 
+   if(dataset!="METParked"){
+     if (NoiseFilters_isScraping) return kTRUE;
+     if (NoiseFilters_isNoiseHcalHBHE) return kTRUE;
+     if (NoiseFilters_isNoiseHcalLaser) return kTRUE;
+     if (NoiseFilters_isNoiseEcalTP) return kTRUE;
+     if (NoiseFilters_isNoiseEcalBE) return kTRUE;
+     if (NoiseFilters_isCSCTightHalo) return kTRUE;
+     if (NoiseFilters_isNoiseEEBadSc) return kTRUE;
+     if (!NoiseFilters_isNoisetrkPOG1) return kTRUE;
+     if (!NoiseFilters_isNoisetrkPOG2) return kTRUE;
+     if (!NoiseFilters_isNoisetrkPOG3) return kTRUE; 
+   }
+   
  }
 
   vector<TVector3> goodVertices;
@@ -300,20 +403,81 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
     if (!(photon->R9()>0.9)) continue;
     vPhotons.push_back(*photon);
     ph_pt.push_back(photon->Pt());
-    ph_eta.push_back(photon->Eta());
+    ph_eta.push_back(photon->SCEta());
     ph_phi.push_back(photon->Phi());
     ph_energy.push_back(photon->Energy());
+    ph_HoE.push_back(photon->HadOverEm());
+    ph_conversionVeto.push_back(photon->ConversionVeto());
+    ph_pixelVeto.push_back(photon->TrackVeto());
+    ph_SigmaIetaIeta.push_back(photon->SigmaIEtaIEta());
+    ph_SigmaIetaIphi.push_back(photon->SigmaIEtaIPhi());
+    ph_SigmaIphiIphi.push_back(photon->SigmaIPhiIPhi()); 
+    ph_preShowerOverRaw.push_back(photon->PreShowerOverRaw());
+    ph_e1x3.push_back(photon->E1x3());
+    ph_e1x5.push_back(photon->E1x5());
+    ph_e2x2.push_back(photon->E2x2());
+    ph_e2x5.push_back(photon->E2x5());
+    ph_e5x1.push_back(photon->E5x1());
+    ph_e5x5.push_back(photon->E5x5());
+    ph_e2x5Max.push_back(photon->E2x5Max());
+    ph_e2OverE5.push_back(photon->E2OverE5());
+    ph_R9.push_back(photon->R9());
     double chIsoTemp, nuIsoTemp, phIsoTemp;
-    bool isoPassLTemp, isoPassMTemp, isoPassTTemp;
-    PhotonIso(photon, chIsoTemp, nuIsoTemp, phIsoTemp, isoPassLTemp, isoPassMTemp, isoPassTTemp);
+    bool isoPassLTemp, isoPassMTemp, isoPassTTemp, isoPassSTTemp;
+    PhotonIso(photon, chIsoTemp, nuIsoTemp, phIsoTemp, isoPassLTemp, isoPassMTemp, isoPassTTemp, isoPassSTTemp);
     ph_chIso.push_back(chIsoTemp);
     ph_nuIso.push_back(nuIsoTemp);
     ph_phIso.push_back(phIsoTemp);
+    ph_phIsoSTight.push_back(isoPassSTTemp);
     ph_phIsoTight.push_back(isoPassTTemp);
     ph_phIsoMedium.push_back(isoPassMTemp);
     ph_phIsoLoose.push_back(isoPassLTemp);
+    ph_isSTight.push_back(isSTightPhoton(photon));
     ph_isTight.push_back(isTightPhoton(photon));
-  }  
+    ph_isMedium.push_back(isMediumPhoton(photon));
+    ph_isLoose.push_back(isLoosePhoton(photon));
+    ph_isTightWS.push_back(isTightWithoutSieiePhoton(photon));
+    vector<TCPhoton::CrystalInfo> savedCrystals = photon->GetCrystalVect();
+    ph_seedCrystalEnergy.push_back(savedCrystals[0].energy); 
+    if(isMC){
+      double closestDR = 0.5;
+      int closestIndex=-1;
+      for (int g = 0; g <  genParticles->GetSize(); g++) {
+        TCGenParticle* genParticle = (TCGenParticle*) genParticles->At(g);
+        if(abs(genParticle->GetPDGId())==22){
+          double tmpDR = mdeltaR(photon->SCEta(), photon->Phi(), genParticle->Eta(), genParticle->Phi());
+          if(tmpDR<closestDR){
+            closestDR = tmpDR;
+            closestIndex = g;
+          }
+       }
+    }//closing the gen particle loop
+    if(closestIndex!=-1){
+  //    TCGenParticle* genParticle = (TCGenParticle*) genParticles->At(closestIndex);
+  //    if(genParticle->Mother() and (abs(genParticle->Mother()->GetPDGId())==11 or abs(genParticle->Mother()->GetPDGId())==13 or abs(genParticle->Mother()->GetPDGId())==15)){ //Checking that a lepton is the first mother.
+       ph_Matched.push_back(1);
+       ph_MatchedPt.push_back(photon->Pt());
+       ph_MatchedEta.push_back(photon->SCEta());
+       ph_MatchedPhi.push_back(photon->Phi());
+       ph_MatchedEnergy.push_back(photon->Energy());
+       ph_MatchedSigmaIetaIeta.push_back(photon->SigmaIEtaIEta());
+       ph_MatchedisTightWS.push_back(isTightWithoutSieiePhoton(photon)); //is tight without sigma ieta ieta
+       ph_MatchedIsoTight.push_back(isoPassTTemp);
+       ph_MatchedpixelVeto.push_back(photon->TrackVeto());
+       }//gen matching criteria checked
+    else{
+      ph_Matched.push_back(0);
+      ph_MatchedPt.push_back(-99.0);
+      ph_MatchedEta.push_back(-99.0);
+      ph_MatchedPhi.push_back(-99.0); 
+      ph_MatchedEnergy.push_back(-99.0);
+      ph_MatchedSigmaIetaIeta.push_back(-99.0);  
+      ph_MatchedisTightWS.push_back(-99.0);
+      ph_MatchedIsoTight.push_back(-99.0);
+      ph_MatchedpixelVeto.push_back(-99.0);
+      }
+    }//isMC if statement ended 
+  }//reco photon loop closed.  
 
   nPhotons = vPhotons.size();
 
@@ -321,6 +485,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
 
  for (Int_t i = 0; i < recoElectrons->GetSize(); i++) {
    TCElectron* electron = (TCElectron*) recoElectrons->At(i);
+   if(electron->Pt()<2.0) continue;
    vElectrons.push_back(*electron);
    el_pt.push_back(electron->Pt());
    el_eta.push_back(electron->Eta());
@@ -328,6 +493,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
    el_energy.push_back(electron->Energy());
    el_charge.push_back(electron->Charge());
    el_iso.push_back(ElectronIso(electron));
+   el_isLoose.push_back(isLooseElectron(electron));
    el_isTight.push_back(isTightElectron(electron));
    if(isMC){
      double closestDR = 0.3;
@@ -344,20 +510,22 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
     }//closing the gen particle loop
     if(closestIndex!=-1){ 
       TCGenParticle* genParticle = (TCGenParticle*) genParticles->At(closestIndex);
-      if((genParticle->Mother() and abs(genParticle->Mother()->GetPDGId())==15)){ //Checking that the Tau (15) is the first mother.
+      //if((genParticle->Mother() and abs(genParticle->Mother()->GetPDGId())==15)){ //Checking that the Tau (15) is the first mother.
          el_Matched.push_back(1);
          el_MatchedPt.push_back(electron->Pt());     
          el_MatchedEta.push_back(electron->Eta()); 
          el_MatchedPhi.push_back(electron->Phi()); 
          el_MatchedEnergy.push_back(electron->Energy()); 
-        }//mother checked
-      }//gen matching criteria checked
+         if(genParticle->Mother()) el_Matched_1Mother.push_back(genParticle->Mother()->GetPDGId());
+         else el_Matched_1Mother.push_back(-1.0);
+     }//gen matching criteria checked
     else{
       el_Matched.push_back(0);
       el_MatchedPt.push_back(-99.0);
       el_MatchedEta.push_back(-99.0);
       el_MatchedPhi.push_back(-99.0);
       el_MatchedEnergy.push_back(-99.0);
+      el_Matched_1Mother.push_back(-99.0);
         }//gen matching else statement closed
     }//isMC if statement ended 
  }//end reco electron loop
@@ -373,7 +541,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
     TCGenParticle* genParticle = (TCGenParticle*) genParticles->At(g);
     if(abs(genParticle->GetPDGId())==15 and genParticle->GetStatus()==3){
       if(genParticle->Mother()->GetPDGId()==23){
-       Ztt = true;
+       Ztt = true;//Ztt decay mode.
        }
      }
     if(abs(genParticle->GetPDGId())==13 and genParticle->GetStatus()==3){
@@ -397,9 +565,10 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
        }
      }
     if(genParticle->GetPDGId()==22 and genParticle->GetStatus()==3){
-      isPhoton = true; 
-      if(genParticle->Mother()) cout << "genParticle->Mother()->GetPDGId() = " << genParticle->Mother()->GetPDGId() << endl; 
-     }//photon check 
+//      if(genParticle->Mother() and (abs(genParticle->Mother()->GetPDGId())<=6 or genParticle->Mother()->GetPDGId()==21)){
+        isPhoton = true; 
+  //    }//photon check 
+    }//photon check 
     //ISR removal: therefore double counting removal
     double phEta = -99.0;
     double phPhi = -99.0;
@@ -407,7 +576,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
     motherId.clear();
     int isW;
     int isZ;
-    if(genParticle->GetPDGId()==22 and genParticle->GetStatus()==1 and genParticle->Pt() > 20.0){
+    if(genParticle->GetPDGId()==22 and genParticle->GetStatus()==1 and genParticle->Pt() > 10.0){
       isFromMesonDecay = 0;
       isNonIsolatedPhoton = 0;
       isFSRPhoton = 0;
@@ -419,7 +588,8 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
       double otherParticles = 0.0;
       for (int i_other = 0; i_other<genParticles->GetSize(); i_other++){ 
         TCGenParticle *other = (TCGenParticle*)genParticles->At(i_other);      
-        if (other->GetStatus()==1 and (other->GetPDGId()!=12 and other->GetPDGId()!=14 and other->GetPDGId()!=16) and other->Pt()>2.0 and mdeltaR(phEta, phPhi, other->Eta(), other->Phi())<0.3 and (i_other != g)){ //removing the photon itself.
+        if (other->GetStatus()==1 and (other->GetPDGId()!=12 and other->GetPDGId()!=14 and other->GetPDGId()!=16) and other->Pt()>2.0 and 
+        mdeltaR(phEta, phPhi, other->Eta(), other->Phi())<0.05 and (i_other != g)){ //removing the photon itself.
           otherParticles+=other->Pt();
           isNonIsolatedPhoton=1;
         }
@@ -430,13 +600,10 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
       isW=0;
       isZ=0;
       for(unsigned int i=0; i<motherId.size(); i++){
-        cout << "motherId.at(" << i << ") = " << motherId.at(i) << endl;
-        if(abs(motherId.at(i)==24)) isW = 1;
+        if(abs(motherId.at(i))==24) isW = 1;
         else if(motherId.at(i)==23) isZ = 1;
       }
-      cout << "motherId.size() = " << motherId.size() << endl;
       if(isW==1 or isZ==1) isFSRPhoton=1;  
-      
       if(isFromMesonDecay==0 and isNonIsolatedPhoton==0 and isFSRPhoton==0) isISRPhoton = true;
     }//photon check closed
   }//genParticle loop closed
@@ -454,6 +621,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
    mu_energy.push_back(muon->Energy());
    mu_charge.push_back(muon->Charge());
    mu_iso.push_back(MuonIso(muon));
+   mu_isLoose.push_back(isLooseMuon(muon));
    mu_isTight.push_back(isTightMuon(muon));
    if(isMC){
      double closestDR = 0.3;
@@ -461,23 +629,6 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
      for (int g = 0; g <  genParticles->GetSize(); g++) {
        TCGenParticle* genParticle = (TCGenParticle*) genParticles->At(g);
        if(abs(genParticle->GetPDGId())==13 ){//and genParticle->GetStatus()==3){
-        /* if((genParticle->Mother() and abs(genParticle->Mother()->GetPDGId())==15)){
-            mu_Matched.push_back(1);
-            mu_MatchedPt.push_back(genParticle->Pt());
-            mu_MatchedEta.push_back(genParticle->Eta());
-            mu_MatchedPhi.push_back(genParticle->Phi());
-            mu_MatchedEnergy.push_back(genParticle->Energy());
-           }
-         else{
-           mu_Matched.push_back(0);
-           mu_MatchedPt.push_back(-99.0);
-           mu_MatchedEta.push_back(-99.0);
-           mu_MatchedPhi.push_back(-99.0);
-           mu_MatchedEnergy.push_back(-99.0);
-            }//else mother check
-         }//gen muon check
-      } //directly looking at the genParticles.
-  */
         double tmpDR = mdeltaR(muon->Eta(), muon->Phi(), genParticle->Eta(), genParticle->Phi());
         if(tmpDR<closestDR){
            closestDR = tmpDR;
@@ -487,13 +638,14 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
     }//closing the gen particle loop
     if(closestIndex!=-1){
       TCGenParticle* genParticle = (TCGenParticle*) genParticles->At(closestIndex);
-      if((genParticle->Mother() and abs(genParticle->Mother()->GetPDGId())==15)){// and genParticle->Mother()->GetStatus()==3){ //Checking that the Tau (15) is the first mother.
+      //if((genParticle->Mother() and abs(genParticle->Mother()->GetPDGId())==15)){// and genParticle->Mother()->GetStatus()==3){ //Checking that the Tau (15) is the first mother.
          mu_Matched.push_back(1);
          mu_MatchedPt.push_back(muon->Pt());
          mu_MatchedEta.push_back(muon->Eta());
          mu_MatchedPhi.push_back(muon->Phi());
          mu_MatchedEnergy.push_back(muon->Energy());
-        }//mother checked
+         if(genParticle->Mother()) mu_Matched_1Mother.push_back(genParticle->Mother()->GetPDGId());
+         else mu_Matched_1Mother.push_back(-1.0);
       }//gen matching criteria checked
     else{
       mu_Matched.push_back(0);
@@ -501,6 +653,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
       mu_MatchedEta.push_back(-99.0);
       mu_MatchedPhi.push_back(-99.0);
       mu_MatchedEnergy.push_back(-99.0);
+      mu_Matched_1Mother.push_back(-99.0);
         }//gen matching else statement closed
     }//isMC if statement ended 
  }//end reco muon loop
@@ -532,6 +685,12 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
  MET_Px  = corrMET->Px();
  MET_Py  = corrMET->Py();
 
+ caloMET = CaloMET->Mod();
+ caloMET_Phi = CaloMET->Phi();
+ caloMET_Px = CaloMET->Px();
+ caloMET_Py = CaloMET->Py();
+
+
  if(isMC){ 
    PUWeightData = LumiWeightsD_.weight(nPUVerticesTrue);
    PUWeightDataSys = LumiWeightsD_sys_.weight(nPUVerticesTrue);
@@ -542,7 +701,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
 }
 
 float FlatTreeCreator::ElectronIso(TCElectron *electron){
-  
+ //numbers for an isolation cone of 0.4 
  float EA = 0;
  EAEle[0] = 0.208;
  EAEle[1] = 0.209;
@@ -706,25 +865,7 @@ bool FlatTreeCreator::isLooseMuon(TCMuon *muon){
 
 }
 
-bool FlatTreeCreator::isTightPhoton(TCPhoton *photon){
-
-  if(fabs(photon->SCEta()) > 2.5)                 return false;
-  if(fabs(photon->SCEta()) > 1.4442 and fabs(photon->SCEta()) < 1.566) return false;    
-  if(fabs(photon->SCEta()) < 1.4442){
-    if(photon->HadOverEm() > 0.05)                return false;
-    if(photon->SigmaIEtaIEta() >  0.011)          return false;
-  }
-
-  if(fabs(photon->SCEta()) > 1.566){
-    if(photon->HadOverEm() > 0.05)                return false;
-    if(photon->SigmaIEtaIEta() >  0.031)          return false;
-  }
-
-  return true;
-}
-
-
-int FlatTreeCreator::PhotonIso(TCPhoton *photon, double &chIso, double &nuIso, double &phIso, bool &isoPassL, bool &isoPassM, bool &isoPassT){
+int FlatTreeCreator::PhotonIso(TCPhoton *photon, double &chIso, double &nuIso, double &phIso, bool &isoPassL, bool &isoPassM, bool &isoPassT, bool &isoPassST){
   float chEA,nhEA,phEA,chIsoCor,nhIsoCor,phIsoCor;
   float EAPho[7][3] = {
     {0.012,  0.030,   0.148}, //         eta < 1.0  
@@ -778,6 +919,7 @@ int FlatTreeCreator::PhotonIso(TCPhoton *photon, double &chIso, double &nuIso, d
   bool isoPassLoose = false;
   bool isoPassMedium = false;
   bool isoPassTight = false;
+  bool isoPassSuperTight = false;
 
   if ((fabs(photon->SCEta()) < 1.4442
        and max((double)chIsoCor,0.)          < 2.6
@@ -795,7 +937,7 @@ int FlatTreeCreator::PhotonIso(TCPhoton *photon, double &chIso, double &nuIso, d
          ) || (fabs(photon->SCEta()) > 1.566
        and max((double)chIsoCor,0.)          < 1.2
        and max((double)nhIsoCor,0.)          < 1.5 + 0.04*photon->Pt()
-       and max((double)nhIsoCor,0.)          < 1.0 + 0.005*photon->Pt()
+       and max((double)phIsoCor,0.)          < 1.0 + 0.005*photon->Pt()
          )) isoPassMedium = true;
 
   if ((fabs(photon->SCEta()) < 1.4442
@@ -805,15 +947,75 @@ int FlatTreeCreator::PhotonIso(TCPhoton *photon, double &chIso, double &nuIso, d
          ) || (fabs(photon->SCEta()) > 1.566
        and max((double)chIsoCor,0.)          < 0.5
        and max((double)nhIsoCor,0.)          < 1.5 + 0.04*photon->Pt()
-       and max((double)nhIsoCor,0.)          < 1.0 + 0.005*photon->Pt()
+       and max((double)phIsoCor,0.)          < 1.0 + 0.005*photon->Pt()
          )) isoPassTight = true;
+
+   if ((fabs(photon->SCEta()) < 1.4442
+       and max((double)chIsoCor,0.)          < 0.4
+       and max((double)nhIsoCor,0.)          < 0.2 + 0.04*photon->Pt()
+       and max((double)phIsoCor,0.)          < 0.2 + 0.005*photon->Pt()
+         ) || (fabs(photon->SCEta()) > 1.566
+       and max((double)chIsoCor,0.)          < 0.2
+       and max((double)nhIsoCor,0.)          < 1.0 + 0.04*photon->Pt()
+       and max((double)phIsoCor,0.)          < 0.5 + 0.005*photon->Pt()
+         )) isoPassSuperTight = true;
 
   isoPassL = isoPassLoose;
   isoPassM = isoPassMedium;
   isoPassT = isoPassTight; 
+  isoPassST = isoPassSuperTight;
   return 0;
 }
 
+bool FlatTreeCreator::isSTightPhoton(TCPhoton *photon){
+
+  if(fabs(photon->SCEta()) > 2.5)                 return false;
+  if(fabs(photon->SCEta()) > 1.4442 and fabs(photon->SCEta()) < 1.566) return false;
+  if(fabs(photon->SCEta()) < 1.4442){             
+    if(photon->HadOverEm() > 0.05)                return false; 
+    if(photon->SigmaIEtaIEta() >  0.009)          return false;
+  } 
+    
+  if(fabs(photon->SCEta()) > 1.566){
+    if(photon->HadOverEm() > 0.05)                return false;
+    if(photon->SigmaIEtaIEta() >  0.029)          return false;
+  }
+
+  return true;
+}
+
+bool FlatTreeCreator::isTightPhoton(TCPhoton *photon){
+
+  if(fabs(photon->SCEta()) > 2.5)                 return false;
+  if(fabs(photon->SCEta()) > 1.4442 and fabs(photon->SCEta()) < 1.566) return false;
+  if(fabs(photon->SCEta()) < 1.4442){
+    if(photon->HadOverEm() > 0.05)                return false;
+    if(photon->SigmaIEtaIEta() >  0.011)          return false;
+  }
+
+  if(fabs(photon->SCEta()) > 1.566){
+    if(photon->HadOverEm() > 0.05)                return false;
+    if(photon->SigmaIEtaIEta() >  0.031)          return false;
+  }
+
+  return true;
+}
+
+bool FlatTreeCreator::isTightWithoutSieiePhoton(TCPhoton *photon){
+ 
+  if(fabs(photon->SCEta()) > 2.5)                 return false;
+  if(fabs(photon->SCEta()) > 1.4442 and fabs(photon->SCEta()) < 1.566) return false;
+  if(fabs(photon->SCEta()) < 1.4442){
+    if(photon->HadOverEm() > 0.05)                return false;
+  }
+
+  if(fabs(photon->SCEta()) > 1.566){
+    if(photon->HadOverEm() > 0.05)                return false;
+  }
+
+  return true;
+
+}
 
 bool FlatTreeCreator::isMediumPhoton(TCPhoton *photon){
 
@@ -868,11 +1070,6 @@ double FlatTreeCreator::mdeltaR(double eta1, double phi1, double eta2, double ph
 void FlatTreeCreator::fillMotherInfo(TCGenParticle* mother, int i, vector <int> & momid)
 {
   if(mother) {
-    cout << "mother->GetPDGId() = " << mother->GetPDGId() << endl;
-    cout << "i = " << i << endl;
-    cout << "mother->Mother() = " << mother->Mother() << endl;
-    cout << "mother->GetStatus() = " << mother->GetStatus() << endl;
-    cout << "mother->GetPDGId() = " << mother->GetPDGId() << endl;
     momid.push_back(mother->GetPDGId());
     if(i<20)fillMotherInfo(mother->Mother(), i+1, momid);
   }
