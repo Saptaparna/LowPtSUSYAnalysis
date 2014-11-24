@@ -161,14 +161,30 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("el_MatchedPhi",  &el_MatchedPhi);
    outtree->Branch("el_MatchedEnergy",  &el_MatchedEnergy);
    outtree->Branch("el_Matched_1Mother", &el_Matched_1Mother);
-   
+   outtree->Branch("el_Matched_2Mother", &el_Matched_2Mother); 
+   outtree->Branch("el_Matched_3Mother", &el_Matched_3Mother);
+   outtree->Branch("el_Matched_4Mother", &el_Matched_4Mother);
+   outtree->Branch("el_Matched_5Mother", &el_Matched_5Mother);
+   outtree->Branch("el_Matched_6Mother", &el_Matched_6Mother);
+   outtree->Branch("el_Matched_7Mother", &el_Matched_7Mother);
+   outtree->Branch("el_Matched_8Mother", &el_Matched_8Mother);
+   outtree->Branch("el_Matched_9Mother", &el_Matched_9Mother);
+   outtree->Branch("el_Matched_10Mother", &el_Matched_10Mother);
    outtree->Branch("mu_Matched",  &mu_Matched);
    outtree->Branch("mu_MatchedPt",  &mu_MatchedPt);
    outtree->Branch("mu_MatchedEta",  &mu_MatchedEta);
    outtree->Branch("mu_MatchedPhi",  &mu_MatchedPhi);
    outtree->Branch("mu_MatchedEnergy",  &mu_MatchedEnergy);
    outtree->Branch("mu_Matched_1Mother", &mu_Matched_1Mother);
-
+   outtree->Branch("mu_Matched_2Mother", &mu_Matched_2Mother);
+   outtree->Branch("mu_Matched_3Mother", &mu_Matched_3Mother);
+   outtree->Branch("mu_Matched_4Mother", &mu_Matched_4Mother);
+   outtree->Branch("mu_Matched_5Mother", &mu_Matched_5Mother);
+   outtree->Branch("mu_Matched_6Mother", &mu_Matched_6Mother);
+   outtree->Branch("mu_Matched_7Mother", &mu_Matched_7Mother);
+   outtree->Branch("mu_Matched_8Mother", &mu_Matched_8Mother);
+   outtree->Branch("mu_Matched_9Mother", &mu_Matched_9Mother);
+   outtree->Branch("mu_Matched_10Mother", &mu_Matched_10Mother);
    outtree->Branch("Ztt", &Ztt, "Ztt/O");
    outtree->Branch("Znunu", &Znunu, "Znunu/O");
    outtree->Branch("Zmumu", &Zmumu, "Zmumu/O");
@@ -302,12 +318,30 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   el_MatchedPhi.clear();
   el_MatchedEnergy.clear();
   el_Matched_1Mother.clear();
+  el_Matched_2Mother.clear();
+  el_Matched_3Mother.clear();
+  el_Matched_4Mother.clear();
+  el_Matched_5Mother.clear();
+  el_Matched_6Mother.clear();
+  el_Matched_7Mother.clear();
+  el_Matched_8Mother.clear();
+  el_Matched_9Mother.clear();
+  el_Matched_10Mother.clear();
   mu_Matched.clear();
   mu_MatchedPt.clear();
   mu_MatchedEta.clear();
   mu_MatchedPhi.clear();
   mu_MatchedEnergy.clear();
   mu_Matched_1Mother.clear();
+  mu_Matched_2Mother.clear();
+  mu_Matched_3Mother.clear();
+  mu_Matched_4Mother.clear();
+  mu_Matched_5Mother.clear();
+  mu_Matched_6Mother.clear();
+  mu_Matched_7Mother.clear();
+  mu_Matched_8Mother.clear();
+  mu_Matched_9Mother.clear();
+  mu_Matched_10Mother.clear();
   Ztt = false;
   Znunu = false;
   Zmumu = false;
@@ -476,7 +510,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
       ph_MatchedIsoTight.push_back(-99.0);
       ph_MatchedpixelVeto.push_back(-99.0);
       }
-    }//isMC if statement ended 
+    }//isMC if statement ended
   }//reco photon loop closed.  
 
   nPhotons = vPhotons.size();
@@ -516,8 +550,120 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
          el_MatchedEta.push_back(electron->Eta()); 
          el_MatchedPhi.push_back(electron->Phi()); 
          el_MatchedEnergy.push_back(electron->Energy()); 
-         if(genParticle->Mother()) el_Matched_1Mother.push_back(genParticle->Mother()->GetPDGId());
-         else el_Matched_1Mother.push_back(-1.0);
+         if(genParticle->Mother()!=0){
+           TCGenParticle* mother = (TCGenParticle*) genParticle->Mother();
+           el_Matched_1Mother.push_back(mother->GetPDGId());
+           if(mother->Mother()!=0){
+             TCGenParticle* grandMother = (TCGenParticle*) mother->Mother();
+             el_Matched_2Mother.push_back(grandMother->GetPDGId());  
+             if(grandMother->Mother()!=0){
+               TCGenParticle* greatGrandMother = (TCGenParticle*) grandMother->Mother();
+               el_Matched_3Mother.push_back(greatGrandMother->GetPDGId());  
+               if(greatGrandMother->Mother()!=0){
+                 TCGenParticle* greatGreatGrandMother = (TCGenParticle*) greatGrandMother->Mother();
+                 el_Matched_4Mother.push_back(greatGreatGrandMother->GetPDGId()); 
+                 if(greatGreatGrandMother->Mother()!=0){
+                   TCGenParticle* greatGreatGreatGrandMother = (TCGenParticle*) greatGreatGrandMother->Mother();
+                   el_Matched_5Mother.push_back(greatGreatGreatGrandMother->GetPDGId());
+                   if(greatGreatGreatGrandMother->Mother()!=0){
+                     TCGenParticle* greatGreatGreatGreatGrandMother = (TCGenParticle*) greatGreatGreatGrandMother->Mother();
+                     el_Matched_6Mother.push_back(greatGreatGreatGrandMother->GetPDGId());
+                     if(greatGreatGreatGreatGrandMother->Mother()!=0){
+                       TCGenParticle* greatGreatGreatGreatGreatGrandMother = (TCGenParticle*) greatGreatGreatGreatGrandMother->Mother();
+                       el_Matched_7Mother.push_back(greatGreatGreatGreatGrandMother->GetPDGId());
+                       if(greatGreatGreatGreatGreatGrandMother->Mother()!=0){
+                         TCGenParticle* greatGreatGreatGreatGreatGreatGrandMother = (TCGenParticle*) greatGreatGreatGreatGreatGrandMother->Mother();
+                         el_Matched_8Mother.push_back(greatGreatGreatGreatGreatGreatGrandMother->GetPDGId());
+                         if(greatGreatGreatGreatGreatGreatGrandMother->Mother()!=0){
+                           TCGenParticle* greatGreatGreatGreatGreatGreatGreatGrandMother = (TCGenParticle*) greatGreatGreatGreatGreatGreatGrandMother->Mother();
+                           el_Matched_9Mother.push_back(greatGreatGreatGreatGreatGreatGreatGrandMother->GetPDGId()); 
+                           
+                           if(greatGreatGreatGreatGreatGreatGreatGrandMother->Mother()!=0){
+                             TCGenParticle* greatGreatGreatGreatGreatGreatGreatGreatGrandMother = (TCGenParticle*) greatGreatGreatGreatGreatGreatGreatGrandMother->Mother();
+                             el_Matched_10Mother.push_back(greatGreatGreatGreatGreatGreatGreatGreatGrandMother->GetPDGId());
+                             }
+                             else el_Matched_10Mother.push_back(-99.0);
+                           }
+                           else {
+                             el_Matched_10Mother.push_back(-99.0);
+                             el_Matched_9Mother.push_back(-99.0);
+                             }
+                           }
+                       else {
+                         el_Matched_10Mother.push_back(-99.0);
+                         el_Matched_9Mother.push_back(-99.0);
+                         el_Matched_8Mother.push_back(-99.0);
+                       }
+                     }
+                     else {
+                       el_Matched_10Mother.push_back(-99.0);
+                       el_Matched_9Mother.push_back(-99.0);
+                       el_Matched_8Mother.push_back(-99.0);
+                       el_Matched_7Mother.push_back(-99.0);
+                      }
+                    }
+                   else {
+                     el_Matched_10Mother.push_back(-99.0);
+                     el_Matched_9Mother.push_back(-99.0);
+                     el_Matched_8Mother.push_back(-99.0);
+                     el_Matched_7Mother.push_back(-99.0);
+                     el_Matched_6Mother.push_back(-99.0);
+                   }
+                 }
+                 else {
+                  el_Matched_10Mother.push_back(-99.0);
+                  el_Matched_9Mother.push_back(-99.0);
+                  el_Matched_8Mother.push_back(-99.0);
+                  el_Matched_7Mother.push_back(-99.0);
+                  el_Matched_6Mother.push_back(-99.0);
+                  el_Matched_5Mother.push_back(-99.0);
+                 }
+               }
+              else {
+                  el_Matched_10Mother.push_back(-99.0);
+                  el_Matched_9Mother.push_back(-99.0);
+                  el_Matched_8Mother.push_back(-99.0);
+                  el_Matched_7Mother.push_back(-99.0);
+                  el_Matched_6Mother.push_back(-99.0);
+                  el_Matched_5Mother.push_back(-99.0);
+                  el_Matched_4Mother.push_back(-99.0); 
+               }
+            }//accessing the great grandmother
+            else {
+              el_Matched_10Mother.push_back(-99.0);
+              el_Matched_9Mother.push_back(-99.0);
+              el_Matched_8Mother.push_back(-99.0);
+              el_Matched_7Mother.push_back(-99.0);
+              el_Matched_6Mother.push_back(-99.0);
+              el_Matched_5Mother.push_back(-99.0);
+              el_Matched_4Mother.push_back(-99.0);
+              el_Matched_3Mother.push_back(-99.0);
+             }
+           }
+           else{
+             el_Matched_10Mother.push_back(-99.0);
+             el_Matched_9Mother.push_back(-99.0);
+             el_Matched_8Mother.push_back(-99.0);
+             el_Matched_7Mother.push_back(-99.0);
+             el_Matched_6Mother.push_back(-99.0);
+             el_Matched_5Mother.push_back(-99.0);
+             el_Matched_4Mother.push_back(-99.0);
+             el_Matched_3Mother.push_back(-99.0);
+             el_Matched_2Mother.push_back(-99.0); 
+           }
+         } 
+        else{
+          el_Matched_10Mother.push_back(-99.0);
+          el_Matched_9Mother.push_back(-99.0);
+          el_Matched_8Mother.push_back(-99.0);
+          el_Matched_7Mother.push_back(-99.0);
+          el_Matched_6Mother.push_back(-99.0);
+          el_Matched_5Mother.push_back(-99.0);
+          el_Matched_4Mother.push_back(-99.0);
+          el_Matched_3Mother.push_back(-99.0);
+          el_Matched_2Mother.push_back(-99.0);
+          el_Matched_1Mother.push_back(-99.0);
+        }
      }//gen matching criteria checked
     else{
       el_Matched.push_back(0);
@@ -526,6 +672,15 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
       el_MatchedPhi.push_back(-99.0);
       el_MatchedEnergy.push_back(-99.0);
       el_Matched_1Mother.push_back(-99.0);
+      el_Matched_2Mother.push_back(-99.0);
+      el_Matched_3Mother.push_back(-99.0);
+      el_Matched_4Mother.push_back(-99.0);
+      el_Matched_5Mother.push_back(-99.0);
+      el_Matched_6Mother.push_back(-99.0);
+      el_Matched_7Mother.push_back(-99.0);
+      el_Matched_8Mother.push_back(-99.0);
+      el_Matched_9Mother.push_back(-99.0);
+      el_Matched_10Mother.push_back(-99.0);
         }//gen matching else statement closed
     }//isMC if statement ended 
  }//end reco electron loop
@@ -609,7 +764,6 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   }//genParticle loop closed
 }//if MC condition closed
 
-
  vector<TCMuon> vMuons;
 
  for (Int_t i = 0; i < recoMuons->GetSize(); i++) {
@@ -644,8 +798,121 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
          mu_MatchedEta.push_back(muon->Eta());
          mu_MatchedPhi.push_back(muon->Phi());
          mu_MatchedEnergy.push_back(muon->Energy());
-         if(genParticle->Mother()) mu_Matched_1Mother.push_back(genParticle->Mother()->GetPDGId());
-         else mu_Matched_1Mother.push_back(-1.0);
+         if(genParticle->Mother()!=0) {
+           TCGenParticle* mother = (TCGenParticle*) genParticle->Mother();
+           mu_Matched_1Mother.push_back(mother->GetPDGId());  
+           if(mother->Mother()!=0){
+             TCGenParticle* grandMother = (TCGenParticle*) mother->Mother();
+             mu_Matched_2Mother.push_back(grandMother->GetPDGId());
+             if(grandMother->Mother()!=0){
+               TCGenParticle* greatGrandMother = (TCGenParticle*) grandMother->Mother();
+               mu_Matched_3Mother.push_back(greatGrandMother->GetPDGId());
+               if(greatGrandMother->Mother()!=0){
+                 TCGenParticle* greatGreatGrandMother = (TCGenParticle*) greatGrandMother->Mother();
+                 mu_Matched_4Mother.push_back(greatGreatGrandMother->GetPDGId());
+                 if(greatGreatGrandMother->Mother()!=0){
+                   TCGenParticle* greatGreatGreatGrandMother = (TCGenParticle*) greatGreatGrandMother->Mother();
+                   mu_Matched_5Mother.push_back(greatGreatGreatGrandMother->GetPDGId());
+                   if(greatGreatGreatGrandMother->Mother()!=0){
+                     TCGenParticle* greatGreatGreatGreatGrandMother = (TCGenParticle*) greatGreatGreatGrandMother->Mother();
+                     mu_Matched_6Mother.push_back(greatGreatGreatGreatGrandMother->GetPDGId());
+                     if(greatGreatGreatGreatGrandMother->Mother()!=0){
+                       TCGenParticle* greatGreatGreatGreatGreatGrandMother = (TCGenParticle*) greatGreatGreatGreatGrandMother->Mother();
+                       mu_Matched_7Mother.push_back(greatGreatGreatGreatGreatGrandMother->GetPDGId());
+                       if(greatGreatGreatGreatGreatGrandMother->Mother()!=0){
+                         TCGenParticle* greatGreatGreatGreatGreatGreatGrandMother = (TCGenParticle*) greatGreatGreatGreatGreatGrandMother->Mother();
+                         mu_Matched_8Mother.push_back(greatGreatGreatGreatGreatGreatGrandMother->GetPDGId());
+                         if(greatGreatGreatGreatGreatGreatGrandMother->Mother()!=0){
+                           TCGenParticle* greatGreatGreatGreatGreatGreatGreatGrandMother = (TCGenParticle*) greatGreatGreatGreatGreatGreatGrandMother->Mother();
+                           mu_Matched_9Mother.push_back(greatGreatGreatGreatGreatGreatGreatGrandMother->GetPDGId());
+                           if(greatGreatGreatGreatGreatGreatGreatGrandMother->Mother()!=0){
+                             TCGenParticle* greatGreatGreatGreatGreatGreatGreatGreatGrandMother = (TCGenParticle*) greatGreatGreatGreatGreatGreatGreatGrandMother->Mother();
+                             mu_Matched_10Mother.push_back(greatGreatGreatGreatGreatGreatGreatGreatGrandMother->GetPDGId());
+
+
+                      }
+                      else mu_Matched_10Mother.push_back(-99.0);
+                    }
+                    else {
+                      mu_Matched_10Mother.push_back(-99.0);
+                      mu_Matched_9Mother.push_back(-99.0);
+                      }
+                    }
+                  else {
+                      mu_Matched_10Mother.push_back(-99.0);
+                      mu_Matched_9Mother.push_back(-99.0);
+                      mu_Matched_8Mother.push_back(-99.0);
+                      }
+                    }
+                 else {
+                      mu_Matched_10Mother.push_back(-99.0);
+                      mu_Matched_9Mother.push_back(-99.0);
+                      mu_Matched_8Mother.push_back(-99.0);
+                      mu_Matched_7Mother.push_back(-99.0);
+                      }
+                    }
+                 else{
+                    mu_Matched_10Mother.push_back(-99.0);
+                    mu_Matched_9Mother.push_back(-99.0);
+                    mu_Matched_8Mother.push_back(-99.0);
+                    mu_Matched_7Mother.push_back(-99.0);
+                    mu_Matched_6Mother.push_back(-99.0);
+                  }
+                }
+                else{
+                   mu_Matched_10Mother.push_back(-99.0);
+                   mu_Matched_9Mother.push_back(-99.0);
+                   mu_Matched_8Mother.push_back(-99.0);
+                   mu_Matched_7Mother.push_back(-99.0);
+                   mu_Matched_6Mother.push_back(-99.0);
+                   mu_Matched_5Mother.push_back(-99.0);
+                 }
+               }
+               else {
+                  mu_Matched_10Mother.push_back(-99.0);
+                  mu_Matched_9Mother.push_back(-99.0);
+                  mu_Matched_8Mother.push_back(-99.0);
+                  mu_Matched_7Mother.push_back(-99.0);
+                  mu_Matched_6Mother.push_back(-99.0);
+                  mu_Matched_5Mother.push_back(-99.0);
+                  mu_Matched_4Mother.push_back(-99.0);
+               } 
+             }
+             else {
+               mu_Matched_10Mother.push_back(-99.0);
+               mu_Matched_9Mother.push_back(-99.0);
+               mu_Matched_8Mother.push_back(-99.0);
+               mu_Matched_7Mother.push_back(-99.0); 
+               mu_Matched_6Mother.push_back(-99.0);   
+               mu_Matched_5Mother.push_back(-99.0);
+               mu_Matched_4Mother.push_back(-99.0);
+               mu_Matched_3Mother.push_back(-99.0);
+             }
+           }
+           else {
+             mu_Matched_2Mother.push_back(-99.0);
+             mu_Matched_3Mother.push_back(-99.0); 
+             mu_Matched_4Mother.push_back(-99.0); 
+             mu_Matched_5Mother.push_back(-99.0);
+             mu_Matched_6Mother.push_back(-99.0);
+             mu_Matched_7Mother.push_back(-99.0);
+             mu_Matched_8Mother.push_back(-99.0);
+             mu_Matched_9Mother.push_back(-99.0);
+             mu_Matched_10Mother.push_back(-99.0);
+           }
+         }
+        else{
+          mu_Matched_1Mother.push_back(-99.0);
+          mu_Matched_2Mother.push_back(-99.0);
+          mu_Matched_3Mother.push_back(-99.0);
+          mu_Matched_4Mother.push_back(-99.0);
+          mu_Matched_5Mother.push_back(-99.0);
+          mu_Matched_6Mother.push_back(-99.0);
+          mu_Matched_7Mother.push_back(-99.0);
+          mu_Matched_8Mother.push_back(-99.0);
+          mu_Matched_9Mother.push_back(-99.0);
+          mu_Matched_10Mother.push_back(-99.0);
+         }
       }//gen matching criteria checked
     else{
       mu_Matched.push_back(0);
@@ -654,8 +921,17 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
       mu_MatchedPhi.push_back(-99.0);
       mu_MatchedEnergy.push_back(-99.0);
       mu_Matched_1Mother.push_back(-99.0);
+      mu_Matched_2Mother.push_back(-99.0);
+      mu_Matched_3Mother.push_back(-99.0);
+      mu_Matched_4Mother.push_back(-99.0);
+      mu_Matched_5Mother.push_back(-99.0);
+      mu_Matched_6Mother.push_back(-99.0);
+      mu_Matched_7Mother.push_back(-99.0);
+      mu_Matched_8Mother.push_back(-99.0);
+      mu_Matched_9Mother.push_back(-99.0);
+      mu_Matched_10Mother.push_back(-99.0);
         }//gen matching else statement closed
-    }//isMC if statement ended 
+    }//isMC if statement ended
  }//end reco muon loop
 
  nMuons = vMuons.size();
