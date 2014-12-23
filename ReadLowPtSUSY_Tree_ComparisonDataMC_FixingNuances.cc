@@ -544,6 +544,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_FixingNuances(std::string infile, std::s
   double secondLeadingJet_BtagVeto_emu_SS = 0.0;
   double thirdLeadingJet_BtagVeto_emu_SS = 0.0;
 
+  double vetoCounter = 0;
   std::cout << "nEvents= " << nEvents << std::endl;
   for (int i=0; i<nEvents; ++i)
     {
@@ -1002,10 +1003,10 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_FixingNuances(std::string infile, std::s
   ph_transverse.SetMagPhi(Photon_vector.at(0).Pt(), Photon_vector.at(0).Phi());
   met_transverse.SetMagPhi(MET, MET_Phi); 
  
-  std::vector<svFitStandalone::MeasuredTauLepton> measuredTauLeptons;
-  svFitStandalone::Vector measuredMET(MET_Px, MET_Py, 0);
-  svFitStandalone::LorentzVector mu1P4_xyzt, mu2P4_xyzt, el1P4_xyzt;
-  svFitStandalone::LorentzVector tau1_xyzt, tau2_xyzt; 
+  //std::vector<svFitStandalone::MeasuredTauLepton> measuredTauLeptons;
+  //svFitStandalone::Vector measuredMET(MET_Px, MET_Py, 0);
+  //svFitStandalone::LorentzVector mu1P4_xyzt, mu2P4_xyzt, el1P4_xyzt;
+  //svFitStandalone::LorentzVector tau1_xyzt, tau2_xyzt; 
   TMatrixD cov(2,2);
   cov[0][0] = MET_Signxx;
   cov[0][1] = MET_Signxy; 
@@ -1387,8 +1388,11 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_FixingNuances(std::string infile, std::s
        if(HT<150 and (Muons.at(0).LepLV+Electrons.at(0).LepLV).M() < 50.0) LowHT_lowInvMass_emu_OS+=eventWeight;
        if(Jets.size()>0 and Jets.at(0).JetLV.Pt() > 40 and Jets.at(0).BTag_CSV < 0.679) LeadingJet_BtagVeto_emu_OS+=eventWeight;
        if(Jets.size()>1 and Jets.at(1).JetLV.Pt() > 40 and Jets.at(1).BTag_CSV < 0.679) secondLeadingJet_BtagVeto_emu_OS+=eventWeight;
-       if(Jets.size()>2 and Jets.at(2).JetLV.Pt() > 40 and Jets.at(2).BTag_CSV < 0.679) thirdLeadingJet_BtagVeto_emu_OS+=eventWeight; 
-    }//OS mode
+       if(Jets.size()>2 and Jets.at(2).JetLV.Pt() > 40 and Jets.at(2).BTag_CSV < 0.679) thirdLeadingJet_BtagVeto_emu_OS+=eventWeight;
+       bool eventVeto = false;
+       for(int i=0; i<=Jets.size(); i++) if (Jets.at(i).JetLV.Pt() > 40 and Jets.at(i).BTag_CSV > 0.679) {eventVeto=true; break;} 
+       if(eventVeto==true) vetoCounter+=eventWeight;
+     }//OS mode
     else if(signSelection=="SS" and ((Muons.at(0).Charge)*(Electrons.at(0).Charge)==+1)){
        if(type=="Data") cout << "Event = " << event << " Run = "<< run << " Lumi = " << lumi << endl;
        emu_SS+=eventWeight;
@@ -1893,6 +1897,7 @@ else if( LNTElectrons.size() > 1.0 and eventWeight > 0.0 ) {
   cout << "LeadingJet_BtagVeto_emu_OS = " << LeadingJet_BtagVeto_emu_OS << endl;
   cout << "secondLeadingJet_BtagVeto_emu_OS = " << secondLeadingJet_BtagVeto_emu_OS << endl;
   cout << "thirdLeadingJet_BtagVeto_emu_OS = " << thirdLeadingJet_BtagVeto_emu_OS << endl;
+  cout << "vetoCounter = " << vetoCounter << endl;
   cout << "==================Cut Flow Table: Electron-Muon SS================" << endl;
   cout << "MET_emu_SS = " << MET_emu_SS << endl;
   cout << "LowHT_emu_SS = " << LowHT_emu_SS << endl;
