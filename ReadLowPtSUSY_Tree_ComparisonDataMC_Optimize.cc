@@ -1,4 +1,4 @@
-#include "ReadLowPtSUSY_Tree_ComparisonDataMC_FixingNuances.h"
+#include "ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize.h"
 
 int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string outfile, std::string type, std::string signSelection, std::string MCSample){
   
@@ -958,42 +958,6 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
     }
   }
 
-  std::vector<GenParticleInfo> taus;
-  std::vector<GenParticleInfo> mus;
-  std::vector<GenParticleInfo> es;
-  if(type=="MC" and MCSample=="ZGToLLG"){
-    for (unsigned int j=0; j<tauPx->size(); ++j)
-      {
-      GenParticleInfo tau;
-      tau.Px = tauPx->at(j);
-      tau.Py = tauPy->at(j); 
-      tau.Pz = tauPz->at(j);
-      tau.E = tauE->at(j);
-      taus.push_back(tau);
-     }
-    for (unsigned int j=0; j<muPx->size(); ++j)
-      {
-      GenParticleInfo mu;
-      mu.Px = muPx->at(j);
-      mu.Py = muPy->at(j);
-      mu.Pz = muPz->at(j);
-      mu.E = muE->at(j);
-      mus.push_back(mu);
-      }
-    for (unsigned int j=0; j<ePx->size(); ++j)
-      {
-      GenParticleInfo ee;
-      ee.Px = ePx->at(j);
-      ee.Py = ePy->at(j);
-      ee.Pz = ePz->at(j);
-      ee.E = eE->at(j);
-      es.push_back(ee);
-     }
-  }
-  std::sort(taus.begin(), taus.end(), sortGenParticlesInDescendingpT);
-  std::sort(mus.begin(), mus.end(), sortGenParticlesInDescendingpT);
-  std::sort(es.begin(), es.end(), sortGenParticlesInDescendingpT);
-
   //Preliminary event cuts guided by the trigger:
   if (not(Photon_vector.size() > 0 and Photon_vector.at(0).Pt() > 32.0 and caloMET > 35.0)) continue;
   nEvents_Trigger++;
@@ -1037,36 +1001,6 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
   cov[1][0] = MET_Signyx;
   cov[1][1] = MET_Signyy;
 
-  if(eventWeight > 0.0 and type=="MC" and MCSample=="ZGToLLG" and taus.size()==2){
-    //tau1_xyzt.SetPxPyPzE(taus.at(0).Px, taus.at(0).Py, taus.at(0).Pz, taus.at(0).E);
-    //tau2_xyzt.SetPxPyPzE(taus.at(1).Px, taus.at(1).Py, taus.at(1).Pz, taus.at(1).E);
-    //measuredTauLeptons.push_back(svFitStandalone::MeasuredTauLepton(svFitStandalone::kTauToMuDecay, tau1_xyzt)); //kTauToElecDecay
-    //measuredTauLeptons.push_back(svFitStandalone::MeasuredTauLepton(svFitStandalone::kTauToMuDecay, tau2_xyzt)); //kTauToElecDecay
-    //SVfitStandaloneAlgorithm algo(measuredTauLeptons, measuredMET, cov, 0);
-    //algo.addLogM(false);
-    //algo.integrateVEGAS();
-    TLorentzVector tau1, tau2, MET_vec;
-    tau1.SetPxPyPzE(taus.at(0).Px, taus.at(0).Py, taus.at(0).Pz, taus.at(0).E);
-    tau2.SetPxPyPzE(taus.at(1).Px, taus.at(1).Py, taus.at(1).Pz, taus.at(1).E);
-    MET_vec.SetPxPyPzE(MET*TMath::Cos(MET_Phi), MET*TMath::Sin(MET_Phi), 0, MET);
-    mumuHist.h_Invariant_Mass_Taus->Fill((tau1+tau2).M());
-    //mumuHist.h_SVFit_Mass_Taus->Fill(algo.getMass());
-  }
-
-  if(eventWeight > 0.0 and type=="MC" and MCSample=="ZGToLLG" and mus.size()==2){
-    TLorentzVector mu1, mu2;
-    mu1.SetPxPyPzE(mus.at(0).Px, mus.at(0).Py, mus.at(0).Pz, mus.at(0).E);
-    mu2.SetPxPyPzE(mus.at(1).Px, mus.at(1).Py, mus.at(1).Pz, mus.at(1).E);
-    mumuHist.h_Invariant_Mass_Mus->Fill((mu1+mu2).M());
-  }
-
-  if(eventWeight > 0.0 and type=="MC" and MCSample=="ZGToLLG" and es.size()==2){
-    TLorentzVector e1, e2;
-    e1.SetPxPyPzE(es.at(0).Px, es.at(0).Py, es.at(0).Pz, es.at(0).E);
-    e2.SetPxPyPzE(es.at(1).Px, es.at(1).Py, es.at(1).Pz, es.at(1).E);
-    mumuHist.h_Invariant_Mass_Es->Fill((e1+e2).M());
-  }
-  
   if(eventWeight > 0.0 and Muons.size()==2){ 
       nEvents_Dimuon++;
       if(type=="MC") eventWeight *= muonSF(Muons.at(0).LepLV.Pt(), Muons.at(0).LepLV.Eta())*muonSF(Muons.at(1).LepLV.Pt(), Muons.at(1).LepLV.Eta())*photonSF(Photon_vector.at(0).Pt(), Photon_vector.at(0).Eta()); 
@@ -1113,6 +1047,8 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
         mumuHist.h_caloMET->Fill(caloMET, eventWeight);
         mumuHist.h_nJets->Fill(Jets.size(), eventWeight);
         mumuHist.h_HT->Fill(HT, eventWeight);
+        mumuHist.h_nbJets->Fill(Bjets.size(), eventWeight);
+        mumuHist.h_HTb->Fill(HTb, eventWeight);
         if(Jets.size()>0) mumuHist.h_jet_pt_leading->Fill(Jets.at(0).JetLV.Pt(), eventWeight);
         if(Jets.size()>1) mumuHist.h_jet_pt_trailing->Fill(Jets.at(1).JetLV.Pt(), eventWeight);
         if(Jets.size()>2) mumuHist.h_jet_pt_3rd->Fill(Jets.at(2).JetLV.Pt(), eventWeight);
@@ -1137,6 +1073,14 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
         if(Jets.size()>3) mumuHist.h_jet_energy_4th->Fill(Jets.at(3).JetLV.E(), eventWeight);
         if(Jets.size()>4) mumuHist.h_jet_energy_5th->Fill(Jets.at(4).JetLV.E(), eventWeight);
         if(Jets.size()>5) mumuHist.h_jet_energy_6th->Fill(Jets.at(5).JetLV.E(), eventWeight);
+        if(Bjets.size()>0) mumuHist.h_bjet_pt_leading->Fill(Bjets.at(0).BJetLV.Pt(), eventWeight);
+        if(Bjets.size()>1) mumuHist.h_bjet_pt_trailing->Fill(Bjets.at(1).BJetLV.Pt(), eventWeight);
+        //if(Bjets.size()>0) mumuHist.h_bjet_eta_leading->Fill(Bjets.at(0).BJetLV.Eta(), eventWeight);
+        //if(Bjets.size()>1) mumuHist.h_bjet_eta_trailing->Fill(Bjets.at(1).BJetLV.Eta(), eventWeight);
+        if(Bjets.size()>0) mumuHist.h_bjet_phi_leading->Fill(Bjets.at(0).BJetLV.Phi(), eventWeight);
+        if(Bjets.size()>1) mumuHist.h_bjet_phi_trailing->Fill(Bjets.at(1).BJetLV.Phi(), eventWeight);
+        if(Bjets.size()>0) mumuHist.h_bjet_energy_leading->Fill(Bjets.at(0).BJetLV.E(), eventWeight);
+        if(Bjets.size()>1) mumuHist.h_bjet_energy_trailing->Fill(Bjets.at(1).BJetLV.E(), eventWeight);
         mumuHist.h_photon_pt->Fill(Photon_vector.at(0).Pt(), eventWeight);
         mumuHist.h_photon_eta->Fill(Photon_vector.at(0).Eta(), eventWeight);
         mumuHist.h_photon_phi->Fill(Photon_vector.at(0).Phi(), eventWeight);
@@ -1179,6 +1123,8 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
         mumuHist.h_caloMET->Fill(caloMET, eventWeight);
         mumuHist.h_nJets->Fill(Jets.size(), eventWeight);
         mumuHist.h_HT->Fill(HT, eventWeight);
+        mumuHist.h_nbJets->Fill(Bjets.size(), eventWeight);
+        mumuHist.h_HTb->Fill(HTb, eventWeight);
         if(Jets.size()>0) mumuHist.h_jet_pt_leading->Fill(Jets.at(0).JetLV.Pt(), eventWeight);
         if(Jets.size()>1) mumuHist.h_jet_pt_trailing->Fill(Jets.at(1).JetLV.Pt(), eventWeight);
         if(Jets.size()>2) mumuHist.h_jet_pt_3rd->Fill(Jets.at(2).JetLV.Pt(), eventWeight);
@@ -1203,6 +1149,14 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
         if(Jets.size()>3) mumuHist.h_jet_energy_4th->Fill(Jets.at(3).JetLV.E(), eventWeight);
         if(Jets.size()>4) mumuHist.h_jet_energy_5th->Fill(Jets.at(4).JetLV.E(), eventWeight);
         if(Jets.size()>5) mumuHist.h_jet_energy_6th->Fill(Jets.at(5).JetLV.E(), eventWeight);
+        if(Bjets.size()>0) mumuHist.h_bjet_pt_leading->Fill(Bjets.at(0).BJetLV.Pt(), eventWeight);
+        if(Bjets.size()>1) mumuHist.h_bjet_pt_trailing->Fill(Bjets.at(1).BJetLV.Pt(), eventWeight);
+        //if(Bjets.size()>0) mumuHist.h_bjet_eta_leading->Fill(Bjets.at(0).BJetLV.Eta(), eventWeight);
+        //if(Bjets.size()>1) mumuHist.h_bjet_eta_trailing->Fill(Bjets.at(1).BJetLV.Eta(), eventWeight);
+        if(Bjets.size()>0) mumuHist.h_bjet_phi_leading->Fill(Bjets.at(0).BJetLV.Phi(), eventWeight);
+        if(Bjets.size()>1) mumuHist.h_bjet_phi_trailing->Fill(Bjets.at(1).BJetLV.Phi(), eventWeight);
+        if(Bjets.size()>0) mumuHist.h_bjet_energy_leading->Fill(Bjets.at(0).BJetLV.E(), eventWeight);
+        if(Bjets.size()>1) mumuHist.h_bjet_energy_trailing->Fill(Bjets.at(1).BJetLV.E(), eventWeight);
         mumuHist.h_photon_pt->Fill(Photon_vector.at(0).Pt(), eventWeight);
         mumuHist.h_photon_eta->Fill(Photon_vector.at(0).Eta(), eventWeight);
         mumuHist.h_photon_phi->Fill(Photon_vector.at(0).Phi(), eventWeight);
@@ -1262,6 +1216,8 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
        emuHist.h_caloMET->Fill(caloMET, eventWeight);
        emuHist.h_nJets->Fill(Jets.size(), eventWeight);
        emuHist.h_HT->Fill(HT, eventWeight);
+       emuHist.h_nbJets->Fill(Bjets.size(), eventWeight);
+       emuHist.h_HTb->Fill(HTb, eventWeight);
        if(Jets.size()>0) emuHist.h_jet_pt_leading->Fill(Jets.at(0).JetLV.Pt(), eventWeight);
        if(Jets.size()>1) emuHist.h_jet_pt_trailing->Fill(Jets.at(1).JetLV.Pt(), eventWeight);
        if(Jets.size()>2) emuHist.h_jet_pt_3rd->Fill(Jets.at(2).JetLV.Pt(), eventWeight);
@@ -1286,6 +1242,16 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
        if(Jets.size()>3) emuHist.h_jet_energy_4th->Fill(Jets.at(3).JetLV.E(), eventWeight);
        if(Jets.size()>4) emuHist.h_jet_energy_5th->Fill(Jets.at(4).JetLV.E(), eventWeight);
        if(Jets.size()>5) emuHist.h_jet_energy_6th->Fill(Jets.at(5).JetLV.E(), eventWeight);
+       if(Bjets.size()>0) emuHist.h_bjet_pt_leading->Fill(Bjets.at(0).BJetLV.Pt(), eventWeight);
+       if(Bjets.size()>1) emuHist.h_bjet_pt_trailing->Fill(Bjets.at(1).BJetLV.Pt(), eventWeight);
+       if(Bjets.size()>0) cout << "Bjets.at(0).BJetLV.Eta() = " << Bjets.at(0).BJetLV.Eta() << endl;
+       if(Bjets.size()>0) cout << "Bjets.at(0).BJetLV.Pt() = " << Bjets.at(0).BJetLV.Pt() << endl;
+       //if(Bjets.size()>0) emuHist.h_bjet_eta_leading->Fill(Bjets.at(0).BJetLV.Eta(), eventWeight);
+       //if(Bjets.size()>1) emuHist.h_bjet_eta_trailing->Fill(Bjets.at(1).BJetLV.Eta(), eventWeight);
+       if(Bjets.size()>0) emuHist.h_bjet_phi_leading->Fill(Bjets.at(0).BJetLV.Phi(), eventWeight);
+       if(Bjets.size()>1) emuHist.h_bjet_phi_trailing->Fill(Bjets.at(1).BJetLV.Phi(), eventWeight);
+       if(Bjets.size()>0) emuHist.h_bjet_energy_leading->Fill(Bjets.at(0).BJetLV.E(), eventWeight);
+       if(Bjets.size()>1) emuHist.h_bjet_energy_trailing->Fill(Bjets.at(1).BJetLV.E(), eventWeight);
        emuHist.h_photon_pt->Fill(Photon_vector.at(0).Pt(), eventWeight);
        emuHist.h_photon_eta->Fill(Photon_vector.at(0).Eta(), eventWeight);
        emuHist.h_photon_phi->Fill(Photon_vector.at(0).Phi(), eventWeight);
@@ -1342,6 +1308,8 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
        emuHist.h_caloMET->Fill(caloMET, eventWeight);
        emuHist.h_nJets->Fill(Jets.size(), eventWeight);
        emuHist.h_HT->Fill(HT, eventWeight);
+       emuHist.h_nbJets->Fill(Bjets.size(), eventWeight);
+       emuHist.h_HTb->Fill(HTb, eventWeight);
        if(Jets.size()>0) emuHist.h_jet_pt_leading->Fill(Jets.at(0).JetLV.Pt(), eventWeight);
        if(Jets.size()>1) emuHist.h_jet_pt_trailing->Fill(Jets.at(1).JetLV.Pt(), eventWeight);
        if(Jets.size()>2) emuHist.h_jet_pt_3rd->Fill(Jets.at(2).JetLV.Pt(), eventWeight);
@@ -1366,6 +1334,14 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
        if(Jets.size()>3) emuHist.h_jet_energy_4th->Fill(Jets.at(3).JetLV.E(), eventWeight);
        if(Jets.size()>4) emuHist.h_jet_energy_5th->Fill(Jets.at(4).JetLV.E(), eventWeight);
        if(Jets.size()>5) emuHist.h_jet_energy_6th->Fill(Jets.at(5).JetLV.E(), eventWeight);
+       if(Bjets.size()>0) emuHist.h_bjet_pt_leading->Fill(Bjets.at(0).BJetLV.Pt(), eventWeight);
+       if(Bjets.size()>1) emuHist.h_bjet_pt_trailing->Fill(Bjets.at(1).BJetLV.Pt(), eventWeight);
+       if(Bjets.size()>0) emuHist.h_bjet_eta_leading->Fill(Bjets.at(0).BJetLV.Eta(), eventWeight);
+       if(Bjets.size()>1) emuHist.h_bjet_eta_trailing->Fill(Bjets.at(1).BJetLV.Eta(), eventWeight);
+       if(Bjets.size()>0) emuHist.h_bjet_phi_leading->Fill(Bjets.at(0).BJetLV.Phi(), eventWeight);
+       if(Bjets.size()>1) emuHist.h_bjet_phi_trailing->Fill(Bjets.at(1).BJetLV.Phi(), eventWeight);
+       if(Bjets.size()>0) emuHist.h_bjet_energy_leading->Fill(Bjets.at(0).BJetLV.E(), eventWeight);
+       if(Bjets.size()>1) emuHist.h_bjet_energy_trailing->Fill(Bjets.at(1).BJetLV.E(), eventWeight);
        emuHist.h_photon_pt->Fill(Photon_vector.at(0).Pt(), eventWeight);
        emuHist.h_photon_eta->Fill(Photon_vector.at(0).Eta(), eventWeight);
        emuHist.h_photon_phi->Fill(Photon_vector.at(0).Phi(), eventWeight);
@@ -1407,6 +1383,8 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
       eeHist.h_caloMET->Fill(caloMET, eventWeight);
       eeHist.h_nJets->Fill(Jets.size(), eventWeight);
       eeHist.h_HT->Fill(HT, eventWeight);
+      eeHist.h_nbJets->Fill(Bjets.size(), eventWeight);
+      eeHist.h_HTb->Fill(HTb, eventWeight);
       if(Jets.size()>0) eeHist.h_jet_pt_leading->Fill(Jets.at(0).JetLV.Pt(), eventWeight);
       if(Jets.size()>1) eeHist.h_jet_pt_trailing->Fill(Jets.at(1).JetLV.Pt(), eventWeight);
       if(Jets.size()>2) eeHist.h_jet_pt_3rd->Fill(Jets.at(2).JetLV.Pt(), eventWeight);
@@ -1431,6 +1409,14 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
       if(Jets.size()>3) eeHist.h_jet_energy_4th->Fill(Jets.at(3).JetLV.E(), eventWeight);
       if(Jets.size()>4) eeHist.h_jet_energy_5th->Fill(Jets.at(4).JetLV.E(), eventWeight);
       if(Jets.size()>5) eeHist.h_jet_energy_6th->Fill(Jets.at(5).JetLV.E(), eventWeight);
+      if(Bjets.size()>0) eeHist.h_bjet_pt_leading->Fill(Bjets.at(0).BJetLV.Pt(), eventWeight);
+      if(Bjets.size()>1) eeHist.h_bjet_pt_trailing->Fill(Bjets.at(1).BJetLV.Pt(), eventWeight);
+      if(Bjets.size()>0) eeHist.h_bjet_eta_leading->Fill(Bjets.at(0).BJetLV.Eta(), eventWeight);
+      //if(Bjets.size()>1) eeHist.h_bjet_eta_trailing->Fill(Bjets.at(1).BJetLV.Eta(), eventWeight);
+      if(Bjets.size()>0) eeHist.h_bjet_phi_leading->Fill(Bjets.at(0).BJetLV.Phi(), eventWeight);
+      if(Bjets.size()>1) eeHist.h_bjet_phi_trailing->Fill(Bjets.at(1).BJetLV.Phi(), eventWeight);
+      if(Bjets.size()>0) eeHist.h_bjet_energy_leading->Fill(Bjets.at(0).BJetLV.E(), eventWeight);
+      if(Bjets.size()>1) eeHist.h_bjet_energy_trailing->Fill(Bjets.at(1).BJetLV.E(), eventWeight);
       eeHist.h_photon_pt->Fill(Photon_vector.at(0).Pt(), eventWeight);
       eeHist.h_photon_eta->Fill(Photon_vector.at(0).Eta(), eventWeight);
       eeHist.h_photon_phi->Fill(Photon_vector.at(0).Phi(), eventWeight);
@@ -1459,6 +1445,8 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
       eeHist.h_caloMET->Fill(caloMET, eventWeight);
       eeHist.h_nJets->Fill(Jets.size(), eventWeight);
       eeHist.h_HT->Fill(HT, eventWeight);
+      eeHist.h_nbJets->Fill(Bjets.size(), eventWeight);
+      eeHist.h_HTb->Fill(HTb, eventWeight);
       if(Jets.size()>0) eeHist.h_jet_pt_leading->Fill(Jets.at(0).JetLV.Pt(), eventWeight);
       if(Jets.size()>1) eeHist.h_jet_pt_trailing->Fill(Jets.at(1).JetLV.Pt(), eventWeight);
       if(Jets.size()>2) eeHist.h_jet_pt_3rd->Fill(Jets.at(2).JetLV.Pt(), eventWeight);
@@ -1483,6 +1471,14 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
       if(Jets.size()>3) eeHist.h_jet_energy_4th->Fill(Jets.at(3).JetLV.E(), eventWeight);
       if(Jets.size()>4) eeHist.h_jet_energy_5th->Fill(Jets.at(4).JetLV.E(), eventWeight);
       if(Jets.size()>5) eeHist.h_jet_energy_6th->Fill(Jets.at(5).JetLV.E(), eventWeight);
+      if(Bjets.size()>0) eeHist.h_bjet_pt_leading->Fill(Bjets.at(0).BJetLV.Pt(), eventWeight);
+      if(Bjets.size()>1) eeHist.h_bjet_pt_trailing->Fill(Bjets.at(1).BJetLV.Pt(), eventWeight);
+      //if(Bjets.size()>0) eeHist.h_bjet_eta_leading->Fill(Bjets.at(0).BJetLV.Eta(), eventWeight);
+      //if(Bjets.size()>1) eeHist.h_bjet_eta_trailing->Fill(Bjets.at(1).BJetLV.Eta(), eventWeight);
+      if(Bjets.size()>0) eeHist.h_bjet_phi_leading->Fill(Bjets.at(0).BJetLV.Phi(), eventWeight);
+      if(Bjets.size()>1) eeHist.h_bjet_phi_trailing->Fill(Bjets.at(1).BJetLV.Phi(), eventWeight);
+      if(Bjets.size()>0) eeHist.h_bjet_energy_leading->Fill(Bjets.at(0).BJetLV.E(), eventWeight);
+      if(Bjets.size()>1) eeHist.h_bjet_energy_trailing->Fill(Bjets.at(1).BJetLV.E(), eventWeight);
       eeHist.h_photon_pt->Fill(Photon_vector.at(0).Pt(), eventWeight);
       eeHist.h_photon_eta->Fill(Photon_vector.at(0).Eta(), eventWeight);
       eeHist.h_photon_phi->Fill(Photon_vector.at(0).Phi(), eventWeight);
