@@ -1,0 +1,2009 @@
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( g -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( d -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( u -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( u -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( u -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> c ) } { p+ -> ( d -> cbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( u -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( u -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( u -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( dbar -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( s -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( u -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( dbar -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( sbar -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( dbar -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( sbar -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( u -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> c ) } { p+ -> ( g -> cbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( g -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( dbar -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( d -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( dbar -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( s -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( g -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> d ) } { p+ -> ( dbar -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( d -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( ubar -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( d -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( ubar -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( sbar -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( ubar -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( g -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( dbar -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( u -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> c ) } { p+ -> ( d -> cbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( u -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( g -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( g -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( u -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( g -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( dbar -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> c ) } { p+ -> ( g -> cbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( u -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( u -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( dbar -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> d ) } { p+ -> ( g -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( ubar -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( s -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( dbar -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( u -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( g -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( s -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( ubar -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> c ) } { p+ -> ( g -> cbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( dbar -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( u -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( g -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( g -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( dbar -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( ubar -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( g -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( dbar -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( ubar -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> dbar ) } { p+ -> ( g -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> c ) } { p+ -> ( u -> cbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> dbar ) } { p+ -> ( g -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( u -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( d -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( dbar -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( ubar -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( dbar -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( u -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( dbar -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( dbar -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( sbar -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( dbar -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> c ) } { p+ -> ( g -> cbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( dbar -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( ubar -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( u -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> d ) } { p+ -> ( dbar -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( d -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( g -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( s -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( dbar -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( u -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> c ) } { p+ -> ( g -> cbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> d ) } { p+ -> ( dbar -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( dbar -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( ubar -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( g -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( d -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( dbar -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( ubar -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( s -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( u -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( ubar -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> c ) } { p+ -> ( g -> cbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( u -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( dbar -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( dbar -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( g -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( dbar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( sbar -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( s -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( g -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( d -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( d -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( dbar -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( dbar -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( s -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> c ) } { p+ -> ( u -> cbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( dbar -> dbar ) } { p+ -> ( d -> d ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( dbar -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( d -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( dbar -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( u -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( ubar -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> mu- nu_mubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( g -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( u -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> ubar ) } { p+ -> ( u -> u ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( d -> d ) } { p+ -> ( dbar -> dbar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( u -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> mu+ nu_mu ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> g ) } { p+ -> ( d -> g ) } ->  ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) gamma
+-- decay: --
+{ p+ -> ( u -> g ) } { p+ -> ( g -> g ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> tau+ nu_tau ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> tau- nu_taubar ) ~chi_10 ) bbar ) gamma
+-- decay: --
+{ p+ -> ( g -> u ) } { p+ -> ( ubar -> ubar ) } ->  ( ~t_1 -> ( ~chi_1+ -> ( W+ -> e+ nu_e ) ~chi_10 ) b ) ( ~t_1bar -> ( ~chi_1- -> ( W- -> e- nu_ebar ) ~chi_10 ) bbar ) gamma
+electrons = 640
+muons = 690
+taus = 669
+n_dielectrons = 120
+n_dimuons = 130
+n_dileptons = 210
+n_ditaus = 129
+n_electronTau = 190
+n_muonTau = 220
