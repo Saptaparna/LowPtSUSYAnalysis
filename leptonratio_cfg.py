@@ -6,6 +6,15 @@ process.load("FWCore.MessageService.MessageLogger_cfi")
 
 process.load("SimGeneral.HepPDTESSource.pythiapdt_cfi")
 
+process.printDecay = cms.EDAnalyzer("ParticleDecayDrawer",
+                                   #src = cms.InputTag("prunedGenParticles"),
+                                   src = cms.InputTag("genParticles"),
+                                   printP4 = cms.untracked.bool(False),
+                                   printPtEtaPhi = cms.untracked.bool(False),
+                                   printVertex = cms.untracked.bool(False)
+                                   )
+
+
 process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
 
 process.source = cms.Source("PoolSource",
@@ -43,12 +52,32 @@ process.source = cms.Source("PoolSource",
         #'/store/user/sapta/STOP160_Publish_8TeV_FastSIM_Rerun/STOP160_Publish_8TeV_FastSIM_Rerun/ef8a184b12798caf874bdadb94795d3b/step0_106_1_iZw.root',
         #'/store/user/sapta/STOP160_Publish_8TeV_FastSIM_Rerun/STOP160_Publish_8TeV_FastSIM_Rerun/ef8a184b12798caf874bdadb94795d3b/step0_107_1_XLf.root',
         #'/store/user/sapta/STOP160_Publish_8TeV_FastSIM_Rerun/STOP160_Publish_8TeV_FastSIM_Rerun/ef8a184b12798caf874bdadb94795d3b/step0_108_1_Esy.root'
-
+        ##Stop 140##
+       #'/store/user/sapta/STOP140_Publish_8TeV_FastSIM_Rerun/STOP140_Publish_8TeV_FastSIM_Rerun/ef8a184b12798caf874bdadb94795d3b/step0_1000_1_Pa3.root',
+       #'/store/user/sapta/STOP140_Publish_8TeV_FastSIM_Rerun/STOP140_Publish_8TeV_FastSIM_Rerun/ef8a184b12798caf874bdadb94795d3b/step0_100_1_WzW.root',
+       #'/store/user/sapta/STOP140_Publish_8TeV_FastSIM_Rerun/STOP140_Publish_8TeV_FastSIM_Rerun/ef8a184b12798caf874bdadb94795d3b/step0_101_1_TT5.root',
+       #'/store/user/sapta/STOP140_Publish_8TeV_FastSIM_Rerun/STOP140_Publish_8TeV_FastSIM_Rerun/ef8a184b12798caf874bdadb94795d3b/step0_102_1_Oxw.root',
+       #'/store/user/sapta/STOP140_Publish_8TeV_FastSIM_Rerun/STOP140_Publish_8TeV_FastSIM_Rerun/ef8a184b12798caf874bdadb94795d3b/step0_103_1_zqV.root',
+       #'/store/user/sapta/STOP140_Publish_8TeV_FastSIM_Rerun/STOP140_Publish_8TeV_FastSIM_Rerun/ef8a184b12798caf874bdadb94795d3b/step0_104_1_MQp.root',
+       #'/store/user/sapta/STOP140_Publish_8TeV_FastSIM_Rerun/STOP140_Publish_8TeV_FastSIM_Rerun/ef8a184b12798caf874bdadb94795d3b/step0_105_1_LkK.root',
+       #'/store/user/sapta/STOP140_Publish_8TeV_FastSIM_Rerun/STOP140_Publish_8TeV_FastSIM_Rerun/ef8a184b12798caf874bdadb94795d3b/step0_106_1_6dv.root',
+       #'/store/user/sapta/STOP140_Publish_8TeV_FastSIM_Rerun/STOP140_Publish_8TeV_FastSIM_Rerun/ef8a184b12798caf874bdadb94795d3b/step0_107_1_wzQ.root',
+       #'/store/user/sapta/STOP140_Publish_8TeV_FastSIM_Rerun/STOP140_Publish_8TeV_FastSIM_Rerun/ef8a184b12798caf874bdadb94795d3b/step0_108_1_irj.root',
+       ##Stop 120##
+       # '/store/user/sapta/STOP120_Publish_8TeV_FastSIM_Rerun/STOP120_Publish_8TeV_FastSIM_Rerun/ef8a184b12798caf874bdadb94795d3b/step0_1000_1_uCT.root',
+       #'/store/user/sapta/STOP120_Publish_8TeV_FastSIM_Rerun/STOP120_Publish_8TeV_FastSIM_Rerun/ef8a184b12798caf874bdadb94795d3b/step0_100_1_epV.root',
+       #'/store/user/sapta/STOP120_Publish_8TeV_FastSIM_Rerun/STOP120_Publish_8TeV_FastSIM_Rerun/ef8a184b12798caf874bdadb94795d3b/step0_101_1_dLP.root',
+       #'/store/user/sapta/STOP120_Publish_8TeV_FastSIM_Rerun/STOP120_Publish_8TeV_FastSIM_Rerun/ef8a184b12798caf874bdadb94795d3b/step0_102_1_52x.root',
+       #'/store/user/sapta/STOP120_Publish_8TeV_FastSIM_Rerun/STOP120_Publish_8TeV_FastSIM_Rerun/ef8a184b12798caf874bdadb94795d3b/step0_103_1_P7s.root',
+       #'/store/user/sapta/STOP120_Publish_8TeV_FastSIM_Rerun/STOP120_Publish_8TeV_FastSIM_Rerun/ef8a184b12798caf874bdadb94795d3b/step0_104_1_1Ok.root',
+       #'/store/user/sapta/STOP120_Publish_8TeV_FastSIM_Rerun/STOP120_Publish_8TeV_FastSIM_Rerun/ef8a184b12798caf874bdadb94795d3b/step0_105_1_4hO.root',
+       #'/store/user/sapta/STOP120_Publish_8TeV_FastSIM_Rerun/STOP120_Publish_8TeV_FastSIM_Rerun/ef8a184b12798caf874bdadb94795d3b/step0_106_1_ct4.root',
+       #'/store/user/sapta/STOP120_Publish_8TeV_FastSIM_Rerun/STOP120_Publish_8TeV_FastSIM_Rerun/ef8a184b12798caf874bdadb94795d3b/step0_107_1_XlK.root',
+       #'/store/user/sapta/STOP120_Publish_8TeV_FastSIM_Rerun/STOP120_Publish_8TeV_FastSIM_Rerun/ef8a184b12798caf874bdadb94795d3b/step0_108_1_X1q.root', 
    )
 )
 
 process.demo = cms.EDAnalyzer('LeptonRatio'
 )
 
-
-process.p = cms.Path(process.demo)
+process.p = cms.Path(process.demo* process.printDecay)

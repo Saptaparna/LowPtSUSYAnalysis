@@ -49,18 +49,20 @@ LeptonRatio::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
    for(std::vector<reco::GenParticle>::const_iterator genParticle = genParticles->begin(); genParticle != genParticles->end(); genParticle++){
     int id = genParticle->pdgId();
     int st = genParticle->status();
+    int mother_id = 0;
+    if( genParticle->mother()) mother_id = genParticle->mother()->pdgId();
     double pt = genParticle->pt();
-    if (abs(id)==11 && st==3){
+    if (abs(id)==11 && st==3 and pt>0.5 and abs(mother_id)==24){
        electrons++;
        n_electrons++;
                 }
 
-    if (abs(id)==13 && st==3){
+    if (abs(id)==13 && st==3 and pt>0.5 and abs(mother_id)==24){
         muons++;
         n_muons++;
                 }
 
-    if (abs(id)==15 && st==3){
+    if (abs(id)==15 && st==3 and pt>0.5 and abs(mother_id)==24){
        taus++;
        n_taus++;
        }
