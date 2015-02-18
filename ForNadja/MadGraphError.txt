@@ -1,0 +1,24 @@
+Using random number seed offset = 21
+INFO: Running Survey 
+Creating Jobs
+Working on SubProcesses
+    P0_gg_t1t1xa 
+    P0_qq_t1t1xa 
+    P0_bbx_t1t1xa 
+INFO:  Idle: 0,  Running: 11,  Completed: 0 [ current time: 20h01 ] 
+INFO:  Idle: 0,  Running: 1,  Completed: 10 [  3.6s  ] 
+INFO: End survey 
+Survey return zero cross section. 
+   Typical reasons are the following:
+   1) A massive s-channel particle has a width set to zero.
+   2) The pdf are zero for at least one of the initial state particles
+      or you are using maxjetflavor=4 for initial state b:s.
+   3) The cuts are too strong.
+   Please check/correct your param_card and/or your run_card.
+Zero result detected: See https://cp3.irmp.ucl.ac.be/projects/madgraph/wiki/FAQ-General-14
+quit
+INFO:  
+ 
+INFO:  
+ 
+
