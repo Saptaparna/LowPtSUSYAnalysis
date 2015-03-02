@@ -1,0 +1,64 @@
+#************************************************************
+#*                        MadGraph 5                        *
+#*                                                          *
+#*                *                       *                 *
+#*                  *        * *        *                   *
+#*                    * * * * 5 * * * *                     *
+#*                  *        * *        *                   *
+#*                *                       *                 *
+#*                                                          *
+#*                                                          *
+#*         VERSION 1.5.10                2013-05-16         *
+#*                                                          *
+#*    The MadGraph Development Team - Please visit us at    *
+#*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+#*                                                          *
+#************************************************************
+#*                                                          *
+#*               Command File for MadGraph 5                *
+#*                                                          *
+#*     run as ./bin/mg5  filename                           *
+#*                                                          *
+#************************************************************
+
+set group_subprocesses Auto
+set ignore_six_quark_processes False
+set gauge unitary
+set complex_mass_scheme False
+import model sm
+define p = g u c d s u~ c~ d~ s~
+define j = g u c d s u~ c~ d~ s~
+define l+ = e+ mu+
+define l- = e- mu-
+define vl = ve vm vt
+define vl~ = ve~ vm~ vt~
+import model mssm
+define p = g u c d s u~ c~ d~ s~
+define j = g u c d s u~ c~ d~ s~
+define l+ = e+ mu+
+define l- = e- mu-
+define vl = ve vm vt
+define vl~ = ve~ vm~ vt~
+define sle = el+ el- mul+ mul- sve sve~ svm svm~ er+ er- mur+ mur-
+define squ = dl dl~ ul ul~ sl sl~ cl cl~ dr dr~ ur ur~ sr sr~ cr cr~ b1 b1~ b2 b2~
+# Define multiparticle labels
+define p = g u c d s u~ c~ d~ s~
+define j = g u c d s u~ c~ d~ s~
+define l+ = e+ mu+
+define l- = e- mu-
+define vl = ve vm vt
+define vl~ = ve~ vm~ vt~
+define lpm = e+ mu+ e- mu-
+define vpm = ve vm vt ve~ vm~ vt~
+define h = h1 h2
+define x2 = x2+ x2-
+define x1 = x1+ x1-
+generate p p > x1+ x1- a / squ, x1+ > l+ vl n1 / sle , x1- > l- vl~ n1 / sle
+add process p p > n2 n1 a / squ, n2 > lpm lpm vpm vpm n1 / sle z a h x2
+add process p p > n2 n1 a / squ, n2 > l+ l- n1 / sle
+add process p p > x1 n2 a / squ, x1 > lpm vpm n1 / sle, n2 > l+ l- n1 / sle
+add process p p > x1 n2 a / squ, x1 > lpm vpm n1 / sle, n2 > lpm lpm vpm vpm n1 / sle z a h x2
+add process p p > x1 n2 a / squ, x1 > j j n1 / squ, n2 > l+ l- n1 / sle
+add process p p > x1 n2 a / squ, x1 > j j n1 / squ, n2 > lpm lpm vpm vpm n1 / sle z a h x2
+add process p p > x1 n2 a / squ, x1 > lpm vpm n1 / sle, n2 > lpm vpm j j n1 / sle z a h x2 squ
+output
