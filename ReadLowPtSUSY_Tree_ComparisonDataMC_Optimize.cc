@@ -435,21 +435,12 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
 
   TH2F *h_Mmumu_MmumuGamma = new TH2F("h_Mmumu_MmumuGamma", "Scatter Plot of  M_{#mu#mu} versus M_{#mu#mu#gamma}; M_{#mu#mu} [GeV]; M_{#mu#mu#gamma} [GeV]", 4000, 0, 2000, 4000, 0, 2000);  h_Mmumu_MmumuGamma->Sumw2();
 
-  double mumu_SS_NT01 = 0;
-  double mumu_SS_NT10 = 0;
-  double mumu_SS_NT00 = 0;
   double emu_OS = 0;
   double emu_SS = 0;
-  double emu_SS_NT01 = 0;
-  double emu_SS_NT10 = 0;
-  double emu_SS_NT00 = 0;
   double mumu_OS = 0;
   double mumu_SS = 0;
   double ee_OS = 0;
   double ee_SS = 0;
-  double ee_SS_NT01 = 0;
-  double ee_SS_NT10 = 0;
-  double ee_SS_NT00 = 0;
   double mumu_OS_Z = 0;
 
   cout << "Histograms defined" << endl;
@@ -490,68 +481,84 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
     h_nWeights->Divide(h_nVertices_MC);
   }
   double vetoCounter = 0;
-  std::map<double, double>HT_yield;
-  std::map<double, double>invMass_yield;
-  double HT_Value[35], InvMass_Value[35], MET_Value[35], bTag_Value[35], SVFit_Value[35];
-  double HT_InvMass_Yield[35][35];
-  double HT_InvMass_MET_Yield[35][35][35];
-  double HT_InvMass_MET_bTag_Yield[35][35][35][35];
-  double HT_InvMass_MET_bTag_SVFit_Yield[35][35][35][35][35]; 
+  std::map<double, double>HT_yield_MuMu;
+  std::map<double, double>HT_yield_ElMu;
+  std::map<double, double>HTb_yield_MuMu;
+  std::map<double, double>HTb_yield_ElMu;
+  std::map<double, double>invMass_yield_MuMu;
+  std::map<double, double>invMass_yield_ElMu;
+  double HT_Value_MuMu[35], InvMass_Value_MuMu[35], MET_Value_MuMu[35], HTb_Value_MuMu[35];
+  double HT_Value_ElMu[35], InvMass_Value_ElMu[35], MET_Value_ElMu[35], HTb_Value_ElMu[35];
+  
+  double HT_Yield_MuMu[35];
+  double HT_Yield_ElMu[35];
+
+  double HT_InvMass_Yield_MuMu[35][35];
+  double HT_InvMass_Yield_ElMu[35][35];
+
+  double HT_InvMass_MET_Yield_MuMu[35][35][35];
+  double HT_InvMass_MET_Yield_ElMu[35][35][35];
+
+  double HTb_Yield_MuMu[35];
+  double HTb_Yield_ElMu[35];  
+
+  double HTb_InvMass_Yield_MuMu[35][35];
+  double HTb_InvMass_Yield_ElMu[35][35];
+
+  double HTb_InvMass_MET_Yield_MuMu[35][35][35];
+  double HTb_InvMass_MET_Yield_ElMu[35][35][35]; 
+
   for(unsigned int i=0; i<35; ++i){ 
-    HT_Value[i] = 0.0;
-    InvMass_Value[i] = 0.0;
-    MET_Value[i] = 0.0;
-    bTag_Value[i] = 0.0;
-    SVFit_Value[i] = 0.0;
+    HT_Value_MuMu[i] = 0.0;
+    InvMass_Value_MuMu[i] = 0.0;
+    MET_Value_MuMu[i] = 0.0;
+    HTb_Value_MuMu[i] = 0.0;
+    HT_Yield_MuMu[i] = 0.0;
+    HTb_Yield_MuMu[i] = 0.0;
+
     for(unsigned int j=0; j<35; ++j){  
-      HT_InvMass_Yield[i][j] = 0.0;
+      HT_InvMass_Yield_MuMu[i][j] = 0.0;
       for(unsigned int k=0; k<35; ++k){
-        HT_InvMass_MET_Yield[i][j][k] = 0.0;
-        for(unsigned int l=0; l<35; ++l){
-          HT_InvMass_MET_bTag_Yield[i][j][k][l] = 0.0;
-          for(unsigned int m=0; m<35; ++m){
-            HT_InvMass_MET_bTag_SVFit_Yield[i][j][k][l][m] = 0.0;
-          }
-        }
+        HT_InvMass_MET_Yield_MuMu[i][j][k] = 0.0;
+      }
+    }
+
+    for(unsigned int s=0; s<35; ++s){ 
+      HTb_InvMass_Yield_MuMu[i][s] = 0.0;
+      for(unsigned int t=0; t<35; ++t){
+        HTb_InvMass_MET_Yield_MuMu[i][s][t] = 0.0;
       }
     }
   }
+
+  for(unsigned int i=0; i<35; ++i){
+    HT_Value_ElMu[i] = 0.0;
+    InvMass_Value_ElMu[i] = 0.0;
+    MET_Value_ElMu[i] = 0.0;
+    HTb_Value_ElMu[i] = 0.0;
+    HT_Yield_ElMu[i] = 0.0;
+    HTb_Yield_ElMu[i] = 0.0;
+
+    for(unsigned int j=0; j<35; ++j){
+      HT_InvMass_Yield_ElMu[i][j] = 0.0;
+      for(unsigned int k=0; k<35; ++k){
+        HT_InvMass_MET_Yield_ElMu[i][j][k] = 0.0;
+      }
+    }
+
+    for(unsigned int s=0; s<35; ++s){
+      HTb_InvMass_Yield_ElMu[i][s] = 0.0;
+      for(unsigned int t=0; t<35; ++t){
+        HTb_InvMass_MET_Yield_ElMu[i][s][t] = 0.0;
+      }
+    }
+  }
+
   int nEvents=tree->GetEntries();
   int nEvents_Incoming  = 0.0;
   int nEvents_Trigger = 0.0;
   int nEvents_Dimuon = 0.0;
   int nEvents_ElMu = 0.0;
-  double MET_mumu_OS = 0.0;
-  double LowHT_mumu_OS = 0.0;
-  double LowInvMass_mumu_OS = 0.0; 
-  double LowHT_lowInvMass_mumu_OS = 0.0;
-  double LeadingJet_BtagVeto_mumu_OS = 0.0;
-  double secondLeadingJet_BtagVeto_mumu_OS = 0.0;
-  double thirdLeadingJet_BtagVeto_mumu_OS = 0.0;
-  
-  double MET_mumu_SS = 0.0; 
-  double LowHT_mumu_SS = 0.0;
-  double LowInvMass_mumu_SS = 0.0;
-  double LowHT_lowInvMass_mumu_SS = 0.0;
-  double LeadingJet_BtagVeto_mumu_SS = 0.0;
-  double secondLeadingJet_BtagVeto_mumu_SS = 0.0;
-  double thirdLeadingJet_BtagVeto_mumu_SS = 0.0;
-
-  double MET_emu_OS = 0.0; 
-  double LowHT_emu_OS = 0.0;
-  double LowInvMass_emu_OS = 0.0;
-  double LowHT_lowInvMass_emu_OS = 0.0;
-  double LeadingJet_BtagVeto_emu_OS = 0.0;
-  double secondLeadingJet_BtagVeto_emu_OS = 0.0;
-  double thirdLeadingJet_BtagVeto_emu_OS = 0.0;
-
-  double MET_emu_SS = 0.0; 
-  double LowHT_emu_SS = 0.0;
-  double LowInvMass_emu_SS = 0.0;
-  double LowHT_lowInvMass_emu_SS = 0.0;
-  double LeadingJet_BtagVeto_emu_SS = 0.0;
-  double secondLeadingJet_BtagVeto_emu_SS = 0.0;
-  double thirdLeadingJet_BtagVeto_emu_SS = 0.0;
 
   std::cout << "nEvents= " << nEvents << std::endl;
   for (int i=0; i<nEvents; ++i)
@@ -689,7 +696,8 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
      TLorentzVector Photon;
      swissCross.push_back((photons.at(k).phseedCrystalEnergy)/(photons.at(k).phe1x5 + photons.at(k).phe5x1 - photons.at(k).phseedCrystalEnergy));
      
-     if(fabs(photons.at(k).eta)<1.444 and photons.at(k).pT>30.0 and photons.at(k).isLoose==1 and photons.at(k).phIsoLoose==1 and photons.at(k).phpixelVeto==0)// and photons.at(k).phSigmaIetaIeta > 0.001 and photons.at(k).phSigmaIphiIphi>0.0001 and swissCross.at(k)<0.90)// and photons.at(k).phSigmaIphiIphi>0.0001)// and swissCross.at(k)<0.90)
+     if(fabs(photons.at(k).eta)<1.444 and photons.at(k).pT>30.0 and photons.at(k).isLoose==1 and photons.at(k).phIsoLoose==1 and photons.at(k).phpixelVeto==0 and photons.at(k).phSigmaIetaIeta > 0.001 and swissCross.at(k)<0.90 and std::sqrt(photons.at(k).phSigmaIphiIphi)>0.009 and photons.at(k).phR9 < 1.0)
+     //if(fabs(photons.at(k).eta)<1.444 and photons.at(k).pT>30.0 and photons.at(k).isLoose==1 and photons.at(k).phIsoLoose==1 and photons.at(k).phpixelVeto==0)// and photons.at(k).phSigmaIetaIeta > 0.001 and photons.at(k).phSigmaIphiIphi>0.0001 and swissCross.at(k)<0.90)// and photons.at(k).phSigmaIphiIphi>0.0001)// and swissCross.at(k)<0.90)
     {
        Photon.SetPtEtaPhiE(photons.at(k).pT, photons.at(k).eta, photons.at(k).phi, photons.at(k).energy);
        bool isGoodPhoton=true;
@@ -802,7 +810,9 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
        TLorentzVector Photon;
        swissCross.push_back((photons.at(l).phseedCrystalEnergy)/(photons.at(l).phe1x5 + photons.at(l).phe5x1 - photons.at(l).phseedCrystalEnergy));
 
-       if(fabs(photons.at(l).eta)<1.444 and photons.at(l).pT>30.0 and photons.at(l).isLoose==1 and photons.at(l).phIsoLoose==1 and photons.at(l).phpixelVeto==0){// and photons.at(l).phSigmaIetaIeta > 0.001 and photons.at(l).phSigmaIphiIphi>0.0001 and swissCross.at(l)<0.90){ //photons.at(l).phSigmaIphiIphi>0.0001 and swissCross.at(l)<0.90){
+       if(fabs(photons.at(l).eta)<1.444 and photons.at(l).pT>30.0 and photons.at(l).isLoose==1 and photons.at(l).phIsoLoose==1 and photons.at(l).phpixelVeto==0 and photons.at(l).phSigmaIetaIeta > 0.001 and swissCross.at(l)<0.90 and std::sqrt(photons.at(l).phSigmaIphiIphi)>0.009 and photons.at(l).phR9 < 1.0)
+       //if(fabs(photons.at(l).eta)<1.444 and photons.at(l).pT>30.0 and photons.at(l).isLoose==1 and photons.at(l).phIsoLoose==1 and photons.at(l).phpixelVeto==0){// and photons.at(l).phSigmaIetaIeta > 0.001 and photons.at(l).phSigmaIphiIphi>0.0001 and swissCross.at(l)<0.90){ //photons.at(l).phSigmaIphiIphi>0.0001 and swissCross.at(l)<0.90){
+       {
          Photon.SetPtEtaPhiE(photons.at(l).pT, photons.at(l).eta, photons.at(l).phi, photons.at(l).energy);
          double DRjet_ph = Jet.JetLV.DeltaR(Photon);
          if(DRjet_ph<0.5) isGoodJet=false;
@@ -831,8 +841,8 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
     if(Jets.at(m).JetLV.Pt() > 25.0 and Jets.at(m).BTag_CSV > 0.679){
       Bjet.BJetLV.SetPtEtaPhiE(Jets.at(m).JetLV.Pt(), Jets.at(m).JetLV.Eta(), Jets.at(m).JetLV.Phi(), Jets.at(m).JetLV.E());  
       Bjet.BTag=Jets.at(m).BTag_CSV;
+      Bjets.push_back(Bjet);
     }
-    Bjets.push_back(Bjet);
   }
 
   // Now sorting this vector of structs
@@ -924,6 +934,13 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
          if(type=="MC" and MCSample=="ZGToLLG") Muon.Mother8 = muons.at(j).mother8;
          if(type=="MC" and MCSample=="ZGToLLG") Muon.Mother9 = muons.at(j).mother9;
          if(type=="MC" and MCSample=="ZGToLLG") Muon.Mother10 = muons.at(j).mother10;
+       }
+       bool isGoodMuon = true;
+       for (unsigned int k=0; k<Electrons.size(); k++){
+         TLorentzVector AnaElectron;
+         AnaElectron.SetPtEtaPhiE(Electrons.at(k).LepLV.Pt(), Electrons.at(k).LepLV.Eta(), Electrons.at(k).LepLV.Phi(), Electrons.at(k).LepLV.E());
+         double DRel_mu = Muon.LepLV.DeltaR(AnaElectron);
+         if(DRel_mu<0.3) isGoodMuon=false;//anti-matching to muons object.
        }
        Muons.push_back(Muon);
        }//close four vector if
@@ -1075,8 +1092,8 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
         if(Jets.size()>5) mumuHist.h_jet_energy_6th->Fill(Jets.at(5).JetLV.E(), eventWeight);
         if(Bjets.size()>0) mumuHist.h_bjet_pt_leading->Fill(Bjets.at(0).BJetLV.Pt(), eventWeight);
         if(Bjets.size()>1) mumuHist.h_bjet_pt_trailing->Fill(Bjets.at(1).BJetLV.Pt(), eventWeight);
-        //if(Bjets.size()>0) mumuHist.h_bjet_eta_leading->Fill(Bjets.at(0).BJetLV.Eta(), eventWeight);
-        //if(Bjets.size()>1) mumuHist.h_bjet_eta_trailing->Fill(Bjets.at(1).BJetLV.Eta(), eventWeight);
+        if(Bjets.size()>0) mumuHist.h_bjet_eta_leading->Fill(Bjets.at(0).BJetLV.Eta(), eventWeight);
+        if(Bjets.size()>1) mumuHist.h_bjet_eta_trailing->Fill(Bjets.at(1).BJetLV.Eta(), eventWeight);
         if(Bjets.size()>0) mumuHist.h_bjet_phi_leading->Fill(Bjets.at(0).BJetLV.Phi(), eventWeight);
         if(Bjets.size()>1) mumuHist.h_bjet_phi_trailing->Fill(Bjets.at(1).BJetLV.Phi(), eventWeight);
         if(Bjets.size()>0) mumuHist.h_bjet_energy_leading->Fill(Bjets.at(0).BJetLV.E(), eventWeight);
@@ -1085,13 +1102,51 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
         mumuHist.h_photon_eta->Fill(Photon_vector.at(0).Eta(), eventWeight);
         mumuHist.h_photon_phi->Fill(Photon_vector.at(0).Phi(), eventWeight);
         mumuHist.h_photon_energy->Fill(Photon_vector.at(0).E(), eventWeight);
-        if(MET > 25.0) MET_mumu_OS+=eventWeight;
-        if(HT<150) LowHT_mumu_OS+=eventWeight;
-        if((Muons.at(0).LepLV+Muons.at(1).LepLV).M() < 50.0) LowInvMass_mumu_OS+=eventWeight;
-        if(HT<150 and (Muons.at(0).LepLV+Muons.at(1).LepLV).M() < 50.0) LowHT_lowInvMass_mumu_OS+=eventWeight;
-        if(Jets.size()>0 and Jets.at(0).JetLV.Pt() > 40 and Jets.at(0).BTag_CSV < 0.679) LeadingJet_BtagVeto_mumu_OS+=eventWeight;
-        if(Jets.size()>1 and Jets.at(1).JetLV.Pt() > 40 and Jets.at(1).BTag_CSV < 0.679) secondLeadingJet_BtagVeto_mumu_OS+=eventWeight;
-        if(Jets.size()>2 and Jets.at(2).JetLV.Pt() > 40 and Jets.at(2).BTag_CSV < 0.679) thirdLeadingJet_BtagVeto_mumu_OS+=eventWeight;
+        bool eventVeto = false;
+       for(int k=0; k<Jets.size(); k++) if(Jets.at(k).JetLV.Pt() > 40 and Jets.at(k).BTag_CSV > 0.679) {eventVeto=true; break;}
+       if(eventVeto==true) vetoCounter+=eventWeight;
+       for(float ht=30.0; ht<700.0;ht+=20.0){
+          if(HT<ht) HT_yield_MuMu[ht] += eventWeight;
+       }
+       for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+          if((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass) invMass_yield_MuMu[invMass] += eventWeight;
+       }
+       unsigned int i_ht=0;
+       for(float ht=30.0; ht<700.0;ht+=20.0){
+         HT_Value_MuMu[i_ht] = ht;
+         ++i_ht;
+         unsigned int j_invMass=0;
+         for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+            InvMass_Value_MuMu[j_invMass]=invMass;
+            if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass)) HT_InvMass_Yield_MuMu[i_ht][j_invMass]+=eventWeight;
+            ++j_invMass;
+             unsigned int k_met=0;
+            for(float met=0.0; met<100.0; met+=5.0){
+              if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass) and MET>met) HT_InvMass_MET_Yield_MuMu[i_ht][j_invMass][k_met]+=eventWeight;
+              ++k_met;
+            }
+          }
+        }
+      
+      for(float htb=25.0; htb<700.0;htb+=20.0){
+          if(HTb<htb) HTb_yield_MuMu[htb] += eventWeight;
+       }
+      unsigned int i_htb=0;
+      for(float htb=25.0; htb<700.0;htb+=20.0){
+         HTb_Value_MuMu[i_htb] = htb;
+         ++i_htb;
+         unsigned int j_invMass=0;
+         for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+            InvMass_Value_MuMu[j_invMass]=invMass;
+            if(HT<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass)) HTb_InvMass_Yield_MuMu[i_htb][j_invMass]+=eventWeight;
+            ++j_invMass;
+             unsigned int k_met=0;
+            for(float met=0.0; met<100.0; met+=5.0){
+              if(HTb<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass) and MET>met) HTb_InvMass_MET_Yield_MuMu[i_htb][j_invMass][k_met]+=eventWeight;
+              ++k_met;
+              }
+            }
+          }
         }//ZGamma 
       }//OS mode
      else if(signSelection=="SS" and (Muons.at(0).Charge*Muons.at(1).Charge)==+1){
@@ -1151,8 +1206,8 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
         if(Jets.size()>5) mumuHist.h_jet_energy_6th->Fill(Jets.at(5).JetLV.E(), eventWeight);
         if(Bjets.size()>0) mumuHist.h_bjet_pt_leading->Fill(Bjets.at(0).BJetLV.Pt(), eventWeight);
         if(Bjets.size()>1) mumuHist.h_bjet_pt_trailing->Fill(Bjets.at(1).BJetLV.Pt(), eventWeight);
-        //if(Bjets.size()>0) mumuHist.h_bjet_eta_leading->Fill(Bjets.at(0).BJetLV.Eta(), eventWeight);
-        //if(Bjets.size()>1) mumuHist.h_bjet_eta_trailing->Fill(Bjets.at(1).BJetLV.Eta(), eventWeight);
+        if(Bjets.size()>0) mumuHist.h_bjet_eta_leading->Fill(Bjets.at(0).BJetLV.Eta(), eventWeight);
+        if(Bjets.size()>1) mumuHist.h_bjet_eta_trailing->Fill(Bjets.at(1).BJetLV.Eta(), eventWeight);
         if(Bjets.size()>0) mumuHist.h_bjet_phi_leading->Fill(Bjets.at(0).BJetLV.Phi(), eventWeight);
         if(Bjets.size()>1) mumuHist.h_bjet_phi_trailing->Fill(Bjets.at(1).BJetLV.Phi(), eventWeight);
         if(Bjets.size()>0) mumuHist.h_bjet_energy_leading->Fill(Bjets.at(0).BJetLV.E(), eventWeight);
@@ -1161,13 +1216,6 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
         mumuHist.h_photon_eta->Fill(Photon_vector.at(0).Eta(), eventWeight);
         mumuHist.h_photon_phi->Fill(Photon_vector.at(0).Phi(), eventWeight);
         mumuHist.h_photon_energy->Fill(Photon_vector.at(0).E(), eventWeight);
-        if(MET > 25.0) MET_mumu_SS+=eventWeight;
-        if(HT<150) LowHT_mumu_SS+=eventWeight;
-        if((Muons.at(0).LepLV+Muons.at(1).LepLV).M() < 50.0) LowInvMass_mumu_SS+=eventWeight;
-        if(HT<150 and (Muons.at(0).LepLV+Muons.at(1).LepLV).M() < 50.0) LowHT_lowInvMass_mumu_SS+=eventWeight;
-        if(Jets.size()>0 and Jets.at(0).JetLV.Pt() > 40 and Jets.at(0).BTag_CSV < 0.679) LeadingJet_BtagVeto_mumu_SS+=eventWeight;
-        if(Jets.size()>1 and Jets.at(1).JetLV.Pt() > 40 and Jets.at(1).BTag_CSV < 0.679) secondLeadingJet_BtagVeto_mumu_SS+=eventWeight;
-        if(Jets.size()>2 and Jets.at(2).JetLV.Pt() > 40 and Jets.at(2).BTag_CSV < 0.679) thirdLeadingJet_BtagVeto_mumu_SS+=eventWeight;
          }//ZGamma
        }//SS mode
    }//first+second tight muon
@@ -1244,10 +1292,8 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
        if(Jets.size()>5) emuHist.h_jet_energy_6th->Fill(Jets.at(5).JetLV.E(), eventWeight);
        if(Bjets.size()>0) emuHist.h_bjet_pt_leading->Fill(Bjets.at(0).BJetLV.Pt(), eventWeight);
        if(Bjets.size()>1) emuHist.h_bjet_pt_trailing->Fill(Bjets.at(1).BJetLV.Pt(), eventWeight);
-       if(Bjets.size()>0) cout << "Bjets.at(0).BJetLV.Eta() = " << Bjets.at(0).BJetLV.Eta() << endl;
-       if(Bjets.size()>0) cout << "Bjets.at(0).BJetLV.Pt() = " << Bjets.at(0).BJetLV.Pt() << endl;
-       //if(Bjets.size()>0) emuHist.h_bjet_eta_leading->Fill(Bjets.at(0).BJetLV.Eta(), eventWeight);
-       //if(Bjets.size()>1) emuHist.h_bjet_eta_trailing->Fill(Bjets.at(1).BJetLV.Eta(), eventWeight);
+       if(Bjets.size()>0) emuHist.h_bjet_eta_leading->Fill(Bjets.at(0).BJetLV.Eta(), eventWeight);
+       if(Bjets.size()>1) emuHist.h_bjet_eta_trailing->Fill(Bjets.at(1).BJetLV.Eta(), eventWeight);
        if(Bjets.size()>0) emuHist.h_bjet_phi_leading->Fill(Bjets.at(0).BJetLV.Phi(), eventWeight);
        if(Bjets.size()>1) emuHist.h_bjet_phi_trailing->Fill(Bjets.at(1).BJetLV.Phi(), eventWeight);
        if(Bjets.size()>0) emuHist.h_bjet_energy_leading->Fill(Bjets.at(0).BJetLV.E(), eventWeight);
@@ -1256,34 +1302,52 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
        emuHist.h_photon_eta->Fill(Photon_vector.at(0).Eta(), eventWeight);
        emuHist.h_photon_phi->Fill(Photon_vector.at(0).Phi(), eventWeight);
        emuHist.h_photon_energy->Fill(Photon_vector.at(0).E(), eventWeight);
-       if(MET > 25.0) MET_emu_OS+=eventWeight;
-       if(HT<150) LowHT_emu_OS+=eventWeight;
-       if((Muons.at(0).LepLV+Electrons.at(0).LepLV).M() < 50.0) LowInvMass_emu_OS+=eventWeight;
-       if(HT<150 and (Muons.at(0).LepLV+Electrons.at(0).LepLV).M() < 50.0) LowHT_lowInvMass_emu_OS+=eventWeight;
-       if(Jets.size()>0 and Jets.at(0).JetLV.Pt() > 40 and Jets.at(0).BTag_CSV < 0.679) LeadingJet_BtagVeto_emu_OS+=eventWeight;
-       if(Jets.size()>1 and Jets.at(1).JetLV.Pt() > 40 and Jets.at(1).BTag_CSV < 0.679) secondLeadingJet_BtagVeto_emu_OS+=eventWeight;
-       if(Jets.size()>2 and Jets.at(2).JetLV.Pt() > 40 and Jets.at(2).BTag_CSV < 0.679) thirdLeadingJet_BtagVeto_emu_OS+=eventWeight; 
        bool eventVeto = false;
        for(int k=0; k<Jets.size(); k++) if(Jets.at(k).JetLV.Pt() > 40 and Jets.at(k).BTag_CSV > 0.679) {eventVeto=true; break;}
        if(eventVeto==true) vetoCounter+=eventWeight;
        for(float ht=30.0; ht<700.0;ht+=20.0){
-          if(HT<ht) HT_yield[ht] += eventWeight;
+          if(HT<ht) HT_yield_ElMu[ht] += eventWeight;
        }
        for(float invMass=0.0; invMass<100.0; invMass+=10.0){
-          if((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass) invMass_yield[invMass] += eventWeight;
+          if((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass) invMass_yield_ElMu[invMass] += eventWeight;
        }
        unsigned int i_ht=0;
        for(float ht=30.0; ht<700.0;ht+=20.0){
-         HT_Value[i_ht] = ht; 
+         HT_Value_ElMu[i_ht] = ht; 
          ++i_ht;
          unsigned int j_invMass=0;
          for(float invMass=0.0; invMass<100.0; invMass+=10.0){
-            InvMass_Value[j_invMass]=invMass; 
-            if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass)) HT_InvMass_Yield[i_ht][j_invMass]+=eventWeight;
+            InvMass_Value_ElMu[j_invMass]=invMass; 
+            if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass)) HT_InvMass_Yield_ElMu[i_ht][j_invMass]+=eventWeight;
             ++j_invMass;
-         }
+             unsigned int k_met=0;
+            for(float met=0.0; met<100.0; met+=5.0){
+              if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass) and MET>met) HT_InvMass_MET_Yield_ElMu[i_ht][j_invMass][k_met]+=eventWeight;
+              ++k_met;
+            }
+          }
+        }
+
+      for(float htb=25.0; htb<700.0;htb+=20.0){
+          if(HTb<htb) HTb_yield_ElMu[htb] += eventWeight;
        }
-    }//OS mode
+      unsigned int i_htb=0; 
+      for(float htb=25.0; htb<700.0;htb+=20.0){
+         HTb_Value_ElMu[i_htb] = htb;
+         ++i_htb;
+         unsigned int j_invMass=0;
+         for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+            InvMass_Value_ElMu[j_invMass]=invMass;
+            if(HT<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass)) HTb_InvMass_Yield_ElMu[i_htb][j_invMass]+=eventWeight;
+            ++j_invMass;
+             unsigned int k_met=0;
+            for(float met=0.0; met<100.0; met+=5.0){
+              if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass) and MET>met) HTb_InvMass_MET_Yield_ElMu[i_htb][j_invMass][k_met]+=eventWeight;
+              ++k_met;
+            }
+          }
+        }
+      }//OS mode
     else if(signSelection=="SS" and ((Muons.at(0).Charge)*(Electrons.at(0).Charge)==+1)){
        if(type=="Data") cout << "Event = " << event << " Run = "<< run << " Lumi = " << lumi << endl;
        emu_SS+=eventWeight;
@@ -1346,13 +1410,6 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
        emuHist.h_photon_eta->Fill(Photon_vector.at(0).Eta(), eventWeight);
        emuHist.h_photon_phi->Fill(Photon_vector.at(0).Phi(), eventWeight);
        emuHist.h_photon_energy->Fill(Photon_vector.at(0).E(), eventWeight);
-       if(MET > 25.0) MET_emu_SS+=eventWeight;
-       if(HT<150) LowHT_emu_SS+=eventWeight;
-       if((Muons.at(0).LepLV+Electrons.at(0).LepLV).M() < 50.0) LowInvMass_emu_SS+=eventWeight;
-       if(HT<150 and (Muons.at(0).LepLV+Electrons.at(0).LepLV).M() < 50.0) LowHT_lowInvMass_emu_SS+=eventWeight;
-       if(Jets.size()>0 and Jets.at(0).JetLV.Pt() > 40 and Jets.at(0).BTag_CSV < 0.679) LeadingJet_BtagVeto_emu_SS+=eventWeight;
-       if(Jets.size()>1 and Jets.at(1).JetLV.Pt() > 40 and Jets.at(1).BTag_CSV < 0.679) secondLeadingJet_BtagVeto_emu_SS+=eventWeight;
-       if(Jets.size()>2 and Jets.at(2).JetLV.Pt() > 40 and Jets.at(2).BTag_CSV < 0.679) thirdLeadingJet_BtagVeto_emu_SS+=eventWeight;
      }//SS mode     
    }//El-Mu channel
 
@@ -1412,7 +1469,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
       if(Bjets.size()>0) eeHist.h_bjet_pt_leading->Fill(Bjets.at(0).BJetLV.Pt(), eventWeight);
       if(Bjets.size()>1) eeHist.h_bjet_pt_trailing->Fill(Bjets.at(1).BJetLV.Pt(), eventWeight);
       if(Bjets.size()>0) eeHist.h_bjet_eta_leading->Fill(Bjets.at(0).BJetLV.Eta(), eventWeight);
-      //if(Bjets.size()>1) eeHist.h_bjet_eta_trailing->Fill(Bjets.at(1).BJetLV.Eta(), eventWeight);
+      if(Bjets.size()>1) eeHist.h_bjet_eta_trailing->Fill(Bjets.at(1).BJetLV.Eta(), eventWeight);
       if(Bjets.size()>0) eeHist.h_bjet_phi_leading->Fill(Bjets.at(0).BJetLV.Phi(), eventWeight);
       if(Bjets.size()>1) eeHist.h_bjet_phi_trailing->Fill(Bjets.at(1).BJetLV.Phi(), eventWeight);
       if(Bjets.size()>0) eeHist.h_bjet_energy_leading->Fill(Bjets.at(0).BJetLV.E(), eventWeight);
@@ -1473,8 +1530,8 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
       if(Jets.size()>5) eeHist.h_jet_energy_6th->Fill(Jets.at(5).JetLV.E(), eventWeight);
       if(Bjets.size()>0) eeHist.h_bjet_pt_leading->Fill(Bjets.at(0).BJetLV.Pt(), eventWeight);
       if(Bjets.size()>1) eeHist.h_bjet_pt_trailing->Fill(Bjets.at(1).BJetLV.Pt(), eventWeight);
-      //if(Bjets.size()>0) eeHist.h_bjet_eta_leading->Fill(Bjets.at(0).BJetLV.Eta(), eventWeight);
-      //if(Bjets.size()>1) eeHist.h_bjet_eta_trailing->Fill(Bjets.at(1).BJetLV.Eta(), eventWeight);
+      if(Bjets.size()>0) eeHist.h_bjet_eta_leading->Fill(Bjets.at(0).BJetLV.Eta(), eventWeight);
+      if(Bjets.size()>1) eeHist.h_bjet_eta_trailing->Fill(Bjets.at(1).BJetLV.Eta(), eventWeight);
       if(Bjets.size()>0) eeHist.h_bjet_phi_leading->Fill(Bjets.at(0).BJetLV.Phi(), eventWeight);
       if(Bjets.size()>1) eeHist.h_bjet_phi_trailing->Fill(Bjets.at(1).BJetLV.Phi(), eventWeight);
       if(Bjets.size()>0) eeHist.h_bjet_energy_leading->Fill(Bjets.at(0).BJetLV.E(), eventWeight);
@@ -1493,70 +1550,145 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
   cout << "nEvents_Dimuon = " << nEvents_Dimuon << endl;
   cout << "nEvents_ElMu = " << nEvents_ElMu << endl;
   //Cut flow table
-  cout << "mumu_SS_NT01 = " << mumu_SS_NT01 << endl; 
-  cout << "mumu_SS_NT10 = " << mumu_SS_NT10 << endl;
-  cout << "mumu_SS_NT00 = " << mumu_SS_NT00 << endl;
-  cout << "mumu_OS_Z = " << mumu_OS_Z << endl;
-  cout << "mumu_OS = " << mumu_OS << endl;
-  cout << "mumu_SS = " << mumu_SS << endl;
-  cout << "emu_OS = " << emu_OS << endl;
-  cout << "emu_SS = " << emu_SS << endl;
-  cout << "emu_SS_NT01 = " << emu_SS_NT01 << endl;
-  cout << "emu_SS_NT10 = " << emu_SS_NT10 << endl;
-  cout << "emu_SS_NT00 = " << emu_SS_NT00 << endl;
-  cout << "ee_OS = " << ee_OS << endl;
-  cout << "ee_SS = " << ee_SS << endl;
-  cout << "ee_SS_NT01 = " << ee_SS_NT01 << endl;
-  cout << "ee_SS_NT10 = " << ee_SS_NT10 << endl;
-  cout << "ee_SS_NT00 = " << ee_SS_NT00 << endl;
-  cout << "==================Cut Flow Table: Dimuon OS================" << endl;
-  cout << "MET_mumu_OS = " << MET_mumu_OS << endl;
-  cout << "LowHT_mumu_OS = " << LowHT_mumu_OS << endl;
-  cout << "LowInvMass_mumu_OS = " << LowInvMass_mumu_OS << endl;
-  cout << "LowHT_lowInvMass_mumu_OS = " << LowHT_lowInvMass_mumu_OS << endl;
-  cout << "LeadingJet_BtagVeto_mumu_OS = " << LeadingJet_BtagVeto_mumu_OS << endl;
-  cout << "secondLeadingJet_BtagVeto_mumu_OS = " << secondLeadingJet_BtagVeto_mumu_OS << endl;
-  cout << "thirdLeadingJet_BtagVeto_mumu_OS = " << thirdLeadingJet_BtagVeto_mumu_OS << endl;
-  cout << "==================Cut Flow Table: Dimuon SS================" << endl;
-  cout << "MET_mumu_SS = " << MET_mumu_SS << endl;
-  cout << "LowHT_mumu_SS = " << LowHT_mumu_SS << endl;
-  cout << "LowInvMass_mumu_SS = " << LowInvMass_mumu_SS << endl;
-  cout << "LowHT_lowInvMass_mumu_SS = " << LowHT_lowInvMass_mumu_SS << endl;
-  cout << "LeadingJet_BtagVeto_mumu_SS = " << LeadingJet_BtagVeto_mumu_SS << endl;
-  cout << "secondLeadingJet_BtagVeto_mumu_SS = " << secondLeadingJet_BtagVeto_mumu_SS << endl;
-  cout << "thirdLeadingJet_BtagVeto_mumu_SS = " << thirdLeadingJet_BtagVeto_mumu_SS << endl;
-  cout << "==================Cut Flow Table: Electron-Muon OS================" << endl;
-  cout << "MET_emu_OS = " << MET_emu_OS << endl;
-  cout << "LowHT_emu_OS = " << LowHT_emu_OS << endl;
-  cout << "LowInvMass_emu_OS = " << LowInvMass_emu_OS << endl;
-  cout << "LowHT_lowInvMass_emu_OS = " << LowHT_lowInvMass_emu_OS << endl;
-  cout << "LeadingJet_BtagVeto_emu_OS = " << LeadingJet_BtagVeto_emu_OS << endl;
-  cout << "secondLeadingJet_BtagVeto_emu_OS = " << secondLeadingJet_BtagVeto_emu_OS << endl;
-  cout << "thirdLeadingJet_BtagVeto_emu_OS = " << thirdLeadingJet_BtagVeto_emu_OS << endl;
-  cout << "vetoCounter = " << vetoCounter << endl;
-  for(std::map<double, double>::iterator i=HT_yield.begin(); i != HT_yield.end() ; ++i){
-    cout << "HT = " << i->first << endl;
-    cout << "HT_yield = " << i->second << endl;
+
+  cout << "Only HT optimization" << endl;
+
+  for(std::map<double, double>::iterator i=HT_yield_ElMu.begin(); i != HT_yield_ElMu.end() ; ++i){
+    cout << "HT_ElMu = " << i->first << endl;
+    cout << "HT_yield_ElMu = " << i->second << endl;
   }
-  for(std::map<double, double>::iterator i=invMass_yield.begin(); i != invMass_yield.end() ; ++i){
-    cout << "invMass = " << i->first << endl;
-    cout << "invMass_yield = " << i->second << endl;
+
+  cout << "Only Invariant mass optimization" << endl;
+
+  for(std::map<double, double>::iterator i=invMass_yield_ElMu.begin(); i != invMass_yield_ElMu.end() ; ++i){
+    cout << "invMass_ElMu = " << i->first << endl;
+    cout << "invMass_yield_ElMu = " << i->second << endl;
   }
+
+  cout << "2D HT and invariant mass optimization" << endl;
+
   for(int l=0; l<35.0; l++){
-    cout << "HT value = " << HT_Value[l] << " | ";
+    cout << "HT value ElMu = " << HT_Value_ElMu[l] << " | ";
+    cout << "Invariant mass value ElMu = " << InvMass_Value_ElMu[l] << " | ";
     for(int m=0; m<35.0; m++){
-      cout << HT_InvMass_Yield[l][m] << " | ";
+      cout << "HT_InvMass_Yield ElMu = " << HT_InvMass_Yield_ElMu[l][m] << " | " << std::endl;
     }
-    cout<<std::endl;
   }
-  cout << "==================Cut Flow Table: Electron-Muon SS================" << endl;
-  cout << "MET_emu_SS = " << MET_emu_SS << endl;
-  cout << "LowHT_emu_SS = " << LowHT_emu_SS << endl;
-  cout << "LowInvMass_emu_SS = " << LowInvMass_emu_SS << endl;
-  cout << "LowHT_lowInvMass_emu_SS = " << LowHT_lowInvMass_emu_SS << endl;
-  cout << "LeadingJet_BtagVeto_emu_SS = " << LeadingJet_BtagVeto_emu_SS << endl;
-  cout << "secondLeadingJet_BtagVeto_emu_SS = " << secondLeadingJet_BtagVeto_emu_SS << endl;
-  cout << "thirdLeadingJet_BtagVeto_emu_SS = " << thirdLeadingJet_BtagVeto_emu_SS << endl;
+
+  cout << "3D HT, invariant mass and met optimization" << endl;
+
+  for(int l=0; l<35.0; l++){
+    cout << "HT value ElMu = " << HT_Value_ElMu[l] << " | ";
+    cout << "Invariant mass value ElMu = " << InvMass_Value_ElMu[l] << " | ";
+    cout << "Met value ElMu = " << MET_Value_ElMu[l] << " | ";
+    for(int m=0; m<35.0; m++){
+      cout << "HT_InvMass_Yield ElMu = " << HT_InvMass_Yield_ElMu[l][m] << " | ";
+      for(int n=0; n<35.0; n++){
+      cout << "HT_InvMass_MET_Yield_ElMu = " << HT_InvMass_MET_Yield_ElMu[l][m][n] << " | " << std::endl;
+      }
+    }
+  }
+
+  cout << "Only HTb optimization" << endl;
+
+  for(std::map<double, double>::iterator i=HTb_yield_ElMu.begin(); i != HTb_yield_ElMu.end() ; ++i){
+    cout << "HTb value ElMu= " << i->first << endl;
+    cout << "HTb_yield ElMu = " << i->second << endl;
+  }
+
+   cout << "2D HTb and invariant mass optimization" << endl;
+
+  for(int l=0; l<35.0; l++){
+    cout << "HTb value ElMu = " << HTb_Value_ElMu[l] << " | ";
+    cout << "Invariant mass value ElMu = " << InvMass_Value_ElMu[l] << " | ";
+    for(int m=0; m<35.0; m++){
+      cout << "HTb_InvMass_Yield ElMu = " << HTb_InvMass_Yield_ElMu[l][m] << " | " << std::endl;
+    }
+  }
+
+  cout << "3D HTb, invariant mass and met optimization" << endl;
+
+  for(int l=0; l<35.0; l++){
+    cout << "HTb value ElMu = " << HTb_Value_ElMu[l] << " | ";
+    cout << "Invariant mass value ElMu = " << InvMass_Value_ElMu[l] << " | ";
+    cout << "Met value ElMu = " << MET_Value_ElMu[l] << " | ";
+    for(int m=0; m<35.0; m++){
+      cout << "HTb_InvMass_Yield ElMu = " << HTb_InvMass_Yield_ElMu[l][m] << " | ";
+      for(int n=0; n<35.0; n++){
+      cout << "HTb_InvMass_MET_Yield ElMu = " << HTb_InvMass_MET_Yield_ElMu[l][m][n] << " | " << std::endl;
+      }
+    }
+  }
+
+  cout << "Only HT optimization" << endl;
+
+  for(std::map<double, double>::iterator i=HT_yield_MuMu.begin(); i != HT_yield_MuMu.end() ; ++i){
+    cout << "HT_MuMu = " << i->first << endl;
+    cout << "HT_yield_MuMu = " << i->second << endl;
+  }
+
+  cout << "Only Invariant mass optimization" << endl;
+
+  for(std::map<double, double>::iterator i=invMass_yield_MuMu.begin(); i != invMass_yield_MuMu.end() ; ++i){
+    cout << "invMass_MuMu = " << i->first << endl;
+    cout << "invMass_yield_MuMu = " << i->second << endl;
+  }
+
+  cout << "2D HT and invariant mass optimization" << endl;
+
+  for(int l=0; l<35.0; l++){
+    cout << "HT value MuMu = " << HT_Value_MuMu[l] << " | ";
+    cout << "Invariant mass value MuMu = " << InvMass_Value_MuMu[l] << " | ";
+    for(int m=0; m<35.0; m++){
+      cout << "HT_InvMass_Yield MuMu = " << HT_InvMass_Yield_MuMu[l][m] << " | " << std::endl;
+    }
+  }
+
+  cout << "3D HT, invariant mass and met optimization" << endl;
+
+  for(int l=0; l<35.0; l++){
+    cout << "HT value MuMu = " << HT_Value_MuMu[l] << " | ";
+    cout << "Invariant mass value MuMu = " << InvMass_Value_MuMu[l] << " | ";
+    cout << "Met value MuMu = " << MET_Value_MuMu[l] << " | ";
+    for(int m=0; m<35.0; m++){
+      cout << "HT_InvMass_Yield MuMu = " << HT_InvMass_Yield_MuMu[l][m] << " | ";
+      for(int n=0; n<35.0; n++){
+      cout << "HT_InvMass_MET_Yield_MuMu = " << HT_InvMass_MET_Yield_MuMu[l][m][n] << " | " << std::endl;
+      }
+    }
+  }
+
+  cout << "Only HTb optimization" << endl;
+
+  for(std::map<double, double>::iterator i=HTb_yield_MuMu.begin(); i != HTb_yield_MuMu.end() ; ++i){
+    cout << "HTb value MuMu= " << i->first << endl;
+    cout << "HTb_yield MuMu = " << i->second << endl;
+  }
+
+  cout << "2D HTb and invariant mass optimization" << endl;
+
+  for(int l=0; l<35.0; l++){
+    cout << "HTb value MuMu = " << HTb_Value_MuMu[l] << " | ";
+    cout << "Invariant mass value MuMu = " << InvMass_Value_MuMu[l] << " | ";
+    for(int m=0; m<35.0; m++){
+      cout << "HTb_InvMass_Yield MuMu = " << HTb_InvMass_Yield_MuMu[l][m] << " | " << std::endl;
+    }
+  }
+
+  cout << "3D HTb, invariant mass and met optimization" << endl;
+
+  for(int l=0; l<35.0; l++){
+    cout << "HTb value MuMu = " << HTb_Value_MuMu[l] << " | ";
+    cout << "Invariant mass value MuMu = " << InvMass_Value_MuMu[l] << " | ";
+    cout << "Met value MuMu = " << MET_Value_MuMu[l] << " | ";
+    for(int m=0; m<35.0; m++){
+      cout << "HTb_InvMass_Yield MuMu = " << HTb_InvMass_Yield_MuMu[l][m] << " | ";
+      for(int n=0; n<35.0; n++){
+      cout << "HTb_InvMass_MET_Yield MuMu = " << HTb_InvMass_MET_Yield_MuMu[l][m][n] << " | " << std::endl;
+      }
+    }
+  }
+
   std::string histfilename=(outfile+".root").c_str();
   TFile *tFile=new TFile(histfilename.c_str(), "RECREATE");
   h_CaloMETTrue_CaloMET->Write();
