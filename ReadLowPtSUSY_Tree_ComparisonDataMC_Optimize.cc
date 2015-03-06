@@ -499,9 +499,6 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
   double HT_InvMass_MET_Yield_MuMu[35][35][35];
   double HT_InvMass_MET_Yield_ElMu[35][35][35];
 
-  double HTb_Yield_MuMu[35];
-  double HTb_Yield_ElMu[35];  
-
   double HTb_InvMass_Yield_MuMu[35][35];
   double HTb_InvMass_Yield_ElMu[35][35];
 
@@ -514,7 +511,6 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
     MET_Value_MuMu[i] = 0.0;
     HTb_Value_MuMu[i] = 0.0;
     HT_Yield_MuMu[i] = 0.0;
-    HTb_Yield_MuMu[i] = 0.0;
 
     for(unsigned int j=0; j<35; ++j){  
       HT_InvMass_Yield_MuMu[i][j] = 0.0;
@@ -537,7 +533,6 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
     MET_Value_ElMu[i] = 0.0;
     HTb_Value_ElMu[i] = 0.0;
     HT_Yield_ElMu[i] = 0.0;
-    HTb_Yield_ElMu[i] = 0.0;
 
     for(unsigned int j=0; j<35; ++j){
       HT_InvMass_Yield_ElMu[i][j] = 0.0;
@@ -1550,7 +1545,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
   cout << "nEvents_Dimuon = " << nEvents_Dimuon << endl;
   cout << "nEvents_ElMu = " << nEvents_ElMu << endl;
   //Cut flow table
-/*
+
   cout << "Only HT optimization" << endl;
 
   for(std::map<double, double>::iterator i=HT_yield_ElMu.begin(); i != HT_yield_ElMu.end() ; ++i){
@@ -1568,23 +1563,17 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
   cout << "2D HT and invariant mass optimization" << endl;
 
   for(int l=0; l<35.0; l++){
-    cout << "HT value ElMu = " << HT_Value_ElMu[l] << " | ";
-    cout << "Invariant mass value ElMu = " << InvMass_Value_ElMu[l] << " | ";
     for(int m=0; m<35.0; m++){
-      cout << "HT_InvMass_Yield ElMu = " << HT_InvMass_Yield_ElMu[l][m] << " | " << std::endl;
+      cout <<  "HT = " << l*20+25 << " and " << " inv mass = " << m*10 << " and HT_InvMass_Yield ElMu = " << HT_InvMass_Yield_ElMu[l][m] << std::endl;
     }
   }
 
   cout << "3D HT, invariant mass and met optimization" << endl;
 
   for(int l=0; l<35.0; l++){
-    cout << "HT value ElMu = " << HT_Value_ElMu[l] << " | ";
-    cout << "Invariant mass value ElMu = " << InvMass_Value_ElMu[l] << " | ";
-    cout << "Met value ElMu = " << MET_Value_ElMu[l] << " | ";
     for(int m=0; m<35.0; m++){
-      cout << "HT_InvMass_Yield ElMu = " << HT_InvMass_Yield_ElMu[l][m] << " | ";
       for(int n=0; n<35.0; n++){
-      cout << "HT_InvMass_MET_Yield_ElMu = " << HT_InvMass_MET_Yield_ElMu[l][m][n] << " | " << std::endl;
+        cout << "HT = " << l*20+25 << " and " << " inv mass = " << m*10 << " met = " << n*5 << " and HT_InvMass_MET_Yield ElMu = " << HT_InvMass_MET_Yield_ElMu[l][m][n] << std::endl;
       }
     }
   }
@@ -1599,23 +1588,17 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
    cout << "2D HTb and invariant mass optimization" << endl;
 
   for(int l=0; l<35.0; l++){
-    cout << "HTb value ElMu = " << HTb_Value_ElMu[l] << " | ";
-    cout << "Invariant mass value ElMu = " << InvMass_Value_ElMu[l] << " | ";
     for(int m=0; m<35.0; m++){
-      cout << "HTb_InvMass_Yield ElMu = " << HTb_InvMass_Yield_ElMu[l][m] << " | " << std::endl;
+      cout <<  "HTb = " << l*20+25 << " and " << " inv mass = " << m*10 << " and HTb_InvMass_Yield ElMu = " << HTb_InvMass_Yield_ElMu[l][m] << std::endl;
     }
   }
 
   cout << "3D HTb, invariant mass and met optimization" << endl;
 
   for(int l=0; l<35.0; l++){
-    cout << "HTb value ElMu = " << HTb_Value_ElMu[l] << " | ";
-    cout << "Invariant mass value ElMu = " << InvMass_Value_ElMu[l] << " | ";
-    cout << "Met value ElMu = " << MET_Value_ElMu[l] << " | ";
     for(int m=0; m<35.0; m++){
-      cout << "HTb_InvMass_Yield ElMu = " << HTb_InvMass_Yield_ElMu[l][m] << " | ";
       for(int n=0; n<35.0; n++){
-      cout << "HTb_InvMass_MET_Yield ElMu = " << HTb_InvMass_MET_Yield_ElMu[l][m][n] << " | " << std::endl;
+        cout << "HTb = " << l*20+25 << " and " << " inv mass = " << m*10 << " met = " << n*5 << " and HTb_InvMass_MET_Yield ElMu = " << HTb_InvMass_MET_Yield_ElMu[l][m][n] << std::endl;
       }
     }
   }
@@ -1635,25 +1618,19 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
   }
 
   cout << "2D HT and invariant mass optimization" << endl;
-*/
+
   for(int l=0; l<3.0; l++){
-    cout << "HT value MuMu = " << " l = " << l << " and " << HT_Value_MuMu[l] << " | ";
-    cout << "Invariant mass value MuMu = " << InvMass_Value_MuMu[l] << " | ";
     for(int m=0; m<3.0; m++){
-      cout << "HT_InvMass_Yield MuMu = " << " l, m = " << l << "," << m << " and " << HT_InvMass_Yield_MuMu[l][m] << " | " << std::endl;
+      cout << "HT = " << l*20+30 << " and " << " inv mass = " << m*10 << " and HT_InvMass_Yield MuMu = " << HT_InvMass_Yield_MuMu[l][m] << std::endl;
     }
   }
-/*
+
   cout << "3D HT, invariant mass and met optimization" << endl;
 
   for(int l=0; l<35.0; l++){
-    cout << "HT value MuMu = " << HT_Value_MuMu[l] << " | ";
-    cout << "Invariant mass value MuMu = " << InvMass_Value_MuMu[l] << " | ";
-    cout << "Met value MuMu = " << MET_Value_MuMu[l] << " | ";
     for(int m=0; m<35.0; m++){
-      cout << "HT_InvMass_Yield MuMu = " << HT_InvMass_Yield_MuMu[l][m] << " | ";
       for(int n=0; n<35.0; n++){
-      cout << "HT_InvMass_MET_Yield_MuMu = " << HT_InvMass_MET_Yield_MuMu[l][m][n] << " | " << std::endl;
+        cout << "HT = " << l*20+25 << " and " << " inv mass = " << m*10 << " met = " << n*5 << " and HT_InvMass_MET_Yield MuMu = " << HT_InvMass_MET_Yield_MuMu[l][m][n] << std::endl;
       }
     }
   }
@@ -1668,27 +1645,21 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
   cout << "2D HTb and invariant mass optimization" << endl;
 
   for(int l=0; l<35.0; l++){
-    cout << "HTb value MuMu = " << HTb_Value_MuMu[l] << " | ";
-    cout << "Invariant mass value MuMu = " << InvMass_Value_MuMu[l] << " | ";
     for(int m=0; m<35.0; m++){
-      cout << "HTb_InvMass_Yield MuMu = " << HTb_InvMass_Yield_MuMu[l][m] << " | " << std::endl;
+      cout << "HTb = " << l*20+30 << " and " << " inv mass = " << m*10 << " and HTb_InvMass_Yield MuMu = " << HTb_InvMass_Yield_MuMu[l][m] << std::endl;
     }
   }
 
   cout << "3D HTb, invariant mass and met optimization" << endl;
 
   for(int l=0; l<35.0; l++){
-    cout << "HTb value MuMu = " << HTb_Value_MuMu[l] << " | ";
-    cout << "Invariant mass value MuMu = " << InvMass_Value_MuMu[l] << " | ";
-    cout << "Met value MuMu = " << MET_Value_MuMu[l] << " | ";
     for(int m=0; m<35.0; m++){
-      cout << "HTb_InvMass_Yield MuMu = " << HTb_InvMass_Yield_MuMu[l][m] << " | ";
       for(int n=0; n<35.0; n++){
-      cout << "HTb_InvMass_MET_Yield MuMu = " << HTb_InvMass_MET_Yield_MuMu[l][m][n] << " | " << std::endl;
+        cout << "HTb = " << l*20+25 << " and " << " inv mass = " << m*10 << " met = " << n*5 << " and HTb_InvMass_MET_Yield MuMu = " << HTb_InvMass_MET_Yield_MuMu[l][m][n] << std::endl;
       }
     }
   }
-*/
+
   std::string histfilename=(outfile+".root").c_str();
   TFile *tFile=new TFile(histfilename.c_str(), "RECREATE");
   h_CaloMETTrue_CaloMET->Write();
