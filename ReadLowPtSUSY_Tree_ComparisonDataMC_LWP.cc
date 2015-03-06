@@ -453,6 +453,9 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_LWP(std::string infile, std::string outf
 
   TH2F *h_Mmumu_MmumuGamma = new TH2F("h_Mmumu_MmumuGamma", "Scatter Plot of  M_{#mu#mu} versus M_{#mu#mu#gamma}; M_{#mu#mu} [GeV]; M_{#mu#mu#gamma} [GeV]", 4000, 0, 2000, 4000, 0, 2000);  h_Mmumu_MmumuGamma->Sumw2();
 
+  TH2F *h_SVFit_SVFitGamma_MuMu = new TH2F("h_SVFit_SVFitGamma_MuMu", "Scatter Plot of SVFit M_{#mu#mu} versus SVFit M_{#mu#mu#gamma}; SVFit M_{#mu#mu} [GeV]; SVFit M_{#mu#mu#gamma} [GeV]", 4000, 0, 2000, 4000, 0, 2000); h_SVFit_SVFitGamma_MuMu->Sumw2();
+  
+ TH2F *h_SVFit_SVFitGamma_ElMu = new TH2F("h_SVFit_SVFitGamma_ElMu", "Scatter Plot of SVFit M_{e#mu} versus SVFit M_{e#mu#gamma}; SVFit M_{e#mu} [GeV]; SVFit M_{e#mu#gamma} [GeV]", 8000, 0, 4000, 8000, 0, 4000); h_SVFit_SVFitGamma_ElMu->Sumw2();
   double mumu_SS_NT01 = 0;
   double mumu_SS_NT10 = 0;
   double mumu_SS_NT00 = 0;
@@ -477,7 +480,8 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_LWP(std::string infile, std::string outf
   //TFile *trigger1D2=new TFile("TurnOn_METParked_Run2012D_All.root");//evaluated at the analysis photon ID point
   //TFile *trigger1D2=new TFile("Test_METParked_Run2012D_All_OLD.root");
   //TFile *trigger1D2=new TFile("Test_TriggerTurn_METParked_MWP.root");
-  TFile *trigger1D2=new TFile("TEST_TEST_LWP.root");
+  TFile *trigger1D2=new TFile("Test_LWP_SpikeCleaning.root");
+  //TFile *trigger1D2=new TFile("TEST_TEST_LWP.root");
   //TFile *trigger1D2=new TFile("Test_TriggerLoose_WithoutBeamHalo.root");
   //TFile *trigger1D2=new TFile("TEST_MWP.root");
   //TFile *trigger1D2=new TFile("PhotonPt_TightWP_ForTalk.root");
@@ -492,16 +496,16 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_LWP(std::string infile, std::string outf
   TH1F *h_nWeights;
   if (type=="MC" and not (MCSample=="Signal")){ 
     if(MCSample=="ZGToLLG") fileMC = TFile::Open("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/MPAnalyzer/PU_MC/Output_LowPtSUSY_Tree_ZGToLLG_8TeV_CaloMET_All.root");
-    if(MCSample=="TTG") fileMC = TFile::Open("PU_MC/Output_LowPtSUSY_Tree_TTGJets_8TeV_madgraph_CaloMET_All.root");
-    if(MCSample=="ZZJetsTo4L") fileMC = TFile::Open("PU_MC/Output_LowPtSUSY_Tree_ZZJetsTo4L_TuneZ2star_CaloMET_All.root");
-    if(MCSample=="Tbar_tW") fileMC = TFile::Open("PU_MC/Output_LowPtSUSY_Tree_Tbar_tW_CaloMET_All.root");
-    if(MCSample=="T_tW")  fileMC = TFile::Open("PU_MC/Output_LowPtSUSY_Tree_T_tW_CaloMET_All.root");
-    if(MCSample=="WGstarToLNu2Mu") fileMC = TFile::Open("PU_MC/Output_LowPtSUSY_Tree_WGstarToLNu2Mu_TuneZ2star_CaloMET_All.root");
-    if(MCSample=="WmWmqq") fileMC = TFile::Open("PU_MC/Output_LowPtSUSY_Tree_WmWmqq_8TeV_madgraph_CaloMET_All.root");
-    if(MCSample=="WpWpqq") fileMC = TFile::Open("PU_MC/Output_LowPtSUSY_Tree_WpWpqq_8TeV_madgraph_CaloMET_All.root");
-    if(MCSample=="WZJetsTo3LNu") fileMC = TFile::Open("PU_MC/Output_LowPtSUSY_Tree_WZJetsTo3LNu_CaloMET_All.root");
-    if(MCSample=="WWGJets") fileMC = TFile::Open("PU_MC/Output_LowPtSUSY_Tree_WWGJets_8TeV_madgraph_CaloMET_All.root");
-    if(MCSample=="JPsiToMuMu") fileMC = TFile::Open("PU_MC/Output_LowPtSUSY_Tree_JPsiToMuMu_All.root");
+    if(MCSample=="TTG") fileMC = TFile::Open("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/MPAnalyzer/PU_MC/Output_LowPtSUSY_Tree_TTGJets_8TeV_madgraph_CaloMET_All.root");
+    if(MCSample=="ZZJetsTo4L") fileMC = TFile::Open("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/MPAnalyzer/PU_MC/Output_LowPtSUSY_Tree_ZZJetsTo4L_TuneZ2star_CaloMET_All.root");
+    if(MCSample=="Tbar_tW") fileMC = TFile::Open("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/MPAnalyzer/PU_MC/Output_LowPtSUSY_Tree_Tbar_tW_CaloMET_All.root");
+    if(MCSample=="T_tW")  fileMC = TFile::Open("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/MPAnalyzer/PU_MC/Output_LowPtSUSY_Tree_T_tW_CaloMET_All.root");
+    if(MCSample=="WGstarToLNu2Mu") fileMC = TFile::Open("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/MPAnalyzer/PU_MC/Output_LowPtSUSY_Tree_WGstarToLNu2Mu_TuneZ2star_CaloMET_All.root");
+    if(MCSample=="WmWmqq") fileMC = TFile::Open("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/MPAnalyzer/PU_MC/Output_LowPtSUSY_Tree_WmWmqq_8TeV_madgraph_CaloMET_All.root");
+    if(MCSample=="WpWpqq") fileMC = TFile::Open("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/MPAnalyzer/PU_MC/Output_LowPtSUSY_Tree_WpWpqq_8TeV_madgraph_CaloMET_All.root");
+    if(MCSample=="WZJetsTo3LNu") fileMC = TFile::Open("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/MPAnalyzer/PU_MC/Output_LowPtSUSY_Tree_WZJetsTo3LNu_CaloMET_All.root");
+    if(MCSample=="WWGJets") fileMC = TFile::Open("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/MPAnalyzer/PU_MC/Output_LowPtSUSY_Tree_WWGJets_8TeV_madgraph_CaloMET_All.root");
+    if(MCSample=="JPsiToMuMu") fileMC = TFile::Open("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/MPAnalyzer/PU_MC/Output_LowPtSUSY_Tree_JPsiToMuMu_All.root");
     TH1F *h_nVertices_MC = (TH1F*) fileMC->Get("h_nVertices_MC");
     h_nVertices_MC->Scale(1.0/h_nVertices_MC->Integral());
     h_nWeights = (TH1F*) h_nVertices_Data->Clone("h_nWeights");
@@ -683,7 +687,8 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_LWP(std::string infile, std::string outf
      TLorentzVector Photon;
      swissCross.push_back((photons.at(k).phseedCrystalEnergy)/(photons.at(k).phe1x5 + photons.at(k).phe5x1 - photons.at(k).phseedCrystalEnergy));
      
-     if(fabs(photons.at(k).eta)<1.444 and photons.at(k).pT>30.0 and photons.at(k).isLoose==1 and photons.at(k).phIsoLoose==1 and photons.at(k).phpixelVeto==0)// and photons.at(k).phSigmaIetaIeta > 0.001 and photons.at(k).phSigmaIphiIphi>0.0001 and swissCross.at(k)<0.90)// and photons.at(k).phSigmaIphiIphi>0.0001)// and swissCross.at(k)<0.90)
+     if(fabs(photons.at(k).eta)<1.444 and photons.at(k).pT>30.0 and photons.at(k).isLoose==1 and photons.at(k).phIsoLoose==1 and photons.at(k).phpixelVeto==0 and photons.at(k).phSigmaIetaIeta > 0.001 and swissCross.at(k)<0.90 and std::sqrt(photons.at(k).phSigmaIphiIphi)>0.009 and photons.at(k).phR9 < 1.0)
+     //if(fabs(photons.at(k).eta)<1.444 and photons.at(k).pT>30.0 and photons.at(k).isLoose==1 and photons.at(k).phIsoLoose==1 and photons.at(k).phpixelVeto==0)// and photons.at(k).phSigmaIetaIeta > 0.001 and photons.at(k).phSigmaIphiIphi>0.0001 and swissCross.at(k)<0.90)// and photons.at(k).phSigmaIphiIphi>0.0001)// and swissCross.at(k)<0.90)
     {
        Photon.SetPtEtaPhiE(photons.at(k).pT, photons.at(k).eta, photons.at(k).phi, photons.at(k).energy);
        bool isGoodPhoton=true;
@@ -794,7 +799,9 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_LWP(std::string infile, std::string outf
        TLorentzVector Photon;
        swissCross.push_back((photons.at(l).phseedCrystalEnergy)/(photons.at(l).phe1x5 + photons.at(l).phe5x1 - photons.at(l).phseedCrystalEnergy));
 
-       if(fabs(photons.at(l).eta)<1.444 and photons.at(l).pT>30.0 and photons.at(l).isLoose==1 and photons.at(l).phIsoLoose==1 and photons.at(l).phpixelVeto==0){// and photons.at(l).phSigmaIetaIeta > 0.001 and photons.at(l).phSigmaIphiIphi>0.0001 and swissCross.at(l)<0.90){ //photons.at(l).phSigmaIphiIphi>0.0001 and swissCross.at(l)<0.90){
+       if(fabs(photons.at(l).eta)<1.444 and photons.at(l).pT>30.0 and photons.at(l).isLoose==1 and photons.at(l).phIsoLoose==1 and photons.at(l).phpixelVeto==0 and photons.at(l).phSigmaIetaIeta > 0.001 and swissCross.at(l)<0.90 and std::sqrt(photons.at(l).phSigmaIphiIphi)>0.009 and photons.at(l).phR9 < 1.0)
+       {
+       //if(fabs(photons.at(l).eta)<1.444 and photons.at(l).pT>30.0 and photons.at(l).isLoose==1 and photons.at(l).phIsoLoose==1 and photons.at(l).phpixelVeto==0){// and photons.at(l).phSigmaIetaIeta > 0.001 and photons.at(l).phSigmaIphiIphi>0.0001 and swissCross.at(l)<0.90){ //photons.at(l).phSigmaIphiIphi>0.0001 and swissCross.at(l)<0.90){
          Photon.SetPtEtaPhiE(photons.at(l).pT, photons.at(l).eta, photons.at(l).phi, photons.at(l).energy);
          double DRjet_ph = Jet.JetLV.DeltaR(Photon);
          if(DRjet_ph<0.5) isGoodJet=false;
@@ -815,6 +822,24 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_LWP(std::string infile, std::string outf
   // Now sorting this vector of structs
   std::sort (Jets.begin(), Jets.end(), sortJetVectorsInDescendingpT);
   
+  std::vector<BJetInfo> Bjets;
+  Bjets.clear();
+  for(unsigned int m=0; m<Jets.size(); m++){
+    HT += Jets.at(m).JetLV.Pt();
+    BJetInfo Bjet;
+    if(Jets.at(m).JetLV.Pt() > 25.0 and Jets.at(m).BTag_CSV > 0.679){
+      Bjet.BJetLV.SetPtEtaPhiE(Jets.at(m).JetLV.Pt(), Jets.at(m).JetLV.Eta(), Jets.at(m).JetLV.Phi(), Jets.at(m).JetLV.E());
+      Bjet.BTag=Jets.at(m).BTag_CSV;
+      Bjets.push_back(Bjet);
+    }
+  }
+
+  // Now sorting this vector of structs
+  std::sort (Bjets.begin(), Bjets.end(), sortBJetVectorsInDescendingpT);
+
+  double HTb = 0.0;
+  for(unsigned int n=0; n<Bjets.size(); n++) HTb += Bjets.at(n).BJetLV.Pt();
+
   for(unsigned int m=0; m<Jets.size(); m++) HT += Jets.at(m).JetLV.Pt();
   std::vector<AnalysisLeptonInfo> Electrons;
   Electrons.clear();
@@ -900,7 +925,14 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_LWP(std::string infile, std::string outf
          if(type=="MC" and MCSample=="ZGToLLG") Muon.Mother9 = muons.at(j).mother9;
          if(type=="MC" and MCSample=="ZGToLLG") Muon.Mother10 = muons.at(j).mother10;
        }
-       Muons.push_back(Muon);
+       bool isGoodMuon = true;
+       for (unsigned int k=0; k<Electrons.size(); k++){
+         TLorentzVector AnaElectron;
+         AnaElectron.SetPtEtaPhiE(Electrons.at(k).LepLV.Pt(), Electrons.at(k).LepLV.Eta(), Electrons.at(k).LepLV.Phi(), Electrons.at(k).LepLV.E());
+         double DRel_mu = Muon.LepLV.DeltaR(AnaElectron);
+         if(DRel_mu<0.3) isGoodMuon=false;//anti-matching to muons object.
+       }
+       if(isGoodMuon) Muons.push_back(Muon);
        }//close four vector if
      }//close muon loop
 
@@ -1013,20 +1045,20 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_LWP(std::string infile, std::string outf
   cov[1][1] = MET_Signyy;
 
   if(eventWeight > 0.0 and type=="MC" and MCSample=="ZGToLLG" and taus.size()==2){
-    //tau1_xyzt.SetPxPyPzE(taus.at(0).Px, taus.at(0).Py, taus.at(0).Pz, taus.at(0).E);
-    //tau2_xyzt.SetPxPyPzE(taus.at(1).Px, taus.at(1).Py, taus.at(1).Pz, taus.at(1).E);
-    //measuredTauLeptons.push_back(svFitStandalone::MeasuredTauLepton(svFitStandalone::kTauToMuDecay, tau1_xyzt)); //kTauToElecDecay
-    //measuredTauLeptons.push_back(svFitStandalone::MeasuredTauLepton(svFitStandalone::kTauToMuDecay, tau2_xyzt)); //kTauToElecDecay
-    //SVfitStandaloneAlgorithm algo(measuredTauLeptons, measuredMET, cov, 0);
-    //algo.addLogM(false);
-    //algo.integrateVEGAS();
+    /*tau1_xyzt.SetPxPyPzE(taus.at(0).Px, taus.at(0).Py, taus.at(0).Pz, taus.at(0).E);
+    tau2_xyzt.SetPxPyPzE(taus.at(1).Px, taus.at(1).Py, taus.at(1).Pz, taus.at(1).E);
+    measuredTauLeptons.push_back(svFitStandalone::MeasuredTauLepton(svFitStandalone::kTauToMuDecay, tau1_xyzt)); //kTauToElecDecay
+    measuredTauLeptons.push_back(svFitStandalone::MeasuredTauLepton(svFitStandalone::kTauToMuDecay, tau2_xyzt)); //kTauToElecDecay
+    SVfitStandaloneAlgorithm algo(measuredTauLeptons, measuredMET, cov, 0);
+    algo.addLogM(false);
+    algo.integrateVEGAS();*/
     TLorentzVector tau1, tau2, MET_vec;
     tau1.SetPxPyPzE(taus.at(0).Px, taus.at(0).Py, taus.at(0).Pz, taus.at(0).E);
     tau2.SetPxPyPzE(taus.at(1).Px, taus.at(1).Py, taus.at(1).Pz, taus.at(1).E);
     MET_vec.SetPxPyPzE(MET*TMath::Cos(MET_Phi), MET*TMath::Sin(MET_Phi), 0, MET);
     mumuHist.h_Invariant_Mass_Taus->Fill((tau1+tau2).M());
     //mumuHist.h_SVFit_Mass_Taus->Fill(algo.getMass());
-  }
+  } 
 
   if(eventWeight > 0.0 and type=="MC" and MCSample=="ZGToLLG" and mus.size()==2){
     TLorentzVector mu1, mu2;
@@ -1050,17 +1082,22 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_LWP(std::string infile, std::string outf
       if(signSelection=="OS" and (Muons.at(0).Charge*Muons.at(1).Charge)==-1){
         if((Muons.at(0).LepLV+Muons.at(1).LepLV).M()< 15.0) continue;
         if((Muons.at(0).LepLV+Muons.at(1).LepLV).M() > 70 and (Muons.at(0).LepLV+Muons.at(1).LepLV).M() < 110) mumu_OS_Z+=eventWeight;
-        /*mu1P4_xyzt.SetPxPyPzE(Muons.at(0).LepLV.Px(), Muons.at(0).LepLV.Py(), Muons.at(0).LepLV.Pz(), Muons.at(0).LepLV.E());
-        mu2P4_xyzt.SetPxPyPzE(Muons.at(1).LepLV.Px(), Muons.at(1).LepLV.Py(), Muons.at(1).LepLV.Pz(), Muons.at(1).LepLV.E());
-        measuredTauLeptons.push_back(svFitStandalone::MeasuredTauLepton(svFitStandalone::kTauToMuDecay, mu1P4_xyzt)); //kTauToMuDecay
-        measuredTauLeptons.push_back(svFitStandalone::MeasuredTauLepton(svFitStandalone::kTauToMuDecay, mu2P4_xyzt)); //kTauToMuDecay
-        SVfitStandaloneAlgorithm algo(measuredTauLeptons, measuredMET, cov, 0);
-        algo.addLogM(false);
-        algo.integrateVEGAS();  */
-        double svfit_mass = 0;
-        //svfit_mass = algo.getMass(); 
+        //mu1P4_xyzt.SetPxPyPzE(Muons.at(0).LepLV.Px(), Muons.at(0).LepLV.Py(), Muons.at(0).LepLV.Pz(), Muons.at(0).LepLV.E());
+        //mu2P4_xyzt.SetPxPyPzE(Muons.at(1).LepLV.Px(), Muons.at(1).LepLV.Py(), Muons.at(1).LepLV.Pz(), Muons.at(1).LepLV.E());
+        //measuredTauLeptons.push_back(svFitStandalone::MeasuredTauLepton(svFitStandalone::kTauToMuDecay, mu1P4_xyzt)); //kTauToMuDecay
+        //measuredTauLeptons.push_back(svFitStandalone::MeasuredTauLepton(svFitStandalone::kTauToMuDecay, mu2P4_xyzt)); //kTauToMuDecay
+        //SVfitStandaloneAlgorithm algo(measuredTauLeptons, measuredMET, cov, 0);
+        //algo.addLogM(false);
+        //algo.integrateVEGAS();  
+        //algo.integrateMarkovChain(); //new method to compute SVFit mass 
+        //double svfit_mass = 0;
+        //svfit_mass = algo.getMass();
         if((Muons.at(0).LepLV+Muons.at(1).LepLV+Photon_vector.at(0)).M() < 80 or (Muons.at(0).LepLV+Muons.at(1).LepLV+Photon_vector.at(0)).M() > 100){ 
+        //cout << "Event MuMu = " << event << " Run = "<< run << " Lumi = " << lumi << endl;
         mumu_OS+=eventWeight;
+        TLorentzVector SVFittedVector;
+        //SVFittedVector.SetPtEtaPhiM(algo.pt(), algo.eta(), algo.phi(), algo.getMass());
+        //h_SVFit_SVFitGamma_MuMu->Fill(svfit_mass, (SVFittedVector+Photon_vector.at(0)).M(), eventWeight);
         h_Mmumu_MmumuGamma->Fill((Muons.at(0).LepLV+Muons.at(1).LepLV).M(), (Muons.at(0).LepLV+Muons.at(1).LepLV+Photon_vector.at(0)).M(), eventWeight);
         mumuHist.h_mu_pt_leading->Fill(Muons.at(0).LepLV.Pt(), eventWeight);
         mumuHist.h_mu_phi_leading->Fill(Muons.at(0).LepLV.Phi(), eventWeight);
@@ -1072,7 +1109,8 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_LWP(std::string infile, std::string outf
         mumuHist.h_mu_energy_trailing->Fill(Muons.at(1).LepLV.E(), eventWeight);
         mumuHist.h_InvariantMass->Fill((Muons.at(0).LepLV+Muons.at(1).LepLV).M(), eventWeight);
         mumuHist.h_InvariantMass_Ph->Fill((Muons.at(0).LepLV+Muons.at(1).LepLV+Photon_vector.at(0)).M(), eventWeight);
-        mumuHist.h_SVFit->Fill(svfit_mass, eventWeight);
+        //mumuHist.h_SVFitMass_Ph->Fill((SVFittedVector+Photon_vector.at(0)).M(), eventWeight);
+        //mumuHist.h_SVFit->Fill(svfit_mass, eventWeight);
         mumuHist.h_DeltaPhi_met_mu1->Fill(met_transverse.DeltaPhi(mu1_transverse), eventWeight);
         mumuHist.h_DeltaPhi_met_mu2->Fill(met_transverse.DeltaPhi(mu2_transverse), eventWeight);
         mumuHist.h_DeltaPhi_ph_mu1->Fill(ph_transverse.DeltaPhi(mu1_transverse), eventWeight);
@@ -1316,17 +1354,23 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_LWP(std::string infile, std::string outf
      mu1_transverse.SetMagPhi(Muons.at(0).LepLV.Pt(), Muons.at(0).LepLV.Phi());
      el1_transverse.SetMagPhi(Electrons.at(0).LepLV.Pt(), Electrons.at(0).LepLV.Phi());
      if(signSelection=="OS" and ((Muons.at(0).Charge)*(Electrons.at(0).Charge)==-1)){
+       //cout << "Event ElMu = " << event << " Run = "<< run << " Lumi = " << lumi << endl;   
        if(type=="Data") cout << "Event = " << event << " Run = "<< run << " Lumi = " << lumi << endl;  
-       /*mu1P4_xyzt.SetPxPyPzE(Muons.at(0).LepLV.Px(), Muons.at(0).LepLV.Py(), Muons.at(0).LepLV.Pz(), Muons.at(0).LepLV.E());
-       el1P4_xyzt.SetPxPyPzE(Electrons.at(0).LepLV.Px(), Electrons.at(0).LepLV.Py(), Electrons.at(0).LepLV.Pz(), Electrons.at(0).LepLV.E());
-       measuredTauLeptons.push_back(svFitStandalone::MeasuredTauLepton(svFitStandalone::kTauToMuDecay, mu1P4_xyzt)); //kTauToMuDecay
-       measuredTauLeptons.push_back(svFitStandalone::MeasuredTauLepton(svFitStandalone::kTauToElecDecay, el1P4_xyzt)); //kTauToElecDecay
-       SVfitStandaloneAlgorithm algo(measuredTauLeptons, measuredMET, cov, 0);
-       algo.addLogM(false);
-       algo.integrateVEGAS();*/
+       //mu1P4_xyzt.SetPxPyPzE(Muons.at(0).LepLV.Px(), Muons.at(0).LepLV.Py(), Muons.at(0).LepLV.Pz(), Muons.at(0).LepLV.E());
+       //el1P4_xyzt.SetPxPyPzE(Electrons.at(0).LepLV.Px(), Electrons.at(0).LepLV.Py(), Electrons.at(0).LepLV.Pz(), Electrons.at(0).LepLV.E());
+       //measuredTauLeptons.push_back(svFitStandalone::MeasuredTauLepton(svFitStandalone::kTauToMuDecay, mu1P4_xyzt)); //kTauToMuDecay
+       //measuredTauLeptons.push_back(svFitStandalone::MeasuredTauLepton(svFitStandalone::kTauToElecDecay, el1P4_xyzt)); //kTauToElecDecay
+       //SVfitStandaloneAlgorithm algo(measuredTauLeptons, measuredMET, cov, 0);
+       //algo.addLogM(false);
+       //algo.integrateVEGAS();
+       //algo.integrateMarkovChain();
        double svfit_mass = 0;
        //svfit_mass = algo.getMass();
+       //cout << "svfit_mass elmu = " << svfit_mass << endl;
+       //TLorentzVector SVFittedVector;
+       //SVFittedVector.SetPtEtaPhiM(algo.pt(), algo.eta(), algo.phi(), algo.getMass());
        emu_OS+=eventWeight;
+       //h_SVFit_SVFitGamma_ElMu->Fill(svfit_mass, (SVFittedVector+Photon_vector.at(0)).M(), eventWeight);
        emuHist.h_mu_pt_leading->Fill(Muons.at(0).LepLV.Pt(), eventWeight);
        emuHist.h_mu_phi_leading->Fill(Muons.at(0).LepLV.Phi(), eventWeight);
        emuHist.h_mu_eta_leading->Fill(Muons.at(0).LepLV.Eta(), eventWeight);
@@ -1337,7 +1381,8 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_LWP(std::string infile, std::string outf
        emuHist.h_el_energy_leading->Fill(Electrons.at(0).LepLV.E(), eventWeight);
        emuHist.h_InvariantMass->Fill((Muons.at(0).LepLV+Electrons.at(0).LepLV).M(), eventWeight);
        emuHist.h_InvariantMass_Ph->Fill((Muons.at(0).LepLV+Electrons.at(0).LepLV+Photon_vector.at(0)).M(), eventWeight);
-       emuHist.h_SVFit->Fill(svfit_mass, eventWeight);
+       //emuHist.h_SVFitMass_Ph->Fill((SVFittedVector+Photon_vector.at(0)).M(), eventWeight);
+       //emuHist.h_SVFit->Fill(svfit_mass, eventWeight);
        emuHist.h_MET_Signxx->Fill(MET_Signxx, eventWeight);
        emuHist.h_MET_Signxy->Fill(MET_Signxy, eventWeight);
        emuHist.h_MET_Signyx->Fill(MET_Signyx, eventWeight);
@@ -1906,6 +1951,8 @@ else if( LNTElectrons.size() > 1.0 and eventWeight > 0.0 ) {
   h_CaloMETTrue_CaloMET->Write();
   h_HLTMET_CaloMET->Write();
   h_Mmumu_MmumuGamma->Write();
+  h_SVFit_SVFitGamma_MuMu->Write();
+  h_SVFit_SVFitGamma_ElMu->Write();
   writeHistCollection(mumuHist); 
   writeHistCollection(mumuHistNT01);
   writeHistCollection(mumuHistNT10);
