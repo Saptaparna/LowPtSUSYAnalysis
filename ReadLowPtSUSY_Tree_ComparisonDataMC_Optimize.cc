@@ -1114,18 +1114,18 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
        unsigned int i_ht=0;
        for(float ht=30.0; ht<700.0;ht+=20.0){
          HT_Value_MuMu[i_ht] = ht;
-         ++i_ht;
          unsigned int j_invMass=0;
          for(float invMass=0.0; invMass<100.0; invMass+=10.0){
             InvMass_Value_MuMu[j_invMass]=invMass;
             if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass)) HT_InvMass_Yield_MuMu[i_ht][j_invMass]+=eventWeight;
-            ++j_invMass;
-             unsigned int k_met=0;
+            unsigned int k_met=0;
             for(float met=0.0; met<100.0; met+=5.0){
               if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass) and MET>met) HT_InvMass_MET_Yield_MuMu[i_ht][j_invMass][k_met]+=eventWeight;
               ++k_met;
             }
+          ++j_invMass; 
           }
+          ++i_ht;
         }
       
       for(float htb=25.0; htb<700.0;htb+=20.0){
@@ -1134,18 +1134,18 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
       unsigned int i_htb=0;
       for(float htb=25.0; htb<700.0;htb+=20.0){
          HTb_Value_MuMu[i_htb] = htb;
-         ++i_htb;
          unsigned int j_invMass=0;
          for(float invMass=0.0; invMass<100.0; invMass+=10.0){
             InvMass_Value_MuMu[j_invMass]=invMass;
             if(HT<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass)) HTb_InvMass_Yield_MuMu[i_htb][j_invMass]+=eventWeight;
-            ++j_invMass;
              unsigned int k_met=0;
             for(float met=0.0; met<100.0; met+=5.0){
               if(HTb<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass) and MET>met) HTb_InvMass_MET_Yield_MuMu[i_htb][j_invMass][k_met]+=eventWeight;
               ++k_met;
               }
+            ++j_invMass;
             }
+          ++i_htb;
           }
         }//ZGamma 
       }//OS mode
@@ -1314,18 +1314,18 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
        unsigned int i_ht=0;
        for(float ht=30.0; ht<700.0;ht+=20.0){
          HT_Value_ElMu[i_ht] = ht; 
-         ++i_ht;
          unsigned int j_invMass=0;
          for(float invMass=0.0; invMass<100.0; invMass+=10.0){
             InvMass_Value_ElMu[j_invMass]=invMass; 
             if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass)) HT_InvMass_Yield_ElMu[i_ht][j_invMass]+=eventWeight;
-            ++j_invMass;
              unsigned int k_met=0;
-            for(float met=0.0; met<100.0; met+=5.0){
-              if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass) and MET>met) HT_InvMass_MET_Yield_ElMu[i_ht][j_invMass][k_met]+=eventWeight;
-              ++k_met;
-            }
+             for(float met=0.0; met<100.0; met+=5.0){
+               if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass) and MET>met) HT_InvMass_MET_Yield_ElMu[i_ht][j_invMass][k_met]+=eventWeight;
+               ++k_met;
+             }
+          ++j_invMass;
           }
+         ++i_ht;
         }
 
       for(float htb=25.0; htb<700.0;htb+=20.0){
@@ -1334,18 +1334,18 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
       unsigned int i_htb=0; 
       for(float htb=25.0; htb<700.0;htb+=20.0){
          HTb_Value_ElMu[i_htb] = htb;
-         ++i_htb;
          unsigned int j_invMass=0;
          for(float invMass=0.0; invMass<100.0; invMass+=10.0){
             InvMass_Value_ElMu[j_invMass]=invMass;
             if(HT<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass)) HTb_InvMass_Yield_ElMu[i_htb][j_invMass]+=eventWeight;
-            ++j_invMass;
-             unsigned int k_met=0;
+            unsigned int k_met=0;
             for(float met=0.0; met<100.0; met+=5.0){
               if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass) and MET>met) HTb_InvMass_MET_Yield_ElMu[i_htb][j_invMass][k_met]+=eventWeight;
               ++k_met;
             }
+         ++j_invMass; 
           }
+       ++i_ht;
         }
       }//OS mode
     else if(signSelection=="SS" and ((Muons.at(0).Charge)*(Electrons.at(0).Charge)==+1)){
@@ -1550,7 +1550,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
   cout << "nEvents_Dimuon = " << nEvents_Dimuon << endl;
   cout << "nEvents_ElMu = " << nEvents_ElMu << endl;
   //Cut flow table
-
+/*
   cout << "Only HT optimization" << endl;
 
   for(std::map<double, double>::iterator i=HT_yield_ElMu.begin(); i != HT_yield_ElMu.end() ; ++i){
@@ -1635,15 +1635,15 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
   }
 
   cout << "2D HT and invariant mass optimization" << endl;
-
-  for(int l=0; l<35.0; l++){
-    cout << "HT value MuMu = " << HT_Value_MuMu[l] << " | ";
+*/
+  for(int l=0; l<3.0; l++){
+    cout << "HT value MuMu = " << " l = " << l << " and " << HT_Value_MuMu[l] << " | ";
     cout << "Invariant mass value MuMu = " << InvMass_Value_MuMu[l] << " | ";
-    for(int m=0; m<35.0; m++){
-      cout << "HT_InvMass_Yield MuMu = " << HT_InvMass_Yield_MuMu[l][m] << " | " << std::endl;
+    for(int m=0; m<3.0; m++){
+      cout << "HT_InvMass_Yield MuMu = " << " l, m = " << l << "," << m << " and " << HT_InvMass_Yield_MuMu[l][m] << " | " << std::endl;
     }
   }
-
+/*
   cout << "3D HT, invariant mass and met optimization" << endl;
 
   for(int l=0; l<35.0; l++){
@@ -1688,7 +1688,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
       }
     }
   }
-
+*/
   std::string histfilename=(outfile+".root").c_str();
   TFile *tFile=new TFile(histfilename.c_str(), "RECREATE");
   h_CaloMETTrue_CaloMET->Write();
