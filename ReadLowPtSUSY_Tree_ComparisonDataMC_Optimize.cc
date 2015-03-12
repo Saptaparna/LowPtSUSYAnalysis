@@ -450,7 +450,8 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
   //TFile *trigger1D2=new TFile("TurnOn_METParked_Run2012D_All.root");//evaluated at the analysis photon ID point
   //TFile *trigger1D2=new TFile("Test_METParked_Run2012D_All_OLD.root");
   //TFile *trigger1D2=new TFile("Test_TriggerTurn_METParked_MWP.root");
-  TFile *trigger1D2=new TFile("TEST_TEST_LWP.root");
+  TFile *trigger1D2=new TFile("Test_LWP_SpikeCleaning.root");
+  //TFile *trigger1D2=new TFile("TEST_TEST_LWP.root");
   //TFile *trigger1D2=new TFile("Test_TriggerLoose_WithoutBeamHalo.root");
   //TFile *trigger1D2=new TFile("TEST_MWP.root");
   //TFile *trigger1D2=new TFile("PhotonPt_TightWP_ForTalk.root");
@@ -707,15 +708,6 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
            }
          }
 
-       for(unsigned int j=0; j<electrons.size(); ++j)
-         {
-         TLorentzVector LNTElectron; 
-         if(electrons.at(j).pT > 10.0 and electrons.at(j).isLoose==1 and electrons.at(j).isolation < 0.60 and not(electrons.at(j).isTight==1 and electrons.at(j).isolation < 0.10)){
-           LNTElectron.SetPtEtaPhiE(electrons.at(j).pT, electrons.at(j).eta, electrons.at(j).phi, electrons.at(j).energy);
-           double DRph_lntel = Photon.DeltaR(LNTElectron);
-           if(DRph_lntel<0.5) isGoodPhoton=false;
-          }
-        }
        for(unsigned int j=0; j<muons.size(); ++j)
          {
          TLorentzVector Muon;
@@ -723,16 +715,6 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
          Muon.SetPtEtaPhiE(muons.at(j).pT, muons.at(j).eta, muons.at(j).phi, muons.at(j).energy);
          double DRph_mu = Photon.DeltaR(Muon);
          if(DRph_mu<0.5) isGoodPhoton=false;
-        }
-      }
-
-      for(unsigned int j=0; j<muons.size(); ++j)
-         {
-         TLorentzVector LNTMuon;
-         if(muons.at(j).pT > 3.0 and muons.at(j).isLoose==1 and muons.at(j).isolation < 0.40 and not(muons.at(j).isTight==1 and muons.at(j).isolation < 0.12)){
-           LNTMuon.SetPtEtaPhiE(muons.at(j).pT, muons.at(j).eta, muons.at(j).phi, muons.at(j).energy);
-           double DRph_lntmu = Photon.DeltaR(LNTMuon);
-           if(DRph_lntmu<0.5) isGoodPhoton=false;
         }
       }
 
@@ -881,31 +863,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
        }//close four vector if
      }//close electron loop
 
-  std::sort(Electrons.begin(), Electrons.end(), sortVectorsInDescendingpT);
-
-  std::vector<AnalysisLeptonInfo> LNTElectrons;
-  LNTElectrons.clear();
-  for (unsigned int j=0; j<electrons.size(); ++j)
-     {
-     AnalysisLeptonInfo LNTElectron;
-     if(electrons.at(j).pT > 10.0 and electrons.at(j).isLoose==1 and electrons.at(j).isolation < 0.60 and not(electrons.at(j).isTight==1 and electrons.at(j).isolation < 0.10))
-       {
-       LNTElectron.LepLV.SetPtEtaPhiE(electrons.at(j).pT, electrons.at(j).eta, electrons.at(j).phi, electrons.at(j).energy);
-       LNTElectron.Charge=electrons.at(j).charge;
-       LNTElectron.Isolation=electrons.at(j).isolation;
-       bool isLNTElectron = true;
-       if(type=="Data")
-       {
-         TLorentzVector trigger1_p4;
-         trigger1_p4.SetPxPyPzE(trigger1.Px, trigger1.Py, trigger1.Pz, trigger1.E);
-         double DRel_tr = LNTElectron.LepLV.DeltaR(trigger1_p4);
-         if(DRel_tr<0.3) isLNTElectron=false;//anti-matching to trigger photon object.
-       }
-       if(isLNTElectron) LNTElectrons.push_back(LNTElectron);
-       }//close four vector if
-     }//close electron loop
-
-   std::sort(LNTElectrons.begin(), LNTElectrons.end(), sortVectorsInDescendingpT);
+   std::sort(Electrons.begin(), Electrons.end(), sortVectorsInDescendingpT);
 
    std::vector<AnalysisLeptonInfo> Muons;
    Muons.clear();
@@ -937,27 +895,12 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
          double DRel_mu = Muon.LepLV.DeltaR(AnaElectron);
          if(DRel_mu<0.3) isGoodMuon=false;//anti-matching to muons object.
        }
-       Muons.push_back(Muon);
+       if(isGoodMuon) Muons.push_back(Muon);
        }//close four vector if
      }//close muon loop
 
-   std::sort(Muons.begin(), Muons.end(), sortVectorsInDescendingpT);
-   std::vector<AnalysisLeptonInfo> LNTMuons;
-   LNTMuons.clear();
-   for(unsigned int j=0; j<muons.size(); ++j)
-     {
-     AnalysisLeptonInfo LNTMuon;
-     if(muons.at(j).pT > 3.0 and muons.at(j).isLoose==1 and muons.at(j).isolation < 0.40 and not (muons.at(j).isTight==1 and muons.at(j).isolation < 0.12))
-       {
-       LNTMuon.LepLV.SetPtEtaPhiE(muons.at(j).pT, muons.at(j).eta, muons.at(j).phi, muons.at(j).energy);
-       LNTMuon.Charge=muons.at(j).charge;
-       LNTMuon.Isolation=muons.at(j).isolation;
-       LNTMuons.push_back(LNTMuon);
-       }//close four vector if
-     }//close muon loop
-
-  std::sort(LNTMuons.begin(), LNTMuons.end(), sortVectorsInDescendingpT);
-
+  std::sort(Muons.begin(), Muons.end(), sortVectorsInDescendingpT);
+ 
   double caloMET_True = caloMET;
   if(Muons.size() > 1){
     double MEx = MET*cos(MET_Phi) + Muons.at(0).LepLV.Px() + Muons.at(1).LepLV.Px();
@@ -1100,14 +1043,14 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
         bool eventVeto = false;
        for(int k=0; k<Jets.size(); k++) if(Jets.at(k).JetLV.Pt() > 40 and Jets.at(k).BTag_CSV > 0.679) {eventVeto=true; break;}
        if(eventVeto==true) vetoCounter+=eventWeight;
-       for(float ht=30.0; ht<700.0;ht+=20.0){
+       for(float ht=30.0; ht<730.0;ht+=20.0){
           if(HT<ht) HT_yield_MuMu[ht] += eventWeight;
        }
        for(float invMass=0.0; invMass<100.0; invMass+=10.0){
           if((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass) invMass_yield_MuMu[invMass] += eventWeight;
        }
        unsigned int i_ht=0;
-       for(float ht=30.0; ht<700.0;ht+=20.0){
+       for(float ht=30.0; ht<730.0;ht+=20.0){
          HT_Value_MuMu[i_ht] = ht;
          unsigned int j_invMass=0;
          for(float invMass=0.0; invMass<100.0; invMass+=10.0){
@@ -1123,11 +1066,11 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
           ++i_ht;
         }
       
-      for(float htb=25.0; htb<700.0;htb+=20.0){
+      for(float htb=25.0; htb<725.0;htb+=20.0){
           if(HTb<htb) HTb_yield_MuMu[htb] += eventWeight;
        }
       unsigned int i_htb=0;
-      for(float htb=25.0; htb<700.0;htb+=20.0){
+      for(float htb=25.0; htb<725.0;htb+=20.0){
          HTb_Value_MuMu[i_htb] = htb;
          unsigned int j_invMass=0;
          for(float invMass=0.0; invMass<100.0; invMass+=10.0){
@@ -1300,14 +1243,14 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
        bool eventVeto = false;
        for(int k=0; k<Jets.size(); k++) if(Jets.at(k).JetLV.Pt() > 40 and Jets.at(k).BTag_CSV > 0.679) {eventVeto=true; break;}
        if(eventVeto==true) vetoCounter+=eventWeight;
-       for(float ht=30.0; ht<700.0;ht+=20.0){
+       for(float ht=30.0; ht<730.0;ht+=20.0){
           if(HT<ht) HT_yield_ElMu[ht] += eventWeight;
        }
        for(float invMass=0.0; invMass<100.0; invMass+=10.0){
           if((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass) invMass_yield_ElMu[invMass] += eventWeight;
        }
        unsigned int i_ht=0;
-       for(float ht=30.0; ht<700.0;ht+=20.0){
+       for(float ht=30.0; ht<730.0;ht+=20.0){
          HT_Value_ElMu[i_ht] = ht; 
          unsigned int j_invMass=0;
          for(float invMass=0.0; invMass<100.0; invMass+=10.0){
@@ -1323,11 +1266,11 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize(std::string infile, std::string
          ++i_ht;
         }
 
-      for(float htb=25.0; htb<700.0;htb+=20.0){
+      for(float htb=25.0; htb<725.0;htb+=20.0){
           if(HTb<htb) HTb_yield_ElMu[htb] += eventWeight;
        }
       unsigned int i_htb=0; 
-      for(float htb=25.0; htb<700.0;htb+=20.0){
+      for(float htb=25.0; htb<725.0;htb+=20.0){
          HTb_Value_ElMu[i_htb] = htb;
          unsigned int j_invMass=0;
          for(float invMass=0.0; invMass<100.0; invMass+=10.0){
