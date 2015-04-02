@@ -472,33 +472,33 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_OptimizationStudies(std::string infile, 
     h_nWeights->Divide(h_nVertices_MC);
   }
 
-  TH2F *h_HT_Mmumu_LowCutValue = new TH2F("h_HT_Mmumu_LowCutValue", "Scatter Plot of HT versus M_{#mu#mu}; HT [GeV]; M_{#mu#mu} [GeV]", 2000, 0, 2000, 4000, 0, 2000);  h_HT_Mmumu_LowCutValue->Sumw2();
-  TH2F *h_HT_Mmumu_HighCutValue = new TH2F("h_HT_Mmumu_HighCutValue", "Scatter Plot of HT versus M_{#mu#mu}; HT [GeV]; M_{#mu#mu} [GeV]", 2000, 0, 2000, 4000, 0, 2000);  h_HT_Mmumu_HighCutValue->Sumw2();
-  TH2F *h_HT_MmumuGamma_LowCutValue = new TH2F("h_HT_MmumuGamma_LowCutValue", "Scatter Plot of HT versus M_{#mu#mu#gamma}; HT [GeV]; M_{#mu#mu#gamma} [GeV]", 2000, 0, 2000, 4000, 0, 2000);  h_HT_MmumuGamma_LowCutValue->Sumw2();
+  TH2F *h_HT_Mmumu_LowCutValue = new TH2F("h_HT_Mmumu_LowCutValue", "Scatter Plot of HT versus M_{#mu#mu}; HT [GeV]; M_{#mu#mu} [GeV]", 34, 30.0, 710.0, 29, 0.0, 290.0);  h_HT_Mmumu_LowCutValue->Sumw2();
+  TH2F *h_HT_Mmumu_HighCutValue = new TH2F("h_HT_Mmumu_HighCutValue", "Scatter Plot of HT versus M_{#mu#mu}; HT [GeV]; M_{#mu#mu} [GeV]", 34, 30.0, 710.0, 29, 0.0, 290.0);  h_HT_Mmumu_HighCutValue->Sumw2();
+  TH2F *h_HT_MmumuGamma_LowCutValue = new TH2F("h_HT_MmumuGamma_LowCutValue", "Scatter Plot of HT versus M_{#mu#mu#gamma}; HT [GeV]; M_{#mu#mu#gamma} [GeV]", 34, 30.0, 710.0, 14, 0.0, 280.0);  h_HT_MmumuGamma_LowCutValue->Sumw2();
 
-  TH2F *h_HT_Memu_LowCutValue = new TH2F("h_HT_Memu_LowCutValue", "Scatter Plot of HT versus M_{#mu#mu}; HT [GeV]; M_{#mu#mu} [GeV]", 2000, 0, 2000, 4000, 0, 2000);  h_HT_Memu_LowCutValue->Sumw2();
-  TH2F *h_HT_Memu_HighCutValue = new TH2F("h_HT_Memu_HighCutValue", "Scatter Plot of HT versus M_{#mu#mu}; HT [GeV]; M_{#mu#mu} [GeV]", 2000, 0, 2000, 4000, 0, 2000);  h_HT_Memu_HighCutValue->Sumw2();
-  TH2F *h_HT_MemuGamma_LowCutValue = new TH2F("h_HT_MemuGamma_LowCutValue", "Scatter Plot of HT versus M_{#mue#gamma}; HT [GeV]; M_{#mue#gamma} [GeV]", 2000, 0, 2000, 4000, 0, 2000);  h_HT_MemuGamma_LowCutValue->Sumw2();
+  TH2F *h_HT_Memu_LowCutValue = new TH2F("h_HT_Memu_LowCutValue", "Scatter Plot of HT versus M_{e#mu}; HT [GeV]; M_{e#mu} [GeV]", 34, 30.0, 710.0, 29, 0.0, 290.0);  h_HT_Memu_LowCutValue->Sumw2();
+  TH2F *h_HT_Memu_HighCutValue = new TH2F("h_HT_Memu_HighCutValue", "Scatter Plot of HT versus M_{e#mu}; HT [GeV]; M_{e#mu} [GeV]", 34, 30.0, 710.0, 29, 0.0, 290.0);  h_HT_Memu_HighCutValue->Sumw2();
+  TH2F *h_HT_MemuGamma_LowCutValue = new TH2F("h_HT_MemuGamma_LowCutValue", "Scatter Plot of HT versus M_{e#mu#gamma}; HT [GeV]; M_{e#mu#gamma} [GeV]", 34, 30.0, 710.0, 14, 0.0, 280.0);  h_HT_MemuGamma_LowCutValue->Sumw2();
 
-  TH2F *h_HTb_Mmumu_LowCutValue = new TH2F("h_HTb_Mmumu_LowCutValue", "Scatter Plot of HTb versus M_{#mu#mu}; HTb [GeV]; M_{#mu#mu} [GeV]", 2000, 0, 2000, 4000, 0, 2000);  h_HTb_Mmumu_LowCutValue->Sumw2();
-  TH2F *h_HTb_Mmumu_HighCutValue = new TH2F("h_HTb_Mmumu_HighCutValue", "Scatter Plot of HTb versus M_{#mu#mu}; HTb [GeV]; M_{#mu#mu} [GeV]", 2000, 0, 2000, 4000, 0, 2000);  h_HTb_Mmumu_HighCutValue->Sumw2();
-  TH2F *h_HTb_MmumuGamma_LowCutValue = new TH2F("h_HTb_MmumuGamma_LowCutValue", "Scatter Plot of HTb versus M_{#mu#mu#gamma}; HTb [GeV]; M_{#mu#mu#gamma} [GeV]", 2000, 0, 2000, 4000, 0, 2000);  h_HTb_MmumuGamma_LowCutValue->Sumw2();
+  TH2F *h_HTb_Mmumu_LowCutValue = new TH2F("h_HTb_Mmumu_LowCutValue", "Scatter Plot of HTb versus M_{#mu#mu}; HTb [GeV]; M_{#mu#mu} [GeV]", 34, 30.0, 710.0, 29, 0.0, 290.0);  h_HTb_Mmumu_LowCutValue->Sumw2();
+  TH2F *h_HTb_Mmumu_HighCutValue = new TH2F("h_HTb_Mmumu_HighCutValue", "Scatter Plot of HTb versus M_{#mu#mu}; HTb [GeV]; M_{#mu#mu} [GeV]", 34, 30.0, 710.0, 29, 0.0, 290.0);  h_HTb_Mmumu_HighCutValue->Sumw2();
+  TH2F *h_HTb_MmumuGamma_LowCutValue = new TH2F("h_HTb_MmumuGamma_LowCutValue", "Scatter Plot of HTb versus M_{#mu#mu#gamma}; HTb [GeV]; M_{#mu#mu#gamma} [GeV]", 34, 30.0, 710.0, 14, 0.0, 280.0);  h_HTb_MmumuGamma_LowCutValue->Sumw2();
 
-  TH2F *h_HTb_Memu_LowCutValue = new TH2F("h_HTb_Memu_LowCutValue", "Scatter Plot of HTb versus M_{#mu#mu}; HTb [GeV]; M_{#mu#mu} [GeV]", 2000, 0, 2000, 4000, 0, 2000);  h_HTb_Memu_LowCutValue->Sumw2();
-  TH2F *h_HTb_Memu_HighCutValue = new TH2F("h_HTb_Memu_HighCutValue", "Scatter Plot of HTb versus M_{#mu#mu}; HTb [GeV]; M_{#mu#mu} [GeV]", 2000, 0, 2000, 4000, 0, 2000);  h_HTb_Memu_HighCutValue->Sumw2();
-  TH2F *h_HTb_MemuGamma_LowCutValue = new TH2F("h_HTb_MemuGamma_LowCutValue", "Scatter Plot of HTb versus M_{#mue#gamma}; HTb [GeV]; M_{#mue#gamma} [GeV]", 2000, 0, 2000, 4000, 0, 2000);  h_HTb_MemuGamma_LowCutValue->Sumw2();
+  TH2F *h_HTb_Memu_LowCutValue = new TH2F("h_HTb_Memu_LowCutValue", "Scatter Plot of HTb versus M_{e#mu}; HTb [GeV]; M_{e#mu} [GeV]", 34, 30.0, 710.0, 29, 0.0, 290.0);  h_HTb_Memu_LowCutValue->Sumw2();
+  TH2F *h_HTb_Memu_HighCutValue = new TH2F("h_HTb_Memu_HighCutValue", "Scatter Plot of HTb versus M_{e#mu}; HTb [GeV]; M_{e#mu} [GeV]", 34, 30.0, 710.0, 29, 0.0, 290.0);  h_HTb_Memu_HighCutValue->Sumw2();
+  TH2F *h_HTb_MemuGamma_LowCutValue = new TH2F("h_HTb_MemuGamma_LowCutValue", "Scatter Plot of HTb versus M_{e#mu#gamma}; HTb [GeV]; M_{e#mu#gamma} [GeV]", 34, 30.0, 710.0, 14, 0.0, 280.0);  h_HTb_MemuGamma_LowCutValue->Sumw2();
 
-  TH2F *h_HT_SVFitmumu_LowCutValue = new TH2F("h_HT_SVFitmumu_LowCutValue", "Scatter Plot of HT versus M_{#mu#mu}; HT [GeV]; M_{#mu#mu} [GeV]", 2000, 0, 2000, 4000, 0, 2000);  h_HT_SVFitmumu_LowCutValue->Sumw2();
-  TH2F *h_HT_SVFitmumuGamma_LowCutValue = new TH2F("h_HT_SVFitmumuGamma_LowCutValue", "Scatter Plot of HT versus M_{#mu#mu#gamma}; HT [GeV]; M_{#mu#mu#gamma} [GeV]", 2000, 0, 2000, 4000, 0, 2000);  h_HT_SVFitmumuGamma_LowCutValue->Sumw2();
+  TH2F *h_HT_SVFitmumu_LowCutValue = new TH2F("h_HT_SVFitmumu_LowCutValue", "Scatter Plot of HT versus M_{#mu#mu}; HT [GeV]; M_{#mu#mu} [GeV]", 34, 30.0, 710.0, 24, 0.0, 480.0);  h_HT_SVFitmumu_LowCutValue->Sumw2();
+  TH2F *h_HT_SVFitmumuGamma_LowCutValue = new TH2F("h_HT_SVFitmumuGamma_LowCutValue", "Scatter Plot of HT versus M_{#mu#mu#gamma}; HT [GeV]; M_{#mu#mu#gamma} [GeV]",  34, 30.0, 710.0, 24, 0.0, 480.0);  h_HT_SVFitmumuGamma_LowCutValue->Sumw2();
 
-  TH2F *h_HT_SVFitemu_LowCutValue = new TH2F("h_HT_SVFitemu_LowCutValue", "Scatter Plot of HT versus M_{#mu#mu}; HT [GeV]; M_{#mu#mu} [GeV]", 2000, 0, 2000, 4000, 0, 2000);  h_HT_SVFitemu_LowCutValue->Sumw2();
-  TH2F *h_HT_SVFitemuGamma_LowCutValue = new TH2F("h_HT_SVFitemuGamma_LowCutValue", "Scatter Plot of HT versus M_{#mue#gamma}; HT [GeV]; M_{#mue#gamma} [GeV]", 2000, 0, 2000, 4000, 0, 2000);  h_HT_SVFitemuGamma_LowCutValue->Sumw2();
+  TH2F *h_HT_SVFitemu_LowCutValue = new TH2F("h_HT_SVFitemu_LowCutValue", "Scatter Plot of HT versus M_{e#mu}; HT [GeV]; M_{e#mu} [GeV]", 34, 30.0, 710.0, 24, 0.0, 480.0);  h_HT_SVFitemu_LowCutValue->Sumw2();
+  TH2F *h_HT_SVFitemuGamma_LowCutValue = new TH2F("h_HT_SVFitemuGamma_LowCutValue", "Scatter Plot of HT versus M_{e#mu#gamma}; HT [GeV]; M_{e#mu#gamma} [GeV]", 34, 30.0, 710.0, 24, 0.0, 480.0);  h_HT_SVFitemuGamma_LowCutValue->Sumw2();
 
-  TH2F *h_HTb_SVFitmumu_LowCutValue = new TH2F("h_HTb_SVFitmumu_LowCutValue", "Scatter Plot of HTb versus M_{#mu#mu}; HTb [GeV]; M_{#mu#mu} [GeV]", 2000, 0, 2000, 4000, 0, 2000);  h_HTb_SVFitmumu_LowCutValue->Sumw2();
-  TH2F *h_HTb_SVFitmumuGamma_LowCutValue = new TH2F("h_HTb_SVFitmumuGamma_LowCutValue", "Scatter Plot of HTb versus M_{#mu#mu#gamma}; HTb [GeV]; M_{#mu#mu#gamma} [GeV]", 2000, 0, 2000, 4000, 0, 2000);  h_HTb_SVFitmumuGamma_LowCutValue->Sumw2();
+  TH2F *h_HTb_SVFitmumu_LowCutValue = new TH2F("h_HTb_SVFitmumu_LowCutValue", "Scatter Plot of HTb versus M_{#mu#mu}; HTb [GeV]; M_{#mu#mu} [GeV]", 34, 30.0, 710.0, 24, 0.0, 480.0);  h_HTb_SVFitmumu_LowCutValue->Sumw2();
+  TH2F *h_HTb_SVFitmumuGamma_LowCutValue = new TH2F("h_HTb_SVFitmumuGamma_LowCutValue", "Scatter Plot of HTb versus M_{#mu#mu#gamma}; HTb [GeV]; M_{#mu#mu#gamma} [GeV]", 34, 30.0, 710.0, 24, 0.0, 480.0);  h_HTb_SVFitmumuGamma_LowCutValue->Sumw2();
 
-  TH2F *h_HTb_SVFitemu_LowCutValue = new TH2F("h_HTb_SVFitemu_LowCutValue", "Scatter Plot of HTb versus M_{#mu#mu}; HTb [GeV]; M_{#mu#mu} [GeV]", 2000, 0, 2000, 4000, 0, 2000);  h_HTb_SVFitemu_LowCutValue->Sumw2();
-  TH2F *h_HTb_SVFitemuGamma_LowCutValue = new TH2F("h_HTb_SVFitemuGamma_LowCutValue", "Scatter Plot of HTb versus M_{#mue#gamma}; HTb [GeV]; M_{#mue#gamma} [GeV]", 2000, 0, 2000, 4000, 0, 2000);  h_HTb_SVFitemuGamma_LowCutValue->Sumw2();
+  TH2F *h_HTb_SVFitemu_LowCutValue = new TH2F("h_HTb_SVFitemu_LowCutValue", "Scatter Plot of HTb versus M_{e#mu}; HTb [GeV]; M_{e#mu} [GeV]", 34, 30.0, 710.0, 24, 0.0, 480.0);  h_HTb_SVFitemu_LowCutValue->Sumw2();
+  TH2F *h_HTb_SVFitemuGamma_LowCutValue = new TH2F("h_HTb_SVFitemuGamma_LowCutValue", "Scatter Plot of HTb versus M_{e#mu#gamma}; HTb [GeV]; M_{e#mu#gamma} [GeV]", 34, 30.0, 710.0, 24, 0.0, 480.0);  h_HTb_SVFitemuGamma_LowCutValue->Sumw2();
 
 
   double vetoCounter = 0;
@@ -1044,18 +1044,19 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_OptimizationStudies(std::string infile, 
       mu2_transverse.SetMagPhi(Muons.at(1).LepLV.Pt(), Muons.at(1).LepLV.Phi()); 
       if((Muons.at(0).LepLV+Muons.at(1).LepLV).M()< 12.0) continue;
       if((Muons.at(0).LepLV+Muons.at(1).LepLV).M() > 70 and (Muons.at(0).LepLV+Muons.at(1).LepLV).M() < 110) mumu_OS_Z+=eventWeight;
-      mu1P4_xyzt.SetPxPyPzE(Muons.at(0).LepLV.Px(), Muons.at(0).LepLV.Py(), Muons.at(0).LepLV.Pz(), Muons.at(0).LepLV.E());
+      /*mu1P4_xyzt.SetPxPyPzE(Muons.at(0).LepLV.Px(), Muons.at(0).LepLV.Py(), Muons.at(0).LepLV.Pz(), Muons.at(0).LepLV.E());
       mu2P4_xyzt.SetPxPyPzE(Muons.at(1).LepLV.Px(), Muons.at(1).LepLV.Py(), Muons.at(1).LepLV.Pz(), Muons.at(1).LepLV.E());
       measuredTauLeptons.push_back(svFitStandalone::MeasuredTauLepton(svFitStandalone::kTauToMuDecay, mu1P4_xyzt)); //kTauToMuDecay
       measuredTauLeptons.push_back(svFitStandalone::MeasuredTauLepton(svFitStandalone::kTauToMuDecay, mu2P4_xyzt)); //kTauToMuDecay
       SVfitStandaloneAlgorithm algo(measuredTauLeptons, measuredMET, cov, 0);
       algo.addLogM(false);
       //algo.integrateVEGAS();  
-      algo.integrateMarkovChain(); //new method to compute SVFit mass 
+      algo.integrateMarkovChain();*/ //new method to compute SVFit mass 
       double svfit_mass = 0;
-      svfit_mass = algo.getMass();
+      //svfit_mass = algo.getMass();
       TLorentzVector SVFittedVector;
-      SVFittedVector.SetPtEtaPhiM(algo.pt(), algo.eta(), algo.phi(), algo.getMass());
+      //SVFittedVector.SetPtEtaPhiM(algo.pt(), algo.eta(), algo.phi(), algo.getMass());
+      SVFittedVector.SetPtEtaPhiM(0.0, 0.0, 0.0, 0.0);
       if(signSelection=="OS" and (Muons.at(0).Charge*Muons.at(1).Charge)==-1){
         if((Muons.at(0).LepLV+Muons.at(1).LepLV+Photon_vector.at(0)).M() < 80 or (Muons.at(0).LepLV+Muons.at(1).LepLV+Photon_vector.at(0)).M() > 100){ 
         //cout << "Event MuMu = " << event << " Run = "<< run << " Lumi = " << lumi << endl;
@@ -1073,11 +1074,11 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_OptimizationStudies(std::string infile, 
        for(float ht=30.0; ht<730.0;ht+=20.0){
          HT_Value_MuMu[i_ht] = ht;
          unsigned int j_invMass=0;
-         for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+         for(float invMass=0.0; invMass<300.0; invMass+=10.0){
             InvMass_Value_MuMu[j_invMass]=invMass;
             if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass)) HT_InvMass_Yield_MuMu[i_ht][j_invMass]+=eventWeight;
-            if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass)) h_HT_Mmumu_LowCutValue->Fill(i_ht, j_invMass, eventWeight); 
-            if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()>invMass)) h_HT_Mmumu_HighCutValue->Fill(i_ht, j_invMass, eventWeight);
+            if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass)) h_HT_Mmumu_LowCutValue->Fill(ht, invMass, eventWeight); 
+            if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()>invMass)) h_HT_Mmumu_HighCutValue->Fill(ht, invMass, eventWeight);
             unsigned int k_met=0;
              for(float met=0.0; met<100.0; met+=5.0){
                if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass) and MET>met) HT_InvMass_MET_Yield_MuMu[i_ht][j_invMass][k_met]+=eventWeight;
@@ -1086,24 +1087,24 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_OptimizationStudies(std::string infile, 
           ++j_invMass;
           }
          unsigned int j_svfitMass=0;
-         for(float svfitMass=0.0; svfitMass<200.0; svfitMass+=20.0){
+         for(float svfitMass=0.0; svfitMass<500.0; svfitMass+=20.0){
             SVFitMass_Value_MuMu[j_svfitMass]=svfitMass;  
             if(HT<ht and (svfit_mass<svfitMass)) HT_svfitMass_Yield_MuMu[i_ht][j_svfitMass]+=eventWeight;
-            if(HT<ht and (svfit_mass<svfitMass)) h_HT_SVFitmumu_LowCutValue->Fill(i_ht, j_svfitMass, eventWeight);
+            if(HT<ht and (svfit_mass<svfitMass)) h_HT_SVFitmumu_LowCutValue->Fill(ht, svfitMass, eventWeight);
             ++j_svfitMass;
           }
          unsigned int j_invMassGamma=0;
          for(float invMassGamma=0.0; invMassGamma<300.0; invMassGamma+=20.0){
             InvMassGamma_Value_MuMu[j_invMassGamma]=invMassGamma;
             if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV+Photon_vector.at(0)).M()<invMassGamma)) HT_InvMassGamma_Yield_MuMu[i_ht][j_invMassGamma]+=eventWeight;
-            if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV+Photon_vector.at(0)).M()<invMassGamma)) h_HT_MmumuGamma_LowCutValue->Fill(i_ht, j_invMassGamma, eventWeight);
+            if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV+Photon_vector.at(0)).M()<invMassGamma)) h_HT_MmumuGamma_LowCutValue->Fill(ht, invMassGamma, eventWeight);
             ++j_invMassGamma;
           }
         unsigned int j_svfitMassGamma=0;
-        for(float svfitMassGamma=0.0; svfitMassGamma<200.0; svfitMassGamma+=20.0){
+        for(float svfitMassGamma=0.0; svfitMassGamma<500.0; svfitMassGamma+=20.0){
             SVFitMassGamma_Value_MuMu[j_svfitMassGamma]=svfitMassGamma;
             if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<svfitMassGamma)) HT_svfitMassGamma_Yield_MuMu[i_ht][j_svfitMassGamma]+=eventWeight;
-            if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<svfitMassGamma)) h_HT_SVFitmumuGamma_LowCutValue->Fill(i_ht, j_svfitMassGamma, eventWeight);
+            if(HT<ht and ((SVFittedVector+Photon_vector.at(0)).M()<svfitMassGamma)) h_HT_SVFitmumuGamma_LowCutValue->Fill(ht, svfitMassGamma, eventWeight);
             ++j_svfitMassGamma;
           }
          ++i_ht;
@@ -1117,11 +1118,11 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_OptimizationStudies(std::string infile, 
        for(float htb=30.0; htb<730.0;htb+=20.0){
          HTb_Value_MuMu[i_htb] = htb;
          unsigned int j_invMass=0;
-         for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+         for(float invMass=0.0; invMass<300.0; invMass+=10.0){
             InvMass_Value_MuMu[j_invMass]=invMass;
             if(HTb<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass)) HTb_InvMass_Yield_MuMu[i_htb][j_invMass]+=eventWeight;
-            if(HTb<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass)) h_HTb_Mmumu_LowCutValue->Fill(i_htb, j_invMass, eventWeight);
-            if(HTb<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()>invMass)) h_HTb_Mmumu_HighCutValue->Fill(i_htb, j_invMass, eventWeight);
+            if(HTb<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass)) h_HTb_Mmumu_LowCutValue->Fill(htb, invMass, eventWeight);
+            if(HTb<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()>invMass)) h_HTb_Mmumu_HighCutValue->Fill(htb, invMass, eventWeight);
             unsigned int k_met=0;
              for(float met=0.0; met<100.0; met+=5.0){
                if(HTb<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass) and MET>met) HTb_InvMass_MET_Yield_MuMu[i_htb][j_invMass][k_met]+=eventWeight;
@@ -1130,24 +1131,24 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_OptimizationStudies(std::string infile, 
           ++j_invMass;
           }
          unsigned int j_svfitMass=0;
-         for(float svfitMass=0.0; svfitMass<200.0; svfitMass+=20.0){
+         for(float svfitMass=0.0; svfitMass<500.0; svfitMass+=20.0){
             SVFitMass_Value_MuMu[j_svfitMass]=svfitMass;
             if(HTb<htb and (svfit_mass<svfitMass)) HTb_svfitMass_Yield_MuMu[i_htb][j_svfitMass]+=eventWeight;
-            if(HTb<htb and (svfit_mass<svfitMass)) h_HTb_SVFitmumu_LowCutValue->Fill(i_htb, j_svfitMass, eventWeight);
+            if(HTb<htb and (svfit_mass<svfitMass)) h_HTb_SVFitmumu_LowCutValue->Fill(htb, svfitMass, eventWeight);
             ++j_svfitMass;
           }
          unsigned int j_invMassGamma=0;
          for(float invMassGamma=0.0; invMassGamma<300.0; invMassGamma+=20.0){
             InvMassGamma_Value_MuMu[j_invMassGamma]=invMassGamma;
             if(HTb<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV+Photon_vector.at(0)).M()<invMassGamma)) HTb_InvMassGamma_Yield_MuMu[i_htb][j_invMassGamma]+=eventWeight;
-            if(HTb<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV+Photon_vector.at(0)).M()<invMassGamma)) h_HTb_MmumuGamma_LowCutValue->Fill(i_htb, j_invMassGamma, eventWeight);
+            if(HTb<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV+Photon_vector.at(0)).M()<invMassGamma)) h_HTb_MmumuGamma_LowCutValue->Fill(htb, invMassGamma, eventWeight);
             ++j_invMassGamma;
           }
          unsigned int j_svfitMassGamma=0;
-         for(float svfitMassGamma=0.0; svfitMassGamma<200.0; svfitMassGamma+=20.0){
+         for(float svfitMassGamma=0.0; svfitMassGamma<500.0; svfitMassGamma+=20.0){
             SVFitMassGamma_Value_MuMu[j_svfitMassGamma]=svfitMassGamma;
             if(HTb<htb and ((SVFittedVector+Photon_vector.at(0)).M()<svfitMassGamma)) HTb_svfitMassGamma_Yield_MuMu[i_htb][j_svfitMassGamma]+=eventWeight;
-            if(HTb<htb and ((SVFittedVector+Photon_vector.at(0)).M()<svfitMassGamma)) h_HTb_SVFitmumuGamma_LowCutValue->Fill(i_htb, j_svfitMassGamma, eventWeight);
+            if(HTb<htb and ((SVFittedVector+Photon_vector.at(0)).M()<svfitMassGamma)) h_HTb_SVFitmumuGamma_LowCutValue->Fill(htb, svfitMassGamma, eventWeight);
               ++j_svfitMassGamma;
               }
            ++i_htb;
@@ -1171,11 +1172,11 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_OptimizationStudies(std::string infile, 
        for(float ht=30.0; ht<730.0;ht+=20.0){
          HT_Value_MuMu[i_ht] = ht;
          unsigned int j_invMass=0;
-         for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+         for(float invMass=0.0; invMass<300.0; invMass+=10.0){
             InvMass_Value_MuMu[j_invMass]=invMass;
             if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass)) HT_InvMass_Yield_MuMu[i_ht][j_invMass]+=eventWeight;
-            if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass)) h_HT_Mmumu_LowCutValue->Fill(i_ht, j_invMass, eventWeight); 
-            if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()>invMass)) h_HT_Mmumu_HighCutValue->Fill(i_ht, j_invMass, eventWeight);
+            if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass)) h_HT_Mmumu_LowCutValue->Fill(ht, invMass, eventWeight); 
+            if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()>invMass)) h_HT_Mmumu_HighCutValue->Fill(ht, invMass, eventWeight);
             unsigned int k_met=0;
              for(float met=0.0; met<100.0; met+=5.0){
                if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass) and MET>met) HT_InvMass_MET_Yield_MuMu[i_ht][j_invMass][k_met]+=eventWeight;
@@ -1184,24 +1185,24 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_OptimizationStudies(std::string infile, 
           ++j_invMass;
           }
          unsigned int j_svfitMass=0;
-         for(float svfitMass=0.0; svfitMass<200.0; svfitMass+=20.0){
+         for(float svfitMass=0.0; svfitMass<500.0; svfitMass+=20.0){
             SVFitMass_Value_MuMu[j_svfitMass]=svfitMass;  
-            if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<svfitMass)) HT_svfitMass_Yield_MuMu[i_ht][j_svfitMass]+=eventWeight;
-            if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<svfitMass)) h_HT_SVFitmumu_LowCutValue->Fill(i_ht, j_svfitMass, eventWeight);
+            if(HT<ht and (svfit_mass<svfitMass)) HT_svfitMass_Yield_MuMu[i_ht][j_svfitMass]+=eventWeight;
+            if(HT<ht and (svfit_mass<svfitMass)) h_HT_SVFitmumu_LowCutValue->Fill(ht, svfitMass, eventWeight);
             ++j_svfitMass;
           }
          unsigned int j_invMassGamma=0;
          for(float invMassGamma=0.0; invMassGamma<300.0; invMassGamma+=20.0){
             InvMassGamma_Value_MuMu[j_invMassGamma]=invMassGamma;
             if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV+Photon_vector.at(0)).M()<invMassGamma)) HT_InvMassGamma_Yield_MuMu[i_ht][j_invMassGamma]+=eventWeight;
-            if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV+Photon_vector.at(0)).M()<invMassGamma)) h_HT_MmumuGamma_LowCutValue->Fill(i_ht, j_invMassGamma, eventWeight);
+            if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV+Photon_vector.at(0)).M()<invMassGamma)) h_HT_MmumuGamma_LowCutValue->Fill(ht, invMassGamma, eventWeight);
             ++j_invMassGamma;
           }
         unsigned int j_svfitMassGamma=0;
-        for(float svfitMassGamma=0.0; svfitMassGamma<200.0; svfitMassGamma+=20.0){
+        for(float svfitMassGamma=0.0; svfitMassGamma<500.0; svfitMassGamma+=20.0){
             SVFitMassGamma_Value_MuMu[j_svfitMassGamma]=svfitMassGamma;
-            if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<svfitMassGamma)) HT_svfitMassGamma_Yield_MuMu[i_ht][j_svfitMassGamma]+=eventWeight;
-            if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<svfitMassGamma)) h_HT_SVFitmumuGamma_LowCutValue->Fill(i_ht, j_svfitMassGamma, eventWeight);
+            if(HT<ht and ((SVFittedVector+Photon_vector.at(0)).M()<svfitMassGamma)) HT_svfitMassGamma_Yield_MuMu[i_ht][j_svfitMassGamma]+=eventWeight;
+            if(HT<ht and ((SVFittedVector+Photon_vector.at(0)).M()<svfitMassGamma)) h_HT_SVFitmumuGamma_LowCutValue->Fill(ht, svfitMassGamma, eventWeight);
             ++j_svfitMassGamma;
           }
          ++i_ht;
@@ -1215,11 +1216,11 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_OptimizationStudies(std::string infile, 
        for(float htb=30.0; htb<730.0;htb+=20.0){
          HTb_Value_MuMu[i_htb] = htb;
          unsigned int j_invMass=0;
-         for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+         for(float invMass=0.0; invMass<300.0; invMass+=10.0){
             InvMass_Value_MuMu[j_invMass]=invMass;
             if(HTb<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass)) HTb_InvMass_Yield_MuMu[i_htb][j_invMass]+=eventWeight;
-            if(HTb<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass)) h_HTb_Mmumu_LowCutValue->Fill(i_htb, j_invMass, eventWeight);
-            if(HTb<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()>invMass)) h_HTb_Mmumu_HighCutValue->Fill(i_htb, j_invMass, eventWeight);
+            if(HTb<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass)) h_HTb_Mmumu_LowCutValue->Fill(htb, invMass, eventWeight);
+            if(HTb<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()>invMass)) h_HTb_Mmumu_HighCutValue->Fill(htb, invMass, eventWeight);
             unsigned int k_met=0;
              for(float met=0.0; met<100.0; met+=5.0){
                if(HTb<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass) and MET>met) HTb_InvMass_MET_Yield_MuMu[i_htb][j_invMass][k_met]+=eventWeight;
@@ -1228,24 +1229,24 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_OptimizationStudies(std::string infile, 
           ++j_invMass;
           }
          unsigned int j_svfitMass=0;
-         for(float svfitMass=0.0; svfitMass<200.0; svfitMass+=20.0){
+         for(float svfitMass=0.0; svfitMass<500.0; svfitMass+=20.0){
             SVFitMass_Value_MuMu[j_svfitMass]=svfitMass;
             if(HTb<htb and (svfit_mass<svfitMass)) HTb_svfitMass_Yield_MuMu[i_htb][j_svfitMass]+=eventWeight;
-            if(HTb<htb and (svfit_mass<svfitMass)) h_HTb_SVFitmumu_LowCutValue->Fill(i_htb, j_svfitMass, eventWeight);
+            if(HTb<htb and (svfit_mass<svfitMass)) h_HTb_SVFitmumu_LowCutValue->Fill(htb, svfitMass, eventWeight);
             ++j_svfitMass;
           }
          unsigned int j_invMassGamma=0;
          for(float invMassGamma=0.0; invMassGamma<300.0; invMassGamma+=20.0){
             InvMassGamma_Value_MuMu[j_invMassGamma]=invMassGamma;
             if(HTb<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV+Photon_vector.at(0)).M()<invMassGamma)) HTb_InvMassGamma_Yield_MuMu[i_htb][j_invMassGamma]+=eventWeight;
-            if(HTb<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV+Photon_vector.at(0)).M()<invMassGamma)) h_HTb_MmumuGamma_LowCutValue->Fill(i_htb, j_invMassGamma, eventWeight);
+            if(HTb<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV+Photon_vector.at(0)).M()<invMassGamma)) h_HTb_MmumuGamma_LowCutValue->Fill(htb, invMassGamma, eventWeight);
             ++j_invMassGamma;
           }
          unsigned int j_svfitMassGamma=0;
-         for(float svfitMassGamma=0.0; svfitMassGamma<200.0; svfitMassGamma+=20.0){
+         for(float svfitMassGamma=0.0; svfitMassGamma<500.0; svfitMassGamma+=20.0){
             SVFitMassGamma_Value_MuMu[j_svfitMassGamma]=svfitMassGamma;
             if(HTb<htb and ((SVFittedVector+Photon_vector.at(0)).M()<svfitMassGamma)) HTb_svfitMassGamma_Yield_MuMu[i_htb][j_svfitMassGamma]+=eventWeight;
-            if(HTb<htb and ((SVFittedVector+Photon_vector.at(0)).M()<svfitMassGamma)) h_HTb_SVFitmumuGamma_LowCutValue->Fill(i_htb, j_svfitMassGamma, eventWeight);
+            if(HTb<htb and ((SVFittedVector+Photon_vector.at(0)).M()<svfitMassGamma)) h_HTb_SVFitmumuGamma_LowCutValue->Fill(htb, svfitMassGamma, eventWeight);
               ++j_svfitMassGamma;
               }
            ++i_htb;
@@ -1260,18 +1261,19 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_OptimizationStudies(std::string infile, 
      if(type=="MC") eventWeight *= electronSF(Electrons.at(0).LepLV.Pt(), Electrons.at(0).LepLV.Eta())*muonSF(Muons.at(0).LepLV.Pt(), Muons.at(0).LepLV.Eta())*photonSF(Photon_vector.at(0).Pt(), Photon_vector.at(0).Eta());
      mu1_transverse.SetMagPhi(Muons.at(0).LepLV.Pt(), Muons.at(0).LepLV.Phi());
      el1_transverse.SetMagPhi(Electrons.at(0).LepLV.Pt(), Electrons.at(0).LepLV.Phi());
-     mu1P4_xyzt.SetPxPyPzE(Muons.at(0).LepLV.Px(), Muons.at(0).LepLV.Py(), Muons.at(0).LepLV.Pz(), Muons.at(0).LepLV.E());
+     /*mu1P4_xyzt.SetPxPyPzE(Muons.at(0).LepLV.Px(), Muons.at(0).LepLV.Py(), Muons.at(0).LepLV.Pz(), Muons.at(0).LepLV.E());
      el1P4_xyzt.SetPxPyPzE(Electrons.at(0).LepLV.Px(), Electrons.at(0).LepLV.Py(), Electrons.at(0).LepLV.Pz(), Electrons.at(0).LepLV.E());
      measuredTauLeptons.push_back(svFitStandalone::MeasuredTauLepton(svFitStandalone::kTauToMuDecay, mu1P4_xyzt)); //kTauToMuDecay
      measuredTauLeptons.push_back(svFitStandalone::MeasuredTauLepton(svFitStandalone::kTauToElecDecay, el1P4_xyzt)); //kTauToElecDecay
      SVfitStandaloneAlgorithm algo(measuredTauLeptons, measuredMET, cov, 0);
      algo.addLogM(false);
      //algo.integrateVEGAS();
-     algo.integrateMarkovChain();
+     algo.integrateMarkovChain();*/
      double svfit_mass = 0;
-     svfit_mass = algo.getMass();
+     //svfit_mass = algo.getMass();
      TLorentzVector SVFittedVector;
-     SVFittedVector.SetPtEtaPhiM(algo.pt(), algo.eta(), algo.phi(), algo.getMass()); 
+     //SVFittedVector.SetPtEtaPhiM(algo.pt(), algo.eta(), algo.phi(), algo.getMass()); 
+     SVFittedVector.SetPtEtaPhiM(0.0, 0.0, 0.0, 0.0); 
      if(signSelection=="OS" and ((Muons.at(0).Charge)*(Electrons.at(0).Charge)==-1)){
        if(type=="Data") cout << "Event ElMu = " << event << " Run = "<< run << " Lumi = " << lumi << endl;  
        emu_OS+=eventWeight;
@@ -1288,11 +1290,11 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_OptimizationStudies(std::string infile, 
        for(float ht=30.0; ht<730.0;ht+=20.0){
          HT_Value_ElMu[i_ht] = ht;
          unsigned int j_invMass=0;
-         for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+         for(float invMass=0.0; invMass<300.0; invMass+=10.0){
             InvMass_Value_ElMu[j_invMass]=invMass;
             if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass)) HT_InvMass_Yield_ElMu[i_ht][j_invMass]+=eventWeight;
-            if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass)) h_HT_Memu_LowCutValue->Fill(i_ht, j_invMass, eventWeight); 
-            if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()>invMass)) h_HT_Memu_HighCutValue->Fill(i_ht, j_invMass, eventWeight);
+            if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass)) h_HT_Memu_LowCutValue->Fill(ht, invMass, eventWeight); 
+            if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()>invMass)) h_HT_Memu_HighCutValue->Fill(ht, invMass, eventWeight);
             unsigned int k_met=0;
              for(float met=0.0; met<100.0; met+=5.0){
                if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass) and MET>met) HT_InvMass_MET_Yield_ElMu[i_ht][j_invMass][k_met]+=eventWeight;
@@ -1301,24 +1303,24 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_OptimizationStudies(std::string infile, 
           ++j_invMass;
           }
          unsigned int j_svfitMass=0;
-         for(float svfitMass=0.0; svfitMass<200.0; svfitMass+=20.0){
+         for(float svfitMass=0.0; svfitMass<500.0; svfitMass+=20.0){
             SVFitMass_Value_ElMu[j_svfitMass]=svfitMass;  
-            if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<svfitMass)) HT_svfitMass_Yield_ElMu[i_ht][j_svfitMass]+=eventWeight;
-            if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<svfitMass)) h_HT_SVFitemu_LowCutValue->Fill(i_ht, j_svfitMass, eventWeight);
+            if(HT<ht and (svfit_mass<svfitMass)) HT_svfitMass_Yield_ElMu[i_ht][j_svfitMass]+=eventWeight;
+            if(HT<ht and (svfit_mass<svfitMass)) h_HT_SVFitemu_LowCutValue->Fill(ht, svfitMass, eventWeight);
             ++j_svfitMass;
           }
          unsigned int j_invMassGamma=0;
          for(float invMassGamma=0.0; invMassGamma<300.0; invMassGamma+=20.0){
             InvMassGamma_Value_ElMu[j_invMassGamma]=invMassGamma;
             if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV+Photon_vector.at(0)).M()<invMassGamma)) HT_InvMassGamma_Yield_ElMu[i_ht][j_invMassGamma]+=eventWeight;
-            if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV+Photon_vector.at(0)).M()<invMassGamma)) h_HT_MemuGamma_LowCutValue->Fill(i_ht, j_invMassGamma, eventWeight);
+            if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV+Photon_vector.at(0)).M()<invMassGamma)) h_HT_MemuGamma_LowCutValue->Fill(ht, invMassGamma, eventWeight);
             ++j_invMassGamma;
           }
         unsigned int j_svfitMassGamma=0;
-        for(float svfitMassGamma=0.0; svfitMassGamma<200.0; svfitMassGamma+=20.0){
+        for(float svfitMassGamma=0.0; svfitMassGamma<500.0; svfitMassGamma+=20.0){
             SVFitMassGamma_Value_ElMu[j_svfitMassGamma]=svfitMassGamma;
-            if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<svfitMassGamma)) HT_svfitMassGamma_Yield_ElMu[i_ht][j_svfitMassGamma]+=eventWeight;
-            if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<svfitMassGamma)) h_HT_SVFitemuGamma_LowCutValue->Fill(i_ht, j_svfitMassGamma, eventWeight);
+            if(HT<ht and ((SVFittedVector+Photon_vector.at(0)).M()<svfitMassGamma)) HT_svfitMassGamma_Yield_ElMu[i_ht][j_svfitMassGamma]+=eventWeight;
+            if(HT<ht and ((SVFittedVector+Photon_vector.at(0)).M()<svfitMassGamma)) h_HT_SVFitemuGamma_LowCutValue->Fill(ht, svfitMassGamma, eventWeight);
             ++j_svfitMassGamma;
           }
          ++i_ht;
@@ -1332,11 +1334,11 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_OptimizationStudies(std::string infile, 
        for(float htb=30.0; htb<730.0;htb+=20.0){
          HTb_Value_ElMu[i_htb] = htb;
          unsigned int j_invMass=0;
-         for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+         for(float invMass=0.0; invMass<300.0; invMass+=10.0){
             InvMass_Value_ElMu[j_invMass]=invMass;
             if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass)) HTb_InvMass_Yield_ElMu[i_htb][j_invMass]+=eventWeight;
-            if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass)) h_HTb_Memu_LowCutValue->Fill(i_htb, j_invMass, eventWeight);
-            if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()>invMass)) h_HTb_Memu_HighCutValue->Fill(i_htb, j_invMass, eventWeight);
+            if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass)) h_HTb_Memu_LowCutValue->Fill(htb, invMass, eventWeight);
+            if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()>invMass)) h_HTb_Memu_HighCutValue->Fill(htb, invMass, eventWeight);
             unsigned int k_met=0;
              for(float met=0.0; met<100.0; met+=5.0){
                if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass) and MET>met) HTb_InvMass_MET_Yield_ElMu[i_htb][j_invMass][k_met]+=eventWeight;
@@ -1345,24 +1347,24 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_OptimizationStudies(std::string infile, 
           ++j_invMass;
           }
          unsigned int j_svfitMass=0;
-         for(float svfitMass=0.0; svfitMass<200.0; svfitMass+=20.0){
+         for(float svfitMass=0.0; svfitMass<500.0; svfitMass+=20.0){
             SVFitMass_Value_ElMu[j_svfitMass]=svfitMass;
-            if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<svfitMass)) HTb_svfitMass_Yield_ElMu[i_htb][j_svfitMass]+=eventWeight;
-            if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<svfitMass)) h_HTb_SVFitemu_LowCutValue->Fill(i_htb, j_svfitMass, eventWeight);
+            if(HTb<htb and (svfit_mass<svfitMass)) HTb_svfitMass_Yield_ElMu[i_htb][j_svfitMass]+=eventWeight;
+            if(HTb<htb and (svfit_mass<svfitMass)) h_HTb_SVFitemu_LowCutValue->Fill(htb, svfitMass, eventWeight);
             ++j_svfitMass;
           }
          unsigned int j_invMassGamma=0;
          for(float invMassGamma=0.0; invMassGamma<300.0; invMassGamma+=20.0){
             InvMassGamma_Value_ElMu[j_invMassGamma]=invMassGamma;
             if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV+Photon_vector.at(0)).M()<invMassGamma)) HTb_InvMassGamma_Yield_ElMu[i_htb][j_invMassGamma]+=eventWeight;
-            if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV+Photon_vector.at(0)).M()<invMassGamma)) h_HTb_MemuGamma_LowCutValue->Fill(i_htb, j_invMassGamma, eventWeight);
+            if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV+Photon_vector.at(0)).M()<invMassGamma)) h_HTb_MemuGamma_LowCutValue->Fill(htb, invMassGamma, eventWeight);
             ++j_invMassGamma;
           }
          unsigned int j_svfitMassGamma=0;
-         for(float svfitMassGamma=0.0; svfitMassGamma<200.0; svfitMassGamma+=20.0){
+         for(float svfitMassGamma=0.0; svfitMassGamma<500.0; svfitMassGamma+=20.0){
             SVFitMassGamma_Value_ElMu[j_svfitMassGamma]=svfitMassGamma;
-            if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<svfitMassGamma)) HTb_svfitMassGamma_Yield_ElMu[i_htb][j_svfitMassGamma]+=eventWeight;
-            if(HTb<htb and ((SVFittedVector+Photon_vector.at(0)).M()<svfitMassGamma)) h_HTb_SVFitemuGamma_LowCutValue->Fill(i_htb, j_svfitMassGamma, eventWeight);
+            if(HTb<htb and ((SVFittedVector+Photon_vector.at(0)).M()<svfitMassGamma)) HTb_svfitMassGamma_Yield_ElMu[i_htb][j_svfitMassGamma]+=eventWeight;
+            if(HTb<htb and ((SVFittedVector+Photon_vector.at(0)).M()<svfitMassGamma)) h_HTb_SVFitemuGamma_LowCutValue->Fill(htb, svfitMassGamma, eventWeight);
             ++j_svfitMassGamma;
           }
          ++i_htb;
@@ -1384,11 +1386,11 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_OptimizationStudies(std::string infile, 
        for(float ht=30.0; ht<730.0;ht+=20.0){
          HT_Value_ElMu[i_ht] = ht;
          unsigned int j_invMass=0;
-         for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+         for(float invMass=0.0; invMass<300.0; invMass+=10.0){
             InvMass_Value_ElMu[j_invMass]=invMass;
             if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass)) HT_InvMass_Yield_ElMu[i_ht][j_invMass]+=eventWeight;
-            if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass)) h_HT_Memu_LowCutValue->Fill(i_ht, j_invMass, eventWeight); 
-            if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()>invMass)) h_HT_Memu_HighCutValue->Fill(i_ht, j_invMass, eventWeight);
+            if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass)) h_HT_Memu_LowCutValue->Fill(ht, invMass, eventWeight); 
+            if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()>invMass)) h_HT_Memu_HighCutValue->Fill(ht, invMass, eventWeight);
             unsigned int k_met=0;
              for(float met=0.0; met<100.0; met+=5.0){
                if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass) and MET>met) HT_InvMass_MET_Yield_ElMu[i_ht][j_invMass][k_met]+=eventWeight;
@@ -1397,24 +1399,24 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_OptimizationStudies(std::string infile, 
           ++j_invMass;
           }
          unsigned int j_svfitMass=0;
-         for(float svfitMass=0.0; svfitMass<200.0; svfitMass+=20.0){
+         for(float svfitMass=0.0; svfitMass<500.0; svfitMass+=20.0){
             SVFitMass_Value_ElMu[j_svfitMass]=svfitMass;  
             if(HT<ht and (svfit_mass<svfitMass)) HT_svfitMass_Yield_ElMu[i_ht][j_svfitMass]+=eventWeight;
-            if(HT<ht and (svfit_mass<svfitMass)) h_HT_SVFitemu_LowCutValue->Fill(i_ht, j_svfitMass, eventWeight);
+            if(HT<ht and (svfit_mass<svfitMass)) h_HT_SVFitemu_LowCutValue->Fill(ht, svfitMass, eventWeight);
             ++j_svfitMass;
           }
          unsigned int j_invMassGamma=0;
          for(float invMassGamma=0.0; invMassGamma<300.0; invMassGamma+=20.0){
             InvMassGamma_Value_ElMu[j_invMassGamma]=invMassGamma;
             if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV+Photon_vector.at(0)).M()<invMassGamma)) HT_InvMassGamma_Yield_ElMu[i_ht][j_invMassGamma]+=eventWeight;
-            if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV+Photon_vector.at(0)).M()<invMassGamma)) h_HT_MemuGamma_LowCutValue->Fill(i_ht, j_invMassGamma, eventWeight);
+            if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV+Photon_vector.at(0)).M()<invMassGamma)) h_HT_MemuGamma_LowCutValue->Fill(ht, invMassGamma, eventWeight);
             ++j_invMassGamma;
           }
         unsigned int j_svfitMassGamma=0;
-        for(float svfitMassGamma=0.0; svfitMassGamma<200.0; svfitMassGamma+=20.0){
+        for(float svfitMassGamma=0.0; svfitMassGamma<500.0; svfitMassGamma+=20.0){
             SVFitMassGamma_Value_ElMu[j_svfitMassGamma]=svfitMassGamma;
             if(HT<ht and ((SVFittedVector+Photon_vector.at(0)).M()<svfitMassGamma)) HT_svfitMassGamma_Yield_ElMu[i_ht][j_svfitMassGamma]+=eventWeight;
-            if(HT<ht and ((SVFittedVector+Photon_vector.at(0)).M()<svfitMassGamma)) h_HT_SVFitemuGamma_LowCutValue->Fill(i_ht, j_svfitMassGamma, eventWeight);
+            if(HT<ht and ((SVFittedVector+Photon_vector.at(0)).M()<svfitMassGamma)) h_HT_SVFitemuGamma_LowCutValue->Fill(ht, svfitMassGamma, eventWeight);
             ++j_svfitMassGamma;
           }
          ++i_ht;
@@ -1428,11 +1430,11 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_OptimizationStudies(std::string infile, 
        for(float htb=30.0; htb<730.0;htb+=20.0){
          HTb_Value_ElMu[i_htb] = htb;
          unsigned int j_invMass=0;
-         for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+         for(float invMass=0.0; invMass<300.0; invMass+=10.0){
             InvMass_Value_ElMu[j_invMass]=invMass;
             if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass)) HTb_InvMass_Yield_ElMu[i_htb][j_invMass]+=eventWeight;
-            if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass)) h_HTb_Memu_LowCutValue->Fill(i_htb, j_invMass, eventWeight);
-            if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()>invMass)) h_HTb_Memu_HighCutValue->Fill(i_htb, j_invMass, eventWeight);
+            if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass)) h_HTb_Memu_LowCutValue->Fill(htb, invMass, eventWeight);
+            if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()>invMass)) h_HTb_Memu_HighCutValue->Fill(htb, invMass, eventWeight);
             unsigned int k_met=0;
              for(float met=0.0; met<100.0; met+=5.0){
                if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass) and MET>met) HTb_InvMass_MET_Yield_ElMu[i_htb][j_invMass][k_met]+=eventWeight;
@@ -1441,24 +1443,24 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_OptimizationStudies(std::string infile, 
           ++j_invMass;
           }
          unsigned int j_svfitMass=0;
-         for(float svfitMass=0.0; svfitMass<200.0; svfitMass+=20.0){
+         for(float svfitMass=0.0; svfitMass<500.0; svfitMass+=20.0){
             SVFitMass_Value_ElMu[j_svfitMass]=svfitMass;
-            if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<svfitMass)) HTb_svfitMass_Yield_ElMu[i_htb][j_svfitMass]+=eventWeight;
-            if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<svfitMass)) h_HTb_SVFitemu_LowCutValue->Fill(i_htb, j_svfitMass, eventWeight);
+            if(HTb<htb and (svfit_mass<svfitMass)) HTb_svfitMass_Yield_ElMu[i_htb][j_svfitMass]+=eventWeight;
+            if(HTb<htb and (svfit_mass<svfitMass)) h_HTb_SVFitemu_LowCutValue->Fill(htb, svfitMass, eventWeight);
             ++j_svfitMass;
           }
          unsigned int j_invMassGamma=0;
          for(float invMassGamma=0.0; invMassGamma<300.0; invMassGamma+=20.0){
             InvMassGamma_Value_ElMu[j_invMassGamma]=invMassGamma;
             if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV+Photon_vector.at(0)).M()<invMassGamma)) HTb_InvMassGamma_Yield_ElMu[i_htb][j_invMassGamma]+=eventWeight;
-            if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV+Photon_vector.at(0)).M()<invMassGamma)) h_HTb_MemuGamma_LowCutValue->Fill(i_htb, j_invMassGamma, eventWeight);
+            if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV+Photon_vector.at(0)).M()<invMassGamma)) h_HTb_MemuGamma_LowCutValue->Fill(htb, invMassGamma, eventWeight);
             ++j_invMassGamma;
           }
          unsigned int j_svfitMassGamma=0;
-         for(float svfitMassGamma=0.0; svfitMassGamma<200.0; svfitMassGamma+=20.0){
+         for(float svfitMassGamma=0.0; svfitMassGamma<500.0; svfitMassGamma+=20.0){
             SVFitMassGamma_Value_ElMu[j_svfitMassGamma]=svfitMassGamma;
-            if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<svfitMassGamma)) HTb_svfitMassGamma_Yield_ElMu[i_htb][j_svfitMassGamma]+=eventWeight;
-            if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<svfitMassGamma)) h_HTb_SVFitemuGamma_LowCutValue->Fill(i_htb, j_svfitMassGamma, eventWeight);
+            if(HTb<htb and ((SVFittedVector+Photon_vector.at(0)).M()<svfitMassGamma)) HTb_svfitMassGamma_Yield_ElMu[i_htb][j_svfitMassGamma]+=eventWeight;
+            if(HTb<htb and ((SVFittedVector+Photon_vector.at(0)).M()<svfitMassGamma)) h_HTb_SVFitemuGamma_LowCutValue->Fill(htb, svfitMassGamma, eventWeight);
             ++j_svfitMassGamma;
           }
          ++i_htb;
@@ -1495,6 +1497,163 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_OptimizationStudies(std::string infile, 
   cout << "emu_SS = " << emu_SS << endl;
   cout << "ee_OS = " << ee_OS << endl;
   cout << "ee_SS = " << ee_SS << endl;
+
+  cout << "Only HT optimization" << endl;
+
+  for(std::map<double, double>::iterator i=HT_yield_ElMu.begin(); i != HT_yield_ElMu.end() ; ++i){
+    cout << "HT_ElMu = " << i->first << endl;
+    cout << "HT_yield_ElMu = " << i->second << endl;
+  }
+
+  cout << "Only Invariant mass optimization" << endl;
+
+  for(std::map<double, double>::iterator i=invMass_yield_ElMu.begin(); i != invMass_yield_ElMu.end() ; ++i){
+    cout << "invMass_ElMu = " << i->first << endl;
+    cout << "invMass_yield_ElMu = " << i->second << endl;
+  }
+
+  cout << "2D HT and invariant mass optimization" << endl;
+
+  for(int l=0; l<35.0; l++){
+    for(int m=0; m<35.0; m++){
+      cout <<  "HT = " << l*20+30 << " and " << " inv mass = " << m*10 << " and HT_InvMass_Yield ElMu = " << HT_InvMass_Yield_ElMu[l][m] << std::endl;
+    }
+  }
+
+
+ for(int l=0; l<35.0; l++){
+    for(int m=0; m<35.0; m++){
+      cout << "HT = " << l*20+30 << " and " << " inv mass = " << m*20 << " and HT_InvMassGamma_Yield ElMu = " << HT_InvMassGamma_Yield_ElMu[l][m] << std::endl;
+    }
+  }
+
+
+  for(int l=0; l<35.0; l++){
+    for(int m=0; m<35.0; m++){
+      cout << "HT = " << l*20+30 << " and " << " inv mass = " << m*20 << " and HT_svfitMass_Yield ElMu = " << HT_svfitMass_Yield_ElMu[l][m] << std::endl;
+    }
+  }
+
+
+  for(int l=0; l<35.0; l++){
+    for(int m=0; m<35.0; m++){
+      cout << "HT = " << l*20+30 << " and " << " inv mass = " << m*20 << " and HT_svfitMassGamma_Yield ElMu = " << HT_svfitMassGamma_Yield_ElMu[l][m] << std::endl;
+    }
+  }
+
+  cout << "3D HT, invariant mass and met optimization" << endl;
+
+  for(int l=0; l<35.0; l++){
+    for(int m=0; m<35.0; m++){
+      for(int n=0; n<35.0; n++){
+        cout << "HT = " << l*20+30 << " and " << " inv mass = " << m*10 << " met = " << n*5 << " and HT_InvMass_MET_Yield ElMu = " << HT_InvMass_MET_Yield_ElMu[l][m][n] << std::endl;
+      }
+    }
+  }
+
+  cout << "Only HTb optimization" << endl;
+
+  for(std::map<double, double>::iterator i=HTb_yield_ElMu.begin(); i != HTb_yield_ElMu.end() ; ++i){
+    cout << "HTb value ElMu= " << i->first << endl;
+    cout << "HTb_yield ElMu = " << i->second << endl;
+  }
+
+   cout << "2D HTb and invariant mass optimization" << endl;
+
+  for(int l=0; l<35.0; l++){
+    for(int m=0; m<35.0; m++){
+      cout <<  "HTb = " << l*20+30 << " and " << " inv mass = " << m*10 << " and HTb_InvMass_Yield ElMu = " << HTb_InvMass_Yield_ElMu[l][m] << std::endl;
+    }
+  }
+
+  for(int l=0; l<35.0; l++){
+    for(int m=0; m<35.0; m++){
+      cout << "HTb = " << l*20+30 << " and " << " inv mass = " << m*20 << " and HTb_InvMassGamma_Yield ElMu = " << HTb_InvMassGamma_Yield_ElMu[l][m] << std::endl;
+    }
+  }
+
+
+  for(int l=0; l<35.0; l++){
+    for(int m=0; m<35.0; m++){
+      cout << "HTb = " << l*20+30 << " and " << " inv mass = " << m*20 << " and HTb_svfitMass_Yield ElMu = " << HTb_svfitMass_Yield_ElMu[l][m] << std::endl;
+    }
+  }
+
+
+  for(int l=0; l<35.0; l++){
+    for(int m=0; m<35.0; m++){
+      cout << "HTb = " << l*20+30 << " and " << " inv mass = " << m*20 << " and HTb_svfitMassGamma_Yield ElMu = " << HTb_svfitMassGamma_Yield_ElMu[l][m] << std::endl;
+    }
+  }
+
+
+  cout << "3D HTb, invariant mass and met optimization" << endl;
+
+  for(int l=0; l<35.0; l++){
+    for(int m=0; m<35.0; m++){
+      for(int n=0; n<35.0; n++){
+        cout << "HTb = " << l*20+30 << " and " << " inv mass = " << m*10 << " met = " << n*5 << " and HTb_InvMass_MET_Yield ElMu = " << HTb_InvMass_MET_Yield_ElMu[l][m][n] << std::endl;
+      }
+    }
+  }
+
+  cout << "Only HT optimization" << endl;
+
+  for(std::map<double, double>::iterator i=HT_yield_MuMu.begin(); i != HT_yield_MuMu.end() ; ++i){
+    cout << "HT_MuMu = " << i->first << endl;
+    cout << "HT_yield_MuMu = " << i->second << endl;
+  }
+
+  cout << "Only Invariant mass optimization" << endl;
+
+  for(std::map<double, double>::iterator i=invMass_yield_MuMu.begin(); i != invMass_yield_MuMu.end() ; ++i){
+    cout << "invMass_MuMu = " << i->first << endl;
+    cout << "invMass_yield_MuMu = " << i->second << endl;
+  }
+
+  cout << "2D HT and invariant mass optimization" << endl;
+
+  for(int l=0; l<3.0; l++){
+    for(int m=0; m<3.0; m++){
+      cout << "HT = " << l*20+30 << " and " << " inv mass = " << m*10 << " and HT_InvMass_Yield MuMu = " << HT_InvMass_Yield_MuMu[l][m] << std::endl;
+    }
+  }
+
+ cout << "3D HT, invariant mass and met optimization" << endl;
+
+  for(int l=0; l<35.0; l++){
+    for(int m=0; m<35.0; m++){
+      for(int n=0; n<35.0; n++){
+        cout << "HT = " << l*20+30 << " and " << " inv mass = " << m*10 << " met = " << n*5 << " and HT_InvMass_MET_Yield MuMu = " << HT_InvMass_MET_Yield_MuMu[l][m][n] << std::endl;
+      }
+    }
+  }
+
+  cout << "Only HTb optimization" << endl;
+
+  for(std::map<double, double>::iterator i=HTb_yield_MuMu.begin(); i != HTb_yield_MuMu.end() ; ++i){
+    cout << "HTb value MuMu= " << i->first << endl;
+    cout << "HTb_yield MuMu = " << i->second << endl;
+  }
+
+  cout << "2D HTb and invariant mass optimization" << endl;
+
+  for(int l=0; l<35.0; l++){
+    for(int m=0; m<35.0; m++){
+      cout << "HTb = " << l*20+30 << " and " << " inv mass = " << m*20 << " and HTb_InvMass_Yield MuMu = " << HTb_InvMass_Yield_MuMu[l][m] << std::endl;
+    }
+  }
+
+  cout << "3D HTb, invariant mass and met optimization" << endl;
+
+  for(int l=0; l<35.0; l++){
+    for(int m=0; m<35.0; m++){
+      for(int n=0; n<35.0; n++){
+        cout << "HTb = " << l*20+30 << " and " << " inv mass = " << m*10 << " met = " << n*5 << " and HTb_InvMass_MET_Yield MuMu = " << HTb_InvMass_MET_Yield_MuMu[l][m][n] << std::endl;
+      }
+    }
+  }
+
   std::string histfilename=(outfile+".root").c_str();
   TFile *tFile=new TFile(histfilename.c_str(), "RECREATE");
   h_HT_Mmumu_LowCutValue->Write();
