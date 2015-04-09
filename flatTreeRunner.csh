@@ -6,6 +6,8 @@ cat > Executable.C << +EOF
 
 void Executable(){
 
+gSystem->Load("libFWCoreFWLite.so");
+AutoLibraryLoader::enable();
 gROOT->LoadMacro("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/MPAnalyzer/Classes/src/TCPhysObject_cc.so");
 gROOT->LoadMacro("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/MPAnalyzer/Classes/src/TCMuon_cc.so");
 gROOT->LoadMacro("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/MPAnalyzer/Classes/src/TCMET_cc.so");

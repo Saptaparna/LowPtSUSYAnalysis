@@ -4,19 +4,34 @@ Tree and storing relevant information
 Author: Saptaparna Bhattcharya
 
 */
-
+#include <TMatrixD.h>
+#include "/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/TauAnalysis/SVfitStandalone/interface/SVfitStandaloneLikelihood.h"
+#include "/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/TauAnalysis/SVfitStandalone/interface/LikelihoodFunctions.h"
+#include "/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/TauAnalysis/SVfitStandalone/interface/SVfitStandaloneMarkovChainIntegrator.h"
+#include "/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/TauAnalysis/SVfitStandalone/interface/svFitStandaloneAuxFunctions.h"
+//#include "/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/CondFormats/JetMETObjects/interface/FactorizedJetCorrector.h"
+//#include "/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/CondFormats/JetMETObjects/interface/JetCorrectorParameters.h"
+//#include "/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/CondFormats/JetMETObjects/interface/JetCorrectionUncertainty.h"
 
 #include "FlatTreeCreator.h"
 #include <TH2.h>
 #include <TStyle.h>
 #include "PhysicsTools/Utilities/interface/LumiReweightingStandAlone.h"
+//#include "DataFormats/FWLite/interface/Handle.h"
 using namespace std;
+using namespace svFitStandalone;
+using svFitStandalone::Vector;
+using svFitStandalone::LorentzVector;
+using svFitStandalone::MeasuredTauLepton;
+#include "/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/TauAnalysis/SVfitStandalone/interface/SVfitStandaloneAlgorithm.h"
+
 
 reweight::LumiReWeighting LumiWeightsD_;
 reweight::LumiReWeighting LumiWeightsD_sys_;
 bool isMC = true;
 //bool isMC = false;
 string dataset = "METParked";
+string version = "v2";
 string  suffix = "SUFFIX";
 
 void FlatTreeCreator::Begin(TTree *tree)
@@ -25,7 +40,6 @@ void FlatTreeCreator::Begin(TTree *tree)
    TString option = GetOption();
 
    //PileUp Reweighting:
-
    Float_t DataDist_2012D[60] = {1768.77, 3651.68, 7356.92, 14793.3, 51246.8, 489173, 2.63921e+06, 6.82361e+06, 1.88317e+07, 5.19794e+07, 1.08899e+08, 1.88257e+08, 2.57316e+08, 3.01258e+08, 3.27492e+08, 3.44354e+08, 3.59374e+08, 3.74823e+08, 3.90058e+08, 4.0217e+08, 4.08643e+08, 4.11422e+08, 4.11151e+08, 4.05573e+08, 3.92856e+08, 3.72226e+08, 3.44284e+08, 3.10504e+08, 2.7226e+08, 2.30759e+08, 1.8777e+08, 1.45857e+08, 1.07763e+08, 7.56393e+07, 5.0551e+07, 3.23928e+07, 2.0178e+07, 1.25011e+07, 7.95461e+06, 5.38133e+06, 3.95572e+06, 3.15182e+06, 2.66553e+06, 2.33493e+06, 2.08e+06, 1.86352e+06, 1.669e+06, 1.48952e+06, 1.32229e+06, 1.16642e+06, 1.02175e+06, 888282, 766092, 655189, 555473, 466702, 388487, 320302, 261506, 211367};
 
    Float_t DataDist_2012D_sys[60] = {1632.3, 3240.95, 6296.46, 12068, 30517.4, 227305, 1.49497e+06, 4.52239e+06, 1.0476e+07, 2.96274e+07, 6.82538e+07, 1.28218e+08, 2.00114e+08, 2.55292e+08, 2.90327e+08, 3.11739e+08, 3.26279e+08, 3.39668e+08, 3.53444e+08, 3.67108e+08, 3.78444e+08, 3.85013e+08, 3.88036e+08, 3.88742e+08, 3.85622e+08, 3.76942e+08, 3.61739e+08, 3.39978e+08, 3.12601e+08, 2.80828e+08, 2.45645e+08, 2.08081e+08, 1.69728e+08, 1.32723e+08, 9.92184e+07, 7.08564e+07, 4.84379e+07, 3.18819e+07, 2.04316e+07, 1.29836e+07, 8.39661e+06, 5.69316e+06, 4.14131e+06, 3.24848e+06, 2.71199e+06, 2.35979e+06, 2.10068e+06, 1.88918e+06, 1.70364e+06, 1.53423e+06, 1.37666e+06, 1.22917e+06, 1.0912e+06, 962650, 843537, 733913, 633795, 543116, 461705, 389280};
@@ -35,7 +49,7 @@ void FlatTreeCreator::Begin(TTree *tree)
    std::vector<float> DataDistD;
    std::vector<float> DataDistD_sys;
    std::vector<float> MCDist;
-  
+ 
    for( int i=0; i<60; i++) {
      DataDistD.push_back(DataDist_2012D[i]);
      DataDistD_sys.push_back(DataDist_2012D_sys[i]);
@@ -44,7 +58,20 @@ void FlatTreeCreator::Begin(TTree *tree)
 
    LumiWeightsD_ = reweight::LumiReWeighting(MCDist, DataDistD);
    LumiWeightsD_sys_ = reweight::LumiReWeighting(MCDist, DataDistD_sys);
+/*
+   JetCorrectorParameters *ResJetPar = new JetCorrectorParameters("/uscms_data/d2/sapta/work/LJMetCode_fromGena/Dilepton_Feb7/CMSSW_5_3_7_patch4/src/LJMet/Com/data/FT_53_V10_AN3_L2L3Residual_AK5PFchs.txt"); 
+   JetCorrectorParameters *L3JetPar  = new JetCorrectorParameters("/uscms_data/d2/sapta/work/LJMetCode_fromGena/Dilepton_Feb7/CMSSW_5_3_7_patch4/src/LJMet/Com/data/FT_53_V10_AN3_L3Absolute_AK5PFchs.txt");
+   JetCorrectorParameters *L2JetPar  = new JetCorrectorParameters("/uscms_data/d2/sapta/work/LJMetCode_fromGena/Dilepton_Feb7/CMSSW_5_3_7_patch4/src/LJMet/Com/data/FT_53_V10_AN3_L2Relative_AK5PFchs.txt");
+   JetCorrectorParameters *L1JetPar  = new JetCorrectorParameters("/uscms_data/d2/sapta/work/LJMetCode_fromGena/Dilepton_Feb7/CMSSW_5_3_7_patch4/src/LJMet/Com/data/FT_53_V10_AN3_L1FastJet_AK5PFchs.txt");
 
+   vector<JetCorrectorParameters> vPar;
+   vPar.push_back(*L1JetPar);
+   vPar.push_back(*L2JetPar);
+   vPar.push_back(*L3JetPar);
+   vPar.push_back(*ResJetPar);
+
+   FactorizedJetCorrector *JetCorrector = new FactorizedJetCorrector(vPar);
+  */ 
    fileCount = 0; 
    outputFile = new TFile("LowPtSUSY_Tree_SUFFIX.root","RECREATE");
    outtree=new TTree("LowPtSUSY_Tree", "LowPtSUSY_Tree"); 
@@ -54,6 +81,9 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("ph_pt", &ph_pt);
    outtree->Branch("ph_phi", &ph_phi);
    outtree->Branch("ph_eta", &ph_eta);
+   outtree->Branch("ph_px", &ph_px);
+   outtree->Branch("ph_py", &ph_py);
+   outtree->Branch("ph_pz", &ph_pz);
    outtree->Branch("ph_energy", &ph_energy);
    outtree->Branch("ph_HoE", &ph_HoE);
    outtree->Branch("ph_conversionVeto", &ph_conversionVeto);
@@ -80,6 +110,8 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("el_charge", &el_charge);
    outtree->Branch("el_isTight", &el_isTight);
    outtree->Branch("el_isLoose", &el_isLoose);
+   outtree->Branch("el_Dxy", &el_Dxy);
+   outtree->Branch("el_Dz", &el_Dz);
    outtree->Branch("nElectrons", &nElectrons, "nElectrons/I");
    outtree->Branch("mu_pt", &mu_pt);
    outtree->Branch("mu_phi", &mu_phi);
@@ -88,6 +120,8 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("mu_charge", &mu_charge);
    outtree->Branch("mu_isTight", &mu_isTight);
    outtree->Branch("mu_isLoose", &mu_isLoose);
+   outtree->Branch("mu_Dxy", &mu_Dxy);
+   outtree->Branch("mu_Dz", &mu_Dz);
    outtree->Branch("nMuons", &nMuons, "nMuons/I");
    outtree->Branch("jet_pt", &jet_pt);
    outtree->Branch("jet_phi", &jet_phi);
@@ -100,10 +134,15 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("jet_cut_loose", &jet_cut_loose);
    outtree->Branch("jet_cut_tight", &jet_cut_tight);
    outtree->Branch("jet_cut_medium", &jet_cut_medium);
+   outtree->Branch("jet_btag_csv", &jet_btag_csv);
    outtree->Branch("MET", &MET, "MET/F");
    outtree->Branch("MET_Phi", &MET_Phi, "MET_Phi/F");
    outtree->Branch("MET_Px", &MET_Px, "MET_Px/F");
    outtree->Branch("MET_Py", &MET_Py, "MET_Py/F");
+   outtree->Branch("MET_Signxx", &MET_Signxx, "MET_Signxx/F");
+   outtree->Branch("MET_Signxy", &MET_Signxy, "MET_Signxy/F");
+   outtree->Branch("MET_Signyx", &MET_Signyx, "MET_Signyx/F");
+   outtree->Branch("MET_Signyy", &MET_Signyy, "MET_Signyy/F");
    outtree->Branch("caloMET", &caloMET, "caloMET/F");
    outtree->Branch("caloMET_Phi", &caloMET_Phi, "caloMET_Phi/F");
    outtree->Branch("caloMET_Px", &caloMET_Px, "caloMET_Px/F");
@@ -112,6 +151,35 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("fired_HLTPhoId", &fired_HLTPhoId, "fired_HLTPhoId/O");
    outtree->Branch("fired_HLTPhoIdMet", &fired_HLTPhoIdMet, "fired_HLTPhoIdMet/O");
    outtree->Branch("fired_HLTMET100", &fired_HLTMET100, "fired_HLTMET100/O");
+   outtree->Branch("fired_HLT_IsoMu24", &fired_HLT_IsoMu24, "fired_HLT_IsoMu24/O");
+   outtree->Branch("fired_HLT_Mu13_Mu8", &fired_HLT_Mu13_Mu8, "fired_HLT_Mu13_Mu8/O");
+   outtree->Branch("fired_HLT_Mu17_Mu8", &fired_HLT_Mu17_Mu8, "fired_HLT_Mu17_Mu8/O");
+   outtree->Branch("fired_HLT_Mu17_TkMu8", &fired_HLT_Mu17_TkMu8, "fired_HLT_Mu17_TkMu8/O");
+   outtree->Branch("fired_HLT_Mu22_TkMu8", &fired_HLT_Mu22_TkMu8, "fired_HLT_Mu22_TkMu8/O");
+   outtree->Branch("fired_HLT_Mu22_TkMu22", &fired_HLT_Mu22_TkMu22, "fired_HLT_Mu22_TkMu22/O");
+   outtree->Branch("fired_HLT_Dimuon0_Jpsi_Muon", &fired_HLT_Dimuon0_Jpsi_Muon, "fired_HLT_Dimuon0_Jpsi_Muon/O");
+   outtree->Branch("fired_HLT_Dimuon0_Upsilon_Muon", &fired_HLT_Dimuon0_Upsilon_Muon, "fired_HLT_Dimuon0_Upsilon_Muon/O");
+   outtree->Branch("fired_HLT_Dimuon11_Upsilon", &fired_HLT_Dimuon11_Upsilon, "fired_HLT_Dimuon11_Upsilon/O");
+   outtree->Branch("fired_HLT_Dimuon7_Upsilon", &fired_HLT_Dimuon7_Upsilon, "fired_HLT_Dimuon7_Upsilon/O");
+   outtree->Branch("fired_HLT_DoubleMu3_4_Dimuon5_Bs_Central", &fired_HLT_DoubleMu3_4_Dimuon5_Bs_Central, "fired_HLT_DoubleMu3_4_Dimuon5_Bs_Central/O");
+   outtree->Branch("fired_HLT_DoubleMu3p5_4_Dimuon5_Bs_Central", &fired_HLT_DoubleMu3p5_4_Dimuon5_Bs_Central, "fired_HLT_DoubleMu3p5_4_Dimuon5_Bs_Central/O");
+   outtree->Branch("fired_HLT_DoubleMu4_Dimuon7_Bs_Forward", &fired_HLT_DoubleMu4_Dimuon7_Bs_Forward, "fired_HLT_DoubleMu4_Dimuon7_Bs_Forward/O");
+   outtree->Branch("fired_HLT_DoubleMu4_JpsiTk_Displaced", &fired_HLT_DoubleMu4_JpsiTk_Displaced, "fired_HLT_DoubleMu4_JpsiTk_Displaced/O");
+   outtree->Branch("fired_HLT_DoubleMu4_Jpsi_Displaced", &fired_HLT_DoubleMu4_Jpsi_Displaced, "fired_HLT_DoubleMu4_Jpsi_Displaced/O");
+   outtree->Branch("fired_HLT_Mu5_Track2_Jpsi", &fired_HLT_Mu5_Track2_Jpsi, "fired_HLT_Mu5_Track2_Jpsi/O"); 
+   outtree->Branch("fired_HLT_Mu5_Track3p5_Jpsi", &fired_HLT_Mu5_Track3p5_Jpsi, "fired_HLT_Mu5_Track3p5_Jpsi/O");
+   outtree->Branch("fired_HLT_Mu7_Track7_Jpsi", &fired_HLT_Mu7_Track7_Jpsi, "fired_HLT_Mu7_Track7_Jpsi/O");
+   outtree->Branch("fired_HLT_Tau2Mu_ItTrack", &fired_HLT_Tau2Mu_ItTrack, "fired_HLT_Tau2Mu_ItTrack/O");
+   outtree->Branch("fired_HLT_Dimuon10_Jpsi", &fired_HLT_Dimuon10_Jpsi, "fired_HLT_Dimuon10_Jpsi/O");
+   outtree->Branch("fired_HLT_Dimuon5_PsiPrime", &fired_HLT_Dimuon5_PsiPrime, "fired_HLT_Dimuon5_PsiPrime/O");
+   outtree->Branch("fired_HLT_Dimuon5_Upsilon", &fired_HLT_Dimuon5_Upsilon, "fired_HLT_Dimuon5_Upsilon/O");
+   outtree->Branch("fired_HLT_Dimuon7_PsiPrime", &fired_HLT_Dimuon7_PsiPrime, "fired_HLT_Dimuon7_PsiPrime/O");
+   outtree->Branch("fired_HLT_Dimuon8_Jpsi", &fired_HLT_Dimuon8_Jpsi, "fired_HLT_Dimuon8_Jpsi/O");
+   outtree->Branch("fired_HLT_Dimuon8_Upsilon", &fired_HLT_Dimuon8_Upsilon, "fired_HLT_Dimuon8_Upsilon/O");
+   outtree->Branch("fired_HLT_DoubleMu3p5_LowMassNonResonant_Displaced", &fired_HLT_DoubleMu3p5_LowMassNonResonant_Displaced, "fired_HLT_DoubleMu3p5_LowMassNonResonant_Displaced/O");
+   outtree->Branch("fired_HLT_DoubleMu3p5_LowMass_Displaced", &fired_HLT_DoubleMu3p5_LowMass_Displaced, "fired_HLT_DoubleMu3p5_LowMass_Displaced/O");
+   outtree->Branch("fired_HLT_Mu15_TkMu5_Onia", &fired_HLT_Mu15_TkMu5_Onia, "fired_HLT_Mu15_TkMu5_Onia/O");
+   outtree->Branch("fired_HLT_Mu22_Photon22_CaloIdL", &fired_HLT_Mu22_Photon22_CaloIdL, "fired_HLT_Mu22_Photon22_CaloIdL/O");
    outtree->Branch("nVertices", &nVertices, "nVertices/I");
    outtree->Branch("el_iso", &el_iso);
    outtree->Branch("mu_iso", &mu_iso);
@@ -149,6 +217,11 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("trigObj3Py", &trigObj3Py, "trigObj3Py/F");
    outtree->Branch("trigObj3Pz", &trigObj3Pz, "trigObj3Pz/F");
    outtree->Branch("trigObj3E",  &trigObj3E,  "trigObj3E/F");
+   outtree->Branch("trigObj4Px", &trigObj4Px, "trigObj4Px/F");
+   outtree->Branch("trigObj4Py", &trigObj4Py, "trigObj4Py/F");
+   outtree->Branch("trigObj4Pz", &trigObj4Pz, "trigObj4Pz/F");
+   outtree->Branch("trigObj4E",  &trigObj4E,  "trigObj4E/F");
+
    //MC PU-related variables
    outtree->Branch("nPUVertices", &nPUVertices, "nPUVertices/I");
    outtree->Branch("nPUVerticesTrue", &nPUVerticesTrue, "nPUVerticesTrue/F");
@@ -185,6 +258,22 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("mu_Matched_8Mother", &mu_Matched_8Mother);
    outtree->Branch("mu_Matched_9Mother", &mu_Matched_9Mother);
    outtree->Branch("mu_Matched_10Mother", &mu_Matched_10Mother);
+   outtree->Branch("tauPx", &tauPx);
+   outtree->Branch("tauPy", &tauPy);
+   outtree->Branch("tauPz", &tauPz);
+   outtree->Branch("tauE", &tauE);
+   outtree->Branch("muPx", &muPx);
+   outtree->Branch("muPy", &muPy);
+   outtree->Branch("muPz", &muPz);
+   outtree->Branch("muE", &muE);
+   outtree->Branch("ePx", &ePx);
+   outtree->Branch("ePy", &ePy);
+   outtree->Branch("ePz", &ePz);
+   outtree->Branch("eE", &eE);
+   outtree->Branch("nuPx", &nuPx);
+   outtree->Branch("nuPy", &nuPy);
+   outtree->Branch("nuPz", &nuPz);
+   outtree->Branch("nuE", &nuE);
    outtree->Branch("Ztt", &Ztt, "Ztt/O");
    outtree->Branch("Znunu", &Znunu, "Znunu/O");
    outtree->Branch("Zmumu", &Zmumu, "Zmumu/O");
@@ -209,6 +298,9 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   ph_phi.clear();
   ph_eta.clear();
   ph_energy.clear();
+  ph_px.clear();
+  ph_py.clear();
+  ph_pz.clear();
   ph_SigmaIetaIeta.clear();
   ph_SigmaIetaIphi.clear();
   ph_SigmaIphiIphi.clear();
@@ -219,6 +311,8 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   ph_R9.clear();
   nPhotons = -1;
   el_pt.clear();
+  el_Dxy.clear();
+  el_Dz.clear();
   el_phi.clear();
   el_eta.clear();
   el_energy.clear();
@@ -227,6 +321,8 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   el_isTight.clear();
   nElectrons = -1;
   mu_pt.clear();
+  mu_Dxy.clear();
+  mu_Dz.clear();
   mu_phi.clear();
   mu_eta.clear();
   mu_energy.clear();
@@ -243,6 +339,10 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   MET_Phi = -99.0;
   MET_Px = -99.0;
   MET_Py = -99.0;
+  MET_Signxx = -99.0;
+  MET_Signxy = -99.0;
+  MET_Signyx = -99.0;
+  MET_Signyy = -99.0;
   caloMET = 0;
   caloMET_Phi = -99.0;
   caloMET_Px = -99.0;
@@ -251,6 +351,35 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   fired_HLTPhoId = false;
   fired_HLTPhoIdMet = false; 
   fired_HLTMET100 = false;
+  fired_HLT_IsoMu24 = false; 
+  fired_HLT_Mu13_Mu8 = false;
+  fired_HLT_Mu17_Mu8 = false;
+  fired_HLT_Mu17_TkMu8 = false;
+  fired_HLT_Mu22_TkMu8 = false;
+  fired_HLT_Mu22_TkMu22 = false;
+  fired_HLT_Dimuon0_Jpsi_Muon = false;
+  fired_HLT_Dimuon0_Upsilon_Muon = false;
+  fired_HLT_Dimuon11_Upsilon = false;
+  fired_HLT_Dimuon7_Upsilon = false;
+  fired_HLT_DoubleMu3_4_Dimuon5_Bs_Central = false;
+  fired_HLT_DoubleMu3p5_4_Dimuon5_Bs_Central = false;
+  fired_HLT_DoubleMu4_Dimuon7_Bs_Forward = false;
+  fired_HLT_DoubleMu4_JpsiTk_Displaced = false;
+  fired_HLT_DoubleMu4_Jpsi_Displaced = false;
+  fired_HLT_Mu5_Track2_Jpsi = false;
+  fired_HLT_Mu5_Track3p5_Jpsi = false;
+  fired_HLT_Mu7_Track7_Jpsi = false;
+  fired_HLT_Tau2Mu_ItTrack = false;
+  fired_HLT_Dimuon10_Jpsi = false;
+  fired_HLT_Dimuon5_PsiPrime = false;
+  fired_HLT_Dimuon5_Upsilon = false;
+  fired_HLT_Dimuon7_PsiPrime = false;
+  fired_HLT_Dimuon8_Jpsi = false;
+  fired_HLT_Dimuon8_Upsilon = false;
+  fired_HLT_DoubleMu3p5_LowMassNonResonant_Displaced = false;
+  fired_HLT_DoubleMu3p5_LowMass_Displaced = false;
+  fired_HLT_Mu15_TkMu5_Onia = false;
+  fired_HLT_Mu22_Photon22_CaloIdL = false;
   nVertices = -1;
   el_iso.clear();
   mu_iso.clear();
@@ -294,7 +423,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   jet_cut_loose.clear();
   jet_cut_tight.clear();
   jet_cut_medium.clear();
-
+  jet_btag_csv.clear();
   //Trigger object 1 refers to objects passed by the hltPhoton30R9Id90CaloIdHE10Iso40EBOnlyTrackIsoLastFilter
   trigObj1Px= -99.0;
   trigObj1Py= -99.0;
@@ -310,7 +439,12 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   trigObj3Py= -99.0;
   trigObj3Pz= -99.0;
   trigObj3E= -99.0; 
-  
+  //Trigger object 4 refers to objects passed by the hltL1sMu16
+  trigObj4Px= -99.0;
+  trigObj4Py= -99.0;
+  trigObj4Pz= -99.0;
+  trigObj4E= -99.0;
+
   //MC history and genparticle info
   el_Matched.clear();
   el_MatchedPt.clear();
@@ -342,6 +476,22 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   mu_Matched_8Mother.clear();
   mu_Matched_9Mother.clear();
   mu_Matched_10Mother.clear();
+  tauPx.clear();
+  tauPy.clear();
+  tauPz.clear();
+  tauE.clear();
+  muPx.clear();
+  muPy.clear();
+  muPz.clear();
+  muE.clear();
+  ePx.clear();
+  ePy.clear();
+  ePz.clear();
+  eE.clear();
+  nuPx.clear();
+  nuPy.clear();
+  nuPz.clear();
+  nuE.clear();
   Ztt = false;
   Znunu = false;
   Zmumu = false;
@@ -356,10 +506,10 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
  lumi = lumiSection;
  event = eventNumber;
 
- if(isMC){
+ if(not isMC){
   for (int i = 0; i <  triggerObjects->GetSize(); i++) {
    TCTriggerObject* thisTrigObj = (TCTriggerObject*) triggerObjects->At(i);
-  // cout << "thisTrigObj->GetHLTName() == " << thisTrigObj->GetHLTName() << endl;
+   //cout << "thisTrigObj->GetHLTName() == " << thisTrigObj->GetHLTName() << endl;
    //cout << "thisTrigObj->GetModuleName() == " << thisTrigObj->GetModuleName() << endl;   
    }
  }
@@ -389,6 +539,13 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
      trigObj3E  = thisTrigObj->E();
      }
 
+   if(thisTrigObj->GetModuleName() == "hltL1sMu16"){
+     trigObj4Px = thisTrigObj->Px();
+     trigObj4Py = thisTrigObj->Py();
+     trigObj4Pz = thisTrigObj->Pz();
+     trigObj4E  = thisTrigObj->E();
+     } 
+
    //cout << "thisTrigObj->GetModuleName() == " << thisTrigObj->GetModuleName() << endl; 
    //cout << "thisTrigObj->GetHLTName() == " << thisTrigObj->GetHLTName() << endl;
    
@@ -396,9 +553,38 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
    if(thisTrigObj->GetHLTName().find("HLT_Photon30_R9Id90_CaloId_HE10_Iso40_EBOnly_v")!=std::string::npos) fired_HLTPhoId = true;
    if(thisTrigObj->GetHLTName().find("HLT_Photon30_R9Id90_CaloId_HE10_Iso40_EBOnly_Met25_HBHENoiseCleaned_v")!=std::string::npos) fired_HLTPhoIdMet = true;
    if(thisTrigObj->GetHLTName().find("HLT_MET100_HBHENoiseCleaned_v")!=std::string::npos) fired_HLTMET100 = true;
+   if(thisTrigObj->GetHLTName().find("HLT_IsoMu24_v")!=std::string::npos) fired_HLT_IsoMu24 = true;
+   if(thisTrigObj->GetHLTName().find("HLT_Mu13_Mu8_v")!=std::string::npos) fired_HLT_Mu13_Mu8 = true;
+   if(thisTrigObj->GetHLTName().find("HLT_Mu17_Mu8_v")!=std::string::npos) fired_HLT_Mu17_Mu8 = true;
+   if(thisTrigObj->GetHLTName().find("HLT_Mu17_TkMu8_v")!=std::string::npos) fired_HLT_Mu17_TkMu8 = true;
+   if(thisTrigObj->GetHLTName().find("HLT_Mu22_TkMu8_v")!=std::string::npos) fired_HLT_Mu22_TkMu8 = true;
+   if(thisTrigObj->GetHLTName().find("HLT_Mu22_TkMu22_v")!=std::string::npos) fired_HLT_Mu22_TkMu22 = true; 
+   if(thisTrigObj->GetHLTName().find("HLT_Dimuon0_Jpsi_Muon_v")!=std::string::npos) fired_HLT_Dimuon0_Jpsi_Muon = true;
+   if(thisTrigObj->GetHLTName().find("HLT_Dimuon0_Upsilon_Muon_v")!=std::string::npos) fired_HLT_Dimuon0_Upsilon_Muon = true;     
+   if(thisTrigObj->GetHLTName().find("HLT_Dimuon11_Upsilon_v")!=std::string::npos) fired_HLT_Dimuon11_Upsilon = true;
+   if(thisTrigObj->GetHLTName().find("HLT_Dimuon7_Upsilon_v")!=std::string::npos) fired_HLT_Dimuon7_Upsilon = true;
+   if(thisTrigObj->GetHLTName().find("HLT_DoubleMu3_4_Dimuon5_Bs_Central_v")!=std::string::npos) fired_HLT_DoubleMu3_4_Dimuon5_Bs_Central = true;
+   if(thisTrigObj->GetHLTName().find("HLT_DoubleMu3p5_4_Dimuon5_Bs_Central_v")!=std::string::npos) fired_HLT_DoubleMu3p5_4_Dimuon5_Bs_Central  = true;
+   if(thisTrigObj->GetHLTName().find("HLT_DoubleMu4_Dimuon7_Bs_Forward_v")!=std::string::npos) fired_HLT_DoubleMu4_Dimuon7_Bs_Forward = true;
+   if(thisTrigObj->GetHLTName().find("HLT_DoubleMu4_JpsiTk_Displaced_v")!=std::string::npos) fired_HLT_DoubleMu4_JpsiTk_Displaced = true;
+   if(thisTrigObj->GetHLTName().find("HLT_DoubleMu4_Jpsi_Displaced_v")!=std::string::npos) fired_HLT_DoubleMu4_Jpsi_Displaced = true;
+   if(thisTrigObj->GetHLTName().find("HLT_Mu5_Track2_Jpsi_v")!=std::string::npos) fired_HLT_Mu5_Track2_Jpsi = true;
+   if(thisTrigObj->GetHLTName().find("HLT_Mu5_Track3p5_Jpsi_v")!=std::string::npos) fired_HLT_Mu5_Track3p5_Jpsi = true;
+   if(thisTrigObj->GetHLTName().find("HLT_Mu7_Track7_Jpsi_v")!=std::string::npos) fired_HLT_Mu7_Track7_Jpsi = true;
+   if(thisTrigObj->GetHLTName().find("HLT_Tau2Mu_ItTrack_v")!=std::string::npos) fired_HLT_Tau2Mu_ItTrack  = true;
+   if(thisTrigObj->GetHLTName().find("HLT_Dimuon10_Jpsi_v")!=std::string::npos) fired_HLT_Dimuon10_Jpsi = true;
+   if(thisTrigObj->GetHLTName().find("HLT_Dimuon5_PsiPrime_v")!=std::string::npos) fired_HLT_Dimuon5_PsiPrime = true;
+   if(thisTrigObj->GetHLTName().find("HLT_Dimuon5_Upsilon_v")!=std::string::npos) fired_HLT_Dimuon5_Upsilon = true;
+   if(thisTrigObj->GetHLTName().find("HLT_Dimuon7_PsiPrime_v")!=std::string::npos) fired_HLT_Dimuon7_PsiPrime = true;
+   if(thisTrigObj->GetHLTName().find("HLT_Dimuon8_Jpsi_v")!=std::string::npos) fired_HLT_Dimuon8_Jpsi = true;
+   if(thisTrigObj->GetHLTName().find("HLT_Dimuon8_Upsilon_v")!=std::string::npos) fired_HLT_Dimuon8_Upsilon = true;
+   if(thisTrigObj->GetHLTName().find("HLT_DoubleMu3p5_LowMassNonResonant_Displaced_v")!=std::string::npos) fired_HLT_DoubleMu3p5_LowMassNonResonant_Displaced = true;
+   if(thisTrigObj->GetHLTName().find("HLT_DoubleMu3p5_LowMass_Displaced_v")!=std::string::npos) fired_HLT_DoubleMu3p5_LowMass_Displaced = true;
+   if(thisTrigObj->GetHLTName().find("HLT_Mu15_TkMu5_Onia_v")!=std::string::npos) fired_HLT_Mu15_TkMu5_Onia = true;
+   if(thisTrigObj->GetHLTName().find("HLT_Mu22_Photon22_CaloIdL_v")!=std::string::npos) fired_HLT_Mu22_Photon22_CaloIdL = true;  
    }
 
-   if(dataset!="METParked"){
+   if(dataset!="METParked" and version!="v1"){
      if (NoiseFilters_isScraping) return kTRUE;
      if (NoiseFilters_isNoiseHcalHBHE) return kTRUE;
      if (NoiseFilters_isNoiseHcalLaser) return kTRUE;
@@ -436,10 +622,18 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
     if (!(fabs(photon->SCEta())<1.4442)) continue;
     if (!(photon->R9()>0.9)) continue;
     vPhotons.push_back(*photon);
+    //std::cout << "photon->M() = " << photon->M() << std::endl; 
     ph_pt.push_back(photon->Pt());
     ph_eta.push_back(photon->SCEta());
     ph_phi.push_back(photon->Phi());
     ph_energy.push_back(photon->Energy());
+    //std::cout << "photon->Energy() = " << photon->Energy() << std::endl;
+    //std::cout << "photon->SCEnergy() = " << photon->SCEnergy() << std::endl;
+    //std::cout << "photon momenta = " << std::sqrt((photon->Px()*photon->Px()+ photon->Py()*photon->Py() + photon->Pz()*photon->Pz())) << std::endl;
+    //std::cout << "photon momenta = " << std::sqrt((photon->Pt()*TMath::Cos(photon->Phi()))*(photon->Pt()*TMath::Cos(photon->Phi()))+(photon->Pt()*TMath::Sin(photon->Phi()))*(photon->Pt()*TMath::Sin(photon->Phi())) + (photon->Pt()*TMath::SinH(photon->SCEta()))*(photon->Pt()*TMath::SinH(photon->SCEta()))) << std::endl;
+    ph_px.push_back(photon->Px());
+    ph_py.push_back(photon->Py());
+    ph_pz.push_back(photon->Pz());
     ph_HoE.push_back(photon->HadOverEm());
     ph_conversionVeto.push_back(photon->ConversionVeto());
     ph_pixelVeto.push_back(photon->TrackVeto());
@@ -513,8 +707,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
     }//isMC if statement ended
   }//reco photon loop closed.  
 
-  nPhotons = vPhotons.size();
-
+ nPhotons = vPhotons.size();
  vector<TCElectron> vElectrons;
 
  for (Int_t i = 0; i < recoElectrons->GetSize(); i++) {
@@ -529,6 +722,8 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
    el_iso.push_back(ElectronIso(electron));
    el_isLoose.push_back(isLooseElectron(electron));
    el_isTight.push_back(isTightElectron(electron));
+   el_Dxy.push_back(electron->Dxy(pvPosition));
+   el_Dz.push_back(electron->Dz(pvPosition));
    if(isMC){
      double closestDR = 0.3;
      int closestIndex=-1;
@@ -695,27 +890,43 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   for (int g = 0; g <  genParticles->GetSize(); g++) {
     TCGenParticle* genParticle = (TCGenParticle*) genParticles->At(g);
     if(abs(genParticle->GetPDGId())==15 and genParticle->GetStatus()==3){
-      if(genParticle->Mother()->GetPDGId()==23){
+      if(genParticle->Mother() and genParticle->Mother()->GetPDGId()==23){
        Ztt = true;//Ztt decay mode.
+       tauPx.push_back(genParticle->Px());
+       tauPy.push_back(genParticle->Py());
+       tauPz.push_back(genParticle->Pz());
+       tauE.push_back(genParticle->E());
        }
      }
     if(abs(genParticle->GetPDGId())==13 and genParticle->GetStatus()==3){
-      if(genParticle->Mother()->GetPDGId()==23){
+      if(genParticle->Mother() and genParticle->Mother()->GetPDGId()==23){
        Zmumu = true;
+       muPx.push_back(genParticle->Px());
+       muPy.push_back(genParticle->Py());
+       muPz.push_back(genParticle->Pz());
+       muE.push_back(genParticle->E());
        }
      }
     if(abs(genParticle->GetPDGId())==11 and genParticle->GetStatus()==3){
-      if(genParticle->Mother()->GetPDGId()==23){
+      if(genParticle->Mother() and genParticle->Mother()->GetPDGId()==23){
        Zee = true;
+       ePx.push_back(genParticle->Px());
+       ePy.push_back(genParticle->Py());
+       ePz.push_back(genParticle->Pz());
+       eE.push_back(genParticle->E());
        }
      }
     if((abs(genParticle->GetPDGId())==12 or abs(genParticle->GetPDGId())==14 or abs(genParticle->GetPDGId())==16)and genParticle->GetStatus()==3){
-      if(genParticle->Mother()->GetPDGId()==23){
+      if(genParticle->Mother() and genParticle->Mother()->GetPDGId()==23){
        Znunu = true;
+       nuPx.push_back(genParticle->Px());
+       nuPy.push_back(genParticle->Py());
+       nuPz.push_back(genParticle->Pz());
+       nuE.push_back(genParticle->E());
        }
      }
     if(abs(genParticle->GetPDGId())==15 and genParticle->GetStatus()==3){
-      if(abs(genParticle->Mother()->GetPDGId())==24){ //W boson pdg Id 24
+      if(genParticle->Mother() and abs(genParticle->Mother()->GetPDGId())==24){ //W boson pdg Id 24
         Wt = true;
        }
      }
@@ -765,7 +976,6 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
 }//if MC condition closed
 
  vector<TCMuon> vMuons;
-
  for (Int_t i = 0; i < recoMuons->GetSize(); i++) {
    TCMuon* muon = (TCMuon*) recoMuons->At(i);
    vMuons.push_back(*muon);
@@ -777,6 +987,8 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
    mu_iso.push_back(MuonIso(muon));
    mu_isLoose.push_back(isLooseMuon(muon));
    mu_isTight.push_back(isTightMuon(muon));
+   mu_Dxy.push_back(muon->Dxy(pvPosition));
+   mu_Dz.push_back(muon->Dz(pvPosition));
    if(isMC){
      double closestDR = 0.3;
      int closestIndex=-1;
@@ -935,9 +1147,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
  }//end reco muon loop
 
  nMuons = vMuons.size();
-
  vector<TCJet> vJets;
-
  for (Int_t i = 0; i < patJets->GetSize(); i++) {
    TCJet* jet = (TCJet*) patJets->At(i);
    vJets.push_back(*jet);
@@ -951,7 +1161,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
    jet_cut_loose.push_back(jet->PuJetIdFlag_cut_loose());
    jet_cut_medium.push_back(jet->PuJetIdFlag_cut_medium());
    jet_cut_tight.push_back(jet->PuJetIdFlag_cut_tight());
-
+   if(version!="v1") jet_btag_csv.push_back(jet->BDiscriminatorMap("CSV"));
   }
 
  nJets = vJets.size();
@@ -960,12 +1170,17 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
  MET_Phi = corrMET->Phi();
  MET_Px  = corrMET->Px();
  MET_Py  = corrMET->Py();
-
+ if(version!="v1"){
+   MET_Signxx = corrMET->SignificanceMatrixxx();
+   MET_Signxy = corrMET->SignificanceMatrixxy();
+   MET_Signyx = corrMET->SignificanceMatrixyx();
+   MET_Signyy = corrMET->SignificanceMatrixyy();
+ }
  caloMET = CaloMET->Mod();
  caloMET_Phi = CaloMET->Phi();
  caloMET_Px = CaloMET->Px();
  caloMET_Py = CaloMET->Py();
-
+ 
 
  if(isMC){ 
    PUWeightData = LumiWeightsD_.weight(nPUVerticesTrue);
