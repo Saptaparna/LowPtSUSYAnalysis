@@ -4,28 +4,18 @@ Tree and storing relevant information
 Author: Saptaparna Bhattcharya
 
 */
-#include <TMatrixD.h>
-#include "/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/TauAnalysis/SVfitStandalone/interface/SVfitStandaloneLikelihood.h"
-#include "/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/TauAnalysis/SVfitStandalone/interface/LikelihoodFunctions.h"
-#include "/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/TauAnalysis/SVfitStandalone/interface/SVfitStandaloneMarkovChainIntegrator.h"
-#include "/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/TauAnalysis/SVfitStandalone/interface/svFitStandaloneAuxFunctions.h"
+#include <TSystem.h>
+//#include "FWCore/FWLite/interface/AutoLibraryLoader.h"
+#include "CondFormats/JetMETObjects/interface/FactorizedJetCorrector.h"
+#include "CondFormats/JetMETObjects/interface/JetCorrectorParameters.h"
 //#include "/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/CondFormats/JetMETObjects/interface/FactorizedJetCorrector.h"
 //#include "/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/CondFormats/JetMETObjects/interface/JetCorrectorParameters.h"
 //#include "/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/CondFormats/JetMETObjects/interface/JetCorrectionUncertainty.h"
-
 #include "FlatTreeCreator.h"
 #include <TH2.h>
 #include <TStyle.h>
-#include "PhysicsTools/Utilities/interface/LumiReweightingStandAlone.h"
-//#include "DataFormats/FWLite/interface/Handle.h"
 using namespace std;
-using namespace svFitStandalone;
-using svFitStandalone::Vector;
-using svFitStandalone::LorentzVector;
-using svFitStandalone::MeasuredTauLepton;
-#include "/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/TauAnalysis/SVfitStandalone/interface/SVfitStandaloneAlgorithm.h"
-
-
+#include "PhysicsTools/Utilities/interface/LumiReweightingStandAlone.h"
 reweight::LumiReWeighting LumiWeightsD_;
 reweight::LumiReWeighting LumiWeightsD_sys_;
 bool isMC = true;
@@ -58,7 +48,9 @@ void FlatTreeCreator::Begin(TTree *tree)
 
    LumiWeightsD_ = reweight::LumiReWeighting(MCDist, DataDistD);
    LumiWeightsD_sys_ = reweight::LumiReWeighting(MCDist, DataDistD_sys);
-/*
+
+   gSystem->Load("libFWCoreFWLite.so");
+
    JetCorrectorParameters *ResJetPar = new JetCorrectorParameters("/uscms_data/d2/sapta/work/LJMetCode_fromGena/Dilepton_Feb7/CMSSW_5_3_7_patch4/src/LJMet/Com/data/FT_53_V10_AN3_L2L3Residual_AK5PFchs.txt"); 
    JetCorrectorParameters *L3JetPar  = new JetCorrectorParameters("/uscms_data/d2/sapta/work/LJMetCode_fromGena/Dilepton_Feb7/CMSSW_5_3_7_patch4/src/LJMet/Com/data/FT_53_V10_AN3_L3Absolute_AK5PFchs.txt");
    JetCorrectorParameters *L2JetPar  = new JetCorrectorParameters("/uscms_data/d2/sapta/work/LJMetCode_fromGena/Dilepton_Feb7/CMSSW_5_3_7_patch4/src/LJMet/Com/data/FT_53_V10_AN3_L2Relative_AK5PFchs.txt");
@@ -71,7 +63,7 @@ void FlatTreeCreator::Begin(TTree *tree)
    vPar.push_back(*ResJetPar);
 
    FactorizedJetCorrector *JetCorrector = new FactorizedJetCorrector(vPar);
-  */ 
+   
    fileCount = 0; 
    outputFile = new TFile("LowPtSUSY_Tree_SUFFIX.root","RECREATE");
    outtree=new TTree("LowPtSUSY_Tree", "LowPtSUSY_Tree"); 
