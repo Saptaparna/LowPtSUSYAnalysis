@@ -5,12 +5,11 @@ Author: Saptaparna Bhattcharya
 
 */
 #include <TSystem.h>
-//#include "FWCore/FWLite/interface/AutoLibraryLoader.h"
-#include "CondFormats/JetMETObjects/interface/FactorizedJetCorrector.h"
-#include "CondFormats/JetMETObjects/interface/JetCorrectorParameters.h"
+//#include "CondFormats/JetMETObjects/interface/FactorizedJetCorrector.h"
+//#include "CondFormats/JetMETObjects/interface/JetCorrectorParameters.h"
 //#include "/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/CondFormats/JetMETObjects/interface/FactorizedJetCorrector.h"
 //#include "/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/CondFormats/JetMETObjects/interface/JetCorrectorParameters.h"
-//#include "/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/CondFormats/JetMETObjects/interface/JetCorrectionUncertainty.h"
+#include "CondFormats/JetMETObjects/interface/JetCorrectionUncertainty.h"
 #include "FlatTreeCreator.h"
 #include <TH2.h>
 #include <TStyle.h>
@@ -49,21 +48,6 @@ void FlatTreeCreator::Begin(TTree *tree)
    LumiWeightsD_ = reweight::LumiReWeighting(MCDist, DataDistD);
    LumiWeightsD_sys_ = reweight::LumiReWeighting(MCDist, DataDistD_sys);
 
-   gSystem->Load("libFWCoreFWLite.so");
-
-   JetCorrectorParameters *ResJetPar = new JetCorrectorParameters("/uscms_data/d2/sapta/work/LJMetCode_fromGena/Dilepton_Feb7/CMSSW_5_3_7_patch4/src/LJMet/Com/data/FT_53_V10_AN3_L2L3Residual_AK5PFchs.txt"); 
-   JetCorrectorParameters *L3JetPar  = new JetCorrectorParameters("/uscms_data/d2/sapta/work/LJMetCode_fromGena/Dilepton_Feb7/CMSSW_5_3_7_patch4/src/LJMet/Com/data/FT_53_V10_AN3_L3Absolute_AK5PFchs.txt");
-   JetCorrectorParameters *L2JetPar  = new JetCorrectorParameters("/uscms_data/d2/sapta/work/LJMetCode_fromGena/Dilepton_Feb7/CMSSW_5_3_7_patch4/src/LJMet/Com/data/FT_53_V10_AN3_L2Relative_AK5PFchs.txt");
-   JetCorrectorParameters *L1JetPar  = new JetCorrectorParameters("/uscms_data/d2/sapta/work/LJMetCode_fromGena/Dilepton_Feb7/CMSSW_5_3_7_patch4/src/LJMet/Com/data/FT_53_V10_AN3_L1FastJet_AK5PFchs.txt");
-
-   vector<JetCorrectorParameters> vPar;
-   vPar.push_back(*L1JetPar);
-   vPar.push_back(*L2JetPar);
-   vPar.push_back(*L3JetPar);
-   vPar.push_back(*ResJetPar);
-
-   FactorizedJetCorrector *JetCorrector = new FactorizedJetCorrector(vPar);
-   
    fileCount = 0; 
    outputFile = new TFile("LowPtSUSY_Tree_SUFFIX.root","RECREATE");
    outtree=new TTree("LowPtSUSY_Tree", "LowPtSUSY_Tree"); 
@@ -127,6 +111,7 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("jet_cut_tight", &jet_cut_tight);
    outtree->Branch("jet_cut_medium", &jet_cut_medium);
    outtree->Branch("jet_btag_csv", &jet_btag_csv);
+   outtree->Branch("jet_pt_Unc", &jet_pt_Unc);
    outtree->Branch("MET", &MET, "MET/F");
    outtree->Branch("MET_Phi", &MET_Phi, "MET_Phi/F");
    outtree->Branch("MET_Px", &MET_Px, "MET_Px/F");
@@ -327,6 +312,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   jet_eta.clear();
   jet_energy.clear();
   nJets = -1;
+  jet_pt_Unc.clear();
   MET = 0;
   MET_Phi = -99.0;
   MET_Px = -99.0;
@@ -1140,6 +1126,8 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
 
  nMuons = vMuons.size();
  vector<TCJet> vJets;
+ JetCorrectionUncertainty *jecUnc = new JetCorrectionUncertainty("GR_P_V42_AN3DATA_Uncertainty_AK5PF.txt");
+
  for (Int_t i = 0; i < patJets->GetSize(); i++) {
    TCJet* jet = (TCJet*) patJets->At(i);
    vJets.push_back(*jet);
@@ -1154,6 +1142,11 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
    jet_cut_medium.push_back(jet->PuJetIdFlag_cut_medium());
    jet_cut_tight.push_back(jet->PuJetIdFlag_cut_tight());
    if(version!="v1") jet_btag_csv.push_back(jet->BDiscriminatorMap("CSV"));
+
+   jecUnc->setJetEta(jet->Eta());
+   jecUnc->setJetPt(jet->Pt()); 
+   jet_pt_Unc.push_back(jecUnc->getUncertainty(true)*jet->Pt());
+  
   }
 
  nJets = vJets.size();

@@ -6,8 +6,6 @@ cat > Executable.C << +EOF
 
 void Executable(){
 
-gSystem->Load("libFWCoreFWLite.so");
-AutoLibraryLoader::enable();
 gROOT->LoadMacro("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/MPAnalyzer/Classes/src/TCPhysObject_cc.so");
 gROOT->LoadMacro("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/MPAnalyzer/Classes/src/TCMuon_cc.so");
 gROOT->LoadMacro("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/MPAnalyzer/Classes/src/TCMET_cc.so");
@@ -23,6 +21,7 @@ gROOT->LoadMacro("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src
 gROOT->LoadMacro("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/MPAnalyzer/plugins/HistManager_cc.so");
 gROOT->LoadMacro("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/MPAnalyzer/plugins/TriggerSelector_cc.so");
 gROOT->LoadMacro("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/lib/slc5_amd64_gcc462/libTauAnalysisSVfitStandalone.so");
+gROOT->LoadMacro("/cvmfs/cms.cern.ch/slc5_amd64_gcc462/cms/cmssw/CMSSW_5_3_16/lib/slc5_amd64_gcc462/libCondFormatsJetMETObjects.so");
 gROOT->ProcessLine(".L FlatTreeCreator.C++");
 
 }
@@ -65,6 +64,7 @@ cat > run_${1}.C <<EOF
     gROOT->LoadMacro("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/MPAnalyzer/plugins/HistManager_cc.so");
     gROOT->LoadMacro("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/MPAnalyzer/plugins/TriggerSelector_cc.so");
     gROOT->LoadMacro("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/lib/slc5_amd64_gcc462/libTauAnalysisSVfitStandalone.so");
+    gROOT->LoadMacro("/cvmfs/cms.cern.ch/slc5_amd64_gcc462/cms/cmssw/CMSSW_5_3_16/lib/slc5_amd64_gcc462/libCondFormatsJetMETObjects.so");
     gROOT->LoadMacro("/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/MPAnalyzer/FlatTreeCreator_${1}_C.so");
   
     TChain* fChain = new TChain("ntupleProducer/eventTree");
