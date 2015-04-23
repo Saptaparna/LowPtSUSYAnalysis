@@ -20,6 +20,8 @@ ntupleProducer::ntupleProducer(const edm::ParameterSet& iConfig):
   //allMET:
   mMetRaw           = iConfig.getParameter<edm::InputTag>("srcMetRaw");
   mMetPf            = iConfig.getParameter<edm::InputTag>("srcMetPf");
+  mCaloMet          = iConfig.getParameter<edm::InputTag>("srcMetCalo");
+  mCaloMetMuCorr    = iConfig.getParameter<edm::InputTag>("srcMetCaloMuonCorr");
   mMetType01        = iConfig.getParameter<edm::InputTag>("srcMetCorrected");
   mMetJERup         = iConfig.getParameter<edm::InputTag>("srcMetJERup");
   mMetJERdown       = iConfig.getParameter<edm::InputTag>("srcMetJERdown");
@@ -180,9 +182,26 @@ void ntupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
     edm::Handle<reco::JetTagCollection> bTagCollectionCSV;
     iEvent.getByLabel("combinedSecondaryVertexBJetTags", bTagCollectionCSV);
     const reco::JetTagCollection & bTagsCSV = *(bTagCollectionCSV.product());
-    //std::cout<< "bTagsCSV = " << &bTagsCSV << std::endl;
-    //std::cout<< "&*(bTagCollectionCSV.product()) = " << &*(bTagCollectionCSV.product()) << std::endl;
-    //std::cout<< "bTagsCSV.size() = " << (bTagsCSV).size() << std::endl;
+
+    edm::Handle<reco::JetTagCollection> bTagCollectionCSVMVA;
+    iEvent.getByLabel("combinedSecondaryVertexBJetTags", bTagCollectionCSVMVA);
+    const reco::JetTagCollection & bTagsCSVMVA = *(bTagCollectionCSVMVA.product());
+
+    edm::Handle<reco::JetTagCollection> bTagCollectionTCHE;
+    iEvent.getByLabel("trackCountingHighEffBJetTags", bTagCollectionTCHE);
+    const reco::JetTagCollection & bTagsTCHE = *(bTagCollectionTCHE.product());
+    
+    edm::Handle<reco::JetTagCollection> bTagCollectionTCHP;
+    iEvent.getByLabel("trackCountingHighPurBJetTags", bTagCollectionTCHP);
+    const reco::JetTagCollection & bTagsTCHP = *(bTagCollectionTCHP.product());
+    
+    edm::Handle<reco::JetTagCollection> bTagCollectionSSVHE;
+    iEvent.getByLabel("simpleSecondaryVertexHighEffBJetTags", bTagCollectionSSVHE);
+    const reco::JetTagCollection & bTagsSSVHE = *(bTagCollectionSSVHE.product());
+    
+    edm::Handle<reco::JetTagCollection> bTagCollectionJBP;
+    iEvent.getByLabel("jetBProbabilityBJetTags", bTagCollectionJBP);
+    const reco::JetTagCollection & bTagsJBP = *(bTagCollectionJBP.product());
 
     Handle<ValueMap<float> > puJetIdMVA;
     iEvent.getByLabel(edm::InputTag("puJetMva","fullDiscriminant"),puJetIdMVA);
@@ -195,7 +214,6 @@ void ntupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
 
     Handle<ValueMap<int> > puJetIdFlagCut;
     iEvent.getByLabel(edm::InputTag("puJetMva","cutbasedId"),puJetIdFlagCut);
-    
 
     Handle<vector<pat::Jet> > patjets;
     edm::Handle<edm::View<pat::Jet> > patjets_pu;
@@ -210,7 +228,6 @@ void ntupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
     
     int jetCount_pat = 0;
     int i_jet = -1;
-    //cout << "patjets->size() = " << patjets->size() << endl;
     for (vector<pat::Jet>::const_iterator ipJet = patjets->begin(); ipJet != patjets->end(); ++ipJet) {
       i_jet++;
       if(ipJet->pt() < 10.) continue;
@@ -228,7 +245,12 @@ void ntupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
       jetCon->SetPuJetIdFlag_cut_medium(PileupJetIdentifier::passJetId( idflag_cut, PileupJetIdentifier::kMedium));
       jetCon->SetPuJetIdFlag_cut_tight(PileupJetIdentifier::passJetId( idflag_cut, PileupJetIdentifier::kTight ));
       //if((bTagsCSV).size()!=patjets->size()) continue;
-      jetCon->SetBDiscriminatorMap("CSV", MatchBTagsToJets(bTagsCSV, ipJet));
+      //jetCon->SetBDiscriminatorMap("TCHE",  MatchBTagsToJets(bTagsTCHE,  ipJet));
+      //jetCon->SetBDiscriminatorMap("TCHP",  MatchBTagsToJets(bTagsTCHP,  ipJet));
+      //jetCon->SetBDiscriminatorMap("SSVHE", MatchBTagsToJets(bTagsSSVHE, ipJet));
+      //jetCon->SetBDiscriminatorMap("JBP",   MatchBTagsToJets(bTagsJBP,   ipJet));
+      jetCon->SetBDiscriminatorMap("CSV",   MatchBTagsToJets(bTagsCSV,   ipJet));
+      //jetCon->SetBDiscriminatorMap("CSVMVA",MatchBTagsToJets(bTagsCSVMVA, ipJet));
       jetCount_pat++;
 
     }
@@ -239,9 +261,22 @@ void ntupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
     
     edm::Handle<edm::View<pat::MET> > met01;
     iEvent.getByLabel(mMetType01, met01);
-    if (met01->size() == 0) {    corrMET->SetMagPhi(-1,-10);    corrMET->SetSumEt(-1);    corrMET->SetSignificance(-1); }
-    else { corrMET->SetMagPhi((*met01)[0].et(), (*met01)[0].phi());   corrMET->SetSumEt((*met01)[0].sumEt());   corrMET->SetSignificance((*met01)[0].significance());}
+    if (met01->size() == 0) {    corrMET->SetMagPhi(-1,-10);    corrMET->SetSumEt(-1);    corrMET->SetSignificance(-1); corrMET->SetSignificanceMatrixxx(-1); corrMET->SetSignificanceMatrixxy(-1); corrMET->SetSignificanceMatrixyx(-1); corrMET->SetSignificanceMatrixyy(-1);}
+    else { corrMET->SetMagPhi((*met01)[0].et(), (*met01)[0].phi());   corrMET->SetSumEt((*met01)[0].sumEt());   corrMET->SetSignificance((*met01)[0].significance());
+      corrMET->SetSignificanceMatrixxx((*met01)[0].getSignificanceMatrix()(0,0)); corrMET->SetSignificanceMatrixxy((*met01)[0].getSignificanceMatrix()(0,1)); corrMET->SetSignificanceMatrixyx((*met01)[0].getSignificanceMatrix()(1,0)); corrMET->SetSignificanceMatrixyy((*met01)[0].getSignificanceMatrix()(1,1));
+    }
     
+    edm::Handle<edm::View<pat::MET> > calomet;
+    iEvent.getByLabel(mCaloMet, calomet);
+    if (calomet->size() == 0) {    CaloMET->SetMagPhi(-1,-10);    CaloMET->SetSumEt(-1);    CaloMET->SetSignificance(-1); }
+    else { CaloMET->SetMagPhi((*calomet)[0].et(), (*calomet)[0].phi());   CaloMET->SetSumEt((*calomet)[0].sumEt());   CaloMET->SetSignificance((*calomet)[0].significance());}
+
+
+    edm::Handle<edm::View<pat::MET> > calometMuCorr;
+    iEvent.getByLabel(mCaloMetMuCorr, calometMuCorr);
+    if (calometMuCorr->size() == 0) {    CaloMETMuCorr->SetMagPhi(-1,-10);    CaloMETMuCorr->SetSumEt(-1);    CaloMETMuCorr->SetSignificance(-1); }
+    else { CaloMETMuCorr->SetMagPhi((*calometMuCorr)[0].et(), (*calometMuCorr)[0].phi());   CaloMETMuCorr->SetSumEt((*calometMuCorr)[0].sumEt());   CaloMETMuCorr->SetSignificance((*calometMuCorr)[0].significance());}
+
     //edm::Handle<edm::View<pat::MET> > metMVA;
     //iEvent.getByLabel(mMetMVA, metMVA);
     //if (metMVA->size() == 0) {    mvaMET->SetMagPhi(-1,-10);    mvaMET->SetSumEt(-1);    mvaMET->SetSignificance(-1); }
@@ -270,9 +305,9 @@ void ntupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
       iEvent.getByLabel(mMVAJERdown, metMVAJERdown);
       if (metMVAJERdown->size() == 0) {    jerDownMVAMET->SetMagPhi(-1,-10);    jerDownMVAMET->SetSumEt(-1);    jerDownMVAMET->SetSignificance(-1); }
       else { jerDownMVAMET->SetMagPhi((*metMVAJERdown)[0].et(), (*metMVAJERdown)[0].phi()); jerDownMVAMET->SetSumEt((*metMVAJERdown)[0].sumEt()); jerDownMVAMET->SetSignificance((*metMVAJERdown)[0].significance());}
-      */
+     */ 
       }
-  
+  /*
     edm::Handle<pat::METCollection> metPhoup;
     iEvent.getByLabel(mMetPhoup, metPhoup);
     if (metPhoup->size() == 0) {    phoUpMET->SetMagPhi(-1,-10);    phoUpMET->SetSumEt(-1);    phoUpMET->SetSignificance(-1); }
@@ -282,7 +317,7 @@ void ntupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
     iEvent.getByLabel(mMetPhodown, metPhodown);
     if (metPhodown->size() == 0) {  phoDownMET->SetMagPhi(-1,-10);    phoDownMET->SetSumEt(-1);    phoDownMET->SetSignificance(-1); }
     else { phoDownMET->SetMagPhi((*metPhodown)[0].et(), (*metPhodown)[0].phi()); phoDownMET->SetSumEt((*metPhodown)[0].sumEt()); phoDownMET->SetSignificance((*metPhodown)[0].significance());}
-    /*
+    
     edm::Handle<pat::METCollection> metMVAPhoup;
     iEvent.getByLabel(mMVAPhoup, metMVAPhoup);
     if (metMVAPhoup->size() == 0) {    phoUpMVAMET->SetMagPhi(-1,-10);    phoUpMVAMET->SetSumEt(-1);    phoUpMVAMET->SetSignificance(-1); }
@@ -388,14 +423,36 @@ void ntupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
         muCon->SetNumberOfValidMuonHits(-1);
       }
 
+     InputTag  vertexLabel(string("offlinePrimaryVertices"));
+     Handle<reco::VertexCollection> thePrimaryVertexColl;
+     iEvent.getByLabel(vertexLabel,thePrimaryVertexColl);
+
+     Vertex dummy;
+     const Vertex *pv = &dummy;
+     if (thePrimaryVertexColl->size() != 0) {
+      pv = &*thePrimaryVertexColl->begin();
+      } else { // create a dummy PV
+      Vertex::Error e;
+      e(0, 0) = 0.0015 * 0.0015;
+      e(1, 1) = 0.0015 * 0.0015;
+      e(2, 2) = 15. * 15.;
+      Vertex::Point p(0, 0, 0);
+      dummy = Vertex(p, e, 0, 0, 0);
+    }
+
+
       if (iMuon->isTrackerMuon()){
         muCon->SetVtx(iMuon->track()->vx(),iMuon->track()->vy(),iMuon->track()->vz());
         muCon->SetPtError(iMuon->track()->ptError());
-
         muCon->SetTrackLayersWithMeasurement(iMuon->track()->hitPattern().trackerLayersWithMeasurement());
         muCon->SetPixelLayersWithMeasurement(iMuon->innerTrack()->hitPattern().pixelLayersWithMeasurement());
         muCon->SetNumberOfValidPixelHits(    iMuon->innerTrack()->hitPattern().numberOfValidPixelHits());
+        muCon->SetTrackHighPurityFlag(    iMuon->innerTrack()->quality(reco::TrackBase::highPurity));
         muCon->SetNormalizedChi2_tracker(    iMuon->innerTrack()->normalizedChi2());
+        muCon->SetDxy(iMuon->innerTrack()->dxy(pv->position()));
+        cout << "Dxy = " << iMuon->innerTrack()->dxy(pv->position()) << endl;
+        muCon->SetDz(iMuon->innerTrack()->dz(pv->position()));
+        cout << "Dz = " << iMuon->innerTrack()->dz(pv->position()) << endl; 
         muCon->SetNumberOfValidTrackerHits(iMuon->track()->hitPattern().numberOfValidTrackerHits());
         muCon->SetNumberOfLostPixelHits(   iMuon->track()->hitPattern().numberOfLostPixelHits());
         muCon->SetNumberOfLostTrackerHits( iMuon->track()->hitPattern().numberOfLostTrackerHits());
@@ -404,11 +461,15 @@ void ntupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
         muCon->SetVtx(-1,-1,-1);
         muCon->SetPtError(-1);
         muCon->SetTrackLayersWithMeasurement(-1);
+        muCon->SetPixelLayersWithMeasurement(-1);
         muCon->SetNumberOfValidPixelHits(-1);
         muCon->SetNormalizedChi2_tracker(-1);
         muCon->SetNumberOfValidTrackerHits(-1);
         muCon->SetNumberOfLostPixelHits(-1);
         muCon->SetNumberOfLostTrackerHits(-1);
+        muCon->SetTrackHighPurityFlag(-1);
+        muCon->SetDxy(-9999.0);
+        muCon->SetDz(-9999.0);
       }
       // Set isolation map values
       // Detector-based isolation
@@ -457,14 +518,18 @@ void ntupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
     Handle<reco::GsfElectronCollection > electrons;
     iEvent.getByLabel(electronTag_, electrons);
 
-    /*
+    
     Handle<reco::GsfElectronCollection > calibratedElectrons;
     iEvent.getByLabel(edm::InputTag("calibratedElectrons","calibratedGsfElectrons"), calibratedElectrons);
-
+    
     edm::Handle<edm::ValueMap<float>> mvaTrigV0_handle;
     iEvent.getByLabel("mvaTrigV0", mvaTrigV0_handle);
     const edm::ValueMap<float> ele_mvaTrigV0 = (*mvaTrigV0_handle.product());
-
+   
+    edm::Handle<edm::ValueMap<float>> mvaNonTrigV0_handle;
+    iEvent.getByLabel("mvaNonTrigV0", mvaNonTrigV0_handle);
+    const edm::ValueMap<float> ele_mvaNonTrigV0 = (*mvaNonTrigV0_handle.product());
+ 
     edm::Handle<edm::ValueMap<double>> regEne_handle;
     iEvent.getByLabel(edm::InputTag("eleRegressionEnergy","eneRegForGsfEle"), regEne_handle);
     const edm::ValueMap<double> ele_regEne = (*regEne_handle.product());
@@ -472,7 +537,7 @@ void ntupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
     edm::Handle<edm::ValueMap<double>> regErr_handle;
     iEvent.getByLabel(edm::InputTag("eleRegressionEnergy","eneErrorRegForGsfEle"), regErr_handle);
     const edm::ValueMap<double> ele_regErr = (*regErr_handle.product());
-    */
+    
 
     //This stuff is for modified isolation for close electrons,
     //following prescription here: https://twiki.cern.ch/twiki/bin/viewauth/CMS/BoostedZToEEModIso
@@ -624,6 +689,8 @@ void ntupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
       eleCon->SetNumberOfLostTrackerHits( iElectron->gsfTrack()->hitPattern().numberOfLostTrackerHits());
 
       eleCon->SetInverseEnergyMomentumDiff(fabs((1/iElectron->ecalEnergy()) - (1/iElectron->trackMomentumAtVtx().R())));
+      eleCon->SetDxy(iElectron->gsfTrack()->dxy(pv->position()));
+      eleCon->SetDz(iElectron->gsfTrack()->dz(pv->position()));
 
       // HITINFO
       std::vector<TCElectron::HitInfo> hitmap;
@@ -663,10 +730,13 @@ void ntupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
       eleCon->SetIsoMap("EffArea_R04", AEff04);
       eleCon->SetEffArea(AEff04);
 
-      /*
+      
       //MVA output:
-      float m = ele_mvaTrigV0.get(eee-1);
-      eleCon->SetMvaID(m);
+      float m_old = ele_mvaTrigV0.get(eee-1);
+      eleCon->SetMvaID(m_old);
+
+      float m_HZZ = ele_mvaNonTrigV0.get(eee-1);
+      eleCon->SetMvaID_HZZ(m_HZZ);
 
       //Regression energy
       double ene = ele_regEne.get(eee-1);
@@ -674,18 +744,19 @@ void ntupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
       eleCon->SetEnergyRegression(ene);
       eleCon->SetEnergyRegressionErr(err);
 
-      //cout<<eee<<"  mva0 = "<<m<<endl;
-
+      cout<<eee<<"  mva0_old = "<< m_old <<endl;
+      cout<<eee<<"  mva0_HZZ = "<< m_HZZ <<endl;
+ 
       const reco::GsfElectron &iElectronTmp   ( (*calibratedElectrons)[eee-1]);
 
-      //cout<<"ielectron , pt ="<<iElectron->pt()<<" eta="<<iElectron->eta()<<endl;
-      //cout<<"  calibra , pt ="<<iElectronTmp.pt()<<" eta="<<iElectronTmp.eta()<<endl;
+      cout<<"ielectron , pt ="<<iElectron->pt()<<" eta="<<iElectron->eta()<<endl;
+      cout<<"  calibra , pt ="<<iElectronTmp.pt()<<" eta="<<iElectronTmp.eta()<<endl;
 
       TLorentzVector tmpP4;
       tmpP4.SetPtEtaPhiE(iElectronTmp.pt(), iElectronTmp.eta(), iElectronTmp.phi(), iElectronTmp.energy());
       eleCon->SetRegressionMomCombP4(tmpP4);
 
-      */
+      
       eleIsolator.fGetIsolation(&(*iElectron), &thePfColl, myVtxRef, primaryVtcs);
       eleCon->SetPfIsoCharged(eleIsolator.getIsolationCharged());
       eleCon->SetPfIsoNeutral(eleIsolator.getIsolationNeutral());
@@ -723,7 +794,7 @@ void ntupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
         eleCon->SetIsoMap("EffArea_R04", AEff04);
         // Add electron MVA ID and ISO variables
         
-	//electronMVA(&(*iElectron), eleCon, iEvent, iSetup, thePfCollEleIso, rhoFactor);
+	electronMVA(&(*iElectron), eleCon, iEvent, iSetup, thePfCollEleIso, rhoFactor);
 
       }
 
@@ -737,7 +808,7 @@ void ntupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
   /////////////////
   if (savePhotons_) {
 
-
+/*
     if(saveMETExtra_){
       edm::Handle<vector<pat::Photon> > patphoup;
       iEvent.getByLabel(mPhoUp,patphoup);
@@ -780,7 +851,7 @@ void ntupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
       }
  
     }
-
+*/
 
     //for mva id
 
@@ -1102,7 +1173,7 @@ void ntupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
 
         ////  Leptons and photons and b's, (oh my)
         //// Z's, W's, H's, and now big juicy Gravitons
-        if (
+        /*if (
             (abs(myParticle->pdgId()) >= 11 && abs(myParticle->pdgId()) <= 16) 
             || myParticle->pdgId() == 22 
             || abs(myParticle->pdgId()) == 5 
@@ -1114,10 +1185,10 @@ void ntupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
             || abs(myParticle->pdgId()) == 39   //graviton (sometimes higgs too)
             || abs(myParticle->pdgId()) == 443  //jpsi
             || abs(myParticle->pdgId()) == 553  //upsilon
-           ) {
+           ) {*/
           addGenParticle(&(*myParticle), genPartCount, genMap);
 
-        }
+        //}
 
       }
 
@@ -1294,15 +1365,20 @@ void  ntupleProducer::beginJob()
   genJets        = new TClonesArray("TCGenJet");
   genParticles   = new TClonesArray("TCGenParticle");
   beamSpot       = new TVector3();
- 
+
+/* 
   if(saveMETExtra_){
     pho_up         = new TClonesArray("TLorentzVector");
     pho_down       = new TClonesArray("TLorentzVector");
     pho_mva_up     = new TClonesArray("TLorentzVector");
     pho_mva_down   = new TClonesArray("TLorentzVector");
   }
-
+*/
   corrMET.reset(new TCMET);  
+  CaloMET.reset(new TCMET);
+  CaloMETMuCorr.reset(new TCMET);
+
+
   //mvaMET.reset(new TCMET);  
 
   if(saveMETExtra_){
@@ -1312,8 +1388,8 @@ void  ntupleProducer::beginJob()
     //jerUpMVAMET.reset(  new TCMET);
     //jerDownMVAMET.reset(  new TCMET);
     
-    phoUpMET.reset(  new TCMET);
-    phoDownMET.reset(  new TCMET);
+    //phoUpMET.reset(  new TCMET);
+    //phoDownMET.reset(  new TCMET);
     //phoUpMVAMET.reset(  new TCMET);
     //phoDownMVAMET.reset(  new TCMET);
     
@@ -1329,7 +1405,7 @@ void  ntupleProducer::beginJob()
   }
 
   h1_numOfEvents = fs->make<TH1F>("numOfEvents", "total number of events, unskimmed", 1,0,1);
-
+/*
   if(saveMETExtra_){
 
   eventTree->Branch("pho_up", &pho_up, 6400, 0);
@@ -1337,12 +1413,15 @@ void  ntupleProducer::beginJob()
   eventTree->Branch("pho_mva_up", &pho_mva_up, 6400, 0);  
   eventTree->Branch("pho_mva_down", &pho_mva_down, 6400, 0);
   }
-
+*/
   eventTree->Branch("patJets", &patJets, 6400,0);
   eventTree->Branch("recoElectrons",&recoElectrons,  6400, 0);
   eventTree->Branch("recoMuons",    &recoMuons,      6400, 0);
   eventTree->Branch("recoPhotons",  &recoPhotons,    6400, 0);
   eventTree->Branch("corrMET",       corrMET.get(),     6400, 0);
+  eventTree->Branch("CaloMET",       CaloMET.get(),     6400, 0);
+  eventTree->Branch("CaloMETMuCorr", CaloMETMuCorr.get(), 6400, 0);
+
   //eventTree->Branch("mvaMET",        mvaMET.get(),     6400, 0);
 
   if(saveMETExtra_){
@@ -1351,8 +1430,8 @@ void  ntupleProducer::beginJob()
     //eventTree->Branch("jerUpMVAMET", jerUpMVAMET.get(),  6400, 0); 
     //eventTree->Branch("jerDownMVAMET", jerDownMVAMET.get(),  6400, 0); 
     
-    eventTree->Branch("phoUpMET", phoUpMET.get(), 6400, 0);
-    eventTree->Branch("phoDownMET", phoDownMET.get(), 6400, 0);
+    //eventTree->Branch("phoUpMET", phoUpMET.get(), 6400, 0);
+    //eventTree->Branch("phoDownMET", phoDownMET.get(), 6400, 0);
     //eventTree->Branch("phoDownMVAMET", phoUpMVAMET.get(), 6400, 0);
     //eventTree->Branch("phoDownMVAMET", phoDownMVAMET.get(), 6400, 0);
     
@@ -1662,8 +1741,8 @@ void ntupleProducer::electronMVA(const reco::GsfElectron* iElectron, TCElectron*
 
   eleCon->SetIdMap("d0",fMVAVar_d0);
 
-  /*
-    This is added into the main part 
+  
+  // This is added into the main part 
 
     //default values for IP3D
     float fMVAVar_ip3d      = -999.0;
@@ -1690,8 +1769,8 @@ void ntupleProducer::electronMVA(const reco::GsfElectron* iElectron, TCElectron*
   eleCon->SetIdMap("ip3d",fMVAVar_ip3d);
   eleCon->SetIdMap("ip3dSig",fMVAVar_ip3dSig);
 
-  ---- up to this ---------
-  */
+  //---- up to this ---------
+  
 
   //**********************************************************
   //Isolation variables
