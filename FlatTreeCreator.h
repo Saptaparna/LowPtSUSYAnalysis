@@ -145,9 +145,12 @@ public :
    std::vector<float> el_energy;
    std::vector<int>   el_charge;
    std::vector<bool>  el_isLoose;
+   std::vector<bool>  el_isLooseWG;
    std::vector<bool>  el_isTight;  
    std::vector<float> el_Dxy;
    std::vector<float> el_Dz;
+   std::vector<float> el_mvaId_Hzz;
+   std::vector<float> el_ip3dSig;
    int            nElectrons;
    std::vector<float> mu_pt;
    std::vector<float> mu_eta;
@@ -155,6 +158,7 @@ public :
    std::vector<float> mu_energy;
    std::vector<int>   mu_charge;
    std::vector<bool>  mu_isLoose;
+   std::vector<bool>  mu_isLooseWG;
    std::vector<bool>  mu_isTight;
    std::vector<float> mu_Dxy;
    std::vector<float> mu_Dz;
@@ -337,8 +341,10 @@ public :
    bool isTightElectron(TCElectron *electron);
    bool isMediumElectron(TCElectron *electron);
    bool isLooseElectron(TCElectron *electron);
+   bool isLooseElectronWG(TCElectron *electron);
    bool isTightMuon(TCMuon *muon);
    bool isLooseMuon(TCMuon *muon);
+   bool isLooseMuonWG(TCMuon *muon);
    bool isSTightPhoton(TCPhoton *photon); 
    bool isTightPhoton(TCPhoton *photon);
    bool isMediumPhoton(TCPhoton *photon);

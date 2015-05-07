@@ -2,14 +2,13 @@
 /* Code for accessing variables from a non-linear 
 Tree and storing relevant information
 Author: Saptaparna Bhattcharya
-
 */
 #include <TSystem.h>
 //#include "CondFormats/JetMETObjects/interface/FactorizedJetCorrector.h"
 //#include "CondFormats/JetMETObjects/interface/JetCorrectorParameters.h"
 //#include "/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/CondFormats/JetMETObjects/interface/FactorizedJetCorrector.h"
 //#include "/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/CondFormats/JetMETObjects/interface/JetCorrectorParameters.h"
-#include "CondFormats/JetMETObjects/interface/JetCorrectionUncertainty.h"
+#include "/uscms_data/d2/lpcljm/sapta/SUSYSearch/CMSSW_5_3_16_patch1/src/CondFormats/JetMETObjects/interface/JetCorrectionUncertainty.h"
 #include "FlatTreeCreator.h"
 #include <TH2.h>
 #include <TStyle.h>
@@ -86,8 +85,11 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("el_charge", &el_charge);
    outtree->Branch("el_isTight", &el_isTight);
    outtree->Branch("el_isLoose", &el_isLoose);
+   outtree->Branch("el_isLooseWG", &el_isLooseWG);
    outtree->Branch("el_Dxy", &el_Dxy);
    outtree->Branch("el_Dz", &el_Dz);
+   outtree->Branch("el_mvaId_Hzz", &el_mvaId_Hzz);
+   outtree->Branch("el_ip3dSig", &el_ip3dSig);
    outtree->Branch("nElectrons", &nElectrons, "nElectrons/I");
    outtree->Branch("mu_pt", &mu_pt);
    outtree->Branch("mu_phi", &mu_phi);
@@ -96,6 +98,7 @@ void FlatTreeCreator::Begin(TTree *tree)
    outtree->Branch("mu_charge", &mu_charge);
    outtree->Branch("mu_isTight", &mu_isTight);
    outtree->Branch("mu_isLoose", &mu_isLoose);
+   outtree->Branch("mu_isLooseWG", &mu_isLooseWG);
    outtree->Branch("mu_Dxy", &mu_Dxy);
    outtree->Branch("mu_Dz", &mu_Dz);
    outtree->Branch("nMuons", &nMuons, "nMuons/I");
@@ -296,6 +299,10 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   el_charge.clear();
   el_isLoose.clear();
   el_isTight.clear();
+  el_isLooseWG.clear();
+  mu_isLooseWG.clear();
+  el_mvaId_Hzz.clear();
+  el_ip3dSig.clear();
   nElectrons = -1;
   mu_pt.clear();
   mu_Dxy.clear();
@@ -598,9 +605,8 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
   for (Int_t i = 0; i < recoPhotons->GetSize(); i++) {
     TCPhoton* photon = (TCPhoton*) recoPhotons->At(i);
     if (!(fabs(photon->SCEta())<1.4442)) continue;
-    if (!(photon->R9()>0.9)) continue;
+    //if (!(photon->R9()>0.9)) continue;
     vPhotons.push_back(*photon);
-    //std::cout << "photon->M() = " << photon->M() << std::endl; 
     ph_pt.push_back(photon->Pt());
     ph_eta.push_back(photon->SCEta());
     ph_phi.push_back(photon->Phi());
@@ -699,6 +705,9 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
    el_charge.push_back(electron->Charge());
    el_iso.push_back(ElectronIso(electron));
    el_isLoose.push_back(isLooseElectron(electron));
+   el_isLooseWG.push_back(isLooseElectronWG(electron));
+   el_mvaId_Hzz.push_back(electron->MvaID_HZZ());
+   el_ip3dSig.push_back(electron->IP3dSig());
    el_isTight.push_back(isTightElectron(electron));
    el_Dxy.push_back(electron->Dxy(pvPosition));
    el_Dz.push_back(electron->Dz(pvPosition));
@@ -965,6 +974,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
    mu_iso.push_back(MuonIso(muon));
    mu_isLoose.push_back(isLooseMuon(muon));
    mu_isTight.push_back(isTightMuon(muon));
+   mu_isLooseWG.push_back(isLooseMuonWG(muon));
    mu_Dxy.push_back(muon->Dxy(pvPosition));
    mu_Dz.push_back(muon->Dz(pvPosition));
    if(isMC){
@@ -1141,7 +1151,7 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
    jet_cut_loose.push_back(jet->PuJetIdFlag_cut_loose());
    jet_cut_medium.push_back(jet->PuJetIdFlag_cut_medium());
    jet_cut_tight.push_back(jet->PuJetIdFlag_cut_tight());
-   if(version!="v1") jet_btag_csv.push_back(jet->BDiscriminatorMap("CSV"));
+   jet_btag_csv.push_back(jet->BDiscriminatorMap("CSV"));
 
    jecUnc->setJetEta(jet->Eta());
    jecUnc->setJetPt(jet->Pt()); 
@@ -1155,12 +1165,11 @@ Bool_t FlatTreeCreator::Process(Long64_t entry)
  MET_Phi = corrMET->Phi();
  MET_Px  = corrMET->Px();
  MET_Py  = corrMET->Py();
- if(version!="v1"){
-   MET_Signxx = corrMET->SignificanceMatrixxx();
-   MET_Signxy = corrMET->SignificanceMatrixxy();
-   MET_Signyx = corrMET->SignificanceMatrixyx();
-   MET_Signyy = corrMET->SignificanceMatrixyy();
- }
+ MET_Signxx = corrMET->SignificanceMatrixxx();
+ MET_Signxy = corrMET->SignificanceMatrixxy();
+ MET_Signyx = corrMET->SignificanceMatrixyx();
+ MET_Signyy = corrMET->SignificanceMatrixyy();
+ 
  caloMET = CaloMET->Mod();
  caloMET_Phi = CaloMET->Phi();
  caloMET_Px = CaloMET->Px();
@@ -1230,6 +1239,47 @@ bool FlatTreeCreator::isLooseElectron(TCElectron *electron){
 
   return true;
 
+}
+
+bool FlatTreeCreator::isLooseElectronWG(TCElectron *electron){
+  
+  if(electron->SCEta() > 2.5) return false;
+  if(fabs(electron->SCEta()) > 1.4442 and fabs(electron->SCEta()) < 1.566) return false;
+  if(electron->Pt() > 7 and electron->Pt() < 10){
+    if(electron->SCEta()> 0.0 and electron->SCEta()<0.8){
+       if(electron->MvaID_HZZ() < 0.47)              return false; 
+       if(electron->ConversionMissHits()  > 1)       return false;
+       if(electron->IP3dSig() >= 4)                   return false;
+    }
+    if(electron->SCEta()> 0.8 and electron->SCEta()<1.479){
+       if(electron->MvaID_HZZ() < 0.004)             return false;
+       if(electron->ConversionMissHits()  > 1)       return false;
+       if(electron->IP3dSig() >= 4)                  return false;
+    }
+    if(electron->SCEta()> 1.479 and electron->SCEta()<2.5){
+       if(electron->MvaID_HZZ() < 0.295)             return false;
+       if(electron->ConversionMissHits()  > 1)       return false;
+       if(electron->IP3dSig() >= 4)                   return false;
+    }
+  }
+  if(electron->Pt() > 10){
+    if(electron->SCEta()> 0.0 and electron->SCEta()<0.8){
+       if(electron->MvaID_HZZ() < -0.34)             return false;   
+       if(electron->ConversionMissHits()  > 1)       return false;
+       if(electron->IP3dSig() >= 4)                   return false;
+    }
+    if(electron->SCEta()> 0.8 and electron->SCEta()<1.479){
+       if(electron->MvaID_HZZ() < -0.65)             return false;
+       if(electron->ConversionMissHits()  > 1)       return false;
+       if(electron->IP3dSig() >= 4)                   return false;
+    }
+    if(electron->SCEta()> 1.479 and electron->SCEta()<2.5){
+       if(electron->MvaID_HZZ() < 0.60)              return false;  
+       if(electron->ConversionMissHits()  > 1)       return false;
+       if(electron->IP3dSig() >= 4)                   return false;
+    }
+  }
+  return true;
 }
 
 bool FlatTreeCreator::isMediumElectron(TCElectron *electron){
@@ -1304,8 +1354,6 @@ float FlatTreeCreator::MuonIso(TCMuon *muon){
 
 } 
 
-
-
 bool FlatTreeCreator::isTightMuon(TCMuon *muon){
 
   if(fabs(muon->Eta()) > 2.4)                     return false;
@@ -1329,16 +1377,31 @@ bool FlatTreeCreator::isLooseMuon(TCMuon *muon){
   if(fabs(muon->Eta()) > 2.4)                     return false;
   if(fabs(muon->Eta()) < 2.4){
     if(muon->IsPF() != 1)                         return false;
-    if(muon->IsGLB()!= 1)                         return false;
-    if(muon->NormalizedChi2() >= 50)              return false;
-    if(muon->NumberOfValidMuonHits() <= 0)        return false;
-    if(muon->NumberOfMatchedStations() <= 1)      return false;
-    if(muon->NumberOfValidPixelHits() <= 0)       return false;
-    if(muon->TrackLayersWithMeasurement() <= 5)   return false;
-    if(muon->Dxy(pvPosition) > 2.0)               return false;
+    if(muon->IsGLB()!= 1 and muon->IsTRK()!= 1)   return false;
+    //if(muon->IsGLB()!= 1)                         return false;
+    //if(muon->NormalizedChi2() >= 50)              return false;
+    //if(muon->NumberOfValidMuonHits() <= 0)        return false;
+    //if(muon->NumberOfMatchedStations() <= 1)      return false;
+    //if(muon->NumberOfValidPixelHits() <= 0)       return false;
+    //if(muon->TrackLayersWithMeasurement() <= 5)   return false;
+    //if(muon->Dxy(pvPosition) > 2.0)               return false;
   }
   return true;
 
+}
+
+bool FlatTreeCreator::isLooseMuonWG(TCMuon *muon){
+ 
+  if(fabs(muon->Eta()) > 2.5)                     return false;
+  if(fabs(muon->Eta()) < 2.5){
+    if(muon->IsGood() != 1)                       return false;
+    if(muon->TrackLayersWithMeasurement() <= 5)   return false;
+    if(muon->NumberOfValidPixelHits() <= 0)       return false;
+    if(muon->HighPurityFlag()!=1)                 return false;
+    //if(muon->Dxy(pvPosition) > 0.3)               return false;
+    //if(muon->Dz(pvPosition) > 20.0)               return false;
+  }
+  return true;
 }
 
 int FlatTreeCreator::PhotonIso(TCPhoton *photon, double &chIso, double &nuIso, double &phIso, bool &isoPassL, bool &isoPassM, bool &isoPassT, bool &isoPassST){
