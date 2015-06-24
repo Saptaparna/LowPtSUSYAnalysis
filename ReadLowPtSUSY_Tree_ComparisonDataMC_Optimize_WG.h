@@ -182,6 +182,8 @@ typedef struct
   TH1F *h_mu_dxy_trailing;
   TH1F *h_mu_dz_leading;
   TH1F *h_mu_dz_trailing;
+  TH1F *h_mu_charge_leading;
+  TH1F *h_mu_charge_trailing;
   TH1F *h_el_pt_leading;    
   TH1F *h_el_pt_trailing;
   TH1F *h_el_eta_leading;
@@ -194,12 +196,23 @@ typedef struct
   TH1F *h_el_dxy_trailing;
   TH1F *h_el_dz_leading;
   TH1F *h_el_dz_trailing;
+  TH1F *h_el_charge_leading;
+  TH1F *h_el_charge_trailing;
+  TH1F *h_TransverseMass_leadingMu;
+  TH1F *h_TransverseMass_trailingMu;
+  TH1F *h_TransverseMass_leadingEl;
+  TH1F *h_TransverseMass_trailingEl;
+  TH1F *h_InvariantMass_Ph_leadingMu;
+  TH1F *h_InvariantMass_Ph_trailingMu;
+  TH1F *h_InvariantMass_Ph_leadingEl;
+  TH1F *h_InvariantMass_Ph_trailingEl;
   TH1F *h_InvariantMass;
   TH1F *h_InvariantMass_Ph;
   TH1F *h_Invariant_Mass_Taus;
   TH1F *h_Invariant_Mass_Mus;
   TH1F *h_Invariant_Mass_Es;
   TH1F *h_SVFit;
+  TH1F *h_SVFitMass_Ph;
   TH1F *h_SVFit_Mass_Taus;
   TH1F *h_DeltaPhi_met_mu1;
   TH1F *h_DeltaPhi_met_mu2;
@@ -279,6 +292,8 @@ histCol.h_mu_dz_trailing = new TH1F(("h_mu_dz_trailing_"+suffix).c_str(), "Trail
 histCol.h_Isolation_mu1 = new TH1F(("h_Isolation_mu1_"+suffix).c_str(),"Leading muon isolation; Isolation; Events", 100000, 0, 1.0);histCol.h_Isolation_mu1->Sumw2();
 histCol.h_Isolation_mu2 = new TH1F(("h_Isolation_mu2_"+suffix).c_str(),"Trailing muon isolation; Isolation; Events", 100000, 0, 1.0);histCol.h_Isolation_mu2->Sumw2();
 histCol.h_mu_energy_trailing = new TH1F(("h_mu_energy_trailing_"+suffix).c_str(), "Trailing muon Energy; Energy [GeV]; Events/GeV", 1000, 0, 1000); histCol.h_mu_energy_trailing->Sumw2();
+histCol.h_mu_charge_leading = new TH1F(("h_mu_charge_leading_"+suffix).c_str(), "Leading muon charge; Charge; Events", 10, -5, 5); histCol.h_mu_charge_leading->Sumw2();
+histCol.h_mu_charge_trailing = new TH1F(("h_mu_charge_trailing_"+suffix).c_str(), "Trailing muon charge; Charge; Events", 10, -5, 5); histCol.h_mu_charge_trailing->Sumw2();
 histCol.h_el_pt_leading = new TH1F(("h_el_pt_leading_"+suffix).c_str(), "Leading electron pT; pT [GeV]; Events/GeV", 1000, 0, 1000); histCol.h_el_pt_leading->Sumw2();
 histCol.h_el_pt_trailing = new TH1F(("h_el_pt_trailing_"+suffix).c_str(), "Trailing electron pT; pT [GeV]; Events/GeV", 1000, 0, 1000); histCol.h_el_pt_trailing->Sumw2();
 histCol.h_el_dxy_leading = new TH1F(("h_el_dxy_leading_"+suffix).c_str(), "Leading electron dxy; dxy [cm]; Events/cm", 200000, -10, 10); histCol.h_el_dxy_leading->Sumw2();
@@ -293,8 +308,19 @@ histCol.h_el_energy_leading = new TH1F(("h_el_energy_leading_"+suffix).c_str(), 
 histCol.h_el_energy_trailing = new TH1F(("h_el_energy_trailing_"+suffix).c_str(), "Trailing electron Energy; Energy [GeV]; Events/GeV", 1000, 0, 1000); histCol.h_el_energy_trailing->Sumw2();
 histCol.h_Isolation_el1 = new TH1F(("h_Isolation_el1_"+suffix).c_str(),"Leading electron isolation; Isolation; Events", 100000, 0, 1.0);histCol.h_Isolation_el1->Sumw2();
 histCol.h_Isolation_el2 = new TH1F(("h_Isolation_el2_"+suffix).c_str(),"Trailing electron isolation; Isolation; Events", 100000, 0, 1.0);histCol.h_Isolation_el2->Sumw2();
+histCol.h_el_charge_leading = new TH1F(("h_el_charge_leading_"+suffix).c_str(), "Leading electron charge; Charge; Events", 10, -5, 5); histCol.h_el_charge_leading->Sumw2();
+histCol.h_el_charge_trailing = new TH1F(("h_el_charge_trailing_"+suffix).c_str(), "Trailing electron charge; Charge; Events", 10, -5, 5); histCol.h_el_charge_trailing->Sumw2();
+histCol.h_TransverseMass_leadingMu=new TH1F(("h_TransverseMass_leadingMu_"+suffix).c_str(), "Transverse mass (leading muon + MET); m_{T} [GeV]; Events/GeV", 9000, 0, 300); histCol.h_TransverseMass_leadingMu->Sumw2();
+histCol.h_TransverseMass_trailingMu=new TH1F(("h_TransverseMass_trailingMu_"+suffix).c_str(), "Transverse mass (trailing muon + MET); m_{T} [GeV]; Events/GeV", 9000, 0, 300); histCol.h_TransverseMass_trailingMu->Sumw2();
+histCol.h_TransverseMass_leadingEl=new TH1F(("h_TransverseMass_leadingEl_"+suffix).c_str(), "Transverse mass (leading electron + MET); m_{T} [GeV]; Events/GeV", 9000, 0, 300); histCol.h_TransverseMass_leadingEl->Sumw2();
+histCol.h_TransverseMass_trailingEl=new TH1F(("h_TransverseMass_trailingEl_"+suffix).c_str(), "Transverse mass (trailing electron + MET); m_{T} [GeV]; Events/GeV", 9000, 0, 300); histCol.h_TransverseMass_trailingEl->Sumw2();
 histCol.h_InvariantMass=new TH1F(("h_InvariantMass_"+suffix).c_str(), "Di-lepton invariant mass; m_{ll} [GeV]; Events/GeV", 9000, 0, 300); histCol.h_InvariantMass->Sumw2();
 histCol.h_InvariantMass_Ph=new TH1F(("h_InvariantMass_Ph_"+suffix).c_str(), "Di-lepton and photon invariant mass; m_{ll#gamma} [GeV]; Events/GeV", 9000, 0, 300); histCol.h_InvariantMass_Ph->Sumw2();
+histCol.h_InvariantMass_Ph_leadingMu =new TH1F(("h_InvariantMass_Ph_leadingMu_"+suffix).c_str(), "Invariant Mass of leading lepton and photon; m_{l#gamma} [GeV]; Events/GeV", 9000, 0, 300); histCol. h_InvariantMass_Ph_leadingMu->Sumw2();
+histCol.h_InvariantMass_Ph_trailingMu =new TH1F(("h_InvariantMass_Ph_trailingMu_"+suffix).c_str(), "Invariant Mass of trailing lepton and photon; m_{l#gamma} [GeV]; Events/GeV", 9000, 0, 300); histCol.h_InvariantMass_Ph_trailingMu->Sumw2(); 
+histCol.h_InvariantMass_Ph_leadingEl =new TH1F(("h_InvariantMass_Ph_leadingEl_"+suffix).c_str(), "Invariant Mass of leading lepton and photon; m_{l#gamma} [GeV]; Events/GeV", 9000, 0, 300); histCol.h_InvariantMass_Ph_leadingEl->Sumw2();
+histCol.h_InvariantMass_Ph_trailingEl =new TH1F(("h_InvariantMass_Ph_trailingEl_"+suffix).c_str(), "Invariant Mass of trailing lepton and photon; m_{l#gamma} [GeV]; Events/GeV", 9000, 0, 300); histCol.h_InvariantMass_Ph_trailingEl->Sumw2();   
+histCol.h_SVFitMass_Ph = new TH1F(("h_SVFitMass_Ph"+suffix).c_str(), "SVFit and photon mass; m_{ll#gamma} [GeV]; Events/GeV", 15000, 0, 500); histCol.h_SVFitMass_Ph->Sumw2();
 histCol.h_Invariant_Mass_Taus=new TH1F(("h_Invariant_Mass_Taus_"+suffix).c_str(), "Invariant mass of the tau pair (with MET); m_{#tau#tau} [GeV]; Events/GeV", 9000, 0, 300); histCol.h_Invariant_Mass_Taus->Sumw2();
 histCol.h_Invariant_Mass_Mus=new TH1F(("h_Invariant_Mass_Mus_"+suffix).c_str(), "Invariant mass of the muon pair; m_{#mu#mu} [GeV]; Events/GeV", 9000, 0, 300); histCol.h_Invariant_Mass_Mus->Sumw2();
 histCol.h_Invariant_Mass_Es=new TH1F(("h_Invariant_Mass_Es_"+suffix).c_str(), "Invariant mass of the electron pair; m_{ee} [GeV]; Events/GeV", 9000, 0, 300); histCol.h_Invariant_Mass_Es->Sumw2();
@@ -384,8 +410,21 @@ void writeHistCollection(HistCollection &histCol)
   histCol.h_el_dxy_trailing->Write();
   histCol.h_el_dz_leading->Write();
   histCol.h_el_dz_trailing->Write();
+  histCol.h_el_charge_leading->Write();
+  histCol.h_el_charge_trailing->Write();
+  histCol.h_mu_charge_leading->Write();
+  histCol.h_mu_charge_trailing->Write();
+  histCol.h_TransverseMass_leadingMu->Write();
+  histCol.h_TransverseMass_trailingMu->Write();
+  histCol.h_TransverseMass_leadingEl->Write();
+  histCol.h_TransverseMass_trailingEl->Write();
+  histCol.h_InvariantMass_Ph_leadingMu->Write();
+  histCol.h_InvariantMass_Ph_trailingMu->Write();
+  histCol.h_InvariantMass_Ph_leadingEl->Write();
+  histCol.h_InvariantMass_Ph_trailingEl->Write();
   histCol.h_InvariantMass->Write();
   histCol.h_InvariantMass_Ph->Write();
+  histCol.h_SVFitMass_Ph->Write();
   histCol.h_Invariant_Mass_Taus->Write();
   histCol.h_Invariant_Mass_Mus->Write();
   histCol.h_Invariant_Mass_Es->Write();
@@ -493,6 +532,137 @@ double photonSF(double phPt, double phEta)
   return sf;
 }
 
+double fastsimSF_Mu(double phPt, double phEta, std::string MCSample)
+{
+  double sf=1.0;
+  if(MCSample=="Stop100"){
+    if(phPt > 0.00 and phPt < 10.00)
+      {
+      if(fabs(phEta) > 0.0 and fabs(phEta) < 0.9) sf = 0.955;
+      if(fabs(phEta) >= 0.9 and fabs(phEta) < 1.2) sf = 0.944;
+      if(fabs(phEta) >= 1.2 and fabs(phEta) < 2.1) sf = 0.940;
+      if(fabs(phEta) > 2.1) sf =  0.886;
+      }
+    else if(phPt >= 10.00 and phPt < 20.00)
+      {
+      if(fabs(phEta) > 0.0 and fabs(phEta) < 0.9) sf = 0.955;
+      if(fabs(phEta) >= 0.9 and fabs(phEta) < 1.2) sf = 0.944;
+      if(fabs(phEta) >= 1.2 and fabs(phEta) < 2.1) sf = 0.940;
+      if(fabs(phEta) > 2.1) sf =  0.886;
+      } 
+    else if(phPt >= 20.00 and phPt < 30.00)
+      {   
+      if(fabs(phEta) > 0.0 and fabs(phEta) < 0.9) sf = 0.967;
+      if(fabs(phEta) >= 0.9 and fabs(phEta) < 1.2) sf = 0.962;
+      if(fabs(phEta) >= 1.2 and fabs(phEta) < 2.1) sf = 0.956;
+      if(fabs(phEta) > 2.1) sf =  0.917;
+      }
+    else if(phPt >= 30.00 and phPt < 40.00)
+      {
+      if(fabs(phEta) > 0.0 and fabs(phEta) < 0.9) sf = 0.971;
+      if(fabs(phEta) >= 0.9 and fabs(phEta) < 1.2) sf = 0.970;
+      if(fabs(phEta) >= 1.2 and fabs(phEta) < 2.1) sf = 0.962;
+      if(fabs(phEta) > 2.1) sf =  0.937;
+      }
+    else if(phPt >= 40.00 and phPt < 50.00)
+      {
+      if(fabs(phEta) > 0.0 and fabs(phEta) < 0.9) sf = 0.974;
+      if(fabs(phEta) >= 0.9 and fabs(phEta) < 1.2) sf = 0.971;
+      if(fabs(phEta) >= 1.2 and fabs(phEta) < 2.1) sf = 0.965;
+      if(fabs(phEta) > 2.1) sf =  0.949;
+      }
+    else if(phPt >= 50.00 and phPt < 60.00)
+      {
+      if(fabs(phEta) > 0.0 and fabs(phEta) < 0.9) sf = 0.975;
+      if(fabs(phEta) >= 0.9 and fabs(phEta) < 1.2) sf = 0.970;
+      if(fabs(phEta) >= 1.2 and fabs(phEta) < 2.1) sf = 0.965;
+      if(fabs(phEta) > 2.1) sf =  0.949;
+      }
+    else if(phPt >= 60.00 and phPt < 90.00)
+      {
+      if(fabs(phEta) > 0.0 and fabs(phEta) < 0.9) sf = 0.976;
+      if(fabs(phEta) >= 0.9 and fabs(phEta) < 1.2) sf = 0.972;
+      if(fabs(phEta) >= 1.2 and fabs(phEta) < 2.1) sf = 0.962;
+      if(fabs(phEta) > 2.1) sf =  0.940;
+      }
+    else if(phPt >= 90.0)
+      {
+      if(fabs(phEta) > 0.0 and fabs(phEta) < 0.9) sf = 0.974;
+      if(fabs(phEta) >= 0.9 and fabs(phEta) < 1.2) sf = 0.970;
+      if(fabs(phEta) >= 1.2 and fabs(phEta) < 2.1) sf = 0.956;
+      if(fabs(phEta) > 2.1) sf =  0.940; 
+      }
+    } 
+  else sf = 1.0;
+  return sf;
+}
+
+double fastsimSF_El(double phPt, double phEta, std::string MCSample)
+{
+  double sf=1.0;
+  if(MCSample=="Stop100"){
+    if(phPt > 0.00 and phPt < 10.00)
+      {
+      if(fabs(phEta) > 0.0 and fabs(phEta) < 0.5) sf = 0.903;
+      if(fabs(phEta) >= 0.5 and fabs(phEta) < 1.0) sf = 0.929;
+      if(fabs(phEta) >= 1.0 and fabs(phEta) < 1.5) sf = 0.923;
+      if(fabs(phEta) >= 1.5 and fabs(phEta) < 2.0) sf = 0.726;
+      if(fabs(phEta) >= 2.1) sf =  0.711;
+      }
+    else if(phPt >= 10.00 and phPt < 20.00)
+      {
+      if(fabs(phEta) > 0.0 and fabs(phEta) < 0.5) sf = 0.903;
+      if(fabs(phEta) >= 0.5 and fabs(phEta) < 1.0) sf = 0.929;
+      if(fabs(phEta) >= 1.0 and fabs(phEta) < 1.5) sf = 0.923;
+      if(fabs(phEta) >= 1.5 and fabs(phEta) < 2.0) sf = 0.726;
+      if(fabs(phEta) >= 2.1) sf =  0.711;
+      } 
+    else if(phPt >= 20.00 and phPt < 30.00)
+      {   
+      if(fabs(phEta) > 0.0 and fabs(phEta) < 0.5) sf = 0.949;
+      if(fabs(phEta) >= 0.5 and fabs(phEta) < 1.0) sf = 0.949;
+      if(fabs(phEta) >= 1.0 and fabs(phEta) < 1.5) sf = 0.954;
+      if(fabs(phEta) >= 1.5 and fabs(phEta) < 2.0) sf = 0.803;
+      if(fabs(phEta) >= 2.1) sf =  0.810;
+      }
+    else if(phPt >= 30.00 and phPt < 40.00)
+      {
+      if(fabs(phEta) > 0.0 and fabs(phEta) < 0.5) sf = 0.967;
+      if(fabs(phEta) >= 0.5 and fabs(phEta) < 1.0) sf = 0.972;
+      if(fabs(phEta) >= 1.0 and fabs(phEta) < 1.5) sf = 0.991;
+      if(fabs(phEta) >= 1.5 and fabs(phEta) < 2.0) sf = 0.868;
+      if(fabs(phEta) >= 2.1) sf =  0.832;
+      }
+    else if(phPt >= 40.00 and phPt < 50.00)
+      {
+      if(fabs(phEta) > 0.0 and fabs(phEta) < 0.5) sf = 0.974;
+      if(fabs(phEta) >= 0.5 and fabs(phEta) < 1.0) sf = 0.979;
+      if(fabs(phEta) >= 1.0 and fabs(phEta) < 1.5) sf = 1.021;
+      if(fabs(phEta) >= 1.5 and fabs(phEta) < 2.0) sf = 0.896;
+      if(fabs(phEta) >= 2.1) sf =  0.862;
+      }
+    else if(phPt >= 50.00 and phPt < 60.00)
+      {
+      if(fabs(phEta) > 0.0 and fabs(phEta) < 0.5) sf = 0.977;
+      if(fabs(phEta) >= 0.5 and fabs(phEta) < 1.0) sf = 0.983;
+      if(fabs(phEta) >= 1.0 and fabs(phEta) < 1.5) sf = 1.034;
+      if(fabs(phEta) >= 1.5 and fabs(phEta) < 2.0) sf = 0.896;
+      if(fabs(phEta) >= 2.1) sf =  0.864;
+      }
+    else if(phPt >= 60.0)
+      {
+      if(fabs(phEta) > 0.0 and fabs(phEta) < 0.5) sf = 0.972;
+      if(fabs(phEta) >= 0.5 and fabs(phEta) < 1.0) sf = 0.977;
+      if(fabs(phEta) >= 1.0 and fabs(phEta) < 1.5) sf = 0.998;
+      if(fabs(phEta) >= 1.5 and fabs(phEta) < 2.0) sf = 0.893;
+      if(fabs(phEta) >= 2.1) sf =  0.854;
+      }
+    } 
+  else sf = 1.0;
+  return sf;
+}
+
+/*
 double photonSF_WG(double phPt, double phEta)
 {
   double sf = 1.0;
@@ -513,7 +683,52 @@ double photonSF_WG(double phPt, double phEta)
    }
   return sf;
 }
-
+*/
+double photonSF_WG(double phPt, double phEta)
+{
+  double sf = 1.0;
+  if(phPt > 30.00 and phPt < 40.00)
+    {
+    if(fabs(phEta) > 0.0 and fabs(phEta) < 0.8) sf = 1.0170;
+    else if(fabs(phEta) > 0.8 and fabs(phEta) < 1.5) sf = 0.9837; 
+    }
+  else if(phPt >= 40.00 and phPt < 45.00)
+    {
+    if(fabs(phEta) > 0.0 and fabs(phEta) < 0.8) sf = 1.0207;
+    else if(fabs(phEta) > 0.8 and fabs(phEta) < 1.5) sf = 1.0231;
+    }
+  else if(phPt >= 45.00 and phPt < 50.00)
+    {
+    if(fabs(phEta) > 0.0 and fabs(phEta) < 0.8) sf = 1.0228;
+    else if(fabs(phEta) > 0.8 and fabs(phEta) < 1.5) sf = 1.0533;
+    }
+  else if(phPt >= 50.00 and phPt < 55.00)
+    {
+    if(fabs(phEta) > 0.0 and fabs(phEta) < 0.8) sf = 1.0223;    
+    else if(fabs(phEta) > 0.8 and fabs(phEta) < 1.5) sf = 1.0370;
+    }
+  else if(phPt >= 55.00 and phPt < 60.00)
+    {
+    if(fabs(phEta) > 0.0 and fabs(phEta) < 0.8) sf = 1.0200; 
+    else if(fabs(phEta) > 0.8 and fabs(phEta) < 1.5) sf = 1.0103; 
+    }
+  else if(phPt >= 60.00 and phPt < 70.00)
+    {
+    if(fabs(phEta) > 0.0 and fabs(phEta) < 0.8) sf = 1.0072;
+    else if(fabs(phEta) > 0.8 and fabs(phEta) < 1.5) sf = 1.0144;
+    }
+  else if(phPt >= 70.00 and phPt < 80.00) 
+    {
+    if(fabs(phEta) > 0.0 and fabs(phEta) < 0.8) sf = 1.0023; 
+    else if(fabs(phEta) > 0.8 and fabs(phEta) < 1.5) sf = 1.0144;
+    }
+  else if(phPt >= 80.00)
+    {
+    if(fabs(phEta) > 0.0 and fabs(phEta) < 0.8) sf = 1.0024;  
+    else if(fabs(phEta) > 0.8 and fabs(phEta) < 1.5) sf = 0.9440; 
+    }
+  return sf;
+}  
 double electronSF(double elecPt, double elecEta)
 {
   double sf = 1.0;
@@ -576,6 +791,9 @@ double electronSF_WG(double elecPt, double elecEta)
   int binx = h_ElectronSF->GetXaxis()->FindBin(elecPt);
   int biny = h_ElectronSF->GetYaxis()->FindBin(elecEta);
   sf = h_ElectronSF->GetBinContent(binx, biny);
+  //int binxa = h_ElectronSF->GetXaxis()->FindBin(200);
+  if(elecPt>=200) sf = 1.0;
+  //if(elecPt>=200) sf = h_ElectronSF->GetBinContent(binxa, biny); 
   fileElectronSF->Close();
   return sf;
 }
@@ -591,7 +809,7 @@ double muonSF(double muPt, double muEta)
   }
   return sf;
 }
-
+/*
 double muonSF_WG(double muPt, double muEta)//Loose*Soft SF
 {
   double sf = 1.0;
@@ -607,6 +825,25 @@ double muonSF_WG(double muPt, double muEta)//Loose*Soft SF
     else if(fabs(muEta) > 0.9 and fabs(muEta) < 1.20) sf = 0.9990*0.9928;
     else if(fabs(muEta) > 1.2 and fabs(muEta) < 2.10) sf = 0.9986*1.0007;
     else if(fabs(muEta) > 2.1 and fabs(muEta) < 2.50) sf = 1.0000*1.0365;
+  }
+  return sf;
+}*/
+
+double muonSF_WG(double muPt, double muEta)//Soft SF
+{
+  double sf = 1.0;
+  if(muPt > 3.00 and muPt < 20.00)
+  {
+    if(fabs(muEta) > 0.0 and fabs(muEta) < 0.90) sf = 1.0157;
+    else if(fabs(muEta) > 0.9 and fabs(muEta) < 1.20) sf = 0.9982;
+    else if(fabs(muEta) > 1.20 and fabs(muEta) < 2.50) sf = 1.0277;
+  }
+  if(muPt > 20.00)
+  {
+    if(fabs(muEta) > 0.0 and fabs(muEta) < 0.90) sf = 0.9850;
+    else if(fabs(muEta) > 0.9 and fabs(muEta) < 1.20) sf = 0.9928;
+    else if(fabs(muEta) > 1.2 and fabs(muEta) < 2.10) sf = 1.0007;
+    else if(fabs(muEta) > 2.1 and fabs(muEta) < 2.50) sf = 1.0365;
   }
   return sf;
 }

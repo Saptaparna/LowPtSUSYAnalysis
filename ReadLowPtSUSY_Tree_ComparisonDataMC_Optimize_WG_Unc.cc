@@ -619,7 +619,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize_WG_Unc(std::string infile, std:
 /*
      if(type=="MC")
        {
-       if(Zmumu==false) continue;
+       if(Ztt==false) continue;
        }
 */
      // filling the photon's properties into a vector of struct
@@ -898,31 +898,30 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize_WG_Unc(std::string infile, std:
     if(jecUnc=="Default") jetPt = JecUnc(Jets.at(m).JetLV.Pt(), Jets.at(m).JetLV.Eta(), "Default")*Jets.at(m).JetLV.Pt() + Jets.at(m).JetLV.Pt();
     if(jecUnc=="JecUp") jetPt = JecUnc(Jets.at(m).JetLV.Pt(), Jets.at(m).JetLV.Eta(), "JecUp")*Jets.at(m).JetLV.Pt() + Jets.at(m).JetLV.Pt();
     if(jecUnc=="JecDown") jetPt = Jets.at(m).JetLV.Pt() - JecUnc(Jets.at(m).JetLV.Pt(), Jets.at(m).JetLV.Eta(), "JecDown")*Jets.at(m).JetLV.Pt(); 
-    int m_gen = TMath::Min((int)m, (int)(genJets.size()-1)); 
-    if(jerUnc=="Default") jetPt = JerUnc(Jets.at(m), genJets.at(m_gen), genJets.size(), "Default");
-    if(jerUnc=="JerUp") jetPt = JerUnc(Jets.at(m), genJets.at(m_gen), genJets.size(), "JerUp");
-    if(jerUnc=="JerDown") jetPt = JerUnc(Jets.at(m), genJets.at(m_gen), genJets.size(), "JerDown");
+    if(jerUnc=="Default") jetPt = JerUnc(Jets.at(m), genJets, "Default");
+    if(jerUnc=="JerUp") jetPt = JerUnc(Jets.at(m), genJets, "JerUp");
+    if(jerUnc=="JerDown") jetPt = JerUnc(Jets.at(m), genJets, "JerDown");
     HT += jetPt; 
     BJetInfo Bjet_default;
     BJetInfo Bjet_up;
     BJetInfo Bjet_down;
     if(btagUnc=="Default"){
-      if(jetPt > 25.0 and BTagUnc(Jets.at(m), "MC", "Default")){
-        Bjet_default.BJetLV.SetPtEtaPhiE(jetPt, Jets.at(m).JetLV.Eta(), Jets.at(m).JetLV.Phi(), Jets.at(m).JetLV.E());  
+      if(Jets.at(m).JetLV.Pt() > 25.0 and BTagUnc(Jets.at(m), "MC", "Default")){
+        Bjet_default.BJetLV.SetPtEtaPhiE(Jets.at(m).JetLV.Pt(), Jets.at(m).JetLV.Eta(), Jets.at(m).JetLV.Phi(), Jets.at(m).JetLV.E());  
         Bjet_default.BTag=Jets.at(m).BTag_CSV;
         Bjet_defaults.push_back(Bjet_default);
       }
     }
    else if(btagUnc=="BTagUp"){
-      if(jetPt > 25.0 and BTagUnc(Jets.at(m), "MC", "BTagUp")){
-        Bjet_up.BJetLV.SetPtEtaPhiE(jetPt, Jets.at(m).JetLV.Eta(), Jets.at(m).JetLV.Phi(), Jets.at(m).JetLV.E());
+      if(Jets.at(m).JetLV.Pt() > 25.0 and BTagUnc(Jets.at(m), "MC", "BTagUp")){
+        Bjet_up.BJetLV.SetPtEtaPhiE(Jets.at(m).JetLV.Pt(), Jets.at(m).JetLV.Eta(), Jets.at(m).JetLV.Phi(), Jets.at(m).JetLV.E());
         Bjet_up.BTag=Jets.at(m).BTag_CSV;
         Bjet_ups.push_back(Bjet_up);
       }
     }
    else if(btagUnc=="BTagDown"){
-      if(jetPt > 25.0 and BTagUnc(Jets.at(m), "MC", "BTagDown")){
-        Bjet_down.BJetLV.SetPtEtaPhiE(jetPt, Jets.at(m).JetLV.Eta(), Jets.at(m).JetLV.Phi(), Jets.at(m).JetLV.E());
+      if(Jets.at(m).JetLV.Pt() > 25.0 and BTagUnc(Jets.at(m), "MC", "BTagDown")){
+        Bjet_down.BJetLV.SetPtEtaPhiE(Jets.at(m).JetLV.Pt(), Jets.at(m).JetLV.Eta(), Jets.at(m).JetLV.Phi(), Jets.at(m).JetLV.E());
         Bjet_down.BTag=Jets.at(m).BTag_CSV;
         Bjet_downs.push_back(Bjet_down);
       }
@@ -1178,19 +1177,19 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize_WG_Unc(std::string infile, std:
         mumuHist.h_photon_phi->Fill(Photon_vector.at(0).Phi(), eventWeight);
         mumuHist.h_photon_energy->Fill(Photon_vector.at(0).E(), eventWeight);
         bool eventVeto = false;
-       for(int k=0; k<Jets.size(); k++) if(Jets.at(k).JetLV.Pt() > 40 and Jets.at(k).BTag_CSV > 0.679) {eventVeto=true; break;}
-       if(eventVeto==true) vetoCounter+=eventWeight;
+        for(int k=0; k<Jets.size(); k++) if(Jets.at(k).JetLV.Pt() > 40 and Jets.at(k).BTag_CSV > 0.679) {eventVeto=true; break;}
+        if(eventVeto==true) vetoCounter+=eventWeight;
        for(float ht=30.0; ht<730.0;ht+=20.0){
           if(HT<ht) HT_yield_MuMu[ht] += eventWeight;
        }
-       for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+       for(float invMass=0.0; invMass<300.0; invMass+=10.0){
           if((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass) invMass_yield_MuMu[invMass] += eventWeight;
        }
        unsigned int i_ht=0;
        for(float ht=30.0; ht<730.0;ht+=20.0){
          HT_Value_MuMu[i_ht] = ht;
          unsigned int j_invMass=0;
-         for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+         for(float invMass=0.0; invMass<300.0; invMass+=10.0){
             InvMass_Value_MuMu[j_invMass]=invMass;
             if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass)) HT_InvMass_Yield_MuMu[i_ht][j_invMass]+=eventWeight;
             unsigned int k_met=0;
@@ -1210,7 +1209,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize_WG_Unc(std::string infile, std:
       for(float htb=25.0; htb<725.0;htb+=20.0){
          HTb_Value_MuMu[i_htb] = htb;
          unsigned int j_invMass=0;
-         for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+         for(float invMass=0.0; invMass<300.0; invMass+=10.0){
             InvMass_Value_MuMu[j_invMass]=invMass;
             if(HTb<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass)) HTb_InvMass_Yield_MuMu[i_htb][j_invMass]+=eventWeight;
              unsigned int k_met=0;
@@ -1301,14 +1300,14 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize_WG_Unc(std::string infile, std:
        for(float ht=30.0; ht<730.0;ht+=20.0){
           if(HT<ht) HT_yield_MuMu[ht] += eventWeight;
        }
-       for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+       for(float invMass=0.0; invMass<300.0; invMass+=10.0){
           if((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass) invMass_yield_MuMu[invMass] += eventWeight;
        }
        unsigned int i_ht=0;
        for(float ht=30.0; ht<730.0;ht+=20.0){
          HT_Value_MuMu[i_ht] = ht;
          unsigned int j_invMass=0;
-         for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+         for(float invMass=0.0; invMass<300.0; invMass+=10.0){
             InvMass_Value_MuMu[j_invMass]=invMass;
             if(HT<ht and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass)) HT_InvMass_Yield_MuMu[i_ht][j_invMass]+=eventWeight;
             unsigned int k_met=0;
@@ -1328,7 +1327,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize_WG_Unc(std::string infile, std:
       for(float htb=25.0; htb<725.0;htb+=20.0){
          HTb_Value_MuMu[i_htb] = htb;
          unsigned int j_invMass=0;
-         for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+         for(float invMass=0.0; invMass<300.0; invMass+=10.0){
             InvMass_Value_MuMu[j_invMass]=invMass;
             if(HTb<htb and ((Muons.at(0).LepLV+Muons.at(1).LepLV).M()<invMass)) HTb_InvMass_Yield_MuMu[i_htb][j_invMass]+=eventWeight;
              unsigned int k_met=0;
@@ -1438,14 +1437,14 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize_WG_Unc(std::string infile, std:
        for(float ht=30.0; ht<730.0;ht+=20.0){
           if(HT<ht) HT_yield_ElMu[ht] += eventWeight;
        }
-       for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+       for(float invMass=0.0; invMass<300.0; invMass+=10.0){
           if((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass) invMass_yield_ElMu[invMass] += eventWeight;
        }
        unsigned int i_ht=0;
        for(float ht=30.0; ht<730.0;ht+=20.0){
          HT_Value_ElMu[i_ht] = ht; 
          unsigned int j_invMass=0;
-         for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+         for(float invMass=0.0; invMass<300.0; invMass+=10.0){
             InvMass_Value_ElMu[j_invMass]=invMass; 
             if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass)) HT_InvMass_Yield_ElMu[i_ht][j_invMass]+=eventWeight;
              unsigned int k_met=0;
@@ -1465,7 +1464,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize_WG_Unc(std::string infile, std:
       for(float htb=25.0; htb<725.0;htb+=20.0){
          HTb_Value_ElMu[i_htb] = htb;
          unsigned int j_invMass=0;
-         for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+         for(float invMass=0.0; invMass<300.0; invMass+=10.0){
             InvMass_Value_ElMu[j_invMass]=invMass;
             if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass)) HTb_InvMass_Yield_ElMu[i_htb][j_invMass]+=eventWeight;
             unsigned int k_met=0;
@@ -1550,14 +1549,14 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize_WG_Unc(std::string infile, std:
        for(float ht=30.0; ht<730.0;ht+=20.0){
           if(HT<ht) HT_yield_ElMu[ht] += eventWeight;
        }
-       for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+       for(float invMass=0.0; invMass<300.0; invMass+=10.0){
           if((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass) invMass_yield_ElMu[invMass] += eventWeight;
        }
        unsigned int i_ht=0;
        for(float ht=30.0; ht<730.0;ht+=20.0){
          HT_Value_ElMu[i_ht] = ht; 
          unsigned int j_invMass=0;
-         for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+         for(float invMass=0.0; invMass<300.0; invMass+=10.0){
             InvMass_Value_ElMu[j_invMass]=invMass; 
             if(HT<ht and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass)) HT_InvMass_Yield_ElMu[i_ht][j_invMass]+=eventWeight;
              unsigned int k_met=0;
@@ -1577,7 +1576,7 @@ int ReadLowPtSUSY_Tree_ComparisonDataMC_Optimize_WG_Unc(std::string infile, std:
       for(float htb=25.0; htb<725.0;htb+=20.0){
          HTb_Value_ElMu[i_htb] = htb;
          unsigned int j_invMass=0;
-         for(float invMass=0.0; invMass<100.0; invMass+=10.0){
+         for(float invMass=0.0; invMass<300.0; invMass+=10.0){
             InvMass_Value_ElMu[j_invMass]=invMass;
             if(HTb<htb and ((Muons.at(0).LepLV+Electrons.at(0).LepLV).M()<invMass)) HTb_InvMass_Yield_ElMu[i_htb][j_invMass]+=eventWeight;
             unsigned int k_met=0;

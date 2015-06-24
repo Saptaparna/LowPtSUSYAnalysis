@@ -513,7 +513,7 @@ double photonSF(double phPt, double phEta)
     }
   return sf;
 }
-
+/*
 double photonSF_WG(double phPt, double phEta)
 {
   double sf = 1.0;
@@ -532,6 +532,52 @@ double photonSF_WG(double phPt, double phEta)
    if(fabs(phEta) > 0.0 and fabs(phEta) < 0.8) sf = 1.0122*0.9960; 
    if(fabs(phEta) > 0.8 and fabs(phEta) < 1.5) sf = 1.0122*0.9971; 
    }
+  return sf;
+}*/
+
+double photonSF_WG(double phPt, double phEta)
+{
+  double sf = 1.0;
+  if(phPt > 30.00 and phPt < 40.00)
+    {
+    if(fabs(phEta) > 0.0 and fabs(phEta) < 0.8) sf = 1.0170;
+    else if(fabs(phEta) > 0.8 and fabs(phEta) < 1.5) sf = 0.9837;
+    }
+  else if(phPt >= 40.00 and phPt < 45.00)
+    {
+    if(fabs(phEta) > 0.0 and fabs(phEta) < 0.8) sf = 1.0207;
+    else if(fabs(phEta) > 0.8 and fabs(phEta) < 1.5) sf = 1.0231;
+    }
+  else if(phPt >= 45.00 and phPt < 50.00)
+    {
+    if(fabs(phEta) > 0.0 and fabs(phEta) < 0.8) sf = 1.0228;
+    else if(fabs(phEta) > 0.8 and fabs(phEta) < 1.5) sf = 1.0533;
+    }
+  else if(phPt >= 50.00 and phPt < 55.00)
+    {
+    if(fabs(phEta) > 0.0 and fabs(phEta) < 0.8) sf = 1.0223;
+    else if(fabs(phEta) > 0.8 and fabs(phEta) < 1.5) sf = 1.0370;
+    }
+  else if(phPt >= 55.00 and phPt < 60.00)
+    {
+    if(fabs(phEta) > 0.0 and fabs(phEta) < 0.8) sf = 1.0200;
+    else if(fabs(phEta) > 0.8 and fabs(phEta) < 1.5) sf = 1.0103;
+    }
+  else if(phPt >= 60.00 and phPt < 70.00)
+    {
+    if(fabs(phEta) > 0.0 and fabs(phEta) < 0.8) sf = 1.0072;
+    else if(fabs(phEta) > 0.8 and fabs(phEta) < 1.5) sf = 1.0144;
+    }
+  else if(phPt >= 70.00 and phPt < 80.00)
+    {
+    if(fabs(phEta) > 0.0 and fabs(phEta) < 0.8) sf = 1.0023;
+    else if(fabs(phEta) > 0.8 and fabs(phEta) < 1.5) sf = 1.0144;
+    }
+  else if(phPt >= 80.00)
+    {
+    if(fabs(phEta) > 0.0 and fabs(phEta) < 0.8) sf = 1.0024;
+    else if(fabs(phEta) > 0.8 and fabs(phEta) < 1.5) sf = 0.9440;
+    }
   return sf;
 }
 
@@ -732,7 +778,7 @@ float JerUnc(float pt, float genpt, float eta)
   return pt;
 }*/
 
-float JerUnc(AnalysisJetInfo recoJet, GenJetInfo genJet, int genJetSize, std::string jerUnc)
+float JerUnc(AnalysisJetInfo recoJet, std::vector<GenJetInfo> &genJets, std::string jerUnc)
 {
   double jetEta = fabs(recoJet.JetLV.Eta());
   double factor = 0;
@@ -784,19 +830,25 @@ float JerUnc(AnalysisJetInfo recoJet, GenJetInfo genJet, int genJetSize, std::st
   
   int matched = 0;
   double jetPt=0;
-  for (unsigned int i_gen=0; i_gen<genJetSize; i_gen++)
+  double dR_gen_reco_min = 0.5;
+  unsigned int i_gen_matched = 1000;
+  for (unsigned int i_gen=0; i_gen<genJets.size(); i_gen++)
   {
     TLorentzVector genJet_vec;
-    genJet_vec.SetPtEtaPhiE(genJet.pT, genJet.eta, genJet.phi, genJet.energy);
+    genJet_vec.SetPtEtaPhiE(genJets.at(i_gen).pT, genJets.at(i_gen).eta, genJets.at(i_gen).phi, genJets.at(i_gen).energy);
  
     double dR_gen_reco = recoJet.JetLV.DeltaR(genJet_vec);
-    if(dR_gen_reco<0.5) {
+
+    if(dR_gen_reco<dR_gen_reco_min) {
       matched = 1;  
-      float original = (recoJet.JetLV.Pt() + genJet_vec.Pt() *  (factor-1))/factor; 
-      if(jerUnc=="JerUp") jetPt = TMath::Max(0.0,genJet_vec.Pt() + factor_up * (original - genJet_vec.Pt()));
-      if(jerUnc=="JerDown") jetPt = TMath::Max(0.0,genJet_vec.Pt() + factor_down * (original - genJet_vec.Pt()));
-      if(jerUnc=="Default") jetPt = recoJet.JetLV.Pt();
+      i_gen_matched = i_gen;
     }
+  }
+  if(matched == 1){
+    float original = (recoJet.JetLV.Pt() + genJets.at(i_gen_matched).pT  *  (factor-1))/factor; 
+    if(jerUnc=="JerUp") jetPt = TMath::Max(0.0, genJets.at(i_gen_matched).pT  + factor_up * (original - genJets.at(i_gen_matched).pT));
+    if(jerUnc=="JerDown") jetPt = TMath::Max(0.0, genJets.at(i_gen_matched).pT + factor_down * (original - genJets.at(i_gen_matched).pT));
+    if(jerUnc=="Default") jetPt = recoJet.JetLV.Pt();
   }
   if(matched == 0 and (jerUnc=="JerUp" or jerUnc=="JerDown" or jerUnc=="Default")) jetPt = recoJet.JetLV.Pt();
   return jetPt;
